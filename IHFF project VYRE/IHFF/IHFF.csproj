@@ -208,7 +208,11 @@
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\IActivity.cs" />
     <Compile Include="Models\IBestelling.cs" />
+    <Compile Include="Models\ICulture.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IHotel.cs" />
+    <Compile Include="Models\IMedewerker.cs" />
+    <Compile Include="Models\ISpecial.cs" />
     <Compile Include="Models\Klant.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Medewerker.cs" />
