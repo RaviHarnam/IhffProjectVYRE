@@ -207,6 +207,7 @@
     <Compile Include="Models\Culture.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IhffContext.cs" />
     <Compile Include="Models\Klant.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Medewerker.cs" />
