@@ -14,5 +14,6 @@ namespace IHFF.Models
         }
 
         // Database sets
+        public DbSet<Test> Tests { get; set; }
     }
 }
