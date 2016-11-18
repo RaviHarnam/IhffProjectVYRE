@@ -16,5 +16,9 @@ namespace IHFF.Controllers
             IEnumerable<Test> tests = repos.GetAllTests();
             return View(tests);
         }
+        public ActionResult Master()
+        {
+            return new FilePathResult("~/Views/Shared/Master.cshtml", "text/html");
+        }
     }
 }

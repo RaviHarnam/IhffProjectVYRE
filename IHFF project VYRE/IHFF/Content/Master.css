@@ -1,0 +1,38 @@
+﻿
+body {
+    
+}
+
+.side-button {
+    width: 11.25em;
+    height: 11.25em;
+    background-color: #06AED5;
+    
+}
+.side-button-text {
+    
+}
+.top-menu-bar {
+    background-color: #277D99;
+    
+    height: 3.5em;
+}
+.top-menu-bar-item {
+    list-style-type: none;
+    display: inline;
+    width: 10.313em;
+    height: 3.5em;
+    background-color: #06AED5;
+    
+}
+.top-menu-bar-item-right {
+    display: inline;
+    width: 10.313em;
+    height: 3.5em;
+    background-color: #06AED5;
+}
+.top-menu-bar-item-text {
+    line-height: 1.75em;
+    display: inline;
+}
+

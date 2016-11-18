@@ -1,44 +1,55 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
+
+
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <!-- <meta name="viewport" content="width=device-width" /> -->
+    <!--Styles.Render("~/Content/Master") -->
+    <!-- <link href="Url.Content("~/Content/Master.css")" rel="stylesheet" type="text/css" /> -->
+    @Styles.Render("~/Content/Master")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    <section class="menu">
+        <nav class="top-menu-bar">
+            <ul>
+                <li class="top-menu-bar-item"><p class="top-menu-bar-item-text">Home</p></li>
+                <li class="top-menu-bar-item"><p class="top-menu-bar-item-text">Movies</p></li>
+                <li class="top-menu-bar-item"><p class="top-menu-bar-item-text">Specials</p></li>
+                <li class="top-menu-bar-item"><p class="top-menu-bar-item-text">Food</p></li>
+                <li class="top-menu-bar-item"><p class="top-menu-bar-item-text">Culture</p></li>
+                <li class="top-menu-bar-item-right"><p class="top-menu-bar-item-text">Wishlist</p></li>
+                <li class="top-menu-bar-item-right"><p class="top-menu-bar-item-text">Cart</p></li>
+            </ul>
+        </nav>
+    </section>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <aside class="side-buttons">
+        <button class="side-button"><p class="side-button-text">Full Schedule</p></button>
+        <button class="side-button"><p class="side-button-text">Lorum Ipsum</p></button>
+        <button class="side-button"><p class="side-button-text">Combo Deals</p></button>
+    </aside>
+    @RenderBody()
+    <footer>
+        <ul class="Left-footer-list">
+            <li>Home</li>
+            <li>Movies</li>
+            <li>Specials</li>
+            <li>Food</li>
+            <li>Culture</li>
+        </ul>
+        <ul class="Middle-footer-list">
+            <li>Locations</li>
+            <li>About us</li>
+            <li>FAQ</li>
+            <li>Contact</li>
+            <li>Hotels</li>
+        </ul>
+        <ul class="Right-footer-list">
+            <li>My wishlist</li>
+            <li>Cart</li>
+            <li>Maintence</li>
+        </ul>
+    </footer>
 </body>
 </html>
