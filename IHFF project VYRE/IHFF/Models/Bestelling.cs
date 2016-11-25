@@ -8,12 +8,28 @@ namespace Ihff_project.Models
     public class Bestelling
     {
         public int BestellingID { get; set; }
-        public string status { get; set; }
-        public DateTime datumTijd { get; set; }
-        public double totaalPrijs { get; set; }
-        public int klantID { get; set; }
+        public string Status { get; set; }
+        public DateTime DatumTijd { get; set; }
+        public double TotaalPrijs { get; set; }
+        public int KlantId { get; set; }
     
-        public List<Activiteit> activiteiten;
+        public List<Item> bestellingItems;
 
+        public Bestelling(int klantId)
+        {
+            KlantId = klantId;
+            Status = "Onvoltooid";
+            DatumTijd = DateTime.Now;
+            TotaalPrijs = 0;
+        }
+
+        public double BerekenTotaal()
+        {
+            foreach(Item bestellingItem in bestellingItems)
+            {
+                TotaalPrijs += bestellingItem.BerekenPrijs();
+            }
+            return TotaalPrijs;
+        }
     }
 }

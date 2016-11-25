@@ -215,6 +215,7 @@
     <Compile Include="Models\IHotel.cs" />
     <Compile Include="Models\IMedewerker.cs" />
     <Compile Include="Models\ISpecial.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Klant.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Medewerker.cs" />

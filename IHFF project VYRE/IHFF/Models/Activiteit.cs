@@ -11,17 +11,20 @@ namespace Ihff_project.Models
         public string Titel { get; set; }
         public string Info { get; set; }
         public string Omschrijving { get; set; }
+        public string DatumTijd { get; set; }
+        public double Prijs { get; set; }
 
-        public Bestelling Activiteiten
+        public Activiteit(string titel, string info, string omschrijving, string datumTijd, double prijs)
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            Titel = titel;
+            Info = Info;
+            Omschrijving = Omschrijving;
+            DatumTijd = datumTijd;
+            Prijs = prijs;
         }
+
         
+
+
     }
 }
