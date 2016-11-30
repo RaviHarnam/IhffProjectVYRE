@@ -1,0 +1,206 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
+
+html{
+    background-color: #fff1d0;
+    font-family: Montserrat;
+}
+
+body {
+
+    width: 75%;
+    position: absolute;
+    left: 50%;
+    margin-left: -37.5%;
+    background-color: white;
+    font-family: Roboto;
+}
+
+.content{
+    width: 75%;
+    margin-left: 2%;
+    background-color: white;
+}
+
+.side-buttons {
+    float: right;
+    margin-right: 3%;
+    margin-top: 2em;
+}
+
+.side-buttons button {
+    width: 11.25em;
+    height: 11.25em;
+    background-color:#06AED5;
+    display: block;
+    margin-top: 2em;
+    border-style: none;
+}
+
+.side-buttons button:hover{
+    background-color: #086788; 
+}
+
+.side-buttons button p{
+    color: white;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.top-menu-bar {
+    background-color: #086788;
+    width: 100%;
+    height: 3.5em;
+    color: white;
+        
+}
+
+.top-menu-bar ul{
+    margin-left: 0%;
+}
+
+.top-menu-bar ul li{
+    background-color: #086788;
+    float: left;
+    display: inline;
+    width: 10%;
+    height: 2.9em;
+    margin-left: 0%;
+    text-align: center;
+    line-height: 300%;
+    font-weight: bolder;
+    font-size: 120%;    
+    border-right: 0.063em solid #000000;
+   
+    
+}
+#menu-border-left{
+    border-left: 0.063em solid #000000;
+}
+.top-menu-bar ul li:hover {
+    background-color: #086788;
+}
+.top-menu-bar .right{
+    float: right;
+    margin-left: 0%;
+    margin-right: 2%;
+    /*alleen voor meest rechter laten gelden niet voor beide*/
+}
+
+
+.top-menu-bar p{
+    height: 100%;
+    display: inline;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+.movie_index_items {
+	width: 960px;
+	z-index: 0;
+}
+.movie_index_items_line1{
+	width: 817px;
+	height: 257px;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 0;
+	margin-top: 5px;
+	display: block;
+}
+
+	
+.movie_index_item {
+	height: 250px;
+	width: 250px;
+	float:left;
+	display: inline-block;
+	padding: 5px;
+	border: #999 solid 1px;
+	background-color: #fff;
+	margin: 0px 2px 0px 2px;
+}
+.movie_index_item_description {
+	height: 0px;
+	width: 240px;
+	padding-left: 10px;
+	text-align: left;
+	padding-top: 20px;
+	opacity: 0;
+	z-index: 3;
+	float: left;
+	margin:0px;
+	background-color: white;
+	transition: all 0.4s ease-out;
+	margin-top:-250px;
+	overflow:hidden;
+}
+.movie_index_item:hover > .movie_index_item_description {
+	opacity: 0.9;
+	height: 195px;
+	width: 240px;
+}
+.movie_index_item_img {
+	float: left;
+	height: 250px;
+	width: 250px;
+}
+.movie_index_item_title {
+    float: left;
+    margin: 0;
+    padding:  0;
+    border: 0;
+    text-align: center;
+    width: 250px;
+    background-color: white;
+    height: 35px;
+    line-height: 35px;
+    opacity: 1;
+	margin-top: -35px;
+}
+.movie_index_item_description_button{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	margin-top:35px;
+	position: relative;
+}
+.movie_index_item_description_button:hover{
+	background-color: #226493;
+}
+
+footer{
+    width: 100%;
+    height: 10em;
+    background-color: #277D99;
+    color: white;
+}
+
+footer ul{
+    display: inline-block;
+}
+
+#footer-left{
+    float: left;
+    margin-left: 1%;
+    margin-right: 24%;
+}
+
+#footer-middle{
+    float:left;
+    margin-right: 24%;
+}
+
+#footer-right{
+    float: left;
+}

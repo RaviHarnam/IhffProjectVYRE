@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = @"~/Views/Shared/_Layout.cshtml    ";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Master.css")" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/Master")
+    
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+  
+
+
+        <section id="Movies">
+            <nav class="movie_index_items">
+                <aside class="movie_index_items_line1">
+                    <aside class="movie_index_item">
+                        <img class="movie_index_item_img" src="./img/SpaceOdyssey.jpg" alt="2001: A Space Odyssey" title="Img SpaceOdyssey" />
+                        <p class="movie_index_item_title">2001: A Space Odyssey</p>
+                        <p class="movie_index_item_description">
+                            2001: A Space Odyssey<br>
+                            <a href="SpaceOdyssey.html" class="movie_index_item_description_button">Voeg toe aan Cart</a>  <!--a ref naar actionlink-->
+                        </p>
+                    </aside>
+                    <aside class="movie_index_item">
+                        <img class="movie_index_item_img" src="./IMG/A.I..jpg" alt="Artificial Intelligence" title="Img A.I." />
+                        <p class="movie_index_item_title">A.I.</p>
+                        <p class="movie_index_item_description">
+                            A.I.<br>
+                            <a href="Ai.html" class="movie_index_item_description_button">Voeg toe aan Cart</a>  <!--a ref naar actionlink-->
+                        </p>
+                    </aside>
+                    <aside class="movie_index_item">
+                        <img class="movie_index_item_img" src="./img/Brazil.jpg" alt="Brazil" title="Img Brazil" />
+                        <p class="movie_index_item_title">Brazil</p>
+                        <p class="movie_index_item_description">
+                            Brazil<br>
+                            <a href="Brazil.html" class="movie_index_item_description_button">Voeg toe aan Cart</a> <!--a ref naar actionlink-->
+                        </p>
+                        <br />
+                    </aside>
+                </aside>
+
+            </nav>
+        </section>
+
+    <br />
+
+   
+</body>
+</html>
