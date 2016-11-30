@@ -7,6 +7,10 @@ namespace Ihff_project.Models
 {
     public class Restaurant : Activiteit
     {
+        public Restaurant(string titel, string info, string omschrijving, string datumTijd, double prijs) : base(titel, info, omschrijving, datumTijd, prijs)
+        {
+        }
+
         public string naam { get; set; }
         public string plaats { get; set; }
         public int prijs { get; set; }
