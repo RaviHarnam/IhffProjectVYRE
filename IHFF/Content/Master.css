@@ -6,7 +6,7 @@ html{
 }
 
 body {
-
+    margin-top: 0%;
     width: 75%;
     position: absolute;
     left: 50%;
@@ -70,9 +70,14 @@ body {
     font-weight: bolder;
     font-size: 120%;    
     border-right: 0.063em solid #000000;
-   
-    
+    padding-left: 1%;
+    padding-right: 1%;
 }
+
+.home-button{
+    margin-left: -10em;
+}
+
 #menu-border-left{
     border-left: 0.063em solid #000000;
 }
@@ -82,7 +87,7 @@ body {
 .top-menu-bar .right{
     float: right;
     margin-left: 0%;
-    margin-right: 2%;
+    margin-right: 0%;
     /*alleen voor meest rechter laten gelden niet voor beide*/
 }
 
@@ -96,7 +101,7 @@ ul {
     list-style-type: none;
 }
 
-.footer li:hover{
+footer li:hover{
     background-color: #06AED5;
 }
 
@@ -194,6 +199,11 @@ footer ul{
     display: inline-block;
 }
 
+footer ul li{
+    width: auto;
+    padding: 0.1em 0.5em 0.1em 0.5em;
+}
+
 #footer-left{
     float: left;
     margin-left: 1%;
@@ -209,15 +219,32 @@ footer ul{
     float: left;
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
     font-family: Montserrat;
 }
 
-img {
+h5{
+    display: inline;
+    font-size: 1.2em;
+}
+
+h6{
+    display: inline;
+    font-size: 0.8em;
+    font-weight: normal;
+}
+
+
+.header-logo {
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 15em;
+}
+
+.left-img, .right-img{
     height: 23em;
     width: 23em;
     margin-bottom: 1.5em;
-
 }
 
 .left-img{
