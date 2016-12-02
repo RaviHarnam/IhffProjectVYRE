@@ -408,7 +408,6 @@ C:\Users\Admin\Desktop\IhffProjectVYRE-master\IHFF project VYRE\IHFF\bin\Microso
 C:\Users\Admin\Desktop\IhffProjectVYRE-master\IHFF project VYRE\IHFF\obj\Debug\IHFF.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Desktop\IhffProjectVYRE-master\IHFF project VYRE\IHFF\obj\Debug\IHFF.dll
 C:\Users\Admin\Desktop\IhffProjectVYRE-master\IHFF project VYRE\IHFF\obj\Debug\IHFF.pdb
-C:\Users\1134y\Documents\IhffProjectVYRE\IHFF\obj\Debug\IHFF.csprojResolveAssemblyReference.cache
 C:\Users\1134y\Documents\IhffProjectVYRE\IHFF\bin\ApplicationInsights.config
 C:\Users\1134y\Documents\IhffProjectVYRE\IHFF\bin\roslyn\Microsoft.CSharp.Core.targets
 C:\Users\1134y\Documents\IhffProjectVYRE\IHFF\bin\roslyn\Microsoft.VisualBasic.Core.targets
@@ -490,3 +489,4 @@ C:\Users\1134y\Documents\IhffProjectVYRE\IHFF\bin\Microsoft.Owin.Security.Twitte
 C:\Users\1134y\Documents\IhffProjectVYRE\IHFF\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\1134y\Documents\IhffProjectVYRE\IHFF\obj\Debug\IHFF.dll
 C:\Users\1134y\Documents\IhffProjectVYRE\IHFF\obj\Debug\IHFF.pdb
+C:\Users\1134y\Documents\IhffProjectVYRE\IHFF\obj\Debug\IHFF.csprojResolveAssemblyReference.cache
