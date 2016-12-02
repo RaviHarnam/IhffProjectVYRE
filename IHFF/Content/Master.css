@@ -238,7 +238,14 @@ h6{
 .header-logo {
     margin-left: 2%;
     margin-top: 2%;
-    width: 15em;
+    width: 12em;
+}
+
+#header-imgs{
+    margin-left: 2em;
+}
+
+.header-img {
 }
 
 .left-img, .right-img{
