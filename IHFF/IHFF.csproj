@@ -220,7 +220,7 @@
     <Compile Include="Models\Klant.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Medewerker.cs" />
-    <Compile Include="Models\Movies.cs" />
+    <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Special.cs" />
     <Compile Include="Models\Test.cs" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace IHFF.Controllers
 {
     public class CartController : Controller
@@ -11,6 +12,7 @@ namespace IHFF.Controllers
         // GET: Cart
         public ActionResult Index()
         {
+
             return View();
         }
     }

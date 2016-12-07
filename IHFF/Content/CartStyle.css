@@ -10,18 +10,33 @@
     display: inline-block;
 }
 
-#Title{
-    padding: 0em 22em 0em 1em;
+.Title{
+    padding: 0em 0em 0em 0em;
+    border-right: 0.063em solid #000000;
+    width: 23em;
+
 }
 
-#Time{
+.Time{
     padding: 0em 1em 0em 1em;
+    border-right: 0.063em solid #000000;
+    width: 5em;
+
 }
 
-#Amount{
+.Amount{
     padding: 0em 1em 0em 1em;
+    border-right: 0.063em solid #000000;
+    width: 5em;
+
 }
 
-#Price{
-        padding: 0em 1em 0em 1em;
+.Price{
+    padding: 0em 1em 0em 1em;
+    width: 4em;
+}
+
+.TableContent li{
+    margin: -1em 0em 0em 0em;
+    display: inline-block;
 }

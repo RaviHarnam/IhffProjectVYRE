@@ -1,8 +1,13 @@
-﻿@Styles.Render("~/Content/CartStyle.css")
+﻿@Styles.Render("~/Content/CartStyle.css");
+@using IHFF.Models;
 
 @{
     ViewBag.Title = "Cart";
+    
 }
+
+@model IEnumerable<Movie>
+
 <head>
     <title>Cart</title>
 </head>
@@ -12,10 +17,19 @@
 
 <content>
     <ul class="TableHeader">
-        <li id="Title"><h3>Title</h3></li>
-        <li id="Time"><h3>Time</h3></li>
-        <li id="Amount"><h3>Amount</h3></li>
-        <li id="Price"><h3>Price</h3></li>
+        <li class="Title"><h3>Title</h3></li>
+        <li class="Time"><h3>Time</h3></li>
+        <li class="Amount"><h3>Amount</h3></li>
+        <li class="Price"><h3>Price</h3></li>
     </ul>
+    @foreach (var m in Model)
+    {
+        <ul class="TableContent">
+            <li class="Title"><h4>m.Titel</h4></li>
+            <li class="Time"><h4>m.datumTijd</h4></li>
+            <li class="Amount"><h4>m.aantalTickets</h4></li>
+            <li class="Price"><h4>m.Prijs</h4></li>
+        </ul>
+    }
 </content>
 </body>
