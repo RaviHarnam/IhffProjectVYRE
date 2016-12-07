@@ -13,21 +13,22 @@ namespace IHFF.Controllers
         // GET: Cart
         public ActionResult Index()
         {
-            int i = 0;
-            List<Item> movies = new List<Item>();
-            movies.Add(new Movie());
-            movies.Add(new Movie());
-            movies.Add(new Movie());
+            int i = 1;
+            List<Event> events = new List<Event>();
+            events.Add(new Event());
+            events.Add(new Event());
+            events.Add(new Event());
 
-            foreach(Movie item in movies)
+            foreach(Event item in events)
             {
-               // item.Titel = "titel " + i.ToString();
-               // item.Prijs = i + 100;
-               // item.aantalTickets = i + 200;
-               // item.datumTijd = DateTime.Now;
+                item.Titel = "Test " + i.ToString();
+                item.Prijs = i + 100;
+                item.Aantal = i + 200;
+                item.DatumTijd = DateTime.Now;
+                i++;
             }
 
-            return View(movies);
+            return View(events);
         }
     }
 }
