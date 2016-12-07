@@ -40,7 +40,7 @@
 	transition: all 0.4s ease-out;
 	margin-top:-250px;
 	overflow:hidden;
-    display: none;
+
 }
 .movie_index_item:hover > .movie_index_item_description {
 	opacity: 0.9;
