@@ -8,15 +8,18 @@ namespace IHFF.Models
 {
     public class Movie : Item
     {
-        public Movie(int movieid, decimal rating, string director, string stars, string writers, string categorie, string titel, string omschrijving, bool highlight) : base(categorie, titel, omschrijving, highlight)
+        public Movie(decimal rating, string director, string stars, string writers, string categorie, string titel, string omschrijving, bool highlight) : base(categorie, titel, omschrijving, highlight)
         {
-            MovieId = movieid;
+            //MovieId = movieid;
             Rating = rating;
             Director = director;
             Writers = writers;
             
         }
+        public Movie()
+        {
 
+        }
        
         public int MovieId { get; set; }
         public int ItemdID { get; set; }

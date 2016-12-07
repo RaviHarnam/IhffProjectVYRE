@@ -21,10 +21,10 @@ namespace IHFF.Controllers
 
             foreach(Movie item in movies)
             {
-                item.Titel = "titel " + i.ToString();
-                item.Prijs = i + 100;
-                item.aantalTickets = i + 200;
-                item.datumTijd = DateTime.Now;
+               // item.Titel = "titel " + i.ToString();
+               // item.Prijs = i + 100;
+               // item.aantalTickets = i + 200;
+               // item.datumTijd = DateTime.Now;
             }
 
             return View(movies);

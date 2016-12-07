@@ -1,9 +1,9 @@
-<<<<<<< HEAD
+
 ﻿using IHFF.Models;
 using System;
-=======
+
 ﻿using System;
->>>>>>> 77c597045b50a2eab5d0ed65c0bcd6dffb8722f6
+
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
