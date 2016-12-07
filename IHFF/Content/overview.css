@@ -17,7 +17,7 @@
 .movie_index_item {
 	height: 10%;
 	width: 10%;
-	float:left;
+	float: left;
 	display: inline-block;
 	padding: 5px;
 	border: #999 solid 1px;
