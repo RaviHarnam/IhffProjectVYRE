@@ -12,7 +12,7 @@ namespace IHFF.Models
         public string SpokenLanguage { get; set; }
 
 
-        public Special(int itemid, string categorie, string titel, string omschrijving, bool highlight, string speaker, string spokenlanguage) : base(itemid, categorie, titel, omschrijving, highlight)
+        public Special(string categorie, string titel, string omschrijving, bool highlight, string speaker, string spokenlanguage) : base(categorie, titel, omschrijving, highlight)
         {
             Speaker = speaker;
             SpokenLanguage = spokenlanguage;
