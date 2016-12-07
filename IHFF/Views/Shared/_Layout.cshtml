@@ -10,16 +10,25 @@
     @Styles.Render("~/Content/Master.css")
 </head>
 <body>
+    <section>
+        <img class="header-logo" src="http://i.imgur.com/hgmXQXI.png"/>
+        <section id="header-imgs">
+            <img class="header-img" src="http://imgur.com/1W31qIX.png" />
+            <img class="header-img" src="http://imgur.com/gkrNHAA.png" />
+            <img class="header-img" src="http://imgur.com/RK1RAOO.png" />
+            <img class="header-img" src="http://imgur.com/mQ8jAKP.png" />
+        </section>
+    </section>
     <section class="menu">
         <nav class="top-menu-bar">
             <ul>
-                <li id="menu-border-left"><p>Home</p></li>
-                <li><p>Movies</p></li>
-                <li><p>Specials</p></li>
-                <li><p>Food</p></li>
-                <li><p>Culture</p></li>
-                <li class="right"><p>Wishlist</p></li>
-                <li class="right" id="menu-border-left"><p>Cart</p></li>
+                <li id="menu-border-left"><h5>Home</h5></li>
+                <li><h5>Movies</h5></li>
+                <li><h5>Specials</h5></li>
+                <li><h5>Food</h5></li>
+                <li><h5>Culture</h5></li>
+                <li class="right"><h5>Cart</h5></li>
+                <li class="right" id="menu-border-left"><h5>Wishlist</h5></li>
             </ul>
         </nav>
     </section>
@@ -32,26 +41,25 @@
     <section class="content">
         @RenderBody()
     </section>
-    <footer class="footer">
-        <ul id="footer-left">
-            <li>Home</li>
-            <li>Movies</li>
-            <li>Specials</li>
-
-            <li>Food</li>
-            <li>Culture</li>
+    <footer>
+        <ul class="footer-left">
+            <li id="home-button"><h6>Home</h6></li>
+            <li><h6>Movies</h6></li>
+            <li><h6>Specials</h6></li>
+            <li><h6>Food</h6></li>
+            <li><h6>Culture</h6></li>
         </ul>
         <ul id="footer-middle">
-            <li>Locations</li>
-            <li>About us</li>
-            <li>FAQ</li>
-            <li>Contact</li>
-            <li>Hotels</li>
+            <li><h6>Locations</h6></li>
+            <li><h6>About us</h6></li>
+            <li><h6>FAQ</h6></li>
+            <li><h6>Contact</h6></li>
+            <li><h6>Hotels</h6></li>
         </ul>
         <ul id="footer-right">
-            <li>My wishlist</li>
-            <li>Cart</li>
-            <li>Maintence</li>
+            <li><h6>My wishlist</h6></li>
+            <li><h6>Cart</h6></li>
+            <li><h6>Maintence</h6></li>
         </ul>
     </footer>
 </body>

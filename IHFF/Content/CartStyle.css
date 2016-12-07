@@ -1,0 +1,27 @@
+﻿body {
+}
+
+.TableHeader{
+    background-color: #cccccc;
+}
+
+.TableHeader li{
+    margin: 0% 0% 0% 0%;
+    display: inline-block;
+}
+
+#Title{
+    padding: 0em 22em 0em 1em;
+}
+
+#Time{
+    padding: 0em 1em 0em 1em;
+}
+
+#Amount{
+    padding: 0em 1em 0em 1em;
+}
+
+#Price{
+        padding: 0em 1em 0em 1em;
+}
