@@ -2,14 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using IHFF.Models;
 
 namespace IHFF.Models
 {
     public class Movie : Item
     {
-        public int id { get; set; }
-        public DateTime datumTijd { get; set; }
-        public int aantalTickets { get; set; }
-        public double Prijs { get; set; }
+        public Movie(int movieid, decimal rating, string director, string stars, string writers, string categorie, string titel, string omschrijving, bool highlight) : base(categorie, titel, omschrijving, highlight)
+        {
+            MovieId = movieid;
+            Rating = rating;
+            Director = director;
+            Writers = writers;
+            
+        }
+
+       
+        public int MovieId { get; set; }
+        public int ItemdID { get; set; }
+        public decimal Rating { get; set; }
+        public string Director { get; set; }
+        public string Stars { get; set; }
+        public string Writers { get; set; }
+      
     }
 }

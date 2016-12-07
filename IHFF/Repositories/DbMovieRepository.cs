@@ -32,8 +32,8 @@ namespace IHFF.Repositories
         public IEnumerable<Movie> GetAllMovies()
         {
             IEnumerable<MovieDTO> moviesDTOs = (from i in ctx.Items.AsEnumerable()
-                                                    //from m in ctx.Movies.AsEnumerable()
-                                                join m in ctx.Movies on i.ItemID equals m.ItemID
+                                                    from m in ctx.Movies.AsEnumerable()
+                                              //  join m in ctx.Movies on i.ItemID equals m.ItemID
                                                 where i.ItemID == m.ItemID
                                                 select new MovieDTO
                                                 {
@@ -49,11 +49,11 @@ namespace IHFF.Repositories
 
                                                 }).ToList();
             List<Movie> moviesList = new List<Movie>();
-            foreach (MovieDTO movie in moviesDTOs)
-            {
-                Movie m = new Movie(movie.ItemID, movie.Categorie, movie.Titel, movie.Omschrijving, movie.Highlight, movie.Rating, movie.Director, movie.Stars, movie.Writers);
-                moviesList.Add(m);
-            }
+        //    foreach (MovieDTO movie in moviesDTOs)
+         //   {
+               // Movie m = new Movie(movie.ItemID, movie.Categorie, movie.Titel, movie.Omschrijving, movie.Highlight, movie.Rating, movie.Director, movie.Stars, movie.Writers);
+               // moviesList.Add(m);
+           // }
             return (IEnumerable<Movie>)moviesList;
 
         }
