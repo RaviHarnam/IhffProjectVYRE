@@ -5,7 +5,7 @@ using System.Web;
 
 namespace IHFF.Models
 {
-    public class Movie : Activiteit
+    public class Movie : Item
     {
         public int id { get; set; }
         public DateTime datumTijd { get; set; }
