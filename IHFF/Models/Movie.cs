@@ -27,6 +27,7 @@ namespace IHFF.Models
         public string Director { get; set; }
         public string Stars { get; set; }
         public string Writers { get; set; }
-      
+        public double Prijs { get; set; }
+        public DateTime DatumTijd { get; set; }      
     }
 }

@@ -6,7 +6,7 @@
     
 }
 
-@model IEnumerable<Movie>
+@model IEnumerable<Event>
 
 <head>
     <title>Cart</title>
@@ -16,20 +16,22 @@
 <h2>Cart</h2>
 
 <content>
-    <ul class="TableHeader">
-        <li class="Title"><h3>Title</h3></li>
-        <li class="Time"><h3>Time</h3></li>
-        <li class="Amount"><h3>Amount</h3></li>
-        <li class="Price"><h3>Price</h3></li>
-    </ul>
+    <table>
+    <tr class="TableHeader">
+        <th class="Title"><h3>Title</h3></th>
+        <th class="Time"><h3>Time</h3></th>
+        <th class="Amount"><h3>Amount</h3></th>
+        <th class="Price"><h3>Price</h3></th>
+    </tr>
     @foreach (var m in Model)
     {
-        <ul class="TableContent">
-            <li class="Title"><h4>m.Titel</h4></li>
-            <li class="Time"><h4>m.datumTijd</h4></li>
-            <li class="Amount"><h4>m.aantalTickets</h4></li>
-            <li class="Price"><h4>m.Prijs</h4></li>
-        </ul>
+        <tr class="TableContent">
+            <td class="Title"><h4>@m.Titel</h4></td>
+            <td class="Time" id="Time"><h4>@m.DatumTijd</h4></td>
+            <td class="Amount"><h4>@m.Aantal</h4></td>
+            <td class="Price"><h4>@m.Prijs</h4></td>
+        </tr>
     }
+    </table>
 </content>
 </body>

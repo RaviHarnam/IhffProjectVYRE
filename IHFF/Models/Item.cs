@@ -13,10 +13,8 @@ namespace IHFF.Models
         public string Omschrijving { get; set; }
         public bool Highlight { get; set; }
 
-        public Item(string categorie, string titel, string omschrijving, bool highlight)
-            
+        public Item(string categorie, string titel, string omschrijving, bool highlight)   
         {
-           
             Categorie = categorie;
             Titel = titel;
             Omschrijving = omschrijving;
