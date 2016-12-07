@@ -21,8 +21,8 @@ namespace IHFF.Models
 
         }
        
-        public int MovieId { get; set; }
-        public int ItemdID { get; set; }
+       // public int MovieId { get; set; }
+       // public int ItemID { get; set; }
         public decimal Rating { get; set; }
         public string Director { get; set; }
         public string Stars { get; set; }

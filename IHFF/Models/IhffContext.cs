@@ -1,14 +1,13 @@
-
+﻿
 ﻿using IHFF.Models;
 using System;
 
-﻿using System;
-
+﻿
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using IHFF.Models;
+
 
 namespace IHFF.Models
 {
@@ -21,16 +20,17 @@ namespace IHFF.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Item>().ToTable("ITEM");
             modelBuilder.Entity<Movie>().ToTable("MOVIE");
-     
+            modelBuilder.Entity<Special>().ToTable("SPECIAL");
 
-            base.OnModelCreating(modelBuilder);
+           
         }
 
         // Database sets
-        public DbSet<Item> Items { get; set; }
-        public DbSet<Movie> Movies { get; set;}
-        public DbSet<Special> Specials { get; set;}
+        public DbSet<Item> ITEMS { get; set; }
+        public DbSet<Movie> MOVIES { get; set;}
+        public DbSet<Special> SPECIALS { get; set;}
         
     }
 }

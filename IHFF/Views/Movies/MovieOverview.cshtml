@@ -15,17 +15,50 @@
 </head>
 <body>
 
+    <table>
+        @{int movieNr = 0;}
+        @for(int i = 0; i < Model.Count(); i++)
+            {
+            <tr>
+                @for (int j=0; j < 3; j++)
+                {
+                    if (movieNr < Model.Count())
+                    {
+                <td>
+                    <div class="movie_index_items_line1">
+                        <div class="movie_index_item">
+                            <img class="movie_index_item_img" src="./img/SpaceOdyssey.jpg" alt=@Model.ElementAt(movieNr).Titel title="Img SpaceOdyssey" />
+                            <p class="movie_index_item_title">@Model.ElementAt(movieNr).Titel</p>
+                            <p class="movie_index_item_description">
+                                @Model.ElementAt(movieNr).Titel <br>
+                                <a href="SpaceOdyssey.html" class="movie_index_item_description_button">Voeg toe aan Cart</a>  <!--a ref naar actionlink-->
+                            </p>
+                        </div>
+                    </div>
+                </td>
+                    }
+                    {movieNr++;}
+                }
+
+            </tr>
+        }
 
 
+    </table>
+
+
+    <!--
     <section id="Movies">
+
         <nav class="movie_index_items">
+
             <aside class="movie_index_items_line1">
                 <aside class="movie_index_item">
                     <img class="movie_index_item_img" src="./img/SpaceOdyssey.jpg" alt="2001: A Space Odyssey" title="Img SpaceOdyssey" />
                     <p class="movie_index_item_title">2001: A Space Odyssey</p>
                     <p class="movie_index_item_description">
                         2001: A Space Odyssey<br>
-                        <a href="SpaceOdyssey.html" class="movie_index_item_description_button">Voeg toe aan Cart</a>  <!--a ref naar actionlink-->
+                        <a href="SpaceOdyssey.html" class="movie_index_item_description_button">Voeg toe aan Cart</a>  <!--a ref naar actionlink
                     </p>
                 </aside>
                 <aside class="movie_index_item">
@@ -33,7 +66,7 @@
                     <p class="movie_index_item_title">A.I.</p>
                     <p class="movie_index_item_description">
                         A.I.<br>
-                        <a href="Ai.html" class="movie_index_item_description_button">Voeg toe aan Cart</a>  <!--a ref naar actionlink-->
+                        <a href="Ai.html" class="movie_index_item_description_button">Voeg toe aan Cart</a>  <!--a ref naar actionlink
                     </p>
                 </aside>
                 <aside class="movie_index_item">
@@ -41,20 +74,19 @@
                     <p class="movie_index_item_title">Brazil</p>
                     <p class="movie_index_item_description">
                         Brazil<br>
-                        <a href="Brazil.html" class="movie_index_item_description_button">Voeg toe aan Cart</a> <!--a ref naar actionlink-->
+                        <a href="Brazil.html" class="movie_index_item_description_button">Voeg toe aan Cart</a> <!--a ref naar actionlink
                     </p>
                     <br />
                 </aside>
-                @foreach (Movie movie in Model)
-                { <p>movie.Titel </p> }
+
             </aside>
 
         </nav>
-    </section>
 
+    </section>
+    -->
     <br />
 
 
 </body>
 </html>
-
