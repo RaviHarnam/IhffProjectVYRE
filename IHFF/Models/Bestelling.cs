@@ -13,7 +13,6 @@ namespace Ihff_project.Models
         public double totaalPrijs { get; set; }
         public int klantID { get; set; }
     
-        public List<Activiteit> activiteiten;
-
+      
     }
 }

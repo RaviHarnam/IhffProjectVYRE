@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Ihff_project.Models
 {
-    public class Culture : Activiteit
+    public class Culture 
     {
         public string Naam { get; set; }
         public string Plaats { get; set; }
