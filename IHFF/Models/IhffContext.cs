@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ihff_project.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -13,7 +14,12 @@ namespace IHFF.Models
             // LEEG
         }
 
+   
+
         // Database sets
-        public DbSet<Test> Tests { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Movie> Movies { get; set;}
+        public DbSet<Special> Specials { get; set;}
+        
     }
 }

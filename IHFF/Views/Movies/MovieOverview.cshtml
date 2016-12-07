@@ -1,9 +1,9 @@
-﻿
+﻿@using IHFF.Models;
 @{
     ViewBag.Title = "MovieOverview";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@model IEnumerable<Movie>
 <h2>MovieOverview</h2>
 
 <!DOCTYPE html>
@@ -45,6 +45,8 @@
                     </p>
                     <br />
                 </aside>
+                @foreach (Movie movie in Model)
+                { <p>movie.Titel </p> }
             </aside>
 
         </nav>

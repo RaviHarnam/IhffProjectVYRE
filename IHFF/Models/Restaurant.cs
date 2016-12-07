@@ -5,7 +5,7 @@ using System.Web;
 
 namespace IHFF.Models
 {
-    public class Restaurant : Activiteit
+    public class Restaurant 
     {
         public string naam { get; set; }
         public string plaats { get; set; }

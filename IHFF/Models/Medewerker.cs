@@ -11,16 +11,7 @@ namespace IHFF.Models
         public string inlogNaam { get; set; }
         public string wachtWoord { get; set; }
 
-        public Activiteit Activiteit
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        
 
         public void Aanpassen() { }
 
