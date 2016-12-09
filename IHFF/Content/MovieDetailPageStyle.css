@@ -1,0 +1,16 @@
+﻿body {
+}
+
+.summary, .info{
+    width: 45%;
+    text-align: left;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+.summary{
+    float: left;
+}
+
+.info{
+    float: left;
+}
