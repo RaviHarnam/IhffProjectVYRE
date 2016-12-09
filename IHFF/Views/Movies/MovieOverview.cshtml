@@ -24,13 +24,13 @@
                 {
                     if (movieNr < Model.Count())
                     {
-                        if (Model.ElementAt(movieNr).Afbeeldingen.Count() != 0)
+                        if (Model.ElementAt(movieNr).ItemAfbeelding != null)
                         {
                         <td>
                             <div class="movie_index_items_line1">
                                 <div class="movie_index_item">
-                                    <img class="movie_index_item_img" src=@Model.ElementAt(movieNr).Afbeeldingen.ElementAt(0).Link alt=@Model.ElementAt(movieNr).Titel />
-                                    <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(movieNr).Titel,"MovieDetailPage", "Movies", new {movie_id = Model.ElementAt(movieNr).ItemID }, null)</p>
+                                    <img class="movie_index_item_img" src=@Model.ElementAt(movieNr).ItemAfbeelding.Link alt=@Model.ElementAt(movieNr).Titel />
+                                    <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(movieNr).Titel, "MovieDetailPage", "Movies", new { movie_id = Model.ElementAt(movieNr).ItemID }, null)</p>
                                     <p class="movie_index_item_description">
                                         @Model.ElementAt(movieNr).Titel <br>
                                         <a href="SpaceOdyssey.html" class="movie_index_item_description_button">Voeg toe aan Cart</a>  <!--a ref naar actionlink-->
@@ -38,7 +38,8 @@
                                 </div>
                             </div>
                         </td>
-                            { movieNr++; }
+                                { movieNr++; }
+                            }
                         }
                     }
 
