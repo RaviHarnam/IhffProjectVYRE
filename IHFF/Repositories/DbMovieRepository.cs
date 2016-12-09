@@ -8,9 +8,9 @@ namespace IHFF.Repositories
 {
     public class DbMovieRepository : IMoviesRepository
     {
-        private IhffContext ctx = new IhffContext();      
+        private IhffContext ctx = new IhffContext();
         public IEnumerable<Movie> GetAllMovies()
-        {            
+        {
             var movies = (from m in ctx.MOVIES
                           join a in ctx.AFBEELDINGEN on m.ItemID equals a.ItemId
                           select new
@@ -26,8 +26,8 @@ namespace IHFF.Repositories
                               Writers = m.Writers,
                               Afbeeldingen = (from afb in ctx.AFBEELDINGEN
                                               where afb.ItemId == m.ItemID && afb.Type == "banner"
-                                              select afb).ToList()
-                             }).ToList()
+                                              select afb).FirstOrDefault()
+                          }).ToList()
                                                .Select(x => new Movie()
                                                {
                                                    ItemID = x.ItemId,
@@ -39,16 +39,47 @@ namespace IHFF.Repositories
                                                    Director = x.Director,
                                                    Stars = x.Stars,
                                                    Writers = x.Writers,
-                                                   Afbeeldingen = (from afb in ctx.AFBEELDINGEN
+                                                   ItemAfbeelding = (from afb in ctx.AFBEELDINGEN
                                                                    where afb.ItemId == x.ItemId && afb.Type == "banner"
-                                                                   select afb).ToList()
+                                                                   select afb).FirstOrDefault()
                                                });
             return movies;
         }
 
         public Movie GetMovie(int id)
         {
-            Movie movie = (from m in ctx.MOVIES where m.ItemID == id select m).SingleOrDefault();
+            var movie = (from m in ctx.MOVIES
+                         join a in ctx.AFBEELDINGEN on m.ItemID equals a.ItemId
+                         select new
+                         {
+                             ItemId = m.ItemID,
+                             Categorie = m.Categorie,
+                             Titel = m.Titel,
+                             Omschrijving = m.Omschrijving,
+                             Highlight = m.Highlight,
+                             Rating = m.Rating,
+                             Director = m.Director,
+                             Stars = m.Stars,
+                             Writers = m.Writers,
+                             ItemAfbeelding = (from afb in ctx.AFBEELDINGEN
+                                               where afb.ItemId == m.ItemID && afb.Type == "banner"
+                                               select afb).FirstOrDefault()
+                         }).ToList()
+                                               .Select(x => new Movie()
+                                               {
+                                                   ItemID = x.ItemId,
+                                                   Categorie = x.Categorie,
+                                                   Titel = x.Titel,
+                                                   Omschrijving = x.Omschrijving,
+                                                   Highlight = x.Highlight,
+                                                   Rating = x.Rating,
+                                                   Director = x.Director,
+                                                   Stars = x.Stars,
+                                                   Writers = x.Writers,
+                                                   ItemAfbeelding = (from afb in ctx.AFBEELDINGEN
+                                                                     where afb.ItemId == x.ItemId && afb.Type == "banner"
+                                                                     select afb).FirstOrDefault()
+                                               }).SingleOrDefault(m => m.ItemID == id);
             return movie;
         }
     }
