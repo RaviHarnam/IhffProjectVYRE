@@ -24,6 +24,7 @@ namespace IHFF.Models
             modelBuilder.Entity<Movie>().ToTable("MOVIE");
             modelBuilder.Entity<Special>().ToTable("SPECIAL");
             modelBuilder.Entity<Event>().ToTable("EVENT");
+            modelBuilder.Entity<Afbeelding>().ToTable("AFBEELDING");
            
         }
 
@@ -32,5 +33,6 @@ namespace IHFF.Models
         public DbSet<Movie> MOVIES { get; set;}
         public DbSet<Special> SPECIALS { get; set;}
         public DbSet<Event> EVENTS { get; set; }
+        public DbSet<Afbeelding> AFBEELDINGEN { get; set; }
     }
 }

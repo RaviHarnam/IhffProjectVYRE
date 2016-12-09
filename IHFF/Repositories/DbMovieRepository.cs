@@ -20,7 +20,7 @@ namespace IHFF.Repositories
             public string Director { get; set; }
             public string Stars { get; set; }
             public string Writers { get; set; }
-
+            public virtual ICollection<Afbeelding> Afbeeldingen { get; set; }
             public MovieDTO()
             {
 
@@ -29,6 +29,10 @@ namespace IHFF.Repositories
 
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Movie> GetAllMovies()
         {
             //IEnumerable<MovieDTO> moviesDTOs = (from i in ctx.Items.AsEnumerable()
@@ -56,9 +60,46 @@ namespace IHFF.Repositories
             // }
             //return (IEnumerable<Movie>)moviesList;
 
-            IEnumerable<Movie> movies = (from m in ctx.MOVIES.OfType<Movie>() select m).ToList();
-
+            //IEnumerable<Movie> movies = (from m in ctx.MOVIES
+            //                             from a in ctx.AFBEELDINGEN
+            //                             where m.ItemID == a.ItemId 
+            //                             select m).ToList();
+            var movies = (from m in ctx.MOVIES
+                          join a in ctx.AFBEELDINGEN on m.ItemID equals a.ItemId
+                          select new
+                          {
+                              ItemId = m.ItemID,
+                              Categorie = m.Categorie,
+                              Titel = m.Titel,
+                              Omschrijving = m.Omschrijving,
+                              Highlight = m.Highlight,
+                              Rating = m.Rating,
+                              Director = m.Director,
+                              Stars = m.Stars,
+                              Writers = m.Writers,
+                              Afbeeldingen = (from afb in ctx.AFBEELDINGEN
+                                              where afb.ItemId == m.ItemID
+                                              select afb).ToList()
+                             }).ToList()
+                                               .Select(x => new Movie()
+                                               {
+                                                   ItemID = x.ItemId,
+                                                   Categorie = x.Categorie,
+                                                   Titel = x.Titel,
+                                                   Omschrijving = x.Omschrijving,
+                                                   Highlight = x.Highlight,
+                                                   Rating = x.Rating,
+                                                   Director = x.Director,
+                                                   Stars = x.Stars,
+                                                   Writers = x.Writers,
+                                                   Afbeeldingen = (from afb in ctx.AFBEELDINGEN
+                                                                   where afb.ItemId == x.ItemId
+                                                                   select afb).ToList()
+                                               });
+           
             return movies;
+
+
 
         }
 

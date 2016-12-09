@@ -20,7 +20,6 @@ namespace IHFF.Controllers
         }
 
         public ActionResult MovieOverview()
-
         {
             IEnumerable<Movie> movies = db.GetAllMovies();
             return View(movies);
