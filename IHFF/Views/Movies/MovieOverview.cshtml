@@ -20,24 +20,28 @@
         @for(int i = 0; i < Model.Count(); i++)
             {
             <tr>
-                @for (int j=0; j < 3; j++)
+                @for (int j = 0; j < 3; j++)
                 {
                     if (movieNr < Model.Count())
                     {
-                <td>
-                    <div class="movie_index_items_line1">
-                        <div class="movie_index_item">
-                            <img class="movie_index_item_img" src=@Model.ElementAt(movieNr).Afbeeldingen.ElementAt(0).Link alt=@Model.ElementAt(movieNr).Titel title="Img SpaceOdyssey" />
-                            <p class="movie_index_item_title">@Model.ElementAt(movieNr).Titel</p>
-                            <p class="movie_index_item_description">
-                                @Model.ElementAt(movieNr).Titel <br>
-                                <a href="SpaceOdyssey.html" class="movie_index_item_description_button">Voeg toe aan Cart</a>  <!--a ref naar actionlink-->
-                            </p>
-                        </div>
-                    </div>
-                </td>
+                        if (Model.ElementAt(movieNr).Afbeeldingen.Count() != 0)
+                        {
+                        <td>
+                            <div class="movie_index_items_line1">
+                                <div class="movie_index_item">
+                                    <img class="movie_index_item_img" src=@Model.ElementAt(movieNr).Afbeeldingen.ElementAt(0).Link alt=@Model.ElementAt(movieNr).Titel />
+                                    <p class="movie_index_item_title">@Model.ElementAt(movieNr).Titel</p>
+                                    <p class="movie_index_item_description">
+                                        @Model.ElementAt(movieNr).Titel <br>
+                                        <a href="SpaceOdyssey.html" class="movie_index_item_description_button">Voeg toe aan Cart</a>  <!--a ref naar actionlink-->
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                            { movieNr++; }
+                        }
                     }
-                    {movieNr++;}
+
                 }
 
             </tr>

@@ -10,15 +10,16 @@ namespace IHFF.Models
         public int AfbeeldingId { get; set; }
         public string Link { get; set; }
         public int ItemId { get; set; }
-
+        public string Type { get; set; }
         public Afbeelding()
         {
 
         }
 
-        public Afbeelding(string sourceUrl)
+        public Afbeelding(string sourceUrl, string type)
         {
             Link = sourceUrl;
+            Type = Type;
         }
     }
 }

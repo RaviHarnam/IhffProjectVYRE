@@ -26,7 +26,7 @@ namespace IHFF
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
-           bundles.Add(new StyleBundle("~/Content/Master").Include(
+            bundles.Add(new StyleBundle("~/Content/Master").Include(
                       "~/Content/Master.css",
                       "~/Content/overview.css"));
         }

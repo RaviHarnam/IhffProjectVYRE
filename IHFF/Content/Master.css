@@ -72,8 +72,12 @@ body {
     border-right: 0.063em solid #000000;
     padding-left: 1%;
     padding-right: 1%;
+    text-decoration: none;
 }
-
+.link {
+    text-decoration: none;
+    color: white;
+}
 .home-button{
     margin-left: -10em;
 }
