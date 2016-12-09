@@ -24,5 +24,15 @@ namespace IHFF.Controllers
             IEnumerable<Movie> movies = db.GetAllMovies();
             return View(movies);
         }
+
+        public ActionResult MovieDetailPage(int movie_id)
+        {
+            Movie movie = db.GetMovie(movie_id);
+            if(movie == null)
+            {
+                return RedirectToAction("MovieOverview");
+            }
+            return View(movie);
+        }
     }
 }

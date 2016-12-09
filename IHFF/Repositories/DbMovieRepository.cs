@@ -43,13 +43,14 @@ namespace IHFF.Repositories
                                                                    where afb.ItemId == x.ItemId && afb.Type == "banner"
                                                                    select afb).ToList()
                                                });
-           
             return movies;
-
-
-
         }
 
+        public Movie GetMovie(int id)
+        {
+            Movie movie = (from m in ctx.MOVIES where m.ItemID == id select m).SingleOrDefault();
+            return movie;
+        }
     }
 }
 

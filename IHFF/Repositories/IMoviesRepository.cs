@@ -11,5 +11,6 @@ namespace IHFF.Repositories
     {
 
         IEnumerable<Movie> GetAllMovies();
+        Movie GetMovie(int id);
     }
 }

@@ -1,0 +1,14 @@
+﻿@using IHFF.Models;
+@model Movie
+@{
+    ViewBag.Title = "MovieDetailPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Titel</h2>
+
+<section class="movie-detail-summary">
+<p>
+    @Model.Omschrijving
+</p>
+</section>
