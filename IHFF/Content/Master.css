@@ -115,6 +115,7 @@ footer{
     background-color: #086788;
     color: white;
     float: left;
+    margin-bottom: -1em;
 }
 
 footer ul{

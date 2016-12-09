@@ -5,6 +5,7 @@
     width: 45%;
     text-align: left;
     padding: 0.5em 0.5em 0.5em 0.5em;
+    margin-bottom: 5em;
 }
 
 .summary{
@@ -13,4 +14,9 @@
 
 .info{
     float: left;
+}
+
+.bannerimg{
+    width: 100%;
+    height: 50%;
 }
