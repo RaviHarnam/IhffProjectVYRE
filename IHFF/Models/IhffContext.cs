@@ -25,7 +25,7 @@ namespace IHFF.Models
             modelBuilder.Entity<Special>().ToTable("SPECIAL");
             modelBuilder.Entity<Event>().ToTable("EVENT");
             modelBuilder.Entity<Afbeelding>().ToTable("AFBEELDING");
-           
+            modelBuilder.Entity<Employee>().ToTable("MEDEWERKER");
         }
 
         // Database sets
@@ -34,5 +34,6 @@ namespace IHFF.Models
         public DbSet<Special> SPECIALS { get; set;}
         public DbSet<Event> EVENTS { get; set; }
         public DbSet<Afbeelding> AFBEELDINGEN { get; set; }
+        public DbSet<Employee> EMPLOYEES { get; set; }
     }
 }

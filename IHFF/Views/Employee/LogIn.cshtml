@@ -1,0 +1,22 @@
+﻿@using IHFF.Models;
+@model Employee
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Log In</h2>
+
+@Html.ValidationSummary()
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.Gebruikersnaam)
+    <br/>
+    @Html.TextBoxFor(m => m.Gebruikersnaam)
+    <br/><br/>
+    @Html.LabelFor(m => m.Wachtwoord)
+    <br/>
+    @Html.PasswordFor(m => m.Wachtwoord)
+    <br/><br/>
+    <input type="Submit" formmethod="Post" value="Log In" />
+}
