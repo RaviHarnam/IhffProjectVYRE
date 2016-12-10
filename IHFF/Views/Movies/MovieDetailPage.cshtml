@@ -1,4 +1,6 @@
-﻿@using IHFF.Models;
+﻿@Styles.Render("~/Content/MovieDetailPageStyle.css");
+
+@using IHFF.Models;
 @model Movie
 @{
     ViewBag.Title = "MovieDetailPage";
@@ -7,9 +9,16 @@
 
 <h2>@Model.Titel</h2>
 
-<section class="movie-detail-summary">
-<p>
-    @Model.Omschrijving
-    <img src=@Model.ItemAfbeelding.Link>
-</p>
+<img class="bannerimg" src=@Model.ItemAfbeelding.Link />
+
+<section class="summary">
+    <h3>summary</h3>
+    <p>@Model.Omschrijving</p>
+</section>
+<section class="info">
+    <h3>Info</h3>
+    <p>Rating: @Model.Rating</p>
+    <p>Director: @Model.Director</p>
+    <p>Writers: @Model.Writers</p>
+    <p>Stars: @Model.Stars</p>
 </section>
