@@ -17,8 +17,8 @@
 
     <table>
         @{int movieNr = 0;}
-        @for(int i = 0; i < Model.Count(); i++)
-            {
+        @for (int i = 0; i < Model.Count(); i++)
+        {
             <tr>
                 @for (int j = 0; j < 3; j++)
                 {
@@ -26,24 +26,29 @@
                     {
                         if (Model.ElementAt(movieNr).ItemAfbeelding != null)
                         {
-                        <td>
-                            <div class="movie_index_items_line1">
-                                <div class="movie_index_item">
-                                    <img class="movie_index_item_img" src=@Model.ElementAt(movieNr).ItemAfbeelding.Link alt=@Model.ElementAt(movieNr).Titel />
-                                    <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(movieNr).Titel, "MovieDetailPage", "Movies", new { movie_id = Model.ElementAt(movieNr).ItemID }, null)</p>
-                                    <p class="movie_index_item_description">
-                                        @Model.ElementAt(movieNr).Titel <br>
-                                        <a href="SpaceOdyssey.html" class="movie_index_item_description_button">Voeg toe aan Cart</a>  <!--a ref naar actionlink-->
-                                    </p>
+                            <td>
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-lg-12">
+                                    <div class="hovereffect">
+                                        <p class="movie_index_item_title">@Model.ElementAt(movieNr).Titel</p>
+                                        <img class="img-responsive" src=@Model.ElementAt(movieNr).ItemAfbeelding.Link alt=@Model.ElementAt(movieNr).Titel title="@Model.ElementAt(movieNr).Titel">
+                                        <div class="overlay">
+                                            
+
+                                            <a href="SpaceOdyssey.html" class="movie_index_item_description_button">Voeg toe aan Cart</a>
+                                            <a href="SpaceOdysses.html" class="movie_index_item_description_button2">Wishlist</a>  <!--a ref naar actionlink-->
+                                           
+                                        </div>
+                                    </div>
+                                    <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(movieNr).Titel, "MovieDetailPage", "Movies", new { movie_id = Model.ElementAt(movieNr).ItemID }, null) </p>
+
                                 </div>
-                            </div>
-                        </td>
-                                { movieNr++; }
-                            }
+                            </td>
+                            { movieNr++; }
                         }
                     }
-
                 }
+
+                
 
             </tr>
         }
@@ -95,3 +100,4 @@
 
 </body>
 </html>
+
