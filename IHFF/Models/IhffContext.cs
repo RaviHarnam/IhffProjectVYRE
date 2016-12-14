@@ -16,6 +16,7 @@ namespace IHFF.Models
         public IhffContext()  : base("IhffConnection")
         {
             // LEEG
+            // ECHT F*CKING LEEG
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -26,6 +27,7 @@ namespace IHFF.Models
             modelBuilder.Entity<Event>().ToTable("EVENT");
             modelBuilder.Entity<Afbeelding>().ToTable("AFBEELDING");
             modelBuilder.Entity<Employee>().ToTable("MEDEWERKER");
+            modelBuilder.Entity<Voorstelling>().ToTable("VOORSTELLING");
         }
 
         // Database sets
@@ -35,5 +37,6 @@ namespace IHFF.Models
         public DbSet<Event> EVENTS { get; set; }
         public DbSet<Afbeelding> AFBEELDINGEN { get; set; }
         public DbSet<Employee> EMPLOYEES { get; set; }
+        public DbSet<Voorstelling> VOORSTELLINGEN { get; set; }
     }
 }
