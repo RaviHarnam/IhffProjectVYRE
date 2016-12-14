@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -12,6 +13,7 @@ namespace IHFF.Models
         public string Titel { get; set; }
         public string Omschrijving { get; set; }
         public bool Highlight { get; set; }
+        
         public virtual Afbeelding ItemAfbeelding {get; set;}
 
         public Item(string categorie, string titel, string omschrijving, bool highlight)   
