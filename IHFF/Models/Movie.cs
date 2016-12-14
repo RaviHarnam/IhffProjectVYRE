@@ -14,21 +14,22 @@ namespace IHFF.Models
             Rating = rating;
             Director = director;
             Writers = writers;
-            
+
         }
         public Movie()
         {
 
         }
-       
+
         //public int MovieId { get; set; }
         //public int ItemID { get; set; }
         public decimal Rating { get; set; }
         public string Director { get; set; }
         public string Stars { get; set; }
         public string Writers { get; set; }
-        
+        public List<DateTime> Tijden { get; set; }
+
         //public double Prijs { get; set; }
-        //public DateTime DatumTijd { get; set; }      
+        //public DateTime DatumTijd { get; set; }    
     }
 }

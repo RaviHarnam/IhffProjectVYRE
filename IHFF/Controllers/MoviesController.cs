@@ -12,7 +12,8 @@ namespace IHFF.Controllers
 {
     public class MoviesController : Controller
     {
-        private IMoviesRepository db = new DbMovieRepository();
+        private IMoviesRepository dbMovie = new DbMovieRepository();
+        
         // GET: Movies
         public ActionResult Index()
         {
@@ -21,13 +22,13 @@ namespace IHFF.Controllers
 
         public ActionResult MovieOverview()
         {
-            IEnumerable<Movie> movies = db.GetAllMovies();
+            IEnumerable<Movie> movies = dbMovie.GetAllMovies();
             return View(movies);
         }
 
         public ActionResult MovieDetailPage(int movie_id)
         {
-            Movie movie = db.GetMovie(movie_id);
+            Movie movie = dbMovie.GetMovie(movie_id);
             if(movie == null)
             {
                 return RedirectToAction("MovieOverview");
