@@ -43,7 +43,7 @@ namespace IHFF.Controllers
         public ActionResult ManagementWindow()
         {
             IEnumerable <EventListRepresentation> events = db.GetAllEvents();
-            return View();
+            return View(events);
         }
 
         public ActionResult LogOff()
@@ -55,17 +55,20 @@ namespace IHFF.Controllers
         public ActionResult EditItem(int id)
         {
             // GEt item
+            Item item = db.GetItem(id);
             return View();
         }
 
         public ActionResult EditCulture(int id)
         {
             // Get Culture
+            Culture culture = db.GetCultureEvent(id);
             return View();
         }
         public ActionResult EditRestaurant(int id)
         {
             // Get Restaurant
+            Restaurant restaurant = db.GetRestaurant(id);
             return View();
         }
     }

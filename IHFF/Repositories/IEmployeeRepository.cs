@@ -11,5 +11,8 @@ namespace IHFF.Repositories
     {
         bool EmployeeExist(Employee emp);
         IEnumerable<EventListRepresentation> GetAllEvents();
+        Item GetItem(int id);
+        Culture GetCultureEvent(int id);
+        Restaurant GetRestaurant(int id);
     }
 }

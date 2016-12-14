@@ -13,7 +13,7 @@ namespace IHFF.Models
         public string Titel { get; set; }
         public string Omschrijving { get; set; }
         public bool Highlight { get; set; }
-        
+        [NotMapped]
         public virtual Afbeelding ItemAfbeelding {get; set;}
 
         public Item(string categorie, string titel, string omschrijving, bool highlight)   

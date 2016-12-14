@@ -13,6 +13,7 @@ namespace IHFF.Models
         public string Contact { get; set; }
         public string Admission { get; set; }
         public int LocatieID { get; set; }
+        public virtual Afbeelding CultureAfbeelding { get; set; }
 
         public Culture()
         {
