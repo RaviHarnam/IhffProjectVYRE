@@ -30,7 +30,7 @@ namespace IHFF.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(emp.Gebruikersnaam, false);
                     Session["loggedin_employee"] = emp;
-                    return RedirectToAction("ManagementWindow");
+                    return RedirectToAction("ManagementWindow", "Employee");
                 }
                 else
                 {
@@ -42,6 +42,7 @@ namespace IHFF.Controllers
         [Authorize]
         public ActionResult ManagementWindow()
         {
+            IEnumerable <EventListRepresentation> events = db.GetAllEvents();
             return View();
         }
 
@@ -49,6 +50,23 @@ namespace IHFF.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("LogIn");
+        }
+
+        public ActionResult EditItem(int id)
+        {
+            // GEt item
+            return View();
+        }
+
+        public ActionResult EditCulture(int id)
+        {
+            // Get Culture
+            return View();
+        }
+        public ActionResult EditRestaurant(int id)
+        {
+            // Get Restaurant
+            return View();
         }
     }
 }

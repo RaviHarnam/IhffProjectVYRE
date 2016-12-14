@@ -15,7 +15,12 @@ namespace IHFF.Repositories
             Employee e = (from em in ctx.EMPLOYEES
                           where em.Gebruikersnaam == emp.Gebruikersnaam && em.Wachtwoord == emp.Wachtwoord
                           select em).SingleOrDefault();
-            return (e != null);
+            return (e != null);           
+        }
+
+        public IEnumerable<EventListRepresentation> GetAllEvents()
+        {
+            return null;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace IHFF.Repositories
         public IEnumerable<Movie> GetAllMovies()
         {
             var movies = (from m in ctx.MOVIES
-                          join a in ctx.AFBEELDINGEN on m.ItemID equals a.ItemId
+                          join a in ctx.AFBEELDINGEN on m.ItemID equals a.ItemID
                           select new
                           {
                               ItemId = m.ItemID,
@@ -25,7 +25,7 @@ namespace IHFF.Repositories
                               Stars = m.Stars,
                               Writers = m.Writers,
                               Afbeeldingen = (from afb in ctx.AFBEELDINGEN
-                                              where afb.ItemId == m.ItemID && afb.Type == "banner"
+                                              where afb.ItemID == m.ItemID && afb.Type == "banner"
                                               select afb).FirstOrDefault()
                           }).ToList()
                                                .Select(x => new Movie()
@@ -40,16 +40,22 @@ namespace IHFF.Repositories
                                                    Stars = x.Stars,
                                                    Writers = x.Writers,
                                                    ItemAfbeelding = (from afb in ctx.AFBEELDINGEN
-                                                                   where afb.ItemId == x.ItemId && afb.Type == "banner"
-                                                                   select afb).FirstOrDefault()
+                                                                     where afb.ItemID == x.ItemId && afb.Type == "banner"
+                                                                     select afb).FirstOrDefault()
                                                });
+            //IEnumerable<Movie> movies = (from m in ctx.MOVIES
+            //                             select m).ToList();
+            //foreach(Movie mov in movies)
+            //{
+            //    mov.ItemAfbeelding = (Afbeelding)(from a in ctx.AFBEELDINGEN where a.ItemID == mov.ItemID select a);
+            //}
             return movies;
         }
 
         public Movie GetMovie(int id)
         {
             var movie = (from m in ctx.MOVIES
-                         join a in ctx.AFBEELDINGEN on m.ItemID equals a.ItemId
+                         join a in ctx.AFBEELDINGEN on m.ItemID equals a.ItemID
                          select new
                          {
                              ItemId = m.ItemID,
@@ -62,7 +68,7 @@ namespace IHFF.Repositories
                              Stars = m.Stars,
                              Writers = m.Writers,
                              ItemAfbeelding = (from afb in ctx.AFBEELDINGEN
-                                               where afb.ItemId == m.ItemID && afb.Type == "banner"
+                                               where afb.ItemID == m.ItemID && afb.Type == "banner"
                                                select afb).FirstOrDefault()
                          }).ToList()
                                                .Select(x => new Movie()
@@ -77,7 +83,7 @@ namespace IHFF.Repositories
                                                    Stars = x.Stars,
                                                    Writers = x.Writers,
                                                    ItemAfbeelding = (from afb in ctx.AFBEELDINGEN
-                                                                     where afb.ItemId == x.ItemId && afb.Type == "banner"
+                                                                     where afb.ItemID == x.ItemId && afb.Type == "banner"
                                                                      select afb).FirstOrDefault()
                                                }).SingleOrDefault(m => m.ItemID == id);
             return movie;

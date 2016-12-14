@@ -10,5 +10,6 @@ namespace IHFF.Repositories
     interface IEmployeeRepository
     {
         bool EmployeeExist(Employee emp);
+        IEnumerable<EventListRepresentation> GetAllEvents();
     }
 }

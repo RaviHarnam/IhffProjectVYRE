@@ -7,11 +7,22 @@ namespace IHFF.Models
 {
     public class Restaurant 
     {
-        public string naam { get; set; }
-        public string plaats { get; set; }
-        public int prijs { get; set; }
-        public DateTime datumTijd { get; set; }
-        public int plaatsenBeschikbaar { get; set; }
+        public int RestaurantID { get; set; }
+        public string Naam { get; set; }
+        public string Omschrijving { get; set; }
+        public string Contact { get; set; }
+        public int LocatieID { get; set; }
+        
+        public Restaurant(string naam, string omschrijving, string contact)
+        {
+            Naam = naam;
+            Omschrijving = omschrijving;
+            Contact = contact;
+        }
+        public Restaurant()
+        {
+
+        }
 
     }
 }

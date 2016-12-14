@@ -1,9 +1,36 @@
-﻿
+﻿@using IHFF.Models;
 @{
     ViewBag.Title = "ManagementWindow";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Management window</h2>
+<h2>Management Window</h2>
+@model IEnumerable<EventListRepresentation>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Edit</th>
+    </tr>
+    <tr>
+@foreach (EventListRepresentation evenement in Model)
+{
+    if (evenement.culture != null) //Museum
+    {
+        <td>@evenement.culture.Naam </td>
+        <td>@Html.ActionLink("Edit", "Edit", "Employee", null, new { id = evenement.culture.CultureID})</td>        
+    }
+    else if(evenement.item != null) //Item
+    {
+        <td>@evenement.item.Titel</td>
+        <td>@Html.ActionLink("Edit", "Edit", "Employee", null, new { id = evenement.item.ItemID })</td>
+    }
+    else                           //Restaurant
+    {
+        <td>@evenement.restaurant.Naam</td>
+        <td>@Html.ActionLink("Edit", "Edit", "Employee", null, new { id = evenement.restaurant.RestaurantID })</td>
+    }
 
-<h2>@Html.ActionLink("Log Out","LogOff", "Employee", new {@class = "link"}, null)</h2>
+}
+    <tr/>
+</table>
+
