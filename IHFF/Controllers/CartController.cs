@@ -13,7 +13,9 @@ namespace IHFF.Controllers
         // GET: Cart
         public ActionResult Index()
         {
-            Session["cart"] = new List<Event>();
+            if (Session["cart"] == null)
+                Session["cart"] = new List<Event>();
+
             List<Event> cartlist = (List<Event>)Session["cart"];
 
             cartlist.Add(new Event());

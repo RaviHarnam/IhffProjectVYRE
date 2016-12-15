@@ -25,6 +25,17 @@ namespace IHFF.Repositories
             mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "banner");
             return mov;
         }
+
+        public List<DateTime> GetMovieTijden(Movie movie)
+        {
+            List<DateTime> tijden = new List<DateTime>();
+
+            tijden = (from v in ctx.VOORSTELLINGEN
+                      where v.ItemId == movie.ItemID
+                      select v.DatumTijd).ToList();
+
+            return tijden;
+        }
     }
 }
 

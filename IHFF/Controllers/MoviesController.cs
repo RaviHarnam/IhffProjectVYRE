@@ -29,6 +29,7 @@ namespace IHFF.Controllers
         public ActionResult MovieDetailPage(int movie_id)
         {
             Movie movie = dbMovie.GetMovie(movie_id);
+            movie.Tijden = dbMovie.GetMovieTijden(movie);
             if(movie == null)
             {
                 return RedirectToAction("MovieOverview");

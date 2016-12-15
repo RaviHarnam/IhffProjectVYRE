@@ -79,6 +79,7 @@
 	margin: 0 auto;
 	margin-top:35px;
 	position: relative;
+    top:100px;
 }
 .movie_index_item_description_button2{
     text-decoration: none;
@@ -94,6 +95,10 @@
 	margin: 0 auto;
 	margin-top:35px;
 	position: relative;
+    top:135px;
+  
+
+    
 }
 .movie_index_item_description_button:hover{
 	background-color: #226493;
@@ -128,6 +133,7 @@
   overflow: hidden;
   top: 0;
   left: 0;
+ 
 }
 
 .hovereffect img {
