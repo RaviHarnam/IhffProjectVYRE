@@ -13,9 +13,10 @@ namespace IHFF.Controllers
     {
         private IEmployeeRepository db = new DbEmployeeRepository();
         // GET: Employee
+        
         public ActionResult Index()
         {
-            return View();
+            return View("LogIn");
         }
         public ActionResult LogIn()
         {
@@ -42,7 +43,7 @@ namespace IHFF.Controllers
         [Authorize]
         public ActionResult ManagementWindow()
         {
-            IEnumerable <EventListRepresentation> events = db.GetAllEvents();
+            IEnumerable<EventListRepresentation> events = db.GetAllEvents();
             return View(events);
         }
 
@@ -54,22 +55,29 @@ namespace IHFF.Controllers
 
         public ActionResult EditItem(int id)
         {
-            // GEt item
+            //Get Item
             Item item = db.GetItem(id);
-            return View();
+            if (item is Movie)
+            {
+                return View("EditMovie", item);
+            }
+            else
+            {
+                return View("EditSpecial", item);
+            }
         }
 
         public ActionResult EditCulture(int id)
         {
-            // Get Culture
-            Culture culture = db.GetCultureEvent(id);
-            return View();
+            //Get Culture
+            Museum culture = db.GetCultureEvent(id);
+            return View(culture);
         }
         public ActionResult EditRestaurant(int id)
         {
-            // Get Restaurant
+            //Get Restaurant
             Restaurant restaurant = db.GetRestaurant(id);
-            return View();
+            return View(restaurant);
         }
     }
 }

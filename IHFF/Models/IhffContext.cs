@@ -29,7 +29,7 @@ namespace IHFF.Models
             modelBuilder.Entity<Employee>().ToTable("MEDEWERKER");
             modelBuilder.Entity<Voorstelling>().ToTable("VOORSTELLING");
             modelBuilder.Entity<Restaurant>().ToTable("RESTAURANT");
-            modelBuilder.Entity<Culture>().ToTable("MUSEUM");
+            modelBuilder.Entity<Museum>().ToTable("MUSEUM");
         }
 
         // Database sets
@@ -41,6 +41,6 @@ namespace IHFF.Models
         public DbSet<Employee> EMPLOYEES { get; set; }
         public DbSet<Voorstelling> VOORSTELLINGEN { get; set; }
         public DbSet<Restaurant> RESTAURANTS { get; set; }
-        public DbSet<Culture> MUSEA { get; set; }
+        public DbSet<Museum> MUSEA { get; set; }
     }
 }
