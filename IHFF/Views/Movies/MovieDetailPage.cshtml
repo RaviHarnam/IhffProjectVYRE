@@ -32,7 +32,13 @@
             <td><p>Time</p></td>
             <td>
                 <select>
-                    <option value="Bolbo">Volvo</option>
+                    @if (Model.Tijden != null)
+                    {
+                        foreach (DateTime t in Model.Tijden)
+                        {
+                            <option value="Bolbo">@t.ToString();</option>
+                        }
+                    }
                 </select>
             </td>
         </tr>

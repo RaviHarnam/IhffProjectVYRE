@@ -44,6 +44,7 @@ namespace IHFF.Repositories
         public void MakeEvent(Voorstelling voorstelling, int aantal)
         {
             Event eventx = new Event();
+
             eventx.VoorstellingId = voorstelling.VoorstellingId;
             eventx.Titel = (from i in ctx.ITEMS
                             where i.ItemID == voorstelling.ItemId
