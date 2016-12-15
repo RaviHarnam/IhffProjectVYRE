@@ -9,7 +9,7 @@ namespace IHFF.Models
     {
         public virtual Item item { get; set; }
         public virtual Restaurant restaurant { get; set; }
-        public virtual Culture culture { get; set; }
+        public virtual Museum culture { get; set; }
         //public int? ItemID { get; set; }
         //public int? MuseumID { get; set; }
         //public int? RestaurantID { get; set; }
@@ -24,7 +24,7 @@ namespace IHFF.Models
         {
             restaurant = r;
         }        
-        public EventListRepresentation(Culture c)
+        public EventListRepresentation(Museum c)
         {
             culture = c;
         }

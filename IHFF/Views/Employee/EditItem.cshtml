@@ -1,0 +1,27 @@
+﻿
+@using IHFF.Models;
+
+@Styles.Render("~/Content/MovieDetailPageStyle.css");
+@{
+    ViewBag.Title = "EditItem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Movie
+<h2>Edit Movie</h2>
+
+
+<h2>@Model.Titel</h2> 
+
+<img class="bannerimg" src=@Model.ItemAfbeelding.Link />
+
+<section class="summary">
+    <h3>summary</h3>
+    <p>@Model.Omschrijving</p>
+</section>
+<section class="info">
+    <h3>Info</h3>
+    <p>Rating: @Model.Rating</p>
+    <p>Director: @Model.Director</p>
+    <p>Writers: @Model.Writers</p>
+    <p>Stars: @Model.Stars</p>
+</section>
