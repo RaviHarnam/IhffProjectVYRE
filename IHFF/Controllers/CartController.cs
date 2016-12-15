@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using IHFF.Models;
 using System.Web.Security;
+using IHFF.Repositories;
 
 namespace IHFF.Controllers
 {
     public class CartController : Controller
     {
-        // GET: Cart
+        private IEventRepository repository = new DbEventRepository();
+
         public ActionResult Index()
         {
             if (Session["cart"] == null)
@@ -33,6 +35,11 @@ namespace IHFF.Controllers
             }
 
             return View(cartlist);
+            
         }
+
+  
+
+   
     }
 }

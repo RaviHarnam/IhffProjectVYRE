@@ -28,7 +28,9 @@
                         if (Model.ElementAt(movieNr).ItemAfbeelding != null)
                         {
                             <td>
+
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-lg-12">
+
                                     <div class="hovereffect">
                                         @*<p class="movie_index_item_title">@Model.ElementAt(movieNr).Titel</p>*@
                                         <img class="img-responsive" src=@Model.ElementAt(movieNr).ItemAfbeelding.Link alt=@Model.ElementAt(movieNr).Titel title="@Model.ElementAt(movieNr).Titel">
@@ -40,9 +42,10 @@
                                            
                                         </div>
                                     </div>
-                                    <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(movieNr).Titel, "MovieDetailPage", "Movies", new { movie_id = Model.ElementAt(movieNr).ItemID }, null) </p>
 
                                 </div>
+                                <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(movieNr).Titel, "MovieDetailPage", "Movies", new { movie_id = Model.ElementAt(movieNr).ItemID }, null) </p>
+
                             </td>
                             { movieNr++; }
                         }

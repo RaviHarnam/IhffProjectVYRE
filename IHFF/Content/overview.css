@@ -79,7 +79,7 @@
 	margin: 0 auto;
 	margin-top:35px;
 	position: relative;
-    top:100px;
+    top:5px;
 }
 .movie_index_item_description_button2{
     text-decoration: none;
@@ -88,14 +88,14 @@
     border-radius: 5px;
     height: 44px;
     display: block;
-    line-height: 20px;
+    line-height: 10px;
     width: 120px !important; 
 	opacity: 1.0; 
 	text-align:center;
 	margin: 0 auto;
 	margin-top:35px;
 	position: relative;
-    top:135px;
+    top:10px;
   
 
     
@@ -145,11 +145,12 @@
 
 .hovereffect:hover img {
   filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="matrix" color-interpolation-filters="sRGB" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0" /><feGaussianBlur stdDeviation="3" /></filter></svg>#filter');
-  filter: grayscale(1) blur(3px);
-  -webkit-filter: grayscale(1) blur(3px);
+  /*filter: grayscale(1) blur(3px);
+  -webkit-filter: grayscale(1) blur(3px);*/
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
+ 
 }
 
 .hovereffect h2 {
