@@ -30,11 +30,11 @@
                             <td>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-lg-12">
                                     <div class="hovereffect">
-                                        <p class="movie_index_item_title">@Model.ElementAt(movieNr).Titel</p>
+                                        @*<p class="movie_index_item_title">@Model.ElementAt(movieNr).Titel</p>*@
                                         <img class="img-responsive" src=@Model.ElementAt(movieNr).ItemAfbeelding.Link alt=@Model.ElementAt(movieNr).Titel title="@Model.ElementAt(movieNr).Titel">
                                         <div class="overlay">
                                             
-
+                                            <h2>@Model.ElementAt(movieNr).Titel</h2>
                                             <a href="SpaceOdyssey.html" class="movie_index_item_description_button">Voeg toe aan Cart</a>
                                             <a href="SpaceOdysses.html" class="movie_index_item_description_button2">Wishlist</a>  <!--a ref naar actionlink-->
                                            
