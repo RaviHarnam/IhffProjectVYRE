@@ -7,7 +7,7 @@ using IHFF.Models;
 
 namespace IHFF.Repositories
 {
-    interface IEmployeeRepository
+   public interface IEmployeeRepository
     {
         bool EmployeeExist(Employee emp);
         IEnumerable<EventListRepresentation> GetAllEvents();
