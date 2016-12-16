@@ -57,5 +57,49 @@ namespace IHFF.Repositories
             rst.RestaurantAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == rst.RestaurantID);
             return rst;
         }
+
+        public Movie GetMovie(int id)
+        {
+            Movie mov = ctx.MOVIES.SingleOrDefault(m => m.ItemID == id);
+            mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID);
+            return mov;
+        }
+        public Special GetSpecial(int id)
+        {
+            Special spc = ctx.SPECIALS.SingleOrDefault(s => s.ItemID == id);
+            spc.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == id);
+            return spc;
+        }
+
+        public void UpdateMovie(Movie movie)
+        {
+            Movie dbMovie = ctx.MOVIES.SingleOrDefault(m => m.ItemID == movie.ItemID);
+            if(dbMovie != null)
+            {
+                dbMovie.Titel = movie.Titel;
+                dbMovie.Writers = movie.Writers;
+                dbMovie.Stars = movie.Stars;
+                dbMovie.Rating = movie.Rating;
+                dbMovie.Omschrijving = movie.Omschrijving;
+                dbMovie.ItemAfbeelding.Link = movie.ItemAfbeelding.Link;
+                dbMovie.Director = movie.Director;
+                ctx.SaveChanges();
+            }
+        }
+
+        public void UpdateSpecial(Special special)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateRestaurant(Restaurant restaurant)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateMuseum(Museum museum)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

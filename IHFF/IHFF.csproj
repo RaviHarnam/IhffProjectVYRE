@@ -208,6 +208,10 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Afbeelding.cs" />
     <Compile Include="Models\Bestelling.cs" />
+    <Compile Include="Models\Input\AfbeeldingInputModel.cs" />
+    <Compile Include="Models\Input\ItemInputModel.cs" />
+    <Compile Include="Models\Input\MovieInputModel.cs" />
+    <Compile Include="Models\Input\SpecialInputModel.cs" />
     <Compile Include="Models\Museum.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventListRepresentation.cs" />
@@ -238,6 +242,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CartStyle.css" />
+    <Content Include="Content\EditPages.css" />
     <Content Include="Content\Master.css" />
     <Content Include="Content\MovieDetailPageStyle.css" />
     <Content Include="Content\overview.css" />

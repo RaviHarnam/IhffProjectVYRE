@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using IHFF.Models;
 using IHFF.Repositories;
 using System.Web.Security;
+using IHFF.Models.Input;
 
 namespace IHFF.Controllers
 {
@@ -13,7 +14,7 @@ namespace IHFF.Controllers
     {
         private IEmployeeRepository db = new DbEmployeeRepository();
         // GET: Employee
-        
+
         public ActionResult Index()
         {
             return View("LogIn");
@@ -53,18 +54,17 @@ namespace IHFF.Controllers
             return RedirectToAction("LogIn");
         }
 
-        public ActionResult EditItem(int id)
+        public ActionResult EditMovie(int id)
         {
-            //Get Item
-            Item item = db.GetItem(id);
-            if (item is Movie)
-            {
-                return View("EditMovie", item);
-            }
-            else
-            {
-                return View("EditSpecial", item);
-            }
+            //Get Movie
+            Movie movie = db.GetMovie(id);
+            return View(movie);
+        }
+        public ActionResult EditSpecial(int id)
+        {
+            //Get Special
+            Special special = db.GetSpecial(id);
+            return View();
         }
 
         public ActionResult EditCulture(int id)
@@ -78,6 +78,20 @@ namespace IHFF.Controllers
             //Get Restaurant
             Restaurant restaurant = db.GetRestaurant(id);
             return View(restaurant);
+        }
+
+        [HttpPost]
+        public ActionResult EditMovie(Movie movie)
+        {
+            if (ModelState.IsValid)
+            {
+                db.UpdateMovie(movie);
+            }
+            else
+            {
+                ModelState.AddModelError("Edit-error", "The Movie or Special you tried to edit had some incorrectly filled fields.");
+            }
+            return View(movie);
         }
     }
 }

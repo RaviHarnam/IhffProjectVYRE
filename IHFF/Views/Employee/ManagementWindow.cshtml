@@ -14,30 +14,39 @@
 
     @foreach (EventListRepresentation evenement in Model)
     {
-       
-            if (evenement.culture != null) //Museum
-            {
-                <tr>
+        if (evenement.culture != null) //Museum
+        {
+            <tr>
                 <td>@evenement.culture.Naam </td>
                 <td>@Html.ActionLink("Edit", "EditCulture", "Employee", null, new { id = evenement.culture.MuseumID })</td>
-                 </tr>
-            }
-            else if (evenement.item != null) //Item
+            </tr>
+        }
+        else if (evenement.item != null) //Item
+        {
+            if (evenement.item is Movie)
             {
                 <tr>
-                <td>@evenement.item.Titel</td>
-                <td>@Html.ActionLink("Edit", "EditItem", "Employee", new { id = evenement.item.ItemID }, null)</td>
-                    </tr>
-            }
-            else                           //Restaurant
-            {
-                <tr>
-                <td>@evenement.restaurant.Naam</td>
-                <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", null, new { id = evenement.restaurant.RestaurantID })</td>
+                    <td>@evenement.item.Titel</td>
+                    <td>@Html.ActionLink("Edit", "EditMovie", "Employee", new { id = evenement.item.ItemID }, null)</td>
                 </tr>
             }
-        
+            else
+            {
+                <tr>
+                    <td>@evenement.item.Titel</td>
+                    <td>@Html.ActionLink("Edit", "EditSpecial", "Employee", new { id = evenement.item.ItemID }, null)</td>
+                </tr>
+            }
+        }
+        else                           //Restaurant
+        {
+            <tr>
+                <td>@evenement.restaurant.Naam</td>
+                <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", null, new { id = evenement.restaurant.RestaurantID })</td>
+            </tr>
         }
 
-    </table>
+    }
+
+</table>
 
