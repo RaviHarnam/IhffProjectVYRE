@@ -12,7 +12,7 @@
 @using (Html.BeginForm())
 {
 <h2>Edit Movie: @Model.Titel</h2>
-<input type="Submit" value="Update movie" formmethod="Post" class="Edit-movie-update" size="30" />
+<input type="Submit" value="Update movie" formmethod="Post" class="Edit-update" size="30" />
 
     <p>
         @Html.LabelFor(m => m.Titel):
@@ -32,11 +32,9 @@
         <h3>Info</h3>
         <table>
             <tr>
-                <td> @Html.LabelFor(m => m.Rating):</td>
-                     @{Html.EnableClientValidation(false);}
+                <td> @Html.LabelFor(m => m.Rating):</td>                    
                 <td> @Html.TextBoxFor(m => m.Rating, new { @Value = Model.Rating, @Size = 30 })</td>                    
-            </tr>
-            @{Html.EnableClientValidation(true);}
+            </tr>         
             <tr>
                 <td> @Html.LabelFor(m => m.Director):</td>
                 <td> @Html.TextBoxFor(m => m.Director, new { @Value = Model.Director, @Size = 30 })</td>

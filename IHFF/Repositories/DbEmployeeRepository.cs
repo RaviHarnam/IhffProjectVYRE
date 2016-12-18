@@ -40,7 +40,7 @@ namespace IHFF.Repositories
         public Museum GetCultureEvent(int id)
         {
             Museum cult = ctx.MUSEA.SingleOrDefault(c => c.MuseumID == id);
-            cult.CultureAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == cult.MuseumID);
+            cult.MuseumAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == cult.MuseumID);
             return cult;
         }
 
@@ -89,17 +89,51 @@ namespace IHFF.Repositories
 
         public void UpdateSpecial(Special special)
         {
-            throw new NotImplementedException();
+            Special dbSpecial = ctx.SPECIALS.SingleOrDefault(s => s.ItemID == special.ItemID);
+            if(dbSpecial != null)
+            {
+                dbSpecial.Titel = special.Titel;
+                dbSpecial.Speaker = special.Speaker;
+                dbSpecial.SpokenLanguage = special.SpokenLanguage;               
+                dbSpecial.Omschrijving = special.Omschrijving;
+                dbSpecial.ItemAfbeelding.Link = special.ItemAfbeelding.Link;                
+                ctx.SaveChanges();
+            }
         }
 
         public void UpdateRestaurant(Restaurant restaurant)
         {
-            throw new NotImplementedException();
+            Restaurant dbRestaurant = ctx.RESTAURANTS.SingleOrDefault(r => r.RestaurantID == restaurant.RestaurantID);
+            if(dbRestaurant != null)
+            {
+                dbRestaurant.Telefoon = restaurant.Telefoon;
+                dbRestaurant.Email = restaurant.Email;
+                dbRestaurant.Website = restaurant.Website;
+                dbRestaurant.Naam = restaurant.Naam;
+                dbRestaurant.Omschrijving = restaurant.Omschrijving;
+                dbRestaurant.RestaurantAfbeelding.Link = restaurant.RestaurantAfbeelding.Link;
+                ctx.SaveChanges();
+            }
         }
 
         public void UpdateMuseum(Museum museum)
         {
-            throw new NotImplementedException();
+            Museum dbMuseum = ctx.MUSEA.SingleOrDefault(m => m.MuseumID == museum.MuseumID);
+            if(dbMuseum != null)
+            {
+                dbMuseum.Naam = museum.Naam;
+                dbMuseum.Omschrijving = museum.Omschrijving;
+                dbMuseum.Maandag = museum.Maandag;
+                dbMuseum.Dinsdag = museum.Dinsdag;
+                dbMuseum.Woensdag = museum.Woensdag;
+                dbMuseum.Donderdag = museum.Donderdag;
+                dbMuseum.Vrijdag = museum.Vrijdag;
+                dbMuseum.Zaterdag = museum.Vrijdag;
+                dbMuseum.Zondag = museum.Zondag;
+                dbMuseum.Kids = museum.Kids;
+                dbMuseum.Adults = museum.Adults;
+                ctx.SaveChanges();               
+            }
         }
     }
 }

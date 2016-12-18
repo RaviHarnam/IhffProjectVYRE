@@ -11,15 +11,22 @@ namespace IHFF.Models
         public int RestaurantID { get; set; }
         public string Naam { get; set; }
         public string Omschrijving { get; set; }
-        public string Contact { get; set; }
+        public string Telefoon { get; set; }
+        public string Email { get; set; }
+        public string Website { get; set; }
         public int LocatieID { get; set; }
         [NotMapped]
         public virtual Afbeelding RestaurantAfbeelding {get; set;}
-        public Restaurant(string naam, string omschrijving, string contact)
+        [NotMapped]
+        public virtual Locatie RestaurantLocatie { get; set; }
+
+        public Restaurant(string naam, string omschrijving, string telefoon, string email, string website)
         {
             Naam = naam;
             Omschrijving = omschrijving;
-            Contact = contact;
+            Telefoon = telefoon;
+            Email = email;
+            Website = website;
         }
         public Restaurant()
         {

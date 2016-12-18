@@ -64,10 +64,10 @@ namespace IHFF.Controllers
         {
             //Get Special
             Special special = db.GetSpecial(id);
-            return View();
+            return View(special);
         }
 
-        public ActionResult EditCulture(int id)
+        public ActionResult EditMuseum(int id)
         {
             //Get Culture
             Museum culture = db.GetCultureEvent(id);
@@ -83,15 +83,42 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult EditMovie(Movie movie)
         {
-            if (ModelState.IsValid)
-            {
-                db.UpdateMovie(movie);
-            }
-            else
-            {
-                ModelState.AddModelError("Edit-error", "The Movie or Special you tried to edit had some incorrectly filled fields.");
-            }
+            if (ModelState.IsValid)            
+                db.UpdateMovie(movie);           
+            else            
+                ModelState.AddModelError("Edit-error", "The Movie you tried to edit had some incorrectly filled fields.");
+            
             return View(movie);
         }
+        [HttpPost]
+        public ActionResult EditSpecial(Special special)
+        {
+            if (ModelState.IsValid)
+                db.UpdateSpecial(special);
+            else
+                ModelState.AddModelError("edit-error", "The Special you tried to edit had some incorrectly filled fields.");
+
+            return View(special);
+        }
+        [HttpPost]
+        public ActionResult EditRestaurant(Restaurant restaurant)
+        {
+            if (ModelState.IsValid)
+                db.UpdateRestaurant(restaurant);
+            else
+                ModelState.AddModelError("edit-error", "The Restaurant you tried to edit had some incorrectly filled fields.");
+            return View(restaurant);
+        }
+
+        [HttpPost]
+        public ActionResult EditMuseum(Museum museum)
+        {
+            if (ModelState.IsValid)
+                db.UpdateMuseum(museum);
+            else
+                ModelState.AddModelError("edit-error", "The Museum you tried to edit had some incorrectly filled fields.");
+            return View(museum);
+        }
     }
+
 }

@@ -18,7 +18,7 @@
         {
             <tr>
                 <td>@evenement.culture.Naam </td>
-                <td>@Html.ActionLink("Edit", "EditCulture", "Employee", null, new { id = evenement.culture.MuseumID })</td>
+                <td>@Html.ActionLink("Edit", "EditMuseum", "Employee", null, new { id = evenement.culture.MuseumID })</td>
             </tr>
         }
         else if (evenement.item != null) //Item
@@ -42,7 +42,7 @@
         {
             <tr>
                 <td>@evenement.restaurant.Naam</td>
-                <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", null, new { id = evenement.restaurant.RestaurantID })</td>
+                <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", new { id = evenement.restaurant.RestaurantID}, null)</td>
             </tr>
         }
 

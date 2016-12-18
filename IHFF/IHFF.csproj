@@ -212,6 +212,7 @@
     <Compile Include="Models\Input\ItemInputModel.cs" />
     <Compile Include="Models\Input\MovieInputModel.cs" />
     <Compile Include="Models\Input\SpecialInputModel.cs" />
+    <Compile Include="Models\Locatie.cs" />
     <Compile Include="Models\Museum.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventListRepresentation.cs" />
@@ -299,6 +300,8 @@
     <Content Include="Views\Movies\MovieDetailPage.cshtml" />
     <Content Include="Views\Employee\LogIn.cshtml" />
     <Content Include="Views\Employee\ManagementWindow.cshtml" />
+    <Content Include="Views\Employee\EditMuseum.cshtml" />
+    <Content Include="Views\Employee\EditRestaurant.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
