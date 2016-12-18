@@ -9,11 +9,11 @@ namespace IHFF.Models
     public class Museum 
     {
         public int MuseumID { get; set; }
-        public string Naam { get; set; }
+        public string Titel { get; set; }
         public string Omschrijving { get; set; }  
-        [NotMapped]      
-        public virtual Locatie Locatie { get; set; }
         
+        public int LocatieID { get; set; }
+        public string Telefoon { get; set; }
         public string Adults { get; set; }
         public string Kids { get; set; }
         public string Website { get; set; }
@@ -26,15 +26,17 @@ namespace IHFF.Models
         public string Zondag { get; set; }
         [NotMapped]
         public virtual Afbeelding MuseumAfbeelding { get; set; }
+        [NotMapped]
+        public virtual Locatie MuseumLocatie { get; set; }
 
         public Museum()
         {
 
         }
 
-        public Museum(string naam, string omschrijving, string adults, string kids, string website, string maandag, string dinsdag, string woensdag, string donderdag, string vrijdag, string zaterdag, string zondag)
+        public Museum(string titel, string omschrijving, string adults, string kids, string website, string maandag, string dinsdag, string woensdag, string donderdag, string vrijdag, string zaterdag, string zondag, string telefoon)
         {
-            Naam = naam;
+            Titel = titel;
             Omschrijving = omschrijving;
             Adults = adults;
             Kids = kids;
@@ -46,6 +48,7 @@ namespace IHFF.Models
             Vrijdag = vrijdag;
             Zaterdag = zaterdag;
             Zondag = zondag;
+            Telefoon = telefoon;
         }
     }
 }

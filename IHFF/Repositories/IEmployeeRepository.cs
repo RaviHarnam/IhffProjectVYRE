@@ -12,7 +12,7 @@ namespace IHFF.Repositories
         bool EmployeeExist(Employee emp);
         IEnumerable<EventListRepresentation> GetAllEvents();
         Item GetItem(int id);
-        Museum GetCultureEvent(int id);
+        Museum GetMuseum(int id);
         Restaurant GetRestaurant(int id);
         Movie GetMovie(int id);
         Special GetSpecial(int id);

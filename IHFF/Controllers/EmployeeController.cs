@@ -34,10 +34,8 @@ namespace IHFF.Controllers
                     Session["loggedin_employee"] = emp;
                     return RedirectToAction("ManagementWindow", "Employee");
                 }
-                else
-                {
-                    ModelState.AddModelError("login-error", "The username or password provided is incorrect.");
-                }
+                else                
+                    ModelState.AddModelError("login-error", "The username and/or password provided is incorrect.");              
             }
             return View(emp);
         }
@@ -47,49 +45,51 @@ namespace IHFF.Controllers
             IEnumerable<EventListRepresentation> events = db.GetAllEvents();
             return View(events);
         }
-
+        [Authorize]
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("LogIn");
         }
-
+        [Authorize]
         public ActionResult EditMovie(int id)
         {
             //Get Movie
             Movie movie = db.GetMovie(id);
             return View(movie);
         }
+        [Authorize]
         public ActionResult EditSpecial(int id)
         {
             //Get Special
             Special special = db.GetSpecial(id);
             return View(special);
         }
-
+        [Authorize]
         public ActionResult EditMuseum(int id)
         {
-            //Get Culture
-            Museum culture = db.GetCultureEvent(id);
-            return View(culture);
+            //Get Museum
+            Museum museum = db.GetMuseum(id);
+            return View(museum);
         }
+        [Authorize]
         public ActionResult EditRestaurant(int id)
         {
             //Get Restaurant
             Restaurant restaurant = db.GetRestaurant(id);
             return View(restaurant);
         }
-
+        [Authorize]
         [HttpPost]
         public ActionResult EditMovie(Movie movie)
         {
             if (ModelState.IsValid)            
                 db.UpdateMovie(movie);           
             else            
-                ModelState.AddModelError("Edit-error", "The Movie you tried to edit had some incorrectly filled fields.");
-            
+                ModelState.AddModelError("Edit-error", "The Movie you tried to edit had some incorrectly filled fields.");            
             return View(movie);
         }
+        [Authorize]
         [HttpPost]
         public ActionResult EditSpecial(Special special)
         {
@@ -97,9 +97,9 @@ namespace IHFF.Controllers
                 db.UpdateSpecial(special);
             else
                 ModelState.AddModelError("edit-error", "The Special you tried to edit had some incorrectly filled fields.");
-
             return View(special);
         }
+        [Authorize]
         [HttpPost]
         public ActionResult EditRestaurant(Restaurant restaurant)
         {
@@ -109,7 +109,7 @@ namespace IHFF.Controllers
                 ModelState.AddModelError("edit-error", "The Restaurant you tried to edit had some incorrectly filled fields.");
             return View(restaurant);
         }
-
+        [Authorize]
         [HttpPost]
         public ActionResult EditMuseum(Museum museum)
         {

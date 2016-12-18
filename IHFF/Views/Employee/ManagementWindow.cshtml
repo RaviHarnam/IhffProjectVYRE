@@ -17,8 +17,8 @@
         if (evenement.culture != null) //Museum
         {
             <tr>
-                <td>@evenement.culture.Naam </td>
-                <td>@Html.ActionLink("Edit", "EditMuseum", "Employee", null, new { id = evenement.culture.MuseumID })</td>
+                <td>@evenement.culture.Titel </td>
+                <td>@Html.ActionLink("Edit", "EditMuseum", "Employee",  new { id = evenement.culture.MuseumID }, null)</td>
             </tr>
         }
         else if (evenement.item != null) //Item

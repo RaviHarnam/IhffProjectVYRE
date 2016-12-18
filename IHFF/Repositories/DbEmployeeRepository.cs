@@ -37,37 +37,40 @@ namespace IHFF.Repositories
             return (IEnumerable<EventListRepresentation>)events;
         }
 
-        public Museum GetCultureEvent(int id)
+        public Museum GetMuseum(int id)
         {
             Museum cult = ctx.MUSEA.SingleOrDefault(c => c.MuseumID == id);
-            cult.MuseumAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == cult.MuseumID);
+            cult.MuseumAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == cult.MuseumID && a.Type == "banner");
+            cult.MuseumLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == cult.LocatieID);
             return cult;
         }
 
         public Item GetItem(int id)
         {
             Item itm = ctx.ITEMS.SingleOrDefault(i => i.ItemID == id);
-            itm.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == itm.ItemID);
+            itm.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == itm.ItemID && a.Type == "banner");
+            // Locatie
             return itm;
         }
 
         public Restaurant GetRestaurant(int id)
         {
             Restaurant rst = ctx.RESTAURANTS.SingleOrDefault(r => r.RestaurantID == id);
-            rst.RestaurantAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == rst.RestaurantID);
+            rst.RestaurantAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == rst.RestaurantID && a.Type== "banner");
+            rst.RestaurantLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == rst.LocatieID);
             return rst;
         }
 
         public Movie GetMovie(int id)
         {
             Movie mov = ctx.MOVIES.SingleOrDefault(m => m.ItemID == id);
-            mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID);
+            mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "banner");            
             return mov;
         }
         public Special GetSpecial(int id)
         {
             Special spc = ctx.SPECIALS.SingleOrDefault(s => s.ItemID == id);
-            spc.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == id);
+            spc.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == id && a.Type == "banner");
             return spc;
         }
 
@@ -121,7 +124,7 @@ namespace IHFF.Repositories
             Museum dbMuseum = ctx.MUSEA.SingleOrDefault(m => m.MuseumID == museum.MuseumID);
             if(dbMuseum != null)
             {
-                dbMuseum.Naam = museum.Naam;
+                dbMuseum.Titel = museum.Titel;
                 dbMuseum.Omschrijving = museum.Omschrijving;
                 dbMuseum.Maandag = museum.Maandag;
                 dbMuseum.Dinsdag = museum.Dinsdag;
@@ -132,6 +135,7 @@ namespace IHFF.Repositories
                 dbMuseum.Zondag = museum.Zondag;
                 dbMuseum.Kids = museum.Kids;
                 dbMuseum.Adults = museum.Adults;
+                dbMuseum.MuseumAfbeelding.Link = museum.MuseumAfbeelding.Link;
                 ctx.SaveChanges();               
             }
         }
