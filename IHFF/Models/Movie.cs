@@ -37,7 +37,17 @@ namespace IHFF.Models
 
         }
 
-        
+        public void Edit(Movie mov)
+        {
+            Titel = mov.Titel;
+            Omschrijving = mov.Omschrijving;
+            Highlight = mov.Highlight;
+            ItemAfbeelding.Link = mov.ItemAfbeelding.Link;
+            Rating = mov.Rating;
+            Director = mov.Director;
+            Stars = mov.Stars;
+            Writers = mov.Writers;
+        }
 
         //public double Prijs { get; set; }
         //public DateTime DatumTijd { get; set; }    

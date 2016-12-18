@@ -8,24 +8,26 @@
 
 @model Restaurant
 
-<h2>Edit Restaurant: @Model.Naam</h2>
 
 @Html.ValidationSummary()
 @using (Html.BeginForm())
 {
     <h2>Edit Restaurant: @Model.Naam</h2>
     <input type="Submit" value="Update restaurant" formmethod="Post" class="Edit-update" size="30" />
-
+    @Html.HiddenFor(m => m.LocatieID)
+    @Html.HiddenFor(m => m.RestaurantID)
     <p>
         @Html.LabelFor(m => m.Naam):
         @Html.TextBoxFor(m => m.Naam, new { @Value = Model.Naam })
     </p>
-
+    if (Model.RestaurantAfbeelding != null)
+    {
     <img class="bannerimg" src=@Model.RestaurantAfbeelding.Link />
     <p>
         @Html.LabelFor(m => m.RestaurantAfbeelding.Link):
         @Html.TextBoxFor(m => m.RestaurantAfbeelding.Link, new { @Value = Model.RestaurantAfbeelding.Link, @Size = 30 })
     </p>
+    }
     <section class="summary">
         <h3>Summary</h3>
         @Html.TextAreaFor(m => m.Omschrijving, new { @Value = Model.Omschrijving, @Rows = 8, @cols = 40 })
@@ -37,7 +39,18 @@
                 <td> @Html.LabelFor(m => m.Telefoon):</td>
                 <td> @Html.TextBoxFor(m => m.Telefoon, new { @Value = Model.Telefoon, @Size = 30 })</td>
             </tr>
-            <!--Hier moet locatie, adres en postcode -->
+            <tr>
+                <td> @Html.LabelFor(m => m.RestaurantLocatie.Straat):</td> 
+                <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Straat, new {@Value = Model.RestaurantLocatie.Straat, @Size = 30 })</td> 
+                <td> @Html.LabelFor(m => m.RestaurantLocatie.Huisnummer): </td> 
+                <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Huisnummer, new {@value = Model.RestaurantLocatie.Huisnummer, @Size = 5 })</td>
+                <td> @Html.LabelFor(m => m.RestaurantLocatie.Toevoeging):</td>
+                <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Toevoeging, new {@Value = Model.RestaurantLocatie.Toevoeging, @Size = 5 })</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.RestaurantLocatie.Postcode):</td>
+                <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Postcode, new {@Value = Model.RestaurantLocatie.Postcode, @Size = 30 })</td>
+            </tr>
             <tr>
                 <td> @Html.LabelFor(m => m.Email):</td>
                 <td> @Html.TextBoxFor(m => m.Email, new { @Value = Model.Email, @Size = 30 })</td>

@@ -15,32 +15,32 @@ namespace IHFF.Repositories
             Employee e = (from em in ctx.EMPLOYEES
                           where em.Gebruikersnaam == emp.Gebruikersnaam && em.Wachtwoord == emp.Wachtwoord
                           select em).SingleOrDefault();
-            return (e != null);           
+            return (e != null);
         }
 
         public IEnumerable<EventListRepresentation> GetAllEvents()
         {
             List<EventListRepresentation> events = new List<EventListRepresentation>();
-            IEnumerable<Item> items = (from i in ctx.ITEMS select i).ToList();            
+            IEnumerable<Item> items = (from i in ctx.ITEMS select i).ToList();
             IEnumerable<Restaurant> restaurants = (from r in ctx.RESTAURANTS select r).ToList();
             IEnumerable<Museum> cultureEvents = (from c in ctx.MUSEA select c).ToList();
-            
-            foreach(Item item in items)            
+
+            foreach (Item item in items)
                 events.Add(new EventListRepresentation(item));
-            
-            foreach(Restaurant restaurant in restaurants)            
+
+            foreach (Restaurant restaurant in restaurants)
                 events.Add(new EventListRepresentation(restaurant));
-            
-            foreach(Museum culture in cultureEvents)           
+
+            foreach (Museum culture in cultureEvents)
                 events.Add(new EventListRepresentation(culture));
-            
+
             return (IEnumerable<EventListRepresentation>)events;
         }
 
         public Museum GetMuseum(int id)
         {
             Museum cult = ctx.MUSEA.SingleOrDefault(c => c.MuseumID == id);
-            cult.MuseumAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == cult.MuseumID && a.Type == "banner");
+            //cult.MuseumAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == cult.MuseumID && a.Type == "banner");
             cult.MuseumLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == cult.LocatieID);
             return cult;
         }
@@ -56,7 +56,7 @@ namespace IHFF.Repositories
         public Restaurant GetRestaurant(int id)
         {
             Restaurant rst = ctx.RESTAURANTS.SingleOrDefault(r => r.RestaurantID == id);
-            rst.RestaurantAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == rst.RestaurantID && a.Type== "banner");
+            rst.RestaurantAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == rst.RestaurantID && a.Type == "restaurantbanner");
             rst.RestaurantLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == rst.LocatieID);
             return rst;
         }
@@ -64,7 +64,7 @@ namespace IHFF.Repositories
         public Movie GetMovie(int id)
         {
             Movie mov = ctx.MOVIES.SingleOrDefault(m => m.ItemID == id);
-            mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "banner");            
+            mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "banner");
             return mov;
         }
         public Special GetSpecial(int id)
@@ -77,7 +77,7 @@ namespace IHFF.Repositories
         public void UpdateMovie(Movie movie)
         {
             Movie dbMovie = ctx.MOVIES.SingleOrDefault(m => m.ItemID == movie.ItemID);
-            if(dbMovie != null)
+            if (dbMovie != null)
             {
                 dbMovie.Titel = movie.Titel;
                 dbMovie.Writers = movie.Writers;
@@ -93,13 +93,13 @@ namespace IHFF.Repositories
         public void UpdateSpecial(Special special)
         {
             Special dbSpecial = ctx.SPECIALS.SingleOrDefault(s => s.ItemID == special.ItemID);
-            if(dbSpecial != null)
+            if (dbSpecial != null)
             {
                 dbSpecial.Titel = special.Titel;
                 dbSpecial.Speaker = special.Speaker;
-                dbSpecial.SpokenLanguage = special.SpokenLanguage;               
+                dbSpecial.SpokenLanguage = special.SpokenLanguage;
                 dbSpecial.Omschrijving = special.Omschrijving;
-                dbSpecial.ItemAfbeelding.Link = special.ItemAfbeelding.Link;                
+                dbSpecial.ItemAfbeelding.Link = special.ItemAfbeelding.Link;
                 ctx.SaveChanges();
             }
         }
@@ -107,14 +107,25 @@ namespace IHFF.Repositories
         public void UpdateRestaurant(Restaurant restaurant)
         {
             Restaurant dbRestaurant = ctx.RESTAURANTS.SingleOrDefault(r => r.RestaurantID == restaurant.RestaurantID);
-            if(dbRestaurant != null)
+            if (dbRestaurant != null)
             {
                 dbRestaurant.Telefoon = restaurant.Telefoon;
                 dbRestaurant.Email = restaurant.Email;
                 dbRestaurant.Website = restaurant.Website;
                 dbRestaurant.Naam = restaurant.Naam;
                 dbRestaurant.Omschrijving = restaurant.Omschrijving;
-                dbRestaurant.RestaurantAfbeelding.Link = restaurant.RestaurantAfbeelding.Link;
+                Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == restaurant.RestaurantAfbeelding.AfbeeldingID && a.Type == "banner");
+                if (dbRestaurant != null)                
+                    dbRestaurant.RestaurantAfbeelding.Link = restaurant.RestaurantAfbeelding.Link;
+                
+                Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == restaurant.LocatieID);
+                if (dbLocatie != null)
+                {
+                    dbLocatie.Straat = restaurant.RestaurantLocatie.Straat;
+                    dbLocatie.Huisnummer = restaurant.RestaurantLocatie.Huisnummer;
+                    dbLocatie.Toevoeging = restaurant.RestaurantLocatie.Toevoeging;
+                    dbLocatie.Plaats = restaurant.RestaurantLocatie.Plaats;
+                }
                 ctx.SaveChanges();
             }
         }
@@ -122,7 +133,7 @@ namespace IHFF.Repositories
         public void UpdateMuseum(Museum museum)
         {
             Museum dbMuseum = ctx.MUSEA.SingleOrDefault(m => m.MuseumID == museum.MuseumID);
-            if(dbMuseum != null)
+            if (dbMuseum != null)
             {
                 dbMuseum.Titel = museum.Titel;
                 dbMuseum.Omschrijving = museum.Omschrijving;
@@ -136,7 +147,7 @@ namespace IHFF.Repositories
                 dbMuseum.Kids = museum.Kids;
                 dbMuseum.Adults = museum.Adults;
                 dbMuseum.MuseumAfbeelding.Link = museum.MuseumAfbeelding.Link;
-                ctx.SaveChanges();               
+                ctx.SaveChanges();
             }
         }
     }

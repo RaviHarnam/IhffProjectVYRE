@@ -9,7 +9,7 @@
 <table>
     <tr>
         <th>Name</th>
-        <th>Edit</th>
+        <th>Edit</th>        
     </tr>
 
     @foreach (EventListRepresentation evenement in Model)
@@ -18,7 +18,7 @@
         {
             <tr>
                 <td>@evenement.culture.Titel </td>
-                <td>@Html.ActionLink("Edit", "EditMuseum", "Employee",  new { id = evenement.culture.MuseumID }, null)</td>
+                <td>@Html.ActionLink("Edit", "EditMuseum", "Employee",  new { id = evenement.culture.MuseumID }, null)</td>                               
             </tr>
         }
         else if (evenement.item != null) //Item
@@ -27,7 +27,7 @@
             {
                 <tr>
                     <td>@evenement.item.Titel</td>
-                    <td>@Html.ActionLink("Edit", "EditMovie", "Employee", new { id = evenement.item.ItemID }, null)</td>
+                    <td>@Html.ActionLink("Edit", "EditMovie", "Employee", new { id = evenement.item.ItemID }, null)</td>                   
                 </tr>
             }
             else

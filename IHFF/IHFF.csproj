@@ -217,7 +217,6 @@
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventListRepresentation.cs" />
     <Compile Include="Models\Hotel.cs" />
-    <Compile Include="Models\IBestelling.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IhffContext.cs" />
     <Compile Include="Models\IMedewerker.cs" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace IHFF.Models
 {
     public class Museum 
     {
+        [Key]
         public int MuseumID { get; set; }
         public string Titel { get; set; }
         public string Omschrijving { get; set; }  

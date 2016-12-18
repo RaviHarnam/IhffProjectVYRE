@@ -14,7 +14,7 @@ namespace IHFF.Repositories
             IEnumerable<Movie> movies = ctx.MOVIES.ToList();
             // Loop door de lijst heen en vul de afbeeldingen erin.
             foreach(Movie mov in movies) 
-                mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "overview");
+                mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmoverview");
                         
             return movies;
         }
