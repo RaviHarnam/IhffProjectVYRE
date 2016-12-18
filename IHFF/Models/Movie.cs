@@ -24,7 +24,7 @@ namespace IHFF.Models
         [MinLength(5), MaxLength(200)]
         public string Writers { get; set; }
 
-        public List<DateTime> Tijden { get; set; }
+        public virtual List<DateTime> Tijden { get; set; }
 
         public Movie(string rating, string director, string stars, string writers, string categorie, string titel, string omschrijving, bool highlight) : base(categorie, titel, omschrijving, highlight)
         {

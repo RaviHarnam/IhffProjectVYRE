@@ -34,8 +34,8 @@ namespace IHFF.Controllers
                     Session["loggedin_employee"] = emp;
                     return RedirectToAction("ManagementWindow", "Employee");
                 }
-                else                
-                    ModelState.AddModelError("login-error", "The username and/or password provided is incorrect.");              
+                else
+                    ModelState.AddModelError("login-error", "The username and/or password provided is incorrect.");
             }
             return View(emp);
         }
@@ -52,13 +52,17 @@ namespace IHFF.Controllers
             return RedirectToAction("LogIn");
         }
         [Authorize]
-        public ActionResult EditMovie(int id)
+        public ActionResult EditMovie(int? id)
         {
             //Get Movie
-            Movie movie = db.GetMovie(id);
-            if (movie == null)
-                return RedirectToAction("ManagementWindow");
-            return View(movie);
+            if (id != null)
+            {
+                Movie movie = db.GetMovie(id.Value);
+                if(movie != null)
+                return View(movie);
+            }
+            return RedirectToAction("ManagementWindow");
+
         }
         [Authorize]
         public ActionResult EditSpecial(int id)
@@ -98,7 +102,7 @@ namespace IHFF.Controllers
                 db.UpdateMovie(movToEdit);
             }
             else
-                ModelState.AddModelError("Edit-error", "The Movie you tried to edit had some incorrectly filled fields.");            
+                ModelState.AddModelError("Edit-error", "The Movie you tried to edit had some incorrectly filled fields.");
             return View(movie);
         }
         [Authorize]
@@ -120,7 +124,6 @@ namespace IHFF.Controllers
                 Restaurant rstToEdit = db.GetRestaurant(restaurant.RestaurantID);
                 rstToEdit.Edit(restaurant);
                 db.UpdateRestaurant(rstToEdit);
-
             }
             else
                 ModelState.AddModelError("edit-error", "The Restaurant you tried to edit had some incorrectly filled fields.");

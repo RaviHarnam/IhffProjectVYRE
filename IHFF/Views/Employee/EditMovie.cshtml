@@ -13,7 +13,7 @@
 {
     <h2>Edit Movie: @Model.Titel</h2>
     <input type="Submit" value="Update movie" formmethod="Post" class="Edit-update" size="30" />
-
+    @Html.HiddenFor(m => m.ItemID)
     <p>
         @Html.LabelFor(m => m.Titel):
         @Html.TextBoxFor(m => m.Titel, new { @Value = Model.Titel })
@@ -26,8 +26,8 @@
         
         @Html.DropDownListFor(h => h.Highlight, new SelectList(new []
                                                                      {
-                                                                         new SelectListItem { Value = "1", Text="True"},
-                                                                         new SelectListItem { Value = "0", Text="False", Selected = true },
+                                                                         new SelectListItem { Value = "False", Text="False", Selected = true},
+                                                                         new SelectListItem { Value = "True", Text="True"},
                                                                       },
                                                                       "Value",
                                                                       "Text"

@@ -23,6 +23,7 @@ namespace IHFF.Repositories
         {    
             Movie mov = ctx.MOVIES.SingleOrDefault(i => i.ItemID == id);
             mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "banner");
+            mov.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemId == mov.ItemID select v.DatumTijd).ToList();
             return mov;
         }
 

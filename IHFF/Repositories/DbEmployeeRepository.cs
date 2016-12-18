@@ -48,7 +48,7 @@ namespace IHFF.Repositories
         public Item GetItem(int id)
         {
             Item itm = ctx.ITEMS.SingleOrDefault(i => i.ItemID == id);
-            itm.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == itm.ItemID && a.Type == "banner");
+            itm.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == itm.ItemID && a.Type == "itembanner");
             // Locatie
             return itm;
         }
@@ -64,13 +64,13 @@ namespace IHFF.Repositories
         public Movie GetMovie(int id)
         {
             Movie mov = ctx.MOVIES.SingleOrDefault(m => m.ItemID == id);
-            mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "banner");
+            mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmbanner");
             return mov;
         }
         public Special GetSpecial(int id)
         {
             Special spc = ctx.SPECIALS.SingleOrDefault(s => s.ItemID == id);
-            spc.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == id && a.Type == "banner");
+            spc.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == id && a.Type == "specialbanner");
             return spc;
         }
 
@@ -86,6 +86,7 @@ namespace IHFF.Repositories
                 dbMovie.Omschrijving = movie.Omschrijving;
                 dbMovie.ItemAfbeelding.Link = movie.ItemAfbeelding.Link;
                 dbMovie.Director = movie.Director;
+                dbMovie.Highlight = movie.Highlight;
                 ctx.SaveChanges();
             }
         }
