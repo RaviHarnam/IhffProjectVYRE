@@ -9,7 +9,7 @@ namespace IHFF.Models
     public class Museum 
     {
         public int MuseumID { get; set; }
-        public string Naam { get; set; }
+        public string Titel { get; set; }
         public string Omschrijving { get; set; }  
         [NotMapped]      
         public virtual Locatie Locatie { get; set; }
@@ -34,7 +34,7 @@ namespace IHFF.Models
 
         public Museum(string naam, string omschrijving, string adults, string kids, string website, string maandag, string dinsdag, string woensdag, string donderdag, string vrijdag, string zaterdag, string zondag)
         {
-            Naam = naam;
+            Titel = naam;
             Omschrijving = omschrijving;
             Adults = adults;
             Kids = kids;
