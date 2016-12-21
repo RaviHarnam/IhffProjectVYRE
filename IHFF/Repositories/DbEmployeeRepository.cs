@@ -65,6 +65,7 @@ namespace IHFF.Repositories
         {
             Movie mov = ctx.MOVIES.SingleOrDefault(m => m.ItemID == id);
             mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmbanner");
+            mov.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemId == mov.ItemID select v.DatumTijd).ToList();
             return mov;
         }
         public Special GetSpecial(int id)
@@ -136,7 +137,7 @@ namespace IHFF.Repositories
             Museum dbMuseum = ctx.MUSEA.SingleOrDefault(m => m.MuseumID == museum.MuseumID);
             if (dbMuseum != null)
             {
-                dbMuseum.Titel = museum.Titel;
+                dbMuseum.Naam = museum.Naam;
                 dbMuseum.Omschrijving = museum.Omschrijving;
                 dbMuseum.Maandag = museum.Maandag;
                 dbMuseum.Dinsdag = museum.Dinsdag;
