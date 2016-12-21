@@ -11,6 +11,7 @@ namespace IHFF.Models
     public class MovieViewModel
     {
         DbVoorstellingRepository DbVoorstelling = new DbVoorstellingRepository();
+        [NotMapped]
         List<Voorstelling> voorstellingen;
         [NotMapped]
         public SelectList ListItems { get; private set; }

@@ -11,7 +11,7 @@ namespace IHFF.Models
     {
         [Key]
         public int MuseumID { get; set; }
-        public string Titel { get; set; }
+        public string Naam { get; set; }
         public string Omschrijving { get; set; }  
         
         public int LocatieID { get; set; }
@@ -36,13 +36,10 @@ namespace IHFF.Models
 
         }
 
-        public Museum(string titel, string omschrijving, string adults, string kids, string website, string maandag, string dinsdag, string woensdag, string donderdag, string vrijdag, string zaterdag, string zondag, string telefoon)
+        public Museum(string naam, string omschrijving, string adults, string kids, string website, string maandag, string dinsdag, string woensdag, string donderdag, string vrijdag, string zaterdag, string zondag, string telefoon)
         {
-<<<<<<< HEAD
-            Titel = naam;
-=======
-            Titel = titel;
->>>>>>> 0dbee3915970e13a1760e92c9649e72770773b24
+
+            Naam = naam;
             Omschrijving = omschrijving;
             Adults = adults;
             Kids = kids;
