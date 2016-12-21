@@ -19,7 +19,7 @@ namespace IHFF.Models
         public int Aantal { get; set; }
         public DateTime DatumTijd { get; set; }
         [NotMapped]
-        public DateTime GeselecteerdeDatumTijd { get; set; }
+        public string GeselecteerdeDatumTijd { get; set; }
         public int MaaltijdId { get; set; }
     }
 
