@@ -9,25 +9,24 @@
 @Styles.Render("~/Content/MovieDetailPageStyle.css")
 @Styles.Render("~/Content/EditPages.css")
 
-
-<h2>Edit Museum</h2>
-
 @Html.ValidationSummary()
-@using (Html.BeginForm(FormMethod.Post))
+@using (Html.BeginForm())
 {
     <h2>Edit Museum: @Model.Titel</h2>
     <input type="Submit" value="Update museum" formmethod="Post" class="Edit-update" size="30" />
 
     <p>
-        @Model.Titel.ToString()
-        
+        @Html.LabelFor(m => m.Titel)
+        @Html.TextBoxFor(m => m.Titel, new {@Value = Model.Titel })
     </p>
-
+    if (Model.MuseumAfbeelding != null)
+    {
     <img class="bannerimg" src=@Model.MuseumAfbeelding.Link />
     <p>
         @Html.LabelFor(m => m.MuseumAfbeelding.Link):
         @Html.TextBoxFor(m => m.MuseumAfbeelding.Link, new { @Value = Model.MuseumAfbeelding.Link, @Size = 30 })
     </p>
+    }
     <section class="summary">
         <h3>Summary</h3>
         @Html.TextAreaFor(m => m.Omschrijving, new { @Value = Model.Omschrijving, @Rows = 8, @cols = 40 })

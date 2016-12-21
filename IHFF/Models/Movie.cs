@@ -26,8 +26,12 @@ namespace IHFF.Models
         [MinLength(5), MaxLength(200)]
         public string Writers { get; set; }
 
+<<<<<<< HEAD
         [NotMapped]
         public List<DateTime> Tijden { get; set; }
+=======
+        public virtual List<DateTime> Tijden { get; set; }
+>>>>>>> 8f1145b86d5165661538eaea68b4ad1abaf964e4
 
         [NotMapped]
         public MovieViewModel ViewModel { get; set; }
@@ -47,9 +51,26 @@ namespace IHFF.Models
 
         }
 
+<<<<<<< HEAD
         public void MakeViewmodel()
         {
             ViewModel = new MovieViewModel(ItemID);
         }
+=======
+        public void Edit(Movie mov)
+        {
+            Titel = mov.Titel;
+            Omschrijving = mov.Omschrijving;
+            Highlight = mov.Highlight;
+            ItemAfbeelding.Link = mov.ItemAfbeelding.Link;
+            Rating = mov.Rating;
+            Director = mov.Director;
+            Stars = mov.Stars;
+            Writers = mov.Writers;
+        }
+
+        //public double Prijs { get; set; }
+        //public DateTime DatumTijd { get; set; }    
+>>>>>>> 8f1145b86d5165661538eaea68b4ad1abaf964e4
     }
 }

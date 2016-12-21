@@ -11,18 +11,28 @@
 @Html.ValidationSummary()
 @using (Html.BeginForm())
 {
-<h2>Edit Movie: @Model.Titel</h2>
-<input type="Submit" value="Update movie" formmethod="Post" class="Edit-update" size="30" />
-
+    <h2>Edit Movie: @Model.Titel</h2>
+    <input type="Submit" value="Update movie" formmethod="Post" class="Edit-update" size="30" />
+    @Html.HiddenFor(m => m.ItemID)
     <p>
         @Html.LabelFor(m => m.Titel):
         @Html.TextBoxFor(m => m.Titel, new { @Value = Model.Titel })
     </p>
-    
+
     <img class="bannerimg" src=@Model.ItemAfbeelding.Link />
     <p>
         @Html.LabelFor(m => m.ItemAfbeelding.Link):
         @Html.TextBoxFor(m => m.ItemAfbeelding.Link, new { @Value = Model.ItemAfbeelding.Link, @Size = 30 })
+        
+        @Html.DropDownListFor(h => h.Highlight, new SelectList(new []
+                                                                     {
+                                                                         new SelectListItem { Value = "False", Text="False", Selected = true},
+                                                                         new SelectListItem { Value = "True", Text="True"},
+                                                                      },
+                                                                      "Value",
+                                                                      "Text"
+                                                                        ), new {@Class = "DropDownHighlight" })
+        @Html.LabelFor(m => m.Highlight, "Highlight: ", new { @Class = "DropDownHighlight" })
     </p>
     <section class="summary">
         <h3>Summary</h3>
@@ -32,9 +42,9 @@
         <h3>Info</h3>
         <table>
             <tr>
-                <td> @Html.LabelFor(m => m.Rating):</td>                    
-                <td> @Html.TextBoxFor(m => m.Rating, new { @Value = Model.Rating, @Size = 30 })</td>                    
-            </tr>         
+                <td> @Html.LabelFor(m => m.Rating):</td>
+                <td> @Html.TextBoxFor(m => m.Rating, new { @Value = Model.Rating, @Size = 30 })</td>
+            </tr>
             <tr>
                 <td> @Html.LabelFor(m => m.Director):</td>
                 <td> @Html.TextBoxFor(m => m.Director, new { @Value = Model.Director, @Size = 30 })</td>
@@ -46,9 +56,8 @@
             <tr>
                 <td> @Html.LabelFor(m => m.Stars):</td>
                 <td> @Html.TextBoxFor(m => m.Stars, new { @Value = Model.Stars, @Size = 30 }) </td>
-
             </tr>
         </table>
-        
+
     </section>
 }
