@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -8,12 +9,13 @@ namespace IHFF.Models
 {
     public class Museum 
     {
+        [Key]
         public int MuseumID { get; set; }
         public string Titel { get; set; }
         public string Omschrijving { get; set; }  
-        [NotMapped]      
-        public virtual Locatie Locatie { get; set; }
         
+        public int LocatieID { get; set; }
+        public string Telefoon { get; set; }
         public string Adults { get; set; }
         public string Kids { get; set; }
         public string Website { get; set; }
@@ -26,15 +28,21 @@ namespace IHFF.Models
         public string Zondag { get; set; }
         [NotMapped]
         public virtual Afbeelding MuseumAfbeelding { get; set; }
+        [NotMapped]
+        public virtual Locatie MuseumLocatie { get; set; }
 
         public Museum()
         {
 
         }
 
-        public Museum(string naam, string omschrijving, string adults, string kids, string website, string maandag, string dinsdag, string woensdag, string donderdag, string vrijdag, string zaterdag, string zondag)
+        public Museum(string titel, string omschrijving, string adults, string kids, string website, string maandag, string dinsdag, string woensdag, string donderdag, string vrijdag, string zaterdag, string zondag, string telefoon)
         {
+<<<<<<< HEAD
             Titel = naam;
+=======
+            Titel = titel;
+>>>>>>> 0dbee3915970e13a1760e92c9649e72770773b24
             Omschrijving = omschrijving;
             Adults = adults;
             Kids = kids;
@@ -46,6 +54,7 @@ namespace IHFF.Models
             Vrijdag = vrijdag;
             Zaterdag = zaterdag;
             Zondag = zondag;
+            Telefoon = telefoon;
         }
     }
 }

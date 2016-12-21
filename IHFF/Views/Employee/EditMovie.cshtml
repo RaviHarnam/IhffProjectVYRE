@@ -13,7 +13,11 @@
 {
     <h2>Edit Movie: @Model.Titel</h2>
     <input type="Submit" value="Update movie" formmethod="Post" class="Edit-update" size="30" />
+<<<<<<< HEAD
 
+=======
+    @Html.HiddenFor(m => m.ItemID)
+>>>>>>> 0dbee3915970e13a1760e92c9649e72770773b24
     <p>
         @Html.LabelFor(m => m.Titel):
         @Html.TextBoxFor(m => m.Titel, new { @Value = Model.Titel })
@@ -23,6 +27,16 @@
     <p>
         @Html.LabelFor(m => m.ItemAfbeelding.Link):
         @Html.TextBoxFor(m => m.ItemAfbeelding.Link, new { @Value = Model.ItemAfbeelding.Link, @Size = 30 })
+        
+        @Html.DropDownListFor(h => h.Highlight, new SelectList(new []
+                                                                     {
+                                                                         new SelectListItem { Value = "False", Text="False", Selected = true},
+                                                                         new SelectListItem { Value = "True", Text="True"},
+                                                                      },
+                                                                      "Value",
+                                                                      "Text"
+                                                                        ), new {@Class = "DropDownHighlight" })
+        @Html.LabelFor(m => m.Highlight, "Highlight: ", new { @Class = "DropDownHighlight" })
     </p>
     <section class="summary">
         <h3>Summary</h3>

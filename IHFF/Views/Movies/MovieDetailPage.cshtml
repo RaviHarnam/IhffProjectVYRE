@@ -22,25 +22,20 @@
     <p>Writers: @Model.Writers</p>
     <p>Stars: @Model.Stars</p>
 </section>
-<section>
-    <table>
-        <tr>
-            <td><p>Amount</p></td>
-            <td><input class="NumberInput" type="number" min="1" /></td>
-        </tr>
-        <tr>
-            <td><p>Time</p></td>
-            <td>
-                <select>
-                    @if (Model.Tijden != null)
-                    {
-                        foreach (DateTime t in Model.Tijden)
-                        {
-                            <option value="Bolbo">@t.ToString();</option>
-                        }
-                    }
-                </select>
-            </td>
-        </tr>
-    </table>
+<br/>
+<section class="form">
+    @Html.ValidationSummary()
+    @using (Html.BeginForm("MovieDetailpage", "Movies", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.ItemID)
+        @Html.LabelFor(m => m.movieEvent.Aantal)
+        <br/>
+        @Html.TextBoxFor(m => m.movieEvent.Aantal)
+        <br/><br/>
+        @Html.LabelFor(m => m.movieEvent.DatumTijd)
+        <br/>
+        @Html.DropDownListFor(m => m.movieEvent.GeselecteerdeDatumTijd, Model.ViewModel.ListItems)
+        <br/><br/>
+        <input type="submit" formmethod="post" value="Add to cart" />
+    }
 </section>

@@ -13,8 +13,14 @@ namespace IHFF.Repositories
         {
             IEnumerable<Movie> movies = ctx.MOVIES.ToList();
             // Loop door de lijst heen en vul de afbeeldingen erin.
+            foreach (Movie mov in movies)
+            {
+                mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmoverview");
+                mov.movieEvent = new Event();
+            }
+
             foreach(Movie mov in movies) 
-                mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "overview");
+                mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmoverview");
                         
             return movies;
         }
@@ -22,7 +28,9 @@ namespace IHFF.Repositories
         public Movie GetMovie(int id)
         {    
             Movie mov = ctx.MOVIES.SingleOrDefault(i => i.ItemID == id);
+            mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmbanner");
             mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "banner");
+            mov.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemId == mov.ItemID select v.DatumTijd).ToList();
             return mov;
         }
 

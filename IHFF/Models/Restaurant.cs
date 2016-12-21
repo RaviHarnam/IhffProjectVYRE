@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -9,10 +10,15 @@ namespace IHFF.Models
     public class Restaurant
     {
         public int RestaurantID { get; set; }
+        [Display(Name = "Name")]
         public string Naam { get; set; }
+
         public string Omschrijving { get; set; }
+        [Display(Name = "Telephone")]
         public string Telefoon { get; set; }
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
+        
         public string Website { get; set; }
         public int LocatieID { get; set; }
         [NotMapped]
@@ -31,6 +37,20 @@ namespace IHFF.Models
         public Restaurant()
         {
 
+        }
+
+        public void Edit(Restaurant r)
+        {
+            Naam = r.Naam;
+            Omschrijving = r.Omschrijving;
+            Telefoon = r.Telefoon;
+            Email = r.Email;
+            Website = r.Website;
+            RestaurantAfbeelding.Link = r.RestaurantAfbeelding.Link;
+            RestaurantLocatie.Straat = r.RestaurantLocatie.Straat;
+            RestaurantLocatie.Huisnummer = r.RestaurantLocatie.Huisnummer;
+            RestaurantLocatie.Toevoeging = r.RestaurantLocatie.Toevoeging;
+            RestaurantLocatie.Postcode = r.RestaurantLocatie.Postcode;
         }
 
     }

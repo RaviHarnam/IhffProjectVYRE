@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace IHFF.Models
 {
@@ -16,6 +18,8 @@ namespace IHFF.Models
         public double Prijs { get; set; }
         public int Aantal { get; set; }
         public DateTime DatumTijd { get; set; }
+        [NotMapped]
+        public DateTime GeselecteerdeDatumTijd { get; set; }
         public int MaaltijdId { get; set; }
     }
 

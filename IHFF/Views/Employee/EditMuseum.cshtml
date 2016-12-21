@@ -1,4 +1,6 @@
 ﻿@using IHFF.Models;
+
+@model IHFF.Models.Museum
 @{
     ViewBag.Title = "EditMuseum";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,9 +9,6 @@
 @Styles.Render("~/Content/MovieDetailPageStyle.css")
 @Styles.Render("~/Content/EditPages.css")
 
-@model Museum
-<h2>Edit Museum</h2>
-
 @Html.ValidationSummary()
 @using (Html.BeginForm())
 {
@@ -17,15 +16,22 @@
     <input type="Submit" value="Update museum" formmethod="Post" class="Edit-update" size="30" />
 
     <p>
+<<<<<<< HEAD
         @Html.LabelFor(m => m.Titel):
         @Html.TextBoxFor(m => m.Titel, new { @Value = Model.Titel })
+=======
+        @Html.LabelFor(m => m.Titel)
+        @Html.TextBoxFor(m => m.Titel, new {@Value = Model.Titel })
+>>>>>>> 0dbee3915970e13a1760e92c9649e72770773b24
     </p>
-
+    if (Model.MuseumAfbeelding != null)
+    {
     <img class="bannerimg" src=@Model.MuseumAfbeelding.Link />
     <p>
         @Html.LabelFor(m => m.MuseumAfbeelding.Link):
         @Html.TextBoxFor(m => m.MuseumAfbeelding.Link, new { @Value = Model.MuseumAfbeelding.Link, @Size = 30 })
     </p>
+    }
     <section class="summary">
         <h3>Summary</h3>
         @Html.TextAreaFor(m => m.Omschrijving, new { @Value = Model.Omschrijving, @Rows = 8, @cols = 40 })
@@ -37,7 +43,7 @@
                 <td> @Html.LabelFor(m => m.Maandag):</td>
                 <td> @Html.TextBoxFor(m => m.Maandag, new { @Value = Model.Maandag, @Size = 30 })</td>
             </tr>
-          
+
             <tr>
                 <td> @Html.LabelFor(m => m.Dinsdag):</td>
                 <td> @Html.TextBoxFor(m => m.Dinsdag, new { @Value = Model.Dinsdag, @Size = 30 })</td>
@@ -65,4 +71,4 @@
         </table>
 
     </section>
-                }
+}

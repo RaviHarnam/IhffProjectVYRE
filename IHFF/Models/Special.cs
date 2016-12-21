@@ -22,5 +22,15 @@ namespace IHFF.Models
         public Special()
         {
         }
+
+        public void Edit(Special spc)
+        {
+            Titel = spc.Titel;
+            Omschrijving = spc.Omschrijving;
+            ItemAfbeelding.Link = spc.ItemAfbeelding.Link;
+            Highlight = spc.Highlight;
+            Speaker = spc.Speaker;
+            SpokenLanguage = spc.SpokenLanguage;
+        }
     }
 }
