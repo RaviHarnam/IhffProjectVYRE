@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -11,6 +12,7 @@ namespace IHFF.Models
         public int ItemId { get; set; }
         //public string Categorie { get; set; }
         public DateTime DatumTijd { get; set; }
+        [NotMapped]
         public double Prijs { get; set; }
         public int MaxPlaatsen { get; set; }
         public int GereserveerdePlaatsen { get; set; }

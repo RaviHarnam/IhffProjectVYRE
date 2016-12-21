@@ -213,6 +213,7 @@
     <Compile Include="Models\Input\MovieInputModel.cs" />
     <Compile Include="Models\Input\SpecialInputModel.cs" />
     <Compile Include="Models\Locatie.cs" />
+    <Compile Include="Models\MovieViewModel.cs" />
     <Compile Include="Models\Museum.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventListRepresentation.cs" />
@@ -234,9 +235,11 @@
     <Compile Include="Repositories\DbEmployeeRepository.cs" />
     <Compile Include="Repositories\DbEventRepository.cs" />
     <Compile Include="Repositories\DbMovieRepository.cs" />
+    <Compile Include="Repositories\DbVoorstellingRepository.cs" />
     <Compile Include="Repositories\IEmployeeRepository.cs" />
     <Compile Include="Repositories\IEventRepository.cs" />
     <Compile Include="Repositories\IMoviesRepository.cs" />
+    <Compile Include="Repositories\IVoorstellingRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
