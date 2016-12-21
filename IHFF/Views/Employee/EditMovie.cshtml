@@ -13,7 +13,9 @@
 {
     <h2>Edit Movie: @Model.Titel</h2>
     <input type="Submit" value="Update movie" formmethod="Post" class="Edit-update" size="30" />
+
     @Html.HiddenFor(m => m.ItemID)
+
     <p>
         @Html.LabelFor(m => m.Titel):
         @Html.TextBoxFor(m => m.Titel, new { @Value = Model.Titel })
@@ -57,7 +59,11 @@
                 <td> @Html.LabelFor(m => m.Stars):</td>
                 <td> @Html.TextBoxFor(m => m.Stars, new { @Value = Model.Stars, @Size = 30 }) </td>
             </tr>
+            @{SelectList optionList = new SelectList(Model.Tijden); }}
+            @Html.DropDownListFor(t => t.Tijden, optionList)
+                                                                   
+
         </table>
 
     </section>
-}
+    }
