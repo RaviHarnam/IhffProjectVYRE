@@ -29,7 +29,7 @@ namespace IHFF.Models
         [NotMapped]
         public virtual Event movieEvent { get; set; }
 
-        public Movie(string rating, string director, string stars, string writers, string categorie, string titel, string omschrijving, bool highlight) : base(titel, omschrijving, highlight)
+        public Movie(string rating, string director, string stars, string writers, string titel, string omschrijving, bool highlight) : base(titel, omschrijving, highlight)
         {
             Rating = rating;
             Director = director;
