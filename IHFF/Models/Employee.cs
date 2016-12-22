@@ -10,10 +10,10 @@ namespace IHFF.Models
     {
         [Key]
         public int MedewerkerID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "The field Username is required.")]
         [Display(Name = "Username")]
         public string Gebruikersnaam { get; set; }
-        [Required]
+        [Required(ErrorMessage = "The field Password is required.")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Wachtwoord{ get; set; }

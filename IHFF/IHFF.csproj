@@ -211,6 +211,8 @@
     <Compile Include="Models\Input\AfbeeldingInputModel.cs" />
     <Compile Include="Models\Input\ItemInputModel.cs" />
     <Compile Include="Models\Input\MovieInputModel.cs" />
+    <Compile Include="Models\Input\MuseumInputModel.cs" />
+    <Compile Include="Models\Input\RestaurantInputModel.cs" />
     <Compile Include="Models\Input\SpecialInputModel.cs" />
     <Compile Include="Models\Locatie.cs" />
     <Compile Include="Models\MovieViewModel.cs" />

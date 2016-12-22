@@ -1,6 +1,6 @@
-﻿@using IHFF.Models;
+﻿@using IHFF.Models.Input;
 
-@model IHFF.Models.Museum
+@model MuseumInputModel
 @{
     ViewBag.Title = "EditMuseum";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,21 +12,17 @@
 @Html.ValidationSummary()
 @using (Html.BeginForm())
 {
-    <h2>Edit Museum: @Model.Titel</h2>
+    <h2>Edit Museum: @Model.Naam</h2>
     <input type="Submit" value="Update museum" formmethod="Post" class="Edit-update" size="30" />
-
+    @Html.HiddenFor(m => m.MuseumID)
     <p>
-<<<<<<< HEAD
-        @Html.LabelFor(m => m.Titel):
-        @Html.TextBoxFor(m => m.Titel, new { @Value = Model.Titel })
-=======
-        @Html.LabelFor(m => m.Titel)
-        @Html.TextBoxFor(m => m.Titel, new {@Value = Model.Titel })
->>>>>>> 0dbee3915970e13a1760e92c9649e72770773b24
+        @Html.LabelFor(m => m.Naam):
+        @Html.TextBoxFor(m => m.Naam, new { @Value = Model.Naam })       
     </p>
+
     if (Model.MuseumAfbeelding != null)
     {
-    <img class="bannerimg" src=@Model.MuseumAfbeelding.Link />
+    <img class="bannerimg" src=@Model.MuseumAfbeelding.Link alt=@Model.Naam />
     <p>
         @Html.LabelFor(m => m.MuseumAfbeelding.Link):
         @Html.TextBoxFor(m => m.MuseumAfbeelding.Link, new { @Value = Model.MuseumAfbeelding.Link, @Size = 30 })
@@ -40,10 +36,25 @@
         <h3>Openingstijden</h3>
         <table>
             <tr>
+                <td> @Html.LabelFor(m => m.Telefoon)</td>
+                <td> @Html.TextBoxFor(m => m.Telefoon, new {@Value = Model.Telefoon, @Size = 30 })</td>                
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.Website)</td>
+                <td> @Html.TextBoxFor(m => m.Website, new {@Value = Model.Website, @Size = 30 })</td>
+            </tr>
+            <tr>
                 <td> @Html.LabelFor(m => m.Maandag):</td>
                 <td> @Html.TextBoxFor(m => m.Maandag, new { @Value = Model.Maandag, @Size = 30 })</td>
             </tr>
-
+            <tr>
+                <td> @Html.LabelFor(m => m.Adults):</td>
+                <td> @Html.TextBoxFor(m => m.Adults, new {@Value = Model.Adults, @Size = 30 })</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.Kids)</td>
+                <td> @Html.TextBoxFor(m => m.Kids, new {@Value = Model.Kids, @Size = 30 })</td>
+            </tr>
             <tr>
                 <td> @Html.LabelFor(m => m.Dinsdag):</td>
                 <td> @Html.TextBoxFor(m => m.Dinsdag, new { @Value = Model.Dinsdag, @Size = 30 })</td>

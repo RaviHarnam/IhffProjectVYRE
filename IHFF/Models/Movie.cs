@@ -6,24 +6,15 @@ using IHFF.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
+using IHFF.Models.Input;
 
 namespace IHFF.Models
 {
     public class Movie : Item
-    {
-        [Required]        
-        public string Rating { get; set; }
-
-        [Required]
-        [MinLength(5), MaxLength(200)]
-        public string Director { get; set; }
-
-        [Required]
-        [MinLength(5), MaxLength(200)]
-        public string Stars { get; set; }
-
-        [Required]
-        [MinLength(5), MaxLength(200)]
+    {            
+        public string Rating { get; set; }       
+        public string Director { get; set; }       
+        public string Stars { get; set; }     
         public string Writers { get; set; }
 
         [NotMapped]
@@ -52,16 +43,31 @@ namespace IHFF.Models
             ViewModel = new MovieViewModel(ItemID);
         }
 
-        public void Edit(Movie mov)
+        //public void Edit(Movie mov)
+        //{
+        //    Titel = mov.Titel;
+        //    Omschrijving = mov.Omschrijving;
+        //    Highlight = mov.Highlight;
+        //    Categorie = mov.Categorie;
+        //    ItemAfbeelding.Link = mov.ItemAfbeelding.Link;
+        //    Rating = mov.Rating;
+        //    Director = mov.Director;
+        //    Stars = mov.Stars;
+        //    Writers = mov.Writers;
+        //}
+
+        public void ConvertFromMovieInputModel(MovieInputModel m)
         {
-            Titel = mov.Titel;
-            Omschrijving = mov.Omschrijving;
-            Highlight = mov.Highlight;
-            ItemAfbeelding.Link = mov.ItemAfbeelding.Link;
-            Rating = mov.Rating;
-            Director = mov.Director;
-            Stars = mov.Stars;
-            Writers = mov.Writers;
+            Rating = m.Rating;
+            Director = m.Director;
+            Stars = m.Stars;
+            Writers = m.Writers;
+            Categorie = m.Categorie;
+            Titel = m.Titel;
+            Omschrijving = m.Omschrijving;
+            Highlight = m.Highlight;
+            ItemID = m.ItemID;
+            ItemAfbeelding.Link = m.ItemAfbeelding.Link;
         }
 
         //public double Prijs { get; set; }

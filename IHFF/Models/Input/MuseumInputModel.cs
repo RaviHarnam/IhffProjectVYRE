@@ -1,20 +1,17 @@
-﻿using IHFF.Models.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace IHFF.Models
+namespace IHFF.Models.Input
 {
-    public class Museum 
+    public class MuseumInputModel
     {
-        [Key]
         public int MuseumID { get; set; }
         public string Naam { get; set; }
-        public string Omschrijving { get; set; }  
-        
+        public string Omschrijving { get; set; }
+
         public int LocatieID { get; set; }
         public string Telefoon { get; set; }
         public string Adults { get; set; }
@@ -27,17 +24,13 @@ namespace IHFF.Models
         public string Vrijdag { get; set; }
         public string Zaterdag { get; set; }
         public string Zondag { get; set; }
+
         [NotMapped]
         public virtual Afbeelding MuseumAfbeelding { get; set; }
         [NotMapped]
         public virtual Locatie MuseumLocatie { get; set; }
 
-        public Museum()
-        {
-
-        }
-
-        public Museum(string naam, string omschrijving, string adults, string kids, string website, string maandag, string dinsdag, string woensdag, string donderdag, string vrijdag, string zaterdag, string zondag, string telefoon)
+        public MuseumInputModel(string naam, string omschrijving, string adults, string kids, string website, string maandag, string dinsdag, string woensdag, string donderdag, string vrijdag, string zaterdag, string zondag, string telefoon)
         {
             Naam = naam;
             Omschrijving = omschrijving;
@@ -53,26 +46,11 @@ namespace IHFF.Models
             Zondag = zondag;
             Telefoon = telefoon;
         }
-
-        
-        public void Edit(Museum m)
+        public MuseumInputModel()
         {
-            Naam = m.Naam;
-            Omschrijving = m.Omschrijving;
-            Adults = m.Adults;
-            Kids = m.Kids;
-            Website = m.Website;
-            Maandag = m.Maandag;
-            Dinsdag = m.Dinsdag;
-            Woensdag = m.Woensdag;
-            Donderdag = m.Donderdag;
-            Vrijdag = m.Vrijdag;
-            Zaterdag = m.Zaterdag;
-            Zondag = m.Zondag;
-            Telefoon = m.Telefoon;
-        }
 
-        public void ConvertFromMuseumInputModel(MuseumInputModel m)
+        }
+        public void ConvertToMuseumInputModel(Museum m)
         {
             Naam = m.Naam;
             MuseumID = m.MuseumID;
@@ -89,6 +67,8 @@ namespace IHFF.Models
             Zaterdag = m.Zaterdag;
             Zondag = m.Zondag;
             Telefoon = m.Telefoon;
+            MuseumAfbeelding = m.MuseumAfbeelding;
+            MuseumLocatie = m.MuseumLocatie;
         }
     }
 }

@@ -1,21 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace IHFF.Models.Input
 {
     public class MovieInputModel : ItemInputModel
-    {        
-        public decimal Rating { get; set; }
-        public string Director { get; set; }
-        public string Stars { get; set; }
-        public string Writers { get; set; }
-        
-        //public List<DateTime> Tijden { get; set; }
+    {
+        [Required]
+        [MinLength(1)]
+        public string Rating { get; set; }
 
-        public MovieInputModel(decimal rating, string director, string stars, string writers, string categorie, string titel, string omschrijving, bool highlight) : base(categorie, titel, omschrijving, highlight)
-        {                      
+        [Required]
+        [MinLength(1)]
+        public string Director { get; set; }
+       
+        [Required]
+        [MinLength(1)]
+        public string Stars { get; set; }
+
+        [Required]
+        [MinLength(1)]
+        public string Writers { get; set; }
+
+        public MovieInputModel(string rating, string director, string stars, string writers, string categorie, string titel, string omschrijving, bool highlight) : base(categorie, titel, omschrijving, highlight)
+        {
             Rating = rating;
             Director = director;
             Writers = writers;
@@ -25,7 +35,20 @@ namespace IHFF.Models.Input
 
         }
 
-        
-        
+        public void ConvertToMovieInputModel(Movie m)
+        {
+            Rating = m.Rating;
+            Director = m.Director;
+            Stars = m.Stars;
+            Writers = m.Writers;
+            Categorie = m.Categorie;
+            Titel = m.Titel;
+            Omschrijving = m.Omschrijving;
+            Highlight = m.Highlight;
+            ItemID = m.ItemID;
+            ItemAfbeelding = m.ItemAfbeelding;
+        }
+
+
     }
 }

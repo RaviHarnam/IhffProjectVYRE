@@ -1,5 +1,5 @@
 
-﻿using IHFF.Models;
+using IHFF.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace IHFF.Controllers
     {
         private IMoviesRepository dbMovie = new DbMovieRepository();
         IVoorstellingRepository dbVoorstelling = new DbVoorstellingRepository();
-        
+
         // GET: Movies
         public ActionResult Index()
         {
@@ -27,17 +27,19 @@ namespace IHFF.Controllers
             return View(movies);
         }
 
-        public ActionResult MovieDetailPage(int movie_id)
+        public ActionResult MovieDetailPage(int? movie_id)
         {
-            Movie movie = dbMovie.GetMovie(movie_id);
-            movie.MakeViewmodel();
-            movie.movieEvent = new Event();
-
-            if(movie == null)
+            if (movie_id != null)
             {
-                return RedirectToAction("MovieOverview");
+                Movie movie = dbMovie.GetMovie(movie_id.Value);
+                if (movie != null)
+                {
+                    movie.MakeViewmodel();
+                    movie.movieEvent = new Event();
+                    return View(movie);
+                }
             }
-            return View(movie);
+            return RedirectToAction("MovieOverview");
         }
 
         [HttpPost]
@@ -57,7 +59,7 @@ namespace IHFF.Controllers
                 List<Event> cartlist = (List<Event>)Session["cart"];
                 cartlist.Add(eventx);
                 Session["cart"] = cartlist;
-                
+
             }
 
             return View(dbMovie.GetMovie(movie.ItemID));

@@ -58,47 +58,64 @@ namespace IHFF.Controllers
             if (id != null)
             {
                 Movie movie = db.GetMovie(id.Value);
-                if(movie != null)
-                return View(movie);
+                MovieInputModel mov = new MovieInputModel();
+                mov.ConvertToMovieInputModel(movie);
+                if (mov != null)
+                    return View(mov);
             }
             return RedirectToAction("ManagementWindow");
 
         }
         [Authorize]
-        public ActionResult EditSpecial(int id)
+        public ActionResult EditSpecial(int? id)
         {
             //Get Special
-            Special special = db.GetSpecial(id);
-            if (special == null)
-                return RedirectToAction("ManagementWindow");
-            return View(special);
+            if (id != null)
+            {
+                Special special = db.GetSpecial(id.Value);
+                SpecialInputModel spc = new SpecialInputModel();
+                spc.ConvertToSpecialInputModel(special);
+                if (spc != null)
+                    return View(spc);
+            }
+            return RedirectToAction("ManagementWindow");
         }
         [Authorize]
-        public ActionResult EditMuseum(int id)
+        public ActionResult EditMuseum(int? id)
         {
             //Get Museum
-            Museum museum = db.GetMuseum(id);
-            if (museum == null)
-                return RedirectToAction("ManagementWindow");
-            return View(museum);
+            if (id != null)
+            {
+                Museum museum = db.GetMuseum(id.Value);
+                MuseumInputModel mus = new MuseumInputModel();
+                mus.ConvertToMuseumInputModel(museum);
+                return View(mus);
+            }
+            return RedirectToAction("ManagementWindow");
+
         }
         [Authorize]
-        public ActionResult EditRestaurant(int id)
+        public ActionResult EditRestaurant(int? id)
         {
             //Get Restaurant
-            Restaurant restaurant = db.GetRestaurant(id);
-            if (restaurant == null)
-                return RedirectToAction("ManagementWindow");
-            return View(restaurant);
+            if (id != null)
+            {
+                Restaurant restaurant = db.GetRestaurant(id.Value);
+                RestaurantInputModel rst = new RestaurantInputModel();
+                rst.ConvertToRestaurantInputModel(restaurant);
+                return View(rst);
+            }
+            return RedirectToAction("ManagementWindow");
         }
         [Authorize]
         [HttpPost]
-        public ActionResult EditMovie(Movie movie)
+        public ActionResult EditMovie(MovieInputModel movie)
         {
             if (ModelState.IsValid)
             {
                 Movie movToEdit = db.GetMovie(movie.ItemID);
-                movToEdit.Edit(movie);
+                movToEdit.ConvertFromMovieInputModel(movie);
+                //movToEdit.Edit(movToEdit);
                 db.UpdateMovie(movToEdit);
             }
             else
@@ -107,22 +124,28 @@ namespace IHFF.Controllers
         }
         [Authorize]
         [HttpPost]
-        public ActionResult EditSpecial(Special special)
+        public ActionResult EditSpecial(SpecialInputModel special)
         {
             if (ModelState.IsValid)
-                db.UpdateSpecial(special);
+            {
+                Special spcToEdit = db.GetSpecial(special.ItemID);
+                spcToEdit.ConvertFromSpecialInputModel(special);
+                //spcToEdit.Edit(spcToEdit);
+                db.UpdateSpecial(spcToEdit);
+            }
             else
                 ModelState.AddModelError("edit-error", "The Special you tried to edit had some incorrectly filled fields.");
             return View(special);
         }
         [Authorize]
         [HttpPost]
-        public ActionResult EditRestaurant(Restaurant restaurant)
+        public ActionResult EditRestaurant(RestaurantInputModel restaurant)
         {
             if (ModelState.IsValid)
             {
                 Restaurant rstToEdit = db.GetRestaurant(restaurant.RestaurantID);
-                rstToEdit.Edit(restaurant);
+                rstToEdit.ConvertFromRestaurantInputModel(restaurant);
+                //rstToEdit.Edit(restaurant);
                 db.UpdateRestaurant(rstToEdit);
             }
             else
@@ -131,10 +154,15 @@ namespace IHFF.Controllers
         }
         [Authorize]
         [HttpPost]
-        public ActionResult EditMuseum(Museum museum)
+        public ActionResult EditMuseum(MuseumInputModel museum)
         {
             if (ModelState.IsValid)
-                db.UpdateMuseum(museum);
+            {
+                Museum musToEdit = db.GetMuseum(museum.MuseumID);
+                musToEdit.ConvertFromMuseumInputModel(museum);
+                //musToEdit.Edit(musToEdit);
+                db.UpdateMuseum(musToEdit);
+            }
             else
                 ModelState.AddModelError("edit-error", "The Museum you tried to edit had some incorrectly filled fields.");
             return View(museum);

@@ -1,4 +1,4 @@
-﻿@using IHFF.Models;
+﻿@using IHFF.Models.Input;
 
 @Styles.Render("~/Content/MovieDetailPageStyle.css")
 @Styles.Render("~/Content/EditPages.css")
@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model Special
+@model SpecialInputModel
 
 @Html.ValidationSummary()
 @using (Html.BeginForm())

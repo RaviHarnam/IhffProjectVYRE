@@ -63,7 +63,10 @@
     line-height: 30px;
     opacity: 1;
     margin-bottom:35px;
-   
+       
+}
+.movie_index_item_title a {
+    color: white;
 }
 .movie_index_item_description_button{
     text-decoration: none;

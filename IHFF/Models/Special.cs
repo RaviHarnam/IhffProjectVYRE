@@ -1,4 +1,5 @@
 ﻿using IHFF.Models;
+using IHFF.Models.Input;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -31,6 +32,18 @@ namespace IHFF.Models
             Highlight = spc.Highlight;
             Speaker = spc.Speaker;
             SpokenLanguage = spc.SpokenLanguage;
+        }
+
+        public void ConvertFromSpecialInputModel(SpecialInputModel m)
+        {
+            SpokenLanguage = m.SpokenLanguage;
+            Speaker = m.Speaker;
+            Categorie = m.Categorie;
+            Titel = m.Titel;
+            Omschrijving = m.Omschrijving;
+            Highlight = m.Highlight;
+            ItemID = m.ItemID;
+            ItemAfbeelding = m.ItemAfbeelding;
         }
     }
 }

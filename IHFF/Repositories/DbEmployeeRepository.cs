@@ -40,7 +40,7 @@ namespace IHFF.Repositories
         public Museum GetMuseum(int id)
         {
             Museum cult = ctx.MUSEA.SingleOrDefault(c => c.MuseumID == id);
-            //cult.MuseumAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == cult.MuseumID && a.Type == "banner");
+            cult.MuseumAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == cult.MuseumID && a.Type == "museumbanner");
             cult.MuseumLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == cult.LocatieID);
             return cult;
         }
@@ -82,6 +82,7 @@ namespace IHFF.Repositories
             {
                 dbMovie.Titel = movie.Titel;
                 dbMovie.Writers = movie.Writers;
+                dbMovie.Categorie = movie.Categorie;
                 dbMovie.Stars = movie.Stars;
                 dbMovie.Rating = movie.Rating;
                 dbMovie.Omschrijving = movie.Omschrijving;
@@ -148,7 +149,13 @@ namespace IHFF.Repositories
                 dbMuseum.Zondag = museum.Zondag;
                 dbMuseum.Kids = museum.Kids;
                 dbMuseum.Adults = museum.Adults;
-                dbMuseum.MuseumAfbeelding.Link = museum.MuseumAfbeelding.Link;
+                dbMuseum.Telefoon = museum.Telefoon;
+                dbMuseum.Website = museum.Website;
+
+                Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == museum.MuseumID && a.Type == "museumbanner");
+                if (dbAfbeelding != null)                
+                    dbAfbeelding.Link = museum.MuseumAfbeelding.Link;
+                
                 ctx.SaveChanges();
             }
         }
