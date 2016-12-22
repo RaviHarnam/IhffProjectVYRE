@@ -17,9 +17,9 @@ namespace IHFF.Models
         [NotMapped]
         public virtual Afbeelding ItemAfbeelding {get; set;}
 
-        public Item(string categorie, string titel, string omschrijving, bool highlight)   
+        public Item(string titel, string omschrijving, bool highlight)   
         {
-            Categorie = categorie;
+            
             Titel = titel;
             Omschrijving = omschrijving;
             Highlight = highlight;

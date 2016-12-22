@@ -82,7 +82,7 @@ namespace IHFF.Repositories
             {
                 dbMovie.Titel = movie.Titel;
                 dbMovie.Writers = movie.Writers;
-                dbMovie.Categorie = movie.Categorie;
+               
                 dbMovie.Stars = movie.Stars;
                 dbMovie.Rating = movie.Rating;
                 dbMovie.Omschrijving = movie.Omschrijving;
