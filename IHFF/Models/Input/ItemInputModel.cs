@@ -8,14 +8,10 @@ namespace IHFF.Models.Input
 {
     public abstract class ItemInputModel
     {
-        public int ItemID { get; set; }
-      
-        
-        [Required]
-        [MinLength(1)]
+        public int ItemID { get; set; }             
+        [Required]        
         public string Titel { get; set; }
         [Required]
-        [MinLength(1)]
         public string Omschrijving { get; set; }
         [Required]
         public bool Highlight { get; set; }
@@ -23,8 +19,7 @@ namespace IHFF.Models.Input
         public virtual Afbeelding ItemAfbeelding { get; set; }
 
         public ItemInputModel(string titel, string omschrijving, bool highlight)
-        {
-            
+        {            
             Titel = titel;
             Omschrijving = omschrijving;
             Highlight = highlight;

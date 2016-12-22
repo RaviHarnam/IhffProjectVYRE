@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,7 @@ namespace IHFF.Models.Input
     {
         public int AfbeeldingID { get; set; }
         public int? ItemID { get; set; }
+        [Required]
         public string Link { get; set; }
         public int? MuseumID { get; set; }
         public int? RestaurantID { get; set; }
