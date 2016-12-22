@@ -18,28 +18,21 @@ namespace IHFF.Controllers
             if (Session["cart"] == null)
                 Session["cart"] = new List<Event>();
 
-            List<Event> cartlist = (List<Event>)Session["cart"];
+            List<Event> cartlist = new List<Event>();
 
-            cartlist.Add(new Event());
-            cartlist.Add(new Event());
-            cartlist.Add(new Event());
-
-            int i = 1;
-            foreach(Event item in cartlist)
+            foreach (Event eventx in (List<Event>)Session["cart"])
             {
-                item.Titel = "Test " + i.ToString();
-                item.Prijs = i + 100;
-                item.Aantal = i + 200;
-                item.DatumTijd = DateTime.Now;
-                i++;
+                cartlist.Add(eventx);
             }
 
+
+
             return View(cartlist);
-            
+
         }
 
-  
 
-   
+
+
     }
 }

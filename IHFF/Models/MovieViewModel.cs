@@ -10,9 +10,15 @@ namespace IHFF.Models
 {
     public class MovieViewModel
     {
+        [NotMapped]
         DbVoorstellingRepository DbVoorstelling = new DbVoorstellingRepository();
+
         [NotMapped]
         List<Voorstelling> voorstellingen;
+
+        [NotMapped]
+        public List<DateTime> Data = new List<DateTime>();
+
         [NotMapped]
         public SelectList ListItems { get; private set; }
 
@@ -22,9 +28,8 @@ namespace IHFF.Models
             MakeListItems();
         }
 
-        public void MakeListItems()
+        void MakeListItems()
         {
-            List<DateTime> Data = new List<DateTime>();
 
             foreach(Voorstelling v in voorstellingen)
             {

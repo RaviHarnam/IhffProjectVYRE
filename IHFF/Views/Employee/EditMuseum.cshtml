@@ -18,6 +18,8 @@
     <p>
         @Html.LabelFor(m => m.Naam):
         @Html.TextBoxFor(m => m.Naam, new { @Value = Model.Naam })       
+        @Html.LabelFor(m => m.Titel)
+        @Html.TextBoxFor(m => m.Titel, new {@Value = Model.Titel })
     </p>
 
     if (Model.MuseumAfbeelding != null)
