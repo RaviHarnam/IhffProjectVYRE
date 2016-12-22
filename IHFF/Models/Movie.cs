@@ -24,10 +24,7 @@ namespace IHFF.Models
         public virtual List<Voorstelling> Voorstellingen { get; set; }
 
         [NotMapped]
-        public MovieViewModel ViewModel { get; set; }
-
-        [NotMapped]
-        public virtual Event movieEvent { get; set; }
+        public int Aantal { get; set; }
 
         public Movie(string rating, string director, string stars, string writers, string titel, string omschrijving, bool highlight) : base(titel, omschrijving, highlight)
         {
@@ -39,11 +36,6 @@ namespace IHFF.Models
         public Movie()
         {
 
-        }
-
-        public void MakeViewmodel()
-        {
-            ViewModel = new MovieViewModel(ItemID);
         }
 
         //public void Edit(Movie mov)

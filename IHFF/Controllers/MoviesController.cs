@@ -34,8 +34,6 @@ namespace IHFF.Controllers
                 Movie movie = dbMovie.GetMovie(movie_id.Value);
                 if (movie != null)
                 {
-                    movie.MakeViewmodel();
-                    movie.movieEvent = new Event();
                     movie.Voorstellingen = (dbVoorstelling.GetVoorstellingen(movie.ItemID));
                     List<SelectListItem> listItems = new List<SelectListItem>();
                     foreach (DateTime dateTime in movie.Tijden)
@@ -55,17 +53,16 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult MovieDetailPage(Movie movie)
+        public ActionResult MovieDetailPage(Movie movie, int voorstellingId)
         {
+            Voorstelling voorstelling = new Voorstelling();
+            voorstelling = dbVoorstelling.GetVoorstelling(voorstellingId);
+            movie.Titel = dbMovie.GetMovie(voorstelling.ItemId).Titel;
 
             if (ModelState.IsValid)
             {
                 Event eventx = new Event();
-
-                eventx.DatumTijd = movie.movieEvent.DatumTijd;
-                eventx.Aantal = movie.movieEvent.Aantal;
-                eventx.Prijs = 10; //dbVoorstelling.GetVoorstelling(movie.ItemID, movie.movieEvent.DatumTijd).Prijs;
-                eventx.Titel = movie.Titel;
+                eventx.MakeEvent(movie, voorstelling);
 
                 if (Session["cart"] == null)
                     Session["cart"] = new List<Event>();
@@ -74,11 +71,9 @@ namespace IHFF.Controllers
                 cartlist.Add(eventx);
                 Session["cart"] = cartlist;
 
-                movie = dbMovie.GetMovie(movie.ItemID);
-                movie.MakeViewmodel();
                 movie.Voorstellingen = (dbVoorstelling.GetVoorstellingen(movie.ItemID));
-                movie.movieEvent = new Event();
             }
+
             return View(movie);
         }
     }

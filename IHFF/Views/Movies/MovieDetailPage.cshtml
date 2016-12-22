@@ -1,4 +1,4 @@
-﻿@Styles.Render("~/Content/MovieDetailPageStyle.css");
+﻿@Styles.Render("~/Content/MovieDetailPageStyle.css")
 
 @using IHFF.Models;
 @model Movie
@@ -28,13 +28,13 @@
     @using (Html.BeginForm("MovieDetailpage", "Movies", FormMethod.Post))
     {
         @Html.HiddenFor(m => m.ItemID)
-        @Html.LabelFor(m => m.movieEvent.Aantal)
+        @Html.LabelFor(m => m.Aantal)
         <br/>
-        @Html.TextBoxFor(m => m.movieEvent.Aantal)
+        @Html.TextBoxFor(m => m.Aantal)
         <br/><br/>
-        @Html.LabelFor(m => m.movieEvent.DatumTijd)
+        @Html.Label("Datum");
         <br/>
-        <select>
+        <select name="voorstellingId">
             @foreach (Voorstelling voorstelling in Model.Voorstellingen)
             {
                 <option value=@voorstelling.VoorstellingId>@voorstelling.DatumTijd.ToString("dd/MM/yy HH:mm")</option>

@@ -1,4 +1,4 @@
-﻿@Styles.Render("~/Content/CartStyle.css");
+﻿@Styles.Render("~/Content/CartStyle.css")
 @using IHFF.Models;
 
 @{
@@ -22,6 +22,7 @@
         <th class="Time"><h3>Time</h3></th>
         <th class="Amount"><h3>Amount</h3></th>
         <th class="Price"><h3>Price</h3></th>
+        <th class="Delete"><h3>Delete</h3></th>
     </tr>
     @foreach (var m in Model)
     {
@@ -30,6 +31,7 @@
             <td class="Time" id="Time"><h4>@m.DatumTijd.ToString("dd/MM/yy")<br/>@m.DatumTijd.ToString("HH:mm") </h4></td>
             <td class="Amount"><h4>@m.Aantal</h4></td>
             <td class="Price"><h4>@m.Prijs</h4></td>
+            <td class="Delete" id="Delete">@Html.ActionLink("X", "DeleteCartItem", "Cart", new { Id = m.CartId }, null)</td>
         </tr>
     }
     </table>
