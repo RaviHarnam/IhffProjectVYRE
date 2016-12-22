@@ -167,6 +167,15 @@ namespace IHFF.Controllers
                 ModelState.AddModelError("edit-error", "The Museum you tried to edit had some incorrectly filled fields.");
             return View(museum);
         }
+
+        [Authorize]
+        public ActionResult DeleteMuseum(int? id)
+        {
+            if (id != null)
+                db.DeleteMuseum(id.Value);
+
+            return RedirectToAction("ManagementWindow");
+        }
     }
 
 }

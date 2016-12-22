@@ -24,7 +24,7 @@ namespace IHFF.Models
         public Afbeelding(string sourceUrl, string type)
         {
             Link = sourceUrl;
-            Type = Type;
+            Type = type;
         }
     }
 }

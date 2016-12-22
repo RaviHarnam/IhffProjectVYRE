@@ -159,5 +159,27 @@ namespace IHFF.Repositories
                 ctx.SaveChanges();
             }
         }
+
+        public void DeleteMuseum(int museumid)
+        {
+            Museum dbMuseum = ctx.MUSEA.SingleOrDefault(m => m.MuseumID == museumid);
+            if (dbMuseum != null)
+                ctx.MUSEA.Remove(dbMuseum);
+        }
+
+        public void DeleteMovie(int movieid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteSpecial(int specialid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteRestaurant(int restaurantid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
