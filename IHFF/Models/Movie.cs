@@ -21,6 +21,9 @@ namespace IHFF.Models
         public virtual List<DateTime> Tijden { get; set; }
 
         [NotMapped]
+        public virtual List<Voorstelling> Voorstellingen { get; set; }
+
+        [NotMapped]
         public MovieViewModel ViewModel { get; set; }
 
         [NotMapped]

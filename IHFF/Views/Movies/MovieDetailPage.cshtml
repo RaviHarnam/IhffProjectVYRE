@@ -27,21 +27,20 @@
     @Html.ValidationSummary()
     @using (Html.BeginForm("MovieDetailpage", "Movies", FormMethod.Post))
     {
-        @*@Html.HiddenFor(m => m.ItemID)
+        @Html.HiddenFor(m => m.ItemID)
         @Html.LabelFor(m => m.movieEvent.Aantal)
         <br/>
         @Html.TextBoxFor(m => m.movieEvent.Aantal)
-        <br/><br/>*@
-        @*@Html.LabelFor(m => m.movieEvent.DatumTijd)*@
-        <br/>
-        @*@Html.DropDownListFor(m => m.movieEvent.GeselecteerdeDatumTijd, Model.ViewModel.ListItems)*@
         <br/><br/>
+        @Html.LabelFor(m => m.movieEvent.DatumTijd)
+        <br/>
         <select>
-            @foreach (DateTime dt in Model.Tijden)
+            @foreach (Voorstelling voorstelling in Model.Voorstellingen)
             {
-                <option value=@dt>@dt.ToString("yy/mm/dd hh/mm")</option>
+                <option value=@voorstelling.VoorstellingId>@voorstelling.DatumTijd.ToString("dd/MM/yy HH:mm")</option>
             }
         </select>
+        <br/><br/>
         <input type="submit" formmethod="post" value="Add to cart" />
     }
 </section>

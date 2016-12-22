@@ -36,6 +36,7 @@ namespace IHFF.Controllers
                 {
                     movie.MakeViewmodel();
                     movie.movieEvent = new Event();
+                    movie.Voorstellingen = (dbVoorstelling.GetVoorstellingen(movie.ItemID));
                     List<SelectListItem> listItems = new List<SelectListItem>();
                     foreach (DateTime dateTime in movie.Tijden)
                     {
@@ -45,11 +46,7 @@ namespace IHFF.Controllers
                         listItems.Add(item);
                     }
 
-                    ViewData["DataDropdownList"] = new List<SelectListItem>();
-                    ViewData["DataDropdownList"] = listItems.AsEnumerable();
-
                     return View(movie);
-                    //return View(movie);
                 }
             }
             return RedirectToAction("MovieOverview");
@@ -60,12 +57,11 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult MovieDetailPage(Movie movie)
         {
+
             if (ModelState.IsValid)
             {
-                movie = dbMovie.GetMovie(movie.ItemID);
-                movie.MakeViewmodel();
-                movie.movieEvent = new Event();                
                 Event eventx = new Event();
+
                 eventx.DatumTijd = movie.movieEvent.DatumTijd;
                 eventx.Aantal = movie.movieEvent.Aantal;
                 eventx.Prijs = 10; //dbVoorstelling.GetVoorstelling(movie.ItemID, movie.movieEvent.DatumTijd).Prijs;
@@ -76,7 +72,12 @@ namespace IHFF.Controllers
 
                 List<Event> cartlist = (List<Event>)Session["cart"];
                 cartlist.Add(eventx);
-                Session["cart"] = cartlist;               
+                Session["cart"] = cartlist;
+
+                movie = dbMovie.GetMovie(movie.ItemID);
+                movie.MakeViewmodel();
+                movie.Voorstellingen = (dbVoorstelling.GetVoorstellingen(movie.ItemID));
+                movie.movieEvent = new Event();
             }
             return View(movie);
         }
