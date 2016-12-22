@@ -7,10 +7,13 @@
 
 <h2>Management Window</h2>
 @model IEnumerable<EventListRepresentation>
+
+<p></p>
 <table>
     <tr>
         <th>Name</th>
-        <th>Edit</th>        
+        <th>Edit</th>
+        <th>Delete</th>        
     </tr>
 
     @foreach (EventListRepresentation evenement in Model)
@@ -19,7 +22,8 @@
         {
             <tr>
                 <td>@evenement.culture.Naam </td>
-                <td>@Html.ActionLink("Edit", "EditMuseum", "Employee", new { id = evenement.culture.MuseumID}, new {@Class = "management" })</td>                                             
+                <td>@Html.ActionLink("Edit", "EditMuseum", "Employee", new { id = evenement.culture.MuseumID}, new {@Class = "management" })</td>
+                <td>@Html.ActionLink("Delete", "DeleteMuseum", "Employee", new { id = evenement.culture.MuseumID }, new { @Class = "management" })</td>                                             
             </tr>
         }
         else if (evenement.item != null) //Item
