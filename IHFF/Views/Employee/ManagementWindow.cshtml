@@ -3,6 +3,7 @@
     ViewBag.Title = "ManagementWindow";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Styles.Render("~/Content/EditPages.css")
 
 <h2>Management Window</h2>
 @model IEnumerable<EventListRepresentation>
@@ -18,7 +19,7 @@
         {
             <tr>
                 <td>@evenement.culture.Naam </td>
-                <td>@Html.ActionLink("Edit", "EditMuseum", "Employee", new { id = evenement.culture.MuseumID }, null)</td>                                             
+                <td>@Html.ActionLink("Edit", "EditMuseum", "Employee", new { id = evenement.culture.MuseumID}, new {@Class = "management" })</td>                                             
             </tr>
         }
         else if (evenement.item != null) //Item
@@ -27,14 +28,14 @@
             {
                 <tr>
                     <td>@evenement.item.Titel</td>
-                    <td>@Html.ActionLink("Edit", "EditMovie", "Employee", new { id = evenement.item.ItemID }, null)</td>                   
+                    <td>@Html.ActionLink("Edit", "EditMovie", "Employee", new { id = evenement.item.ItemID}, new {@Class = "management" })</td>                   
                 </tr>
             }
             else
             {
                 <tr>
                     <td>@evenement.item.Titel</td>
-                    <td>@Html.ActionLink("Edit", "EditSpecial", "Employee", new { id = evenement.item.ItemID }, null)</td>
+                    <td>@Html.ActionLink("Edit", "EditSpecial", "Employee", new { id = evenement.item.ItemID}, new {@Class = "management" })</td>
                 </tr>
             }
         }
@@ -42,7 +43,7 @@
         {
             <tr>
                 <td>@evenement.restaurant.Naam</td>
-                <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", new { id = evenement.restaurant.RestaurantID}, null)</td>
+                <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", new { id = evenement.restaurant.RestaurantID }, new {@Class = "management" })</td>
             </tr>
         }
 

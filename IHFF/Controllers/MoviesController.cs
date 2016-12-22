@@ -18,7 +18,7 @@ namespace IHFF.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            return View();
+            return View("MovieOverview");
         }
 
         public ActionResult MovieOverview()

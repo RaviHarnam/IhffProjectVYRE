@@ -7,3 +7,12 @@
 .DropDownHighlight{
     float:right;
 }
+
+.management{
+    text-decoration: none;
+    color: blue;
+}
+.management:visited{
+    text-decoration: none;
+    color: blue;
+}

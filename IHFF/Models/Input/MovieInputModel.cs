@@ -24,7 +24,7 @@ namespace IHFF.Models.Input
         [MinLength(1)]
         public string Writers { get; set; }
 
-        public MovieInputModel(string rating, string director, string stars, string writers, string categorie, string titel, string omschrijving, bool highlight) : base(categorie, titel, omschrijving, highlight)
+        public MovieInputModel(string rating, string director, string stars, string writers, string titel, string omschrijving, bool highlight) : base(titel, omschrijving, highlight)
         {
             Rating = rating;
             Director = director;
@@ -41,7 +41,7 @@ namespace IHFF.Models.Input
             Director = m.Director;
             Stars = m.Stars;
             Writers = m.Writers;
-            Categorie = m.Categorie;
+           
             Titel = m.Titel;
             Omschrijving = m.Omschrijving;
             Highlight = m.Highlight;

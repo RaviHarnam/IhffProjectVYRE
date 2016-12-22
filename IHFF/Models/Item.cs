@@ -10,7 +10,7 @@ namespace IHFF.Models
     public abstract class Item
     {        
         public int ItemID { get; set; }
-        public string Categorie { get; set; }
+       
 
         [Required]
         [MinLength(2), MaxLength(100)]
@@ -22,9 +22,9 @@ namespace IHFF.Models
         [NotMapped]
         public virtual Afbeelding ItemAfbeelding {get; set;}
 
-        public Item(string categorie, string titel, string omschrijving, bool highlight)   
+        public Item(string titel, string omschrijving, bool highlight)   
         {
-            Categorie = categorie;
+            
             Titel = titel;
             Omschrijving = omschrijving;
             Highlight = highlight;
