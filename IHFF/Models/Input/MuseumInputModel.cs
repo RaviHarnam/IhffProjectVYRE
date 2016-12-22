@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -9,20 +10,33 @@ namespace IHFF.Models.Input
     public class MuseumInputModel
     {
         public int MuseumID { get; set; }
+        [Required]
         public string Naam { get; set; }
+        [Required]
         public string Omschrijving { get; set; }
 
         public int LocatieID { get; set; }
+        [Required]
         public string Telefoon { get; set; }
+        [Required]
         public string Adults { get; set; }
+        [Required]
         public string Kids { get; set; }
+        [Required]
         public string Website { get; set; }
+        [Required]
         public string Maandag { get; set; }
+        [Required]
         public string Dinsdag { get; set; }
+        [Required]
         public string Woensdag { get; set; }
+        [Required]
         public string Donderdag { get; set; }
+        [Required]
         public string Vrijdag { get; set; }
+        [Required]
         public string Zaterdag { get; set; }
+        [Required]
         public string Zondag { get; set; }
 
         [NotMapped]

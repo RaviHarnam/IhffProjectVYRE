@@ -9,19 +9,15 @@ namespace IHFF.Models.Input
     public class MovieInputModel : ItemInputModel
     {
         [Required]
-        [MinLength(1)]
         public string Rating { get; set; }
 
         [Required]
-        [MinLength(1)]
         public string Director { get; set; }
        
         [Required]
-        [MinLength(1)]
         public string Stars { get; set; }
 
         [Required]
-        [MinLength(1)]
         public string Writers { get; set; }
 
         public MovieInputModel(string rating, string director, string stars, string writers, string titel, string omschrijving, bool highlight) : base(titel, omschrijving, highlight)
