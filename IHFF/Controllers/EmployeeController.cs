@@ -17,7 +17,9 @@ namespace IHFF.Controllers
 
         public ActionResult Index()
         {
-            return View("LogIn");
+            if (!Request.IsAuthenticated)
+                return View("LogIn");
+            return RedirectToAction("ManagementWindow");
         }
         public ActionResult LogIn()
         {
@@ -167,13 +169,86 @@ namespace IHFF.Controllers
                 ModelState.AddModelError("edit-error", "The Museum you tried to edit had some incorrectly filled fields.");
             return View(museum);
         }
-
+        // Deleten van events
         [Authorize]
         public ActionResult DeleteMuseum(int? id)
         {
             if (id != null)
                 db.DeleteMuseum(id.Value);
 
+            return RedirectToAction("ManagementWindow");
+        }
+        [Authorize]
+        public ActionResult DeleteMovie(int? id)
+        {
+            if (id != null)
+                db.DeleteMovie(id.Value);
+            return RedirectToAction("ManagementWindow");
+        }
+        [Authorize]
+        public ActionResult DeleteSpecial(int? id)
+        {
+            if (id != null)
+                db.DeleteSpecial(id.Value);
+            return RedirectToAction("ManagementWindow");
+        }
+        [Authorize]
+        public ActionResult DeleteRestaurant(int? id)
+        {
+            if (id != null)
+                db.DeleteRestaurant(id.Value);
+            return RedirectToAction("ManagementWindow");
+        }
+
+        [Authorize]
+        public ActionResult AddMovie()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddMovie(MovieInputModel m)
+        {
+            return RedirectToAction("ManagementWindow");
+        }
+
+        [Authorize]
+        public ActionResult AddSpecial()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddSpecial(SpecialInputModel s)
+        {
+            return RedirectToAction("ManagementWindow");
+        }
+
+        [Authorize]
+        public ActionResult AddMuseum()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddMuseum(MuseumInputModel m)
+        {
+            return RedirectToAction("ManagementWindow");
+        }
+
+        [Authorize]
+        public ActionResult AddRestaurant()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddRestaurant(RestaurantInputModel r)
+        {
             return RedirectToAction("ManagementWindow");
         }
     }
