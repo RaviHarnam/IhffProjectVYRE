@@ -45,7 +45,7 @@ table td{
 }
 
 #Time{
-    font-size: 0.5em;
+    font-size: 0.8em;
 }
 
 .Amount{
@@ -57,11 +57,21 @@ table td{
 .Price{
     padding: 0em 1em 0em 1em;
     width: 10%;
-    border-right: none;
 }
 
 .TableContent li{
     margin: -1em 0em 0em 0em;
     display: inline-block;
+}
+
+.Delete{
+    padding: -1em 0em -1em 0em;
+    width:10%;
+    border-right:none;
+    text-align:center;
+}
+
+tr #Delete{
+    font-size: 1.2em;
 }
 
