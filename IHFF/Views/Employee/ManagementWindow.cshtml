@@ -8,7 +8,13 @@
 <h2>Management Window</h2>
 @model IEnumerable<EventListRepresentation>
 
-<p></p>
+<p>Do you want to add an event? </p>
+<table>
+    <tr><td>@Html.ActionLink("Add a movie", "AddMovie", "Employee", null, new { @Class = "management" })</td></tr>
+    <tr><td>@Html.ActionLink("Add a special", "AddSpecial", "Employee", null, new { @Class = "management" })</td></tr>
+    <tr><td>@Html.ActionLink("Add a restaurant", "AddRestaurant", "Employee", null, new { @Class = "management" })</td></tr>
+    <tr><td>@Html.ActionLink("Add a museum", "AddMuseum", "Employee", null, new { @Class = "management" })</td></tr>
+</table>
 <table>
     <tr>
         <th>Name</th>
@@ -32,14 +38,17 @@
             {
                 <tr>
                     <td>@evenement.item.Titel</td>
-                    <td>@Html.ActionLink("Edit", "EditMovie", "Employee", new { id = evenement.item.ItemID}, new {@Class = "management" })</td>                   
+                    <td>@Html.ActionLink("Edit", "EditMovie", "Employee", new { id = evenement.item.ItemID}, new {@Class = "management" })</td>
+                    <td>@Html.ActionLink("Delete", "DeleteMovie", "Employee", new { id = evenement.item.ItemID }, new { @Class = "management" })</td>                   
                 </tr>
-            }
+                break;
+            }         
             else
             {
                 <tr>
                     <td>@evenement.item.Titel</td>
                     <td>@Html.ActionLink("Edit", "EditSpecial", "Employee", new { id = evenement.item.ItemID}, new {@Class = "management" })</td>
+                    <td>@Html.ActionLink("Delete", "DeleteSpecial", "Employee", new {id = evenement.item.ItemID }, new {@Class = "management" })</td>
                 </tr>
             }
         }
@@ -48,6 +57,7 @@
             <tr>
                 <td>@evenement.restaurant.Naam</td>
                 <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", new { id = evenement.restaurant.RestaurantID }, new {@Class = "management" })</td>
+                <td>@Html.ActionLink("Delete", "DeleteRestaurant", "Employee", new {id = evenement.restaurant.RestaurantID }, new {@Class = "management" })</td>
             </tr>
         }
 

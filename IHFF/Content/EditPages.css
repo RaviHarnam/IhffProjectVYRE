@@ -12,7 +12,19 @@
     text-decoration: none;
     color: blue;
 }
+.table-header-2plus{
+    
+}
 .management:visited{
     text-decoration: none;
     color: blue;
 }
+
+table{
+    border-spacing: 1.2em 0;
+}
+
+td{
+    
+}
+    
