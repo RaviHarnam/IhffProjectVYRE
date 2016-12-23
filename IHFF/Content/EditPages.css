@@ -9,8 +9,12 @@
 }
 
 .management{
+    margin-left: 1.1em;
     text-decoration: none;
     color: blue;
+}
+.table-header-2plus{
+    margin-left: 1.1em;
 }
 .management:visited{
     text-decoration: none;
