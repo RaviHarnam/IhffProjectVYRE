@@ -55,24 +55,17 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult MovieDetailPage(Movie movie, int voorstellingId)
         {
-            Voorstelling voorstelling = new Voorstelling();
-            voorstelling = dbVoorstelling.GetVoorstelling(voorstellingId);
-            movie.Titel = dbMovie.GetMovie(voorstelling.ItemId).Titel;
+            Event eventx = movie.GetEvent(voorstellingId);
 
-            if (ModelState.IsValid)
-            {
-                Event eventx = new Event();
-                eventx.MakeEvent(movie, voorstelling);
+            if (Session["cart"] == null)
+                Session["cart"] = new List<Event>();
 
-                if (Session["cart"] == null)
-                    Session["cart"] = new List<Event>();
+            List<Event> cartlist = (List<Event>)Session["cart"];
+            cartlist.Add(eventx);
+            Session["cart"] = cartlist;
 
-                List<Event> cartlist = (List<Event>)Session["cart"];
-                cartlist.Add(eventx);
-                Session["cart"] = cartlist;
-
-                movie.Voorstellingen = (dbVoorstelling.GetVoorstellingen(movie.ItemID));
-            }
+            movie = dbMovie.GetMovie(movie.ItemID);
+            movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);
 
             return View(movie);
         }

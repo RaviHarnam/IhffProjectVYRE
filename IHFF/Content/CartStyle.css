@@ -2,76 +2,91 @@
 }
 
 
-table{
+.cart {
     border-spacing: 0;
     border-right: 0.063em solid #000000;
     border-left: 0.063em solid #000000;
     border-bottom: 0.063em solid #000000;
-
-
 }
 
-.TableHeader{
+.CartHeader {
     background-color: #cccccc;
     border-bottom: 0.063em solid #000000;
-
 }
 
-table th{
+.cart th {
     margin: 0% 0% 0% 0%;
     border-top: 0.063em solid #000000;
     border-bottom: 0.063em solid #000000;
     border-right: 0.063em solid #000000;
-
 }
 
-table td{
+.cart td {
     border-bottom: 0.063em solid #aaaaaa;
     border-right: 0.063em solid #aaaaaa;
 }
 
-.Title{
+.Title {
     padding: 0em 0em 0em 1em;
     width: 45%;
     margin: 0em 0em 0em -1em;
-
 }
 
-.Time{
+.Time {
     padding: 0em 1em 0em 1em;
     width: 10%;
     height: 200%;
     margin: 0em 0em 0em -1em;
 }
 
-#Time{
+#Time {
     font-size: 0.8em;
 }
 
-.Amount{
+.Amount {
     padding: 0em 1em 0em 1em;
     width: 10%;
     margin: 0em 0em 0em -1em;
 }
 
-.Price{
+.Price {
     padding: 0em 1em 0em 1em;
     width: 10%;
 }
 
-.TableContent li{
+.CartContent li {
     margin: -1em 0em 0em 0em;
     display: inline-block;
 }
 
-.Delete{
+.Delete {
     padding: -1em 0em -1em 0em;
-    width:10%;
-    border-right:none;
-    text-align:center;
+    width: 10%;
+    border-right: none;
+    text-align: center;
 }
 
-tr #Delete{
+tr #Delete {
     font-size: 1.2em;
+}
+
+.Options {
+    float: right;
+    margin-top: 1em;
+    border: 0.063em solid #000000;
+    border-spacing: 0em;
+}
+
+.Options td {
+    border-bottom: 0.063em solid #aaaaaa;
+    width: 10em;
+}
+
+.ConfirmButton td{
+    border: none;
+}
+
+.ConfirmButton button{
+    
 }
 
