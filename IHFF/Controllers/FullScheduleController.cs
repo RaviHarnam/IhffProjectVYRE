@@ -21,8 +21,7 @@ namespace IHFF.Controllers
         {
             if(day == null)
             {
-                day = Enum.Weekday.Maandag;
-                
+                day = Enum.Weekday.Maandag;               
             }
             //repository.getAllVoorstellingen(day);
            
