@@ -24,7 +24,7 @@ namespace IHFF.Models
         public virtual List<Voorstelling> Voorstellingen { get; set; }
 
         [NotMapped]
-        public int Aantal { get; set; }
+        public virtual int Aantal { get; set; }
 
         public Movie(string rating, string director, string stars, string writers, string titel, string omschrijving, bool highlight) : base(titel, omschrijving, highlight)
         {
@@ -63,6 +63,17 @@ namespace IHFF.Models
             Highlight = m.Highlight;
             ItemID = m.ItemID;
             ItemAfbeelding.Link = m.ItemAfbeelding.Link;
+        }
+        public void ConvertFromAddInputModel(MovieInputModel m)
+        {
+            Rating = m.Rating;
+            Director = m.Director;
+            Stars = m.Stars;
+            Writers = m.Writers;
+
+            Titel = m.Titel;
+            Omschrijving = m.Omschrijving;
+            Highlight = m.Highlight;
         }
 
         //public double Prijs { get; set; }

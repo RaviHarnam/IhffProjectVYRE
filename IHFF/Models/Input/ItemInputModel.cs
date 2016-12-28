@@ -9,7 +9,8 @@ namespace IHFF.Models.Input
     public abstract class ItemInputModel
     {
         public int ItemID { get; set; }             
-        [Required]        
+        [Required]
+        [Display(Name = "Title")]        
         public string Titel { get; set; }
         [Required]
         public string Omschrijving { get; set; }
