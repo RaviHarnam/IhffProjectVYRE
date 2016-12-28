@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IHFF.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace IHFF.Models
         public int LocatieId { get; set; }
 
         public virtual Locatie VoorstellingLocatie { get; set; }
+        public Weekday day;
+
 
         public Voorstelling()
         {
