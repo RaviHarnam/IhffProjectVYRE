@@ -21,7 +21,7 @@
     <title>Index</title>
 </head>
 <body>
-
+    
     @{int movieNr = 0; }
     @*<select id="filmlocationinput" name="locationid">
             @foreach (FilmLocation locatie in Model.Film.FilmLocation)
@@ -84,7 +84,7 @@
 
                                 </div>
                                 <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(movieNr).Titel, "MovieDetailPage", "Movies", new { movie_id = Model.ElementAt(movieNr).ItemID }, null) </p>
-                                <div id="inputform">
+                                @*<div id="inputform">
                                     @using (Html.BeginForm())
                                     {
 
@@ -92,7 +92,7 @@
                                         <input type="hidden" value="@movieNr" name="filmid" />
                                         <button id="submitknop" onclick="form.submit();"> click me</button>
                                     }
-                                </div>
+                                </div>*@
                             </td>
 
 

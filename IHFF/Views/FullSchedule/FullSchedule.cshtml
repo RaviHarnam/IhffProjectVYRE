@@ -1,23 +1,58 @@
 ﻿@using IHFF.Models;
 
-@model Voorstelling
+@model IEnumerable<Voorstelling>
 
 @{
     ViewBag.Title = "FullSchedule";
-    Layout = "~/Views/Shared/Master.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{List<Locatie> locaties = new List<Locatie>();}
+@foreach (Voorstelling v in Model)
+{
+    if (!locaties.Contains(v.VoorstellingLocatie))
+    {
+        locaties.Add(v.VoorstellingLocatie);
+    }
 
-<h2>FullSchedule</h2>
+}
+<h2>Full Schedule</h2>
+<div class="schedule">
+    @foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+    {
+        <h2>@day</h2>
+        <table class="dagvandeweek">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th scope="col">0:00</th>
+                    <th scope="col">1:00</th>
+                    <th scope="col">2:00</th>
+                    <th scope="col">3:00</th>
+                    <th scope="col">4:00</th>
+                    <th scope="col">5:00</th>
+                    <th scope="col">6:00</th>
+                    <th scope="col">7:00</th>
+                    <th scope="col">8:00</th>
+                    <th scope="col">9:00</th>
+                    <th scope="col">10:00</th>
+                    <th scope="col">11:00</th>
+                </tr>
+            </thead>
+            <tbody>
 
-<table class="Maandag">
-   <tr>
-       <th>0:00</th>
-       <th>1:00</th>
-       <th>2:00</th>
-       <th>3:00</th>
-       <th>4:00</th>
-       <th>5:00</th>
-       <th>6:00</th>
-   </tr>
+                @foreach (Locatie l in locaties)
+                {
+                    <tr>
+                        <th scope="row">@l.Naam</th>
+                    </tr>
+                    foreach (Voorstelling vo in Model.Where(m => m.VoorstellingLocatie == l))
+                    {
+                        //cellen
+                    }
+                }
 
-</table>
+            </tbody>
+        </table>
+    }
+
+</div>
