@@ -22,9 +22,9 @@ namespace IHFF.Controllers
             if(day == null)
             {
                 day = Enum.Weekday.Maandag;
-                ;
-            }           
-            repository.getAllVoorstellingen(day)
+                
+            }
+            //repository.getAllVoorstellingen(day);
            
             return View();
         }
