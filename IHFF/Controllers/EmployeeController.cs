@@ -208,13 +208,13 @@ namespace IHFF.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddMovie(MovieInputModel m, string AfbLink)
+        public ActionResult AddMovie(MovieInputModel m, string afbLink)
         {
             if (ModelState.IsValid)
             {
                 Movie mov = new Movie();
                 mov.ConvertFromAddInputModel(m);
-                mov.ItemAfbeelding = new Afbeelding(mov.ItemID, null, null,AfbLink, "filmbanner");                
+                mov.ItemAfbeelding = new Afbeelding(mov.ItemID, null, null, afbLink, "filmbanner");                
                 db.AddMovie(mov);
             }
             return RedirectToAction("ManagementWindow");
@@ -222,18 +222,21 @@ namespace IHFF.Controllers
 
         [Authorize]
         public ActionResult AddSpecial()
-        {
-            if(ModelState.IsValid)
-            {
-
-            }
+        {            
             return View();
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddSpecial(SpecialInputModel s)
+        public ActionResult AddSpecial(SpecialInputModel s, string afbLink)
         {
+            if (ModelState.IsValid)
+            {
+                Special spc = new Special();
+                spc.ConvertFromSpecialInputModel(s);
+                spc.ItemAfbeelding = new Afbeelding(spc.ItemID, null, null, afbLink, "specialbanner");
+                db.AddSpecial(spc);
+            }
             return RedirectToAction("ManagementWindow");
         }
 
@@ -245,8 +248,15 @@ namespace IHFF.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddMuseum(MuseumInputModel m)
+        public ActionResult AddMuseum(MuseumInputModel m, string afbLink)
         {
+            if(ModelState.IsValid)
+            {
+                Museum mus = new Museum();
+                mus.ConvertFromMuseumInputModel(m);
+                mus.MuseumAfbeelding = new Afbeelding(null, mus.MuseumID, null, afbLink, "museumbanner");
+                db.AddMuseum(mus);
+            }
             return RedirectToAction("ManagementWindow");
         }
 
@@ -258,8 +268,15 @@ namespace IHFF.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddRestaurant(RestaurantInputModel r)
+        public ActionResult AddRestaurant(RestaurantInputModel r, string afbLink)
         {
+            if(ModelState.IsValid)
+            {
+                Restaurant rst = new Restaurant();
+                rst.ConvertFromRestaurantInputModel(r);
+                rst.RestaurantAfbeelding = new Afbeelding(null, null, rst.RestaurantID, afbLink, "Restaurantbanner");
+                db.AddRestaurant(rst);
+            }
             return RedirectToAction("ManagementWindow");
         }
     }

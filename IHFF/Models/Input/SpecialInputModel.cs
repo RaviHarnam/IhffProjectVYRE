@@ -11,6 +11,7 @@ namespace IHFF.Models.Input
         [Required]
         public string Speaker { get; set; }
         [Required]
+        [Display(Name = "Spoken language")]
         public string SpokenLanguage { get; set; }
 
         public SpecialInputModel(string categorie, string titel, string omschrijving, bool highlight, string speaker, string spokenlanguage) : base(titel, omschrijving, highlight)

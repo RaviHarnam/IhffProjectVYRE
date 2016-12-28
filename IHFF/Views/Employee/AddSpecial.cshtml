@@ -1,26 +1,25 @@
 ﻿@using IHFF.Models.Input;
-
 @{
-    ViewBag.Title = "AddMovie";
+    ViewBag.Title = "AddSpecial";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @Styles.Render("~/Content/MovieDetailPageStyle.css")
 @Styles.Render("~/Content/EditPages.css")
 
+@model SpecialInputModel
 
-
-@model MovieInputModel
 @Html.ValidationSummary()
 @using (Html.BeginForm(FormMethod.Post))
 {
-    <h2>Add Movie</h2>
-    <input type="Submit" value="Add movie" formmethod="Post" class="Edit-update" size="30" />
+<h2>Add Special</h2>
+<input type="Submit" value="Add special" formmethod="Post" class="Edit-update" size="30" />
 
-    <p>
-        @Html.LabelFor(m => m.Titel):
-        @Html.TextBoxFor(m => m.Titel)
-    </p>
-   <img src="" alt="placeholder" class="empty_afb" width="759" height="435" />
+<p>
+    @Html.LabelFor(m => m.Titel):
+    @Html.TextBoxFor(m => m.Titel)
+</p>
+    <img src="" alt="placeholder" class="empty_afb" width="759" height="435" />
     <p>
         @Html.Label("afbLink", "Picture Link"):
         @Html.TextBox("afbLink", "", new { @Size = 30 })
@@ -44,22 +43,24 @@
         <h3>Info</h3>
         <table>
             <tr>
-                <td> @Html.LabelFor(m => m.Rating):</td>
-                <td> @Html.TextBoxFor(m => m.Rating, new { @Size = 30 })</td>
+                <td> @Html.LabelFor(m => m.Speaker):</td>
+                <td> @Html.TextBoxFor(m => m.Speaker, new { @Size = 30 })</td>
             </tr>
             <tr>
-                <td> @Html.LabelFor(m => m.Director):</td>
-                <td> @Html.TextBoxFor(m => m.Director, new { @Size = 30 })</td>
-            </tr>
-            <tr>
-                <td> @Html.LabelFor(m => m.Writers):</td>
-                <td> @Html.TextBoxFor(m => m.Writers, new { @Size = 30 })</td>
-            </tr>
-            <tr>
-                <td> @Html.LabelFor(m => m.Stars):</td>
-                <td> @Html.TextBoxFor(m => m.Stars, new { @Size = 30 }) </td>
-            </tr>
+                <td> @Html.LabelFor(m => m.SpokenLanguage):</td>
+                <td> @Html.TextBoxFor(m => m.SpokenLanguage, new { @Size = 30 })</td>
+            </tr>            
         </table>
     </section>
-}
 
+
+
+
+
+
+
+
+
+
+
+}

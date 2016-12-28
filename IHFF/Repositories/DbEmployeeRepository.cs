@@ -24,7 +24,7 @@ namespace IHFF.Repositories
             IEnumerable<Item> items = (from i in ctx.ITEMS select i).ToList();
             IEnumerable<Restaurant> restaurants = (from r in ctx.RESTAURANTS select r).ToList();
             IEnumerable<Museum> cultureEvents = (from c in ctx.MUSEA select c).ToList();
-
+            
             foreach (Item item in items)
                 events.Add(new EventListRepresentation(item));
 
@@ -34,7 +34,7 @@ namespace IHFF.Repositories
             foreach (Museum culture in cultureEvents)
                 events.Add(new EventListRepresentation(culture));
 
-            return (IEnumerable<EventListRepresentation>)events;
+            return events;
         }
 
         public Museum GetMuseum(int id)
@@ -198,17 +198,29 @@ namespace IHFF.Repositories
 
         public void AddSpecial(Special s)
         {
-            throw new NotImplementedException();
+            ctx.SPECIALS.Add(s);
+            ctx.SaveChanges();
+            s.ItemAfbeelding.ItemID = s.ItemID;
+            ctx.AFBEELDINGEN.Add(s.ItemAfbeelding);
+            ctx.SaveChanges();
         }
 
         public void AddMuseum(Museum m)
         {
-            throw new NotImplementedException();
+            ctx.MUSEA.Add(m);
+            ctx.SaveChanges();
+            m.MuseumAfbeelding.MuseumID = m.MuseumID;
+            ctx.AFBEELDINGEN.Add(m.MuseumAfbeelding);
+            ctx.SaveChanges();
         }
 
         public void AddRestaurant(Restaurant r)
         {
-            throw new NotImplementedException();
+            ctx.RESTAURANTS.Add(r);
+            ctx.SaveChanges();
+            r.RestaurantAfbeelding.RestaurantID = r.RestaurantID;
+            ctx.AFBEELDINGEN.Add(r.RestaurantAfbeelding);
+            ctx.SaveChanges();
         }
     }
 }

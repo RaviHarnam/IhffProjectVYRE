@@ -19,7 +19,7 @@
         @Html.TextBoxFor(m => m.Titel, new { @Value = Model.Titel })
     </p>
 
-    <img class="bannerimg" src=@Model.ItemAfbeelding.Link />
+    <img class="bannerimg" src=@Model.ItemAfbeelding.Link width="700" height="350"/>
     <p>
         @Html.LabelFor(m => m.ItemAfbeelding.Link):
         @Html.TextBoxFor(m => m.ItemAfbeelding.Link, new { @Value = Model.ItemAfbeelding.Link, @Size = 30 })

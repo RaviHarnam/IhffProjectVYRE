@@ -307,6 +307,7 @@
     <Content Include="Views\Employee\EditMuseum.cshtml" />
     <Content Include="Views\Employee\EditRestaurant.cshtml" />
     <Content Include="Views\Employee\AddMovie.cshtml" />
+    <Content Include="Views\Employee\AddSpecial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
