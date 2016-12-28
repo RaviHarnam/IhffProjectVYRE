@@ -32,5 +32,11 @@ namespace IHFF.Repositories
         void DeleteMovie(int movieid);
         void DeleteSpecial(int specialid);
         void DeleteRestaurant(int restaurantid);
+
+        //Toevoegen van een item
+        void AddMovie(Movie m);
+        void AddSpecial(Special s);
+        void AddMuseum(Museum m);
+        void AddRestaurant(Restaurant r);
     }
 }

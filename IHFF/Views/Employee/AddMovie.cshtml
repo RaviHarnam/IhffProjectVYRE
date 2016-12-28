@@ -11,7 +11,7 @@
 
 @model MovieInputModel
 @Html.ValidationSummary()
-@using (Html.BeginForm())
+@using (Html.BeginForm(FormMethod.Post))
 {
     <h2>Add Movie</h2>
     <input type="Submit" value="Add movie" formmethod="Post" class="Edit-update" size="30" />
@@ -20,11 +20,10 @@
         @Html.LabelFor(m => m.Titel):
         @Html.TextBoxFor(m => m.Titel)
     </p>
-
-    <img class="bannerimg" src=@Model.ItemAfbeelding.Link />
+   <img src="" alt="placeholder" class="empty_afb" width="759" height="435" />
     <p>
-        @Html.LabelFor(m => m.ItemAfbeelding.Link):
-        @Html.TextBoxFor(m => m.ItemAfbeelding.Link, new { @Size = 30 })
+        @Html.Label("AfbLink", "Picture Link"):
+        @Html.TextBox("AfbLink", "", new { @Size = 30 })
 
         @Html.DropDownListFor(h => h.Highlight, new SelectList(new[]
     {
@@ -39,26 +38,26 @@
     </p>
     <section class="summary">
         <h3>Summary</h3>
-        @Html.TextAreaFor(m => m.Omschrijving, new {@Rows = 8, @cols = 40 })
+        @Html.TextAreaFor(m => m.Omschrijving, new { @Rows = 8, @cols = 40 })
     </section>
     <section class="info">
         <h3>Info</h3>
         <table>
             <tr>
                 <td> @Html.LabelFor(m => m.Rating):</td>
-                <td> @Html.TextBoxFor(m => m.Rating, new {@Size = 30 })</td>
+                <td> @Html.TextBoxFor(m => m.Rating, new { @Size = 30 })</td>
             </tr>
             <tr>
                 <td> @Html.LabelFor(m => m.Director):</td>
-                <td> @Html.TextBoxFor(m => m.Director, new {@Size = 30 })</td>
+                <td> @Html.TextBoxFor(m => m.Director, new { @Size = 30 })</td>
             </tr>
             <tr>
                 <td> @Html.LabelFor(m => m.Writers):</td>
-                <td> @Html.TextBoxFor(m => m.Writers, new {@Size = 30 })</td>
+                <td> @Html.TextBoxFor(m => m.Writers, new { @Size = 30 })</td>
             </tr>
             <tr>
                 <td> @Html.LabelFor(m => m.Stars):</td>
-                <td> @Html.TextBoxFor(m => m.Stars, new {@Size = 30 }) </td>
+                <td> @Html.TextBoxFor(m => m.Stars, new { @Size = 30 }) </td>
             </tr>
         </table>
     </section>

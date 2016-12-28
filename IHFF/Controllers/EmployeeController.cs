@@ -208,14 +208,25 @@ namespace IHFF.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddMovie(MovieInputModel m)
+        public ActionResult AddMovie(MovieInputModel m, string AfbLink)
         {
+            if (ModelState.IsValid)
+            {
+                Movie mov = new Movie();
+                mov.ConvertFromAddInputModel(m);
+                mov.ItemAfbeelding = new Afbeelding(mov.ItemID, null, null,AfbLink, "filmbanner");                
+                db.AddMovie(mov);
+            }
             return RedirectToAction("ManagementWindow");
         }
 
         [Authorize]
         public ActionResult AddSpecial()
         {
+            if(ModelState.IsValid)
+            {
+
+            }
             return View();
         }
 

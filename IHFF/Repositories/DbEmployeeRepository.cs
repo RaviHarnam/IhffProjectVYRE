@@ -181,5 +181,34 @@ namespace IHFF.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public void AddMovie(Movie m)
+        {
+            //m.ItemID = ctx.ITEMS.Count() + 1;       
+            ctx.MOVIES.Add(m);
+            //Movie lstMov = ctx.MOVIES.Last(mov => mov.ItemID == mov.ItemID);
+           // m.ItemAfbeelding.ItemID = lstMov.ItemID;  
+            //ctx.AFBEELDINGEN.Add(m.ItemAfbeelding);
+            ctx.SaveChanges();
+            //Add afbeelding
+            m.ItemAfbeelding.ItemID = m.ItemID;
+            ctx.AFBEELDINGEN.Add(m.ItemAfbeelding);
+            ctx.SaveChanges();
+        }
+
+        public void AddSpecial(Special s)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddMuseum(Museum m)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddRestaurant(Restaurant r)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

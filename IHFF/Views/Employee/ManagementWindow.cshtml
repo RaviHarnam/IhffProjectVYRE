@@ -15,52 +15,50 @@
     <tr><td>@Html.ActionLink("Add a restaurant", "AddRestaurant", "Employee", null, new { @Class = "management" })</td></tr>
     <tr><td>@Html.ActionLink("Add a museum", "AddMuseum", "Employee", null, new { @Class = "management" })</td></tr>
 </table>
+<p></p>
 <table>
     <tr>
         <th>Name</th>
         <th>Edit</th>
-        <th>Delete</th>        
+        <th>Delete</th>
     </tr>
-
-    @foreach (EventListRepresentation evenement in Model)
+    <tr><td><h2>Movies</h2></td></tr>
+    @foreach (EventListRepresentation movie in Model.Where(m => m.item != null && m.item is Movie))
     {
-        if (evenement.culture != null) //Museum
-        {
-            <tr>
-                <td>@evenement.culture.Naam </td>
-                <td>@Html.ActionLink("Edit", "EditMuseum", "Employee", new { id = evenement.culture.MuseumID}, new {@Class = "management" })</td>
-                <td>@Html.ActionLink("Delete", "DeleteMuseum", "Employee", new { id = evenement.culture.MuseumID }, new { @Class = "management" })</td>                                             
-            </tr>
-        }
-        else if (evenement.item != null) //Item
-        {
-            if (evenement.item is Movie)
-            {
-                <tr>
-                    <td>@evenement.item.Titel</td>
-                    <td>@Html.ActionLink("Edit", "EditMovie", "Employee", new { id = evenement.item.ItemID}, new {@Class = "management" })</td>
-                    <td>@Html.ActionLink("Delete", "DeleteMovie", "Employee", new { id = evenement.item.ItemID }, new { @Class = "management" })</td>                   
-                </tr>
-                break;
-            }         
-            else
-            {
-                <tr>
-                    <td>@evenement.item.Titel</td>
-                    <td>@Html.ActionLink("Edit", "EditSpecial", "Employee", new { id = evenement.item.ItemID}, new {@Class = "management" })</td>
-                    <td>@Html.ActionLink("Delete", "DeleteSpecial", "Employee", new {id = evenement.item.ItemID }, new {@Class = "management" })</td>
-                </tr>
-            }
-        }
-        else                           //Restaurant
-        {
-            <tr>
-                <td>@evenement.restaurant.Naam</td>
-                <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", new { id = evenement.restaurant.RestaurantID }, new {@Class = "management" })</td>
-                <td>@Html.ActionLink("Delete", "DeleteRestaurant", "Employee", new {id = evenement.restaurant.RestaurantID }, new {@Class = "management" })</td>
-            </tr>
-        }
 
+        <tr>
+            <td>@movie.item.Titel</td>
+            <td>@Html.ActionLink("Edit", "EditMovie", "Employee", new { id = movie.item.ItemID }, new { @Class = "management" })</td>
+            <td>@Html.ActionLink("Delete", "DeleteMovie", "Employee", new { id = movie.item.ItemID }, new { @Class = "management" })</td>
+        </tr>
+    }
+    <tr><td><h2>Specials</h2></td></tr>
+    @foreach (EventListRepresentation special in Model.Where(m => m.item is Special))
+    {
+        <tr>
+            <td>@special.item.Titel</td>
+            <td>@Html.ActionLink("Edit", "EditSpecial", "Employee", new { id = special.item.ItemID }, new { @Class = "management" })</td>
+            <td>@Html.ActionLink("Delete", "DeleteSpecial", "Employee", new { id = special.item.ItemID }, new { @Class = "management" })</td>
+        </tr>
+    }
+
+    <tr><td><h2>Musea</h2></td></tr>
+    @foreach (EventListRepresentation museum in Model.Where(m => m.culture != null))
+    {
+        <tr>
+            <td>@museum.culture.Naam </td>
+            <td>@Html.ActionLink("Edit", "EditMuseum", "Employee", new { id = museum.culture.MuseumID }, new { @Class = "management" })</td>
+            <td>@Html.ActionLink("Delete", "DeleteMuseum", "Employee", new { id = museum.culture.MuseumID }, new { @Class = "management" })</td>
+        </tr>
+    }
+    <tr><td><h2>Restaurants</h2></td></tr>
+    @foreach (EventListRepresentation restaurant in Model.Where(m => m.restaurant != null))
+    {
+        <tr>
+            <td>@restaurant.restaurant.Naam</td>
+            <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", new { id = restaurant.restaurant.RestaurantID }, new { @Class = "management" })</td>
+            <td>@Html.ActionLink("Delete", "DeleteRestaurant", "Employee", new { id = restaurant.restaurant.RestaurantID }, new { @Class = "management" })</td>
+        </tr>
     }
 
 </table>

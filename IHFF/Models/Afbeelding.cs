@@ -21,8 +21,11 @@ namespace IHFF.Models
 
         }
 
-        public Afbeelding(string sourceUrl, string type)
+        public Afbeelding(int? itemId, int? museumId, int? restaurantId, string sourceUrl, string type)
         {
+            ItemID = itemId;
+            MuseumID = museumId;
+            RestaurantID = restaurantId;
             Link = sourceUrl;
             Type = type;
         }
