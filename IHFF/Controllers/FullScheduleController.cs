@@ -1,4 +1,5 @@
 ﻿using IHFF.Enum;
+using IHFF.Models;
 using IHFF.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,15 +18,15 @@ namespace IHFF.Controllers
             return RedirectToAction("FullSchedule");
         }
 
-        public ActionResult FullSchedule(Weekday? day)
+        public ActionResult FullSchedule(DayOfWeek? day)
         {
             if(day == null)
             {
-                day = Enum.Weekday.Maandag;               
+                day = DayOfWeek.Monday;               
             }
-            //repository.getAllVoorstellingen(day);
+            IEnumerable<Voorstelling> voorstellingen = repository.getAllVoorstellingen(day.Value);
            
-            return View();
+            return View(voorstellingen);
         }
     }
 }
