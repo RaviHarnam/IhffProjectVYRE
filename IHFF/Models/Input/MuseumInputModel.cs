@@ -11,12 +11,14 @@ namespace IHFF.Models.Input
     {
         public int MuseumID { get; set; }
         [Required]
+        [Display(Name = "Name")]
         public string Naam { get; set; }
         [Required]
         public string Omschrijving { get; set; }
 
         public int LocatieID { get; set; }
         [Required]
+        [Display(Name = "Telephone")]
         public string Telefoon { get; set; }
         [Required]
         public string Adults { get; set; }
@@ -24,26 +26,35 @@ namespace IHFF.Models.Input
         public string Kids { get; set; }
         [Required]
         public string Website { get; set; }
+
         [Required]
+        [Display(Name = "Monday")]
         public string Maandag { get; set; }
         [Required]
+        [Display(Name = "Tuesday")]
         public string Dinsdag { get; set; }
         [Required]
+        [Display(Name = "Wednesday")]
         public string Woensdag { get; set; }
         [Required]
+        [Display(Name = "Thursday")]
         public string Donderdag { get; set; }
         [Required]
+        [Display(Name = "Friday")]
         public string Vrijdag { get; set; }
         [Required]
+        [Display(Name = "Saturday")]
         public string Zaterdag { get; set; }
         [Required]
+        [Display(Name = "Sunday")]
         public string Zondag { get; set; }
 
         [NotMapped]
         public virtual Afbeelding MuseumAfbeelding { get; set; }
         [NotMapped]
         public virtual Locatie MuseumLocatie { get; set; }
-
+        
+       
         public MuseumInputModel(string naam, string omschrijving, string adults, string kids, string website, string maandag, string dinsdag, string woensdag, string donderdag, string vrijdag, string zaterdag, string zondag, string telefoon)
         {
             Naam = naam;
@@ -82,7 +93,9 @@ namespace IHFF.Models.Input
             Zondag = m.Zondag;
             Telefoon = m.Telefoon;
             MuseumAfbeelding = m.MuseumAfbeelding;
-            MuseumLocatie = m.MuseumLocatie;
+            MuseumLocatie = m.MuseumLocatie;           
         }
+
+       
     }
 }

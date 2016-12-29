@@ -139,6 +139,7 @@ namespace IHFF.Repositories
             if (dbMuseum != null)
             {
                 dbMuseum.Naam = museum.Naam;
+                dbMuseum.LocatieID = museum.LocatieID;
                 dbMuseum.Omschrijving = museum.Omschrijving;
                 dbMuseum.Maandag = museum.Maandag;
                 dbMuseum.Dinsdag = museum.Dinsdag;
@@ -155,7 +156,8 @@ namespace IHFF.Repositories
                 Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == museum.MuseumID && a.Type == "museumbanner");
                 if (dbAfbeelding != null)                
                     dbAfbeelding.Link = museum.MuseumAfbeelding.Link;
-                
+
+                Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == museum.LocatieID);
                 ctx.SaveChanges();
             }
         }
@@ -207,11 +209,16 @@ namespace IHFF.Repositories
 
         public void AddMuseum(Museum m)
         {
+            ctx.LOCATIES.Add(m.MuseumLocatie);
+            ctx.SaveChanges();
+            m.LocatieID = m.MuseumLocatie.LocatieID;
+
             ctx.MUSEA.Add(m);
             ctx.SaveChanges();
+
             m.MuseumAfbeelding.MuseumID = m.MuseumID;
             ctx.AFBEELDINGEN.Add(m.MuseumAfbeelding);
-            ctx.SaveChanges();
+            ctx.SaveChanges();                        
         }
 
         public void AddRestaurant(Restaurant r)

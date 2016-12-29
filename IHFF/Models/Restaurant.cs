@@ -40,19 +40,20 @@ namespace IHFF.Models
 
         }
 
-        public void Edit(Restaurant r)
-        {
-            Naam = r.Naam;
-            Omschrijving = r.Omschrijving;
-            Telefoon = r.Telefoon;
-            Email = r.Email;
-            Website = r.Website;
-            RestaurantAfbeelding.Link = r.RestaurantAfbeelding.Link;
-            RestaurantLocatie.Straat = r.RestaurantLocatie.Straat;
-            RestaurantLocatie.Huisnummer = r.RestaurantLocatie.Huisnummer;
-            RestaurantLocatie.Toevoeging = r.RestaurantLocatie.Toevoeging;
-            RestaurantLocatie.Postcode = r.RestaurantLocatie.Postcode;
-        }
+        //public void Edit(Restaurant r)
+        //{
+        //    Naam = r.Naam;
+        //    Omschrijving = r.Omschrijving;
+        //    Telefoon = r.Telefoon;
+        //    Email = r.Email;
+        //    Website = r.Website;
+        //    RestaurantAfbeelding.Link = r.RestaurantAfbeelding.Link;
+        //    RestaurantLocatie.Straat = r.RestaurantLocatie.Straat;
+        //    RestaurantLocatie.Huisnummer = r.RestaurantLocatie.Huisnummer;
+        //    RestaurantLocatie.Toevoeging = r.RestaurantLocatie.Toevoeging;
+        //    RestaurantLocatie.Postcode = r.RestaurantLocatie.Postcode;
+        //}
+
         public void ConvertFromRestaurantInputModel(RestaurantInputModel r)
         {
             Naam = r.Naam;

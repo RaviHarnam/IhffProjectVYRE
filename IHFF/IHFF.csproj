@@ -212,6 +212,7 @@
     <Compile Include="Models\Bestelling.cs" />
     <Compile Include="Models\Input\AfbeeldingInputModel.cs" />
     <Compile Include="Models\Input\ItemInputModel.cs" />
+    <Compile Include="Models\Input\LocatieInputModel.cs" />
     <Compile Include="Models\Input\MovieInputModel.cs" />
     <Compile Include="Models\Input\MuseumInputModel.cs" />
     <Compile Include="Models\Input\RestaurantInputModel.cs" />
@@ -255,7 +256,6 @@
     <Content Include="Content\Master.css" />
     <Content Include="Content\MovieDetailPageStyle.css" />
     <Content Include="Content\overview.css" />
-    <Content Include="Content\timetablejs.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -279,8 +279,6 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="Scripts\timetable.js" />
-    <Content Include="Scripts\timetable.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -315,6 +313,7 @@
     <Content Include="Views\Employee\AddMovie.cshtml" />
     <Content Include="Views\Employee\AddSpecial.cshtml" />
     <Content Include="Views\FullSchedule\FullSchedule.cshtml" />
+    <Content Include="Views\Employee\AddMuseum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,9 +17,10 @@ namespace IHFF.Controllers
 
         public ActionResult Index()
         {
-            if (!Request.IsAuthenticated)
-                return View("LogIn");
-            return RedirectToAction("ManagementWindow");
+            if (System.Web.HttpContext.Current.User != null && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return RedirectToAction("ManagementWindow");
+            return View("LogIn");
+            
         }
         public ActionResult LogIn()
         {

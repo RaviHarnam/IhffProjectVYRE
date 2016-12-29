@@ -76,7 +76,7 @@ namespace IHFF.Models
         {
             Naam = m.Naam;
             MuseumID = m.MuseumID;
-            LocatieID = m.LocatieID;
+            //LocatieID = m.LocatieID;
             Omschrijving = m.Omschrijving;
             Adults = m.Adults;
             Kids = m.Kids;
