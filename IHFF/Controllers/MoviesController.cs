@@ -26,7 +26,23 @@ namespace IHFF.Controllers
             IEnumerable<Movie> movies = dbMovie.GetAllMovies();
             return View(movies);
         }
+        [HttpPost]
+        public ActionResult MovieOverview(int voorstellingId, Movie movie)
+        {
+            Event eventx = movie.GetEvent(voorstellingId);
 
+            if (Session["cart"] == null)
+                Session["cart"] = new List<Event>();
+
+            List<Event> cartlist = (List<Event>)Session["cart"];
+            cartlist.Add(eventx);
+            Session["cart"] = cartlist;
+
+            //movie = dbMovie.GetMovie(movie.ItemID);
+            //movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);
+
+            return RedirectToAction("MovieOverview");
+        }
         public ActionResult MovieDetailPage(int? movie_id)
         {
             if (movie_id != null)

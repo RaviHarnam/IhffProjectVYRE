@@ -32,7 +32,7 @@
                     <td class="Time" id="Time"><h4>@m.DatumTijd.ToString("dd/MM/yy")<br />@m.DatumTijd.ToString("HH:mm") </h4></td>
                     <td class="Amount"><h4>@m.Aantal</h4></td>
                     <td class="Price"><h4>@m.Prijs</h4></td>
-                    <td class="Delete" id="Delete">@Html.ActionLink("X", "DeleteCartItem", "Cart", new { cartId = m.CartId }, null)</td>
+                    <td class="Delete" id="Delete">@Html.ActionLink("X", "DeleteCartItem", "Cart", new { cartId = m.CartId }, new {@Class = "deleteCross" })</td>
                 </tr>
             }
         </table>

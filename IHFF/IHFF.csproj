@@ -312,6 +312,7 @@
     <Content Include="Views\Employee\AddMovie.cshtml" />
     <Content Include="Views\Employee\AddSpecial.cshtml" />
     <Content Include="Views\FullSchedule\FullSchedule.cshtml" />
+    <Content Include="Views\Movies\_MovieOverview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
