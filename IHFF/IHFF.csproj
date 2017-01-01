@@ -203,6 +203,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\MuseumController.cs" />
     <Compile Include="Enum\Weekday.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -238,11 +239,13 @@
     <Compile Include="Repositories\DbEmployeeRepository.cs" />
     <Compile Include="Repositories\DbEventRepository.cs" />
     <Compile Include="Repositories\DbMovieRepository.cs" />
+    <Compile Include="Repositories\DbMuseumRepository.cs" />
     <Compile Include="Repositories\DbScheduleRepository.cs" />
     <Compile Include="Repositories\DbVoorstellingRepository.cs" />
     <Compile Include="Repositories\IEmployeeRepository.cs" />
     <Compile Include="Repositories\IEventRepository.cs" />
     <Compile Include="Repositories\IMoviesRepository.cs" />
+    <Compile Include="Repositories\IMuseumRepository.cs" />
     <Compile Include="Repositories\IScheduleRepository.cs" />
     <Compile Include="Repositories\IVoorstellingRepository.cs" />
     <Compile Include="Startup.cs" />
@@ -254,6 +257,7 @@
     <Content Include="Content\EditPages.css" />
     <Content Include="Content\Master.css" />
     <Content Include="Content\MovieDetailPageStyle.css" />
+    <Content Include="Content\MuseumStyle.css" />
     <Content Include="Content\overview.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -313,6 +317,7 @@
     <Content Include="Views\Employee\AddSpecial.cshtml" />
     <Content Include="Views\FullSchedule\FullSchedule.cshtml" />
     <Content Include="Views\Movies\_MovieOverview.cshtml" />
+    <Content Include="Views\Museum\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
