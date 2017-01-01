@@ -203,6 +203,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\SpecialController.cs" />
     <Compile Include="Enum\Weekday.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -239,11 +240,13 @@
     <Compile Include="Repositories\DbEventRepository.cs" />
     <Compile Include="Repositories\DbMovieRepository.cs" />
     <Compile Include="Repositories\DbScheduleRepository.cs" />
+    <Compile Include="Repositories\DbSpecialRepository.cs" />
     <Compile Include="Repositories\DbVoorstellingRepository.cs" />
     <Compile Include="Repositories\IEmployeeRepository.cs" />
     <Compile Include="Repositories\IEventRepository.cs" />
     <Compile Include="Repositories\IMoviesRepository.cs" />
     <Compile Include="Repositories\IScheduleRepository.cs" />
+    <Compile Include="Repositories\ISpecialRepository.cs" />
     <Compile Include="Repositories\IVoorstellingRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -313,6 +316,8 @@
     <Content Include="Views\Employee\AddSpecial.cshtml" />
     <Content Include="Views\FullSchedule\FullSchedule.cshtml" />
     <Content Include="Views\Movies\_MovieOverview.cshtml" />
+    <Content Include="Views\Special\SpecialOverview.cshtml" />
+    <Content Include="Views\Special\SpecialDetailPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

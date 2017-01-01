@@ -30,6 +30,14 @@ namespace IHFF.Models
             Aantal = movie.Aantal;
             Prijs = voorstelling.Prijs;
         }
+
+        public void MakeEvent(Special special, Voorstelling voorstelling)
+        {
+            Titel = special.Titel;
+            DatumTijd = voorstelling.DatumTijd;
+            Aantal = special.Aantal;
+
+        }
     }
 
 }
