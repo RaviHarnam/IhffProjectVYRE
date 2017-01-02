@@ -26,6 +26,8 @@ namespace IHFF.Models
         public virtual Afbeelding RestaurantAfbeelding {get; set;}
         [NotMapped]
         public virtual Locatie RestaurantLocatie { get; set; }
+        [NotMapped]
+        public virtual List<Maaltijd> RestaurantMaaltijd { get; set; }
 
         public Restaurant(string naam, string omschrijving, string telefoon, string email, string website)
         {

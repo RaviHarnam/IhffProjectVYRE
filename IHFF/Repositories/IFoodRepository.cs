@@ -11,5 +11,6 @@ namespace IHFF.Repositories
     {
         IEnumerable<Restaurant> GetAllRestaurants();
         Restaurant GetRestaurant(int id);
+        IEnumerable<int> GetUren(int dagId);
     }
 }

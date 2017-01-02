@@ -1,0 +1,318 @@
+﻿.food_index_items {
+	width: 100%;
+	z-index: 0;
+}
+.food_index_items_line1{
+	width: 100%;
+	height: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 0;
+	margin-top: 5px;
+	display: block;
+}
+
+	
+.food_index_item {
+	height: 50%;
+	width: 50%;
+	float: left;
+	display: inline-block;
+	padding: 5px;
+	border: #999 solid 1px;
+	background-color: #fff;
+	margin-top: 2em;
+    margin-bottom: 2em;
+    margin-right: 0.01em;
+}
+.food_index_item_description {
+	height: 0px;
+	width: 240px;
+	padding-left: 10px;
+	text-align: left;
+	padding-top: 20px;
+	opacity: 0;
+	z-index: 3;
+	float: left;
+	margin:0px;
+	background-color: white;
+	transition: all 0.4s ease-out;
+	margin-top:-250px;
+	overflow:hidden;
+
+}
+
+.food_index_item_img {
+	float: left;
+	height: 250px;
+	width: 250px;
+}
+.food_index_item_title {
+    float: left;
+    margin: 0;
+    padding:  0;
+    border: 0;
+    text-align: center;
+    width: 250px;
+    background-color: #226493;
+    height: 40px;
+    line-height: 30px;
+    opacity: 1;
+    margin-bottom:35px;
+       
+}
+.food_index_item_title a {
+    color: white;
+}
+.food_index_item_description_button{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	margin-top:35px;
+	position: relative;
+    top:5px;
+}
+.food_index_item_description_button2{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 10px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	margin-top:35px;
+	position: relative;
+    top:10px;
+  
+
+    
+}
+.food_index_item_description_button:hover{
+	background-color: #226493;
+}
+
+.company-image-overlay {
+    width: 160px;
+    height: 160px;
+    background-color: #ffb00f;
+    border-radius: 15px;
+    z-index: 1;
+    opacity: 0.5;
+    position: fixed;
+    top: 0.5em;
+    display:none;
+}
+
+.hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+}
+
+.hovereffect .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+ 
+}
+
+.hovereffect img {
+  display: block;
+  position: relative;
+  -webkit-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+}
+
+.hovereffect:hover img {
+  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="matrix" color-interpolation-filters="sRGB" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0" /><feGaussianBlur stdDeviation="3" /></filter></svg>#filter');
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+ 
+}
+
+.hovereffect h2 {
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.hovereffect a.food_index_item_description_button {
+
+  display: inline-block; 
+  line-height: 20px;
+  width: 120px !important; 
+  text-decoration: none;
+  color: white !important;
+  padding: 7px 14px;
+  border-radius: 5px;
+  margin: 10px 0 0 0;
+  background-color:#226493;
+  cursor:pointer;
+}
+.hovereffect a.food_index_item_description_button2{
+ 
+  display: inline-block;
+  line-height: 20px;
+  width: 120px !important; 
+  text-decoration: none;
+  color: white !important;
+  padding: 7px 14px;
+  border-radius: 5px;
+  margin: 20px 0 0 0;
+  background-color:#226493;
+}
+
+.hovereffect a.food_index_item_description_button:hover {
+  box-shadow: 0 0 5px #fff;
+}
+.hovereffect a.food_index_item_description_button2:hover {
+  box-shadow: 0 0 5px #fff;
+}
+
+
+.hovereffect a.food_index_item_description_button, .hovereffect h2 {
+  -webkit-transform: scale(0.7);
+  -ms-transform: scale(0.7);
+  transform: scale(0.7);
+  -webkit-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  color: #fff;
+  text-transform: uppercase;
+}
+.hovereffect a.food_index_item_description_button2, .hovereffect h2 {
+  -webkit-transform: scale(0.7);
+  -ms-transform: scale(0.7);
+  transform: scale(0.7);
+  -webkit-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  color: #fff;
+  text-transform: uppercase;
+}
+
+
+
+.hovereffect:hover a.food_index_item_description_button, .hovereffect:hover h2 {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.hovereffect:hover a.food_index_item_description_button2, .hovereffect:hover h2 {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+
+
+
+.img-responsive{
+    width:250px;
+    height:250px;
+    
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+
+
+
+

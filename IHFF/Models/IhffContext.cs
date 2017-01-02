@@ -15,8 +15,7 @@ namespace IHFF.Models
     {
         public IhffContext()  : base("IhffConnection")
         {
-            // LEEG
-            // ECHT F*CKING LEEG
+            // LEEG          
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -31,6 +30,7 @@ namespace IHFF.Models
             modelBuilder.Entity<Restaurant>().ToTable("RESTAURANT");
             modelBuilder.Entity<Museum>().ToTable("MUSEUM");
             modelBuilder.Entity<Locatie>().ToTable("LOCATIE");
+            modelBuilder.Entity<Maaltijd>().ToTable("MAALTIJD");
         }
 
         // Database sets
@@ -44,5 +44,6 @@ namespace IHFF.Models
         public DbSet<Restaurant> RESTAURANTS { get; set; }
         public DbSet<Museum> MUSEA { get; set; }
         public DbSet<Locatie> LOCATIES { get; set; }
+        public DbSet<Maaltijd> MAALTIJD { get; set; }
     }
 }
