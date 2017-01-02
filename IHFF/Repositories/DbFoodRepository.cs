@@ -16,8 +16,7 @@ namespace IHFF.Repositories
             // Loop door de lijst heen en vul de afbeeldingen erin.
             foreach (Restaurant rst in restaurants)
             {
-                rst.RestaurantAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == rst.RestaurantID && a.Type == "restaurantoverview");
-                rst.RestaurantLocatie = ctx.LOCATIES.SingleOrDefault(a => a.LocatieID == rst.LocatieID);
+                rst.RestaurantAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == rst.RestaurantID && a.Type == "restaurantoverview");               
                 rst.RestaurantMaaltijd = (from m in ctx.MAALTIJD
                                           where m.RestaurantID == rst.RestaurantID
                                           select m).ToList();
