@@ -16,6 +16,7 @@ namespace IHFF.Repositories
             foreach (Movie mov in movies)
             {
                 mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmoverview");
+                mov.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemId == mov.ItemID select v).ToList();
             }
                         
             return movies;

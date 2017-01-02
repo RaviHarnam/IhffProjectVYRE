@@ -57,6 +57,8 @@ namespace IHFF.Models
         
         public void Edit(Museum m)
         {
+            //this = m; ???????
+
             Naam = m.Naam;
             Omschrijving = m.Omschrijving;
             Adults = m.Adults;
