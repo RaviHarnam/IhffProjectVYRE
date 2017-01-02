@@ -9,6 +9,7 @@ namespace IHFF.Repositories
     public class DbMovieRepository : IMoviesRepository
     {
         private IhffContext ctx = new IhffContext();
+
         public IEnumerable<Movie> GetAllMovies()
         {
             IEnumerable<Movie> movies = ctx.MOVIES.ToList();

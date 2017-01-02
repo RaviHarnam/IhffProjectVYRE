@@ -1,0 +1,11 @@
+diff a/IHFF/IHFF.csproj b/IHFF/IHFF.csproj	(rejected hunks)
+@@ -313,6 +313,9 @@
+     <Content Include="Views\Employee\AddMovie.cshtml" />
+     <Content Include="Views\Employee\AddSpecial.cshtml" />
+     <Content Include="Views\FullSchedule\FullSchedule.cshtml" />
++    <Content Include="Views\Food\Index.cshtml" />
++    <Content Include="Views\Food\FoodDetailPage.cshtml" />
++    <Content Include="Views\Food\FoodOverview.cshtml" />
+   </ItemGroup>
+   <ItemGroup>
+     <Folder Include="App_Data\" />
