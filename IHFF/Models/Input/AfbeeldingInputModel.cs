@@ -29,6 +29,14 @@ namespace IHFF.Models.Input
 
         }
 
-
+        public void ConvertToAfbeeldingInputModel(Afbeelding a)
+        {
+            AfbeeldingID = a.AfbeeldingID;
+            ItemID = a.ItemID;
+            RestaurantID = a.RestaurantID;
+            Link = a.Link;
+            MuseumID = a.MuseumID;
+            Type = a.Type;
+        }
     }
 }

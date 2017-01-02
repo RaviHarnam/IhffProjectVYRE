@@ -1,0 +1,107 @@
+﻿@using IHFF.Models.Input;
+@{
+    ViewBag.Title = "AddMuseum";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model MuseumInputModel
+
+
+@Styles.Render("~/Content/MovieDetailPageStyle.css")
+@Styles.Render("~/Content/EditPages.css")
+
+@Html.ValidationSummary()
+@using (Html.BeginForm())
+{
+    <h2>Add Museum</h2>
+    <input type="Submit" value="Add museum" formmethod="Post" class="Edit-update" size="30" />   
+    <p>
+        @Html.LabelFor(m => m.Naam):
+        @Html.TextBoxFor(m => m.Naam, new {@Size = 30})       
+    </p>
+
+        <img class="bannerimg" width="700" height="350" src=""/>
+        <p>
+            @Html.LabelFor(m => m.MuseumAfbeelding.Link):
+            @Html.TextBoxFor(m => m.MuseumAfbeelding.Link, new {@Size = 30 })
+        </p>
+    
+    <section class="summary">
+        <h3>Summary</h3>
+        @Html.TextAreaFor(m => m.Omschrijving, new {@Rows = 8, @cols = 40 })
+    </section>
+    <section class="info">
+        <h3>Openingstijden</h3>
+        <table>
+            <tr>
+                <td> @Html.LabelFor(m => m.Telefoon)</td>
+                <td> @Html.TextBoxFor(m => m.Telefoon, new {@Size = 30 })</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.Website)</td>
+                <td> @Html.TextBoxFor(m => m.Website, new {@Size = 30 })</td>
+            </tr>
+            
+            <tr>
+                <td> @Html.LabelFor(m => m.Adults):</td>
+                <td> @Html.TextBoxFor(m => m.Adults, new {@Size = 30 })</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.Kids)</td>
+                <td> @Html.TextBoxFor(m => m.Kids, new { @Size = 30 })</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.Maandag):</td>
+                <td> @Html.TextBoxFor(m => m.Maandag, new { @Size = 30 })</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.Dinsdag):</td>
+                <td> @Html.TextBoxFor(m => m.Dinsdag, new { @Size = 30 })</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.Woensdag):</td>
+                <td> @Html.TextBoxFor(m => m.Woensdag, new { @Size = 30 })</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.Donderdag):</td>
+                <td> @Html.TextBoxFor(m => m.Donderdag, new { @Size = 30 }) </td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.Vrijdag):</td>
+                <td> @Html.TextBoxFor(m => m.Vrijdag, new { @Size = 30 }) </td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.Zaterdag):</td>
+                <td> @Html.TextBoxFor(m => m.Zaterdag, new { @Size = 30 }) </td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.Zondag):</td>
+                <td> @Html.TextBoxFor(m => m.Zondag, new { @Size = 30 }) </td>
+            </tr>
+        </table>
+
+        <h2>Location</h2>
+        <table>
+            <tr>
+                <td>@Html.LabelFor(m => m.MuseumLocatie.Plaats)</td>
+                <td>@Html.TextBoxFor(m => m.MuseumLocatie.Plaats)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.MuseumLocatie.Straat)</td>
+                <td>@Html.TextBoxFor(m => m.MuseumLocatie.Straat)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.MuseumLocatie.Huisnummer)</td>
+                <td>@Html.TextBoxFor(m => m.MuseumLocatie.Huisnummer, new {@type = "number" })</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.MuseumLocatie.Toevoeging)</td>
+                <td>@Html.TextBoxFor(m => m.MuseumLocatie.Toevoeging)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.MuseumLocatie.Postcode)</td>
+                <td>@Html.TextBoxFor(m => m.MuseumLocatie.Postcode)</td>
+            </tr>
+        </table>
+    </section>
+}

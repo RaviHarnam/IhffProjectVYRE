@@ -2,18 +2,18 @@
 
 
 @{
-    ViewBag.Title = "MovieOverview";
+    ViewBag.Title = "SpecialOverview";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@Styles.Render("~/Content/themes/base/css")
 @Styles.Render("~/Content/overview.css")
 @Scripts.Render("~/bundles/modernizr")
 <script src="~/Scripts/jquery-1.8.2.js"></script>
 <script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
 
-@model IEnumerable<Movie>
+@model IEnumerable<Special>
 
-<h2>Movie Overview</h2>
+<h2>Special Overview</h2>
 
 <!DOCTYPE html>
 
@@ -24,7 +24,7 @@
 </head>
 <body>
 
-    @{int movieNr = 0; }
+    @{int specialNr = 0; }
     @*<select id="filmlocationinput" name="locationid">
             @foreach (FilmLocation locatie in Model.Film.FilmLocation)
                 {
@@ -38,26 +38,26 @@
             <tr>
                 @for (int j = 0; j < 3; j++)
                 {
-                    if (movieNr < Model.Count())
+                    if (specialNr < Model.Count())
                     {
-                        if (Model.ElementAt(movieNr).ItemAfbeelding != null)
+                        if (Model.ElementAt(specialNr).ItemAfbeelding != null)
                         {
                             <td>
 
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-lg-12">
                                     <div class="hovereffect">
                                         @*<p class="movie_index_item_title">@Model.ElementAt(movieNr).Titel</p>*@
-                                        <img class="img-responsive" src=@Model.ElementAt(movieNr).ItemAfbeelding.Link alt=@Model.ElementAt(movieNr).Titel title="@Model.ElementAt(movieNr).Titel">
+                                        <img class="img-responsive" src=@Model.ElementAt(specialNr).ItemAfbeelding.Link alt=@Model.ElementAt(specialNr).Titel title="@Model.ElementAt(specialNr).Titel">
                                         <div class="overlay">
 
 
-                                            <h2>@Model.ElementAt(movieNr).Titel</h2>
+                                            <h2>@Model.ElementAt(specialNr).Titel</h2>
 
 
                                             <!-- Trigger/Open The Modal -->
                                             <!-- The Modal -->
 
-                                            <button id="@movieNr" class="movie_index_item_description_button">Voeg toe aan Cart</button>
+                                            <button id="@specialNr" class="movie_index_item_description_button">Voeg toe aan Cart</button>
                                             <div class="modal">
                                                 <article class="modal-content">
                                                     <article class="modal-header">
@@ -66,13 +66,13 @@
                                                         <h2>Modal Header</h2>
                                                     </article>
                                                     <div class="modal-body">
-                                                        @Html.Partial("_MovieOverview", @Model.ElementAt(movieNr))
+                                                        @*@Html.Partial("_MovieOverview", @Model.ElementAt(specialNr)) Niet vergeten om aan te zetten weer*@ 
                                                         @*@using (Html.BeginForm("AddToCart", "Cart"))
                                                             {
                                                                 <div class="pull-right">@Html.Hidden("voorstellingid", )
                                                              @Html.Hidden("returnUrl", Request.Url.PathAndQuery)<input type="submit" class="movie_index_item_description_button" value="Add  tocart" /></div>
                                                             }*@
-                                                       
+
                                                     </div>
                                                     <div class="modal-footer">
                                                         <h3>Do you have dinner plans yet? <!--Html.ActionLink("", "", "", null, new {Class = "" })--></h3>
@@ -92,7 +92,7 @@
                                     </div>
 
                                 </div>
-                                <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(movieNr).Titel, "MovieDetailPage", "Movies", new { movie_id = Model.ElementAt(movieNr).ItemID }, null) </p>
+                                <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(specialNr).Titel, "SpecialDetailPage", "Special", new { special_id = Model.ElementAt(specialNr).ItemID }, null) </p>
                                 @*<div id="inputform">
                                         @using (Html.BeginForm())
                                         {
@@ -105,7 +105,7 @@
                             </td>
 
 
-                            { movieNr++; }
+                            { specialNr++; }
 
 
                         }

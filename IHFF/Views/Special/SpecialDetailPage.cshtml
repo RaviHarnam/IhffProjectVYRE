@@ -1,0 +1,44 @@
+﻿@Styles.Render("~/Content/MovieDetailPageStyle.css")
+
+@using IHFF.Models;
+@model Special
+@{
+    ViewBag.Title = "SpecialDetailPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Titel</h2>
+
+<img class="bannerimg" src=@Model.ItemAfbeelding.Link />
+
+<section class="summary">
+    <h3>Summary</h3>
+    <p>@Model.Omschrijving</p>
+</section>
+<section class="info">
+    <h3>Info</h3>
+    <p>Speaker: @Model.Speaker</p>
+    <p>Spoken language: @Model.SpokenLanguage</p>
+</section>
+<br />
+<section class="form">
+    @Html.ValidationSummary()
+    @using (Html.BeginForm("SpecialDetailPage", "Special", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.ItemID)
+        @Html.LabelFor(m => m.Aantal)
+        <br />
+        @Html.TextBoxFor(m => m.Aantal)
+        <br /><br />
+        @Html.Label("Datum");
+        <br />
+        <select name="voorstellingId">
+            @foreach (Voorstelling voorstelling in Model.Voorstellingen)
+            {
+                <option value=@voorstelling.VoorstellingId>@voorstelling.DatumTijd.ToString("dd/MM/yy HH:mm")</option>
+            }
+        </select>
+        <br /><br />
+        <input type="submit" formmethod="post" value="Add to cart" />
+    }
+</section>

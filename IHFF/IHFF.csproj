@@ -204,6 +204,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\SpecialController.cs" />
     <Compile Include="Controllers\MuseumController.cs" />
     <Compile Include="Enum\Weekday.cs" />
     <Compile Include="Global.asax.cs">
@@ -214,6 +215,7 @@
     <Compile Include="Models\Bestelling.cs" />
     <Compile Include="Models\Input\AfbeeldingInputModel.cs" />
     <Compile Include="Models\Input\ItemInputModel.cs" />
+    <Compile Include="Models\Input\LocatieInputModel.cs" />
     <Compile Include="Models\Input\MovieInputModel.cs" />
     <Compile Include="Models\Input\MuseumInputModel.cs" />
     <Compile Include="Models\Input\RestaurantInputModel.cs" />
@@ -244,6 +246,7 @@
     <Compile Include="Repositories\DbMovieRepository.cs" />
     <Compile Include="Repositories\DbMuseumRepository.cs" />
     <Compile Include="Repositories\DbScheduleRepository.cs" />
+    <Compile Include="Repositories\DbSpecialRepository.cs" />
     <Compile Include="Repositories\DbVoorstellingRepository.cs" />
     <Compile Include="Repositories\IEmployeeRepository.cs" />
     <Compile Include="Repositories\IEventRepository.cs" />
@@ -252,6 +255,7 @@
     <Compile Include="Repositories\IMoviesRepository.cs" />
     <Compile Include="Repositories\IMuseumRepository.cs" />
     <Compile Include="Repositories\IScheduleRepository.cs" />
+    <Compile Include="Repositories\ISpecialRepository.cs" />
     <Compile Include="Repositories\IVoorstellingRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -321,7 +325,10 @@
     <Content Include="Views\Employee\AddMovie.cshtml" />
     <Content Include="Views\Employee\AddSpecial.cshtml" />
     <Content Include="Views\FullSchedule\FullSchedule.cshtml" />
+    <Content Include="Views\Employee\AddMuseum.cshtml" />
     <Content Include="Views\Movies\_MovieOverview.cshtml" />
+    <Content Include="Views\Special\SpecialOverview.cshtml" />
+    <Content Include="Views\Special\SpecialDetailPage.cshtml" />
     <Content Include="Views\Museum\Index.cshtml" />
     <Content Include="Views\Food\FoodOverview.cshtml" />
   </ItemGroup>
