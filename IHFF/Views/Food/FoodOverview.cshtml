@@ -49,7 +49,7 @@
 
 
 
-                                            <button id="@restaurantNr" class="food_index_item_description_button">Voeg toe aan Cart</button>
+                                            <button id="@restaurantNr" class="movie_index_item_description_button">Voeg toe aan Cart</button>
                                             <div class="modal">
                                                 <article class="modal-content">
                                                     <article class="modal-header">
@@ -71,7 +71,7 @@
                                     </div>
 
                                 </div>
-                                <p class="food_index_item_title">@Html.ActionLink(Model.ElementAt(restaurantNr).Naam, "FoodDetailPage", "Food", new { food_id = Model.ElementAt(restaurantNr).RestaurantID }, null) </p>
+                                <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(restaurantNr).Naam, "FoodDetailPage", "Food", new { food_id = Model.ElementAt(restaurantNr).RestaurantID }, null) </p>
                                
                             </td>
 
@@ -101,7 +101,7 @@
                 $('.modal').css('display', 'none');
             });
                       
-            $('.food_index_item_description_button').click(function () {
+            $('.movie_index_item_description_button').click(function () {
                 $(this).next()[0].style.display = "inline";
                 var title = $(this).prev('h2').html();
                 $('.modal-header').find('h2').html(title);
