@@ -12,7 +12,7 @@ namespace IHFF.Models
         public int VoorstellingId { get; set; }
         public int ItemId { get; set; }
         //public string Categorie { get; set; }
-        public DateTime DatumTijd { get; set; }
+        public DateTime BeginTijd { get; set; }
         
         public decimal Prijs { get; set; }
         public int MaxPlaatsen { get; set; }

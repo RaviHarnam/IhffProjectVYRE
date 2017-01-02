@@ -22,7 +22,7 @@ namespace IHFF.Repositories
         public Voorstelling GetVoorstelling(int itemId, DateTime DatumTijd)
         {
             Voorstelling voorstelling = (from v in ctx.VOORSTELLINGEN
-                                         where v.ItemId == itemId && v.DatumTijd == DatumTijd
+                                         where v.ItemId == itemId && v.BeginTijd == DatumTijd
                                          select v).SingleOrDefault();
 
             return voorstelling;

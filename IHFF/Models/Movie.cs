@@ -50,7 +50,7 @@ namespace IHFF.Models
 
 
             Event eventx = new Event();
-            eventx.MakeEvent(this, voorstelling);
+            eventx.MakeEvent2(this, voorstelling);
 
             return eventx;
         }

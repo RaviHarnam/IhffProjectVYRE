@@ -47,6 +47,36 @@ namespace IHFF.Controllers
             return RedirectToAction("SpecialOverview");
         }
 
+
+
+        [HttpPost]
+        public ActionResult SpecialOverview(int? voorstellingId, Special special, string aantal)
+        {
+            if (ModelState.IsValid)
+            {
+                int amount = 0;
+                if (voorstellingId != null && int.TryParse(aantal, out amount) && special != null)
+                {
+                    if (amount > 0)
+                    {
+                        Event eventx = special.GetEvent(voorstellingId.Value);
+                        eventx.Aantal = amount;
+                        if (Session["cart"] == null)
+                            Session["cart"] = new List<Event>();
+
+                        List<Event> cartlist = (List<Event>)Session["cart"];
+                        cartlist.Add(eventx);
+                        Session["cart"] = cartlist;
+                    }
+                }
+                //special = dbSpecial.GetSpecial(special.ItemID);
+                //special.Voorstellingen = dbVoorstelling.GetVoorstellingen(special.ItemID);
+            }
+            return RedirectToAction("SpecialOverview");
+        }
+
+
+
         [HttpPost]
         public ActionResult SpecialDetailPage(Special special, int voorstellingId)
         {

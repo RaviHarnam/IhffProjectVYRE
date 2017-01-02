@@ -66,6 +66,7 @@
                                                         <h2>Modal Header</h2>
                                                     </article>
                                                     <div class="modal-body">
+                                                        @Html.Partial("_SpecialOverview", @Model.ElementAt(specialNr))
                                                         @*@Html.Partial("_MovieOverview", @Model.ElementAt(specialNr)) Niet vergeten om aan te zetten weer*@ 
                                                         @*@using (Html.BeginForm("AddToCart", "Cart"))
                                                             {

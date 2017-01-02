@@ -49,7 +49,7 @@ namespace IHFF.Repositories
             eventx.Titel = (from i in ctx.ITEMS
                             where i.ItemID == voorstelling.ItemId
                             select i.Titel).SingleOrDefault();
-            eventx.DatumTijd = voorstelling.DatumTijd;
+            eventx.DatumTijd = voorstelling.BeginTijd;
             eventx.Prijs = (from v in ctx.VOORSTELLINGEN
                             where v.VoorstellingId == voorstelling.VoorstellingId
                             select v.Prijs).SingleOrDefault();

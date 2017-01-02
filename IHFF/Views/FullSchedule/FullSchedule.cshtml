@@ -44,11 +44,12 @@
                 {
                     <tr>
                         <th scope="row">@l.Naam</th>
+
+                        @foreach (Voorstelling vo in Model.Where(m => m.VoorstellingLocatie == l))
+                        {
+                            int aantalHokjes = vo.
+                        }
                     </tr>
-                    foreach (Voorstelling vo in Model.Where(m => m.VoorstellingLocatie == l))
-                    {
-                        //cellen
-                    }
                 }
 
             </tbody>
