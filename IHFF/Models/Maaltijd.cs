@@ -15,6 +15,8 @@ namespace IHFF.Models
         public int GereserveerdePlaatsen { get; set; }
         public int RestaurantID { get; set; }
 
+       
+
         public Maaltijd(int maaltijdID, decimal maaltijdPrijs, DateTime beginTijd, DateTime eindTijd, int maxPlaatsen, int gereseveerdePlaatsen, int restaurantID)
         {
             MaaltijdID = maaltijdID;

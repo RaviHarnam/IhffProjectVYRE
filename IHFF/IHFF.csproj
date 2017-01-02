@@ -264,6 +264,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CartStyle.css" />
     <Content Include="Content\EditPages.css" />
+    <Content Include="Content\FoodDetailPageStyle.css" />
+    <Content Include="Content\FoodOverview.css" />
     <Content Include="Content\Master.css" />
     <Content Include="Content\MovieDetailPageStyle.css" />
     <Content Include="Content\MuseumStyle.css" />
@@ -331,6 +333,8 @@
     <Content Include="Views\Special\SpecialDetailPage.cshtml" />
     <Content Include="Views\Museum\Index.cshtml" />
     <Content Include="Views\Food\FoodOverview.cshtml" />
+    <Content Include="Views\Food\_FoodOverview.cshtml" />
+    <Content Include="Views\Food\FoodDetailPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

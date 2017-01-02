@@ -24,9 +24,21 @@ namespace IHFF.Controllers
             IEnumerable<Restaurant> restaurants = dbFood.GetAllRestaurants();
             return View(restaurants);
         }
+        public ActionResult FoodDetailPage(int? food_id)
+        {
+            if (food_id != null)
+            {
+                Restaurant restaurant = dbFood.GetRestaurant(food_id.Value);
 
+                return View(restaurant);
+            }
+            return RedirectToAction("FoodOverview");
+        }
 
-
-
+        public ActionResult FillUren(int maaltijdId)
+        {
+            var uren = dbFood.GetUren(maaltijdId);
+            return Json(uren, JsonRequestBehavior.AllowGet);
+        }
     }
 }

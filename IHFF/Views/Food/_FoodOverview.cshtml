@@ -1,0 +1,25 @@
+﻿@using IHFF.Models;
+
+@model Restaurant
+
+<section class="form">
+    @Html.ValidationSummary()
+    @using (Html.BeginForm("MovieOverview", "Movies", FormMethod.Post))
+    {
+        @Html.HiddenFor(r => r.ItemID)
+        @Html.LabelFor(r => r.Aantal)
+        <br />
+        @Html.TextBoxFor(r => r.Aantal)
+        <br /><br />
+        @Html.Label("Datum");
+        <br />
+        <select name="voorstellingId">
+            @foreach (Voorstelling voorstelling in Model.Voorstellingen)
+            {
+                <option value=@voorstelling.VoorstellingId>@voorstelling.DatumTijd.ToString("dd/MM/yy HH:mm")</option>
+            }
+        </select>
+        <br /><br />
+        <input type="submit" formmethod="post" value="Add to cart" />
+    }
+</section>

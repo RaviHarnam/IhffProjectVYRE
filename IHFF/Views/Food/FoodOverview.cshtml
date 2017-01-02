@@ -1,14 +1,112 @@
 ﻿@using IHFF.Models;
+
 @{
     ViewBag.Title = "FoodOverview";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@Styles.Render("~/Content/overview.css")
+@Scripts.Render("~/bundles/modernizr")
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+
 @model IEnumerable<Restaurant>
 
 <h2>Food Overview</h2>
 
-@foreach(Restaurant rst in Model)
-{
-    <p>@rst.Naam</p>
-    <p>@rst.Omschrijving</p>
-}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    @{int restaurantNr = 0; }
+ 
+    <table>
+        @Html.Hidden("restaurantId", 0)
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                @for (int j = 0; j < 3; j++)
+                {
+                    if (restaurantNr < Model.Count())
+                    {
+                        if (Model.ElementAt(restaurantNr).RestaurantAfbeelding != null)
+                        {
+                            <td>
+
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-lg-12">
+                                    <div class="hovereffect">
+                                      
+                                        <img class="img-responsive" src=@Model.ElementAt(restaurantNr).RestaurantAfbeelding.Link alt=@Model.ElementAt(restaurantNr).Naam title="@Model.ElementAt(restaurantNr).Naam">
+                                        <div class="overlay">
+
+
+                                            <h2>@Model.ElementAt(restaurantNr).Naam</h2>
+
+
+
+                                            <button id="@restaurantNr" class="food_index_item_description_button">Voeg toe aan Cart</button>
+                                            <div class="modal">
+                                                <article class="modal-content">
+                                                    <article class="modal-header">
+                                                        <button onclick="$(this).parent('div').style.display = 'none'" class="close">&times;</button>
+
+                                                        <h2>Modal Header</h2>
+                                                    </article>
+                                                    <div class="modal-body">
+                                                        @*@Html.Partial("_FoodOverview", @Model.ElementAt(restaurantNr))*@
+                                                      
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <h3>Do you have dinner plans yet? <!--Html.ActionLink("", "", "", null, new {Class = "" })--></h3>
+                                                    </div>
+                                                </article>
+                                            </div>
+                                      
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <p class="food_index_item_title">@Html.ActionLink(Model.ElementAt(restaurantNr).Naam, "FoodDetailPage", "Food", new { food_id = Model.ElementAt(restaurantNr).RestaurantID }, null) </p>
+                               
+                            </td>
+
+
+                            { restaurantNr++; }
+
+
+                        }
+                    }
+                }
+
+
+
+            </tr>
+        }
+    </table>
+
+    <br />
+    @Scripts.Render("~/bundles/jquery")
+   
+    <script>
+        $(document).ready(function () {
+           
+            // When the user clicks anywhere outside of the modal, close it
+            $('.close').click(function () {
+                // If the clicked object is a modal.
+                $('.modal').css('display', 'none');
+            });
+                      
+            $('.food_index_item_description_button').click(function () {
+                $(this).next()[0].style.display = "inline";
+                var title = $(this).prev('h2').html();
+                $('.modal-header').find('h2').html(title);
+            });
+        });
+    </script>
+</body>
+</html>

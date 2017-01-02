@@ -1,0 +1,84 @@
+﻿@Styles.Render("~/Content/FoodDetailPageStyle.css")
+
+@using IHFF.Models;
+@model Restaurant
+@{
+    ViewBag.Title = "FoodDetailPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Naam</h2>
+
+<img class="bannerimg" src=@Model.RestaurantAfbeelding.Link />
+
+<section class="summary">
+    <h3>Summary</h3>
+    <p>@Model.Omschrijving</p>
+</section>
+<section class="info">
+    <h3>Info</h3>
+    @Html.LabelFor(m => m.Telefoon)
+    <p>Telephone: @Model.Telefoon</p>
+    <p>Email: @Model.Email</p>
+    <p>Website: <a href="@Model.Website"></a></p>
+    <p>Location: @Model.RestaurantLocatie.Straat @Model.RestaurantLocatie.Huisnummer @Model.RestaurantLocatie.Toevoeging</p>
+    <p>Postal code: @Model.RestaurantLocatie.Postcode @Model.RestaurantLocatie.Plaats</p>
+</section>
+<br />
+<section class="form">
+    @Html.ValidationSummary()
+    @using (Html.BeginForm("FoodDetailpage", "Food", FormMethod.Post))
+    {
+        @Html.HiddenFor(r => r.RestaurantID)
+        @Html.Label("Amount")
+        <br />
+        @Html.TextBox("aantal")
+        <br /><br />
+        @Html.Label("Date and Time");
+        <br />
+        <select name="maaltijdid" id="dag" onchange="FillUren()">
+            <option selected="selected"></option>
+            @foreach (Maaltijd maaltijd in Model.RestaurantMaaltijd)
+            {
+                <option value=@maaltijd.MaaltijdID> @maaltijd.BeginTijd.DayOfWeek @maaltijd.BeginTijd.ToString("dd/MM/yy")</option>                
+            }
+        </select>       
+         @*<select name="maaltijdtijd" id="tijd">
+             @foreach(Maaltijd maaltijd in Model.RestaurantMaaltijd)
+             {
+                 DateTime tijd = maaltijd.BeginTijd;
+                 while (tijd <= maaltijd.EindTijd)
+                 {
+                    <option value="@tijd.Hour">@tijd.ToString("HH")</option>
+                     {tijd = tijd.AddHours(1);}
+                 }
+             }*@            
+         @*</select>*@     
+        <select name="maaltijdUur" id="uur">
+
+        </select>  
+         @Html.TextBox("minuten",null,  new {@type = "number", @min = "0", @max = "59", @pattern = "[0-9]", @size = "10"})
+        <br /><br />
+        <input type="submit" formmethod="post" value="Add to cart" />
+    }
+</section>
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script>
+    function FillUren() {
+    var dagId = $('#dag').val();
+    $.ajax({
+    url: '/Food/FillUren',
+    type: "GET",
+    dataType: "JSON",
+    data: { maaltijdId: dagId},
+    success: function (uren) {
+    $("#uur").html(""); // clear before appending new list
+    $.each(uren, function (i, uur) {
+    $("#uur").append(
+    $('<option></option>').val(uur).html(uur));
+    });
+    }
+    });
+    }
+</script>
