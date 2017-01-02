@@ -27,7 +27,7 @@
             <ul>
                 <li id="menu-border-left"><h5>@Html.ActionLink("Home","Index","Home", null, new {@class= "link"})</h5></li>
                 <li><h5>@Html.ActionLink("Movies","MovieOverview","Movies",null ,new {@class= "link"})</h5></li>
-                <li><h5>Specials</h5></li>
+                <li><h5>@Html.ActionLink("Specials", "SpecialOverview","Special", null, new { @class = "link" }) </h5></li>
                 <li><h5>@Html.ActionLink("Food","FoodOverview","Food",null ,new {@class= "link"})</h5></li>
                 <li><h5>Culture</h5></li>
                 <li class="right"><h5>@Html.ActionLink("Cart","Index","Cart", null, new {@class= "link"})</h5></li>
