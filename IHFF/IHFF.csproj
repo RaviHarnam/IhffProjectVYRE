@@ -214,6 +214,7 @@
     <Compile Include="Models\Bestelling.cs" />
     <Compile Include="Models\Input\AfbeeldingInputModel.cs" />
     <Compile Include="Models\Input\ItemInputModel.cs" />
+    <Compile Include="Models\Input\LocatieInputModel.cs" />
     <Compile Include="Models\Input\MovieInputModel.cs" />
     <Compile Include="Models\Input\MuseumInputModel.cs" />
     <Compile Include="Models\Input\RestaurantInputModel.cs" />
@@ -319,6 +320,7 @@
     <Content Include="Views\Employee\AddMovie.cshtml" />
     <Content Include="Views\Employee\AddSpecial.cshtml" />
     <Content Include="Views\FullSchedule\FullSchedule.cshtml" />
+    <Content Include="Views\Employee\AddMuseum.cshtml" />
     <Content Include="Views\Movies\_MovieOverview.cshtml" />
     <Content Include="Views\Special\SpecialOverview.cshtml" />
     <Content Include="Views\Special\SpecialDetailPage.cshtml" />
