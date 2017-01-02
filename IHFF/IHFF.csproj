@@ -199,6 +199,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\FullScheduleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -238,8 +239,10 @@
     <Compile Include="Models\Special.cs" />
     <Compile Include="Models\Voorstelling.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DbFoodRepository.cs" />
     <Compile Include="Repositories\DbEmployeeRepository.cs" />
     <Compile Include="Repositories\DbEventRepository.cs" />
+    <Compile Include="Repositories\DbMealRepository.cs" />
     <Compile Include="Repositories\DbMovieRepository.cs" />
     <Compile Include="Repositories\DbMuseumRepository.cs" />
     <Compile Include="Repositories\DbScheduleRepository.cs" />
@@ -247,6 +250,8 @@
     <Compile Include="Repositories\DbVoorstellingRepository.cs" />
     <Compile Include="Repositories\IEmployeeRepository.cs" />
     <Compile Include="Repositories\IEventRepository.cs" />
+    <Compile Include="Repositories\IFoodRepository.cs" />
+    <Compile Include="Repositories\IMealRepository.cs" />
     <Compile Include="Repositories\IMoviesRepository.cs" />
     <Compile Include="Repositories\IMuseumRepository.cs" />
     <Compile Include="Repositories\IScheduleRepository.cs" />
@@ -327,6 +332,7 @@
     <Content Include="Views\Museum\Index.cshtml" />
     <Content Include="Views\Special\_SpecialOverview.cshtml" />
     <Content Include="Views\Special\Index.cshtml" />
+    <Content Include="Views\Food\FoodOverview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

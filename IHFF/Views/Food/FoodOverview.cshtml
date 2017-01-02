@@ -1,0 +1,14 @@
+﻿@using IHFF.Models;
+@{
+    ViewBag.Title = "FoodOverview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Restaurant>
+
+<h2>Food Overview</h2>
+
+@foreach(Restaurant rst in Model)
+{
+    <p>@rst.Naam</p>
+    <p>@rst.Omschrijving</p>
+}
