@@ -23,7 +23,7 @@
 <br />
 <section class="form">
     @Html.ValidationSummary()
-    @using (Html.BeginForm("SpecialDetailPage", "Specials", FormMethod.Post))
+    @using (Html.BeginForm("SpecialDetailPage", "Special", FormMethod.Post))
     {
         @Html.HiddenFor(m => m.ItemID)
         @Html.LabelFor(m => m.Aantal)

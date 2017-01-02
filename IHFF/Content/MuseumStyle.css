@@ -1,0 +1,21 @@
+﻿h3{
+width: 100%;
+float: left;
+
+}
+
+.omschrijving{
+    width: 45%;
+}
+
+table{
+    width: 45%;
+}
+
+.tijden {
+    float: left;
+}
+
+.contact, .Prices{
+    float: left;
+}
