@@ -325,6 +325,8 @@
     <Content Include="Views\Special\SpecialOverview.cshtml" />
     <Content Include="Views\Special\SpecialDetailPage.cshtml" />
     <Content Include="Views\Museum\Index.cshtml" />
+    <Content Include="Views\Special\_SpecialOverview.cshtml" />
+    <Content Include="Views\Special\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

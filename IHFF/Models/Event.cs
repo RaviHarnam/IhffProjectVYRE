@@ -26,15 +26,28 @@ namespace IHFF.Models
         public void MakeEvent(Movie movie, Voorstelling voorstelling)
         {
             Titel = movie.Titel;
-            DatumTijd = voorstelling.DatumTijd;
+            DatumTijd = voorstelling.BeginTijd;
             Aantal = movie.Aantal;
+            Prijs = voorstelling.Prijs;
+        }
+        public void MakeEvent2(Movie movie, Voorstelling voorstelling)
+        {
+            Titel = movie.Titel;
+            DatumTijd = voorstelling.BeginTijd;
+            Prijs = voorstelling.Prijs;
+        }
+
+        public void MakeEvent2(Special special, Voorstelling voorstelling)
+        {
+            Titel = special.Titel;
+            DatumTijd = voorstelling.BeginTijd;
             Prijs = voorstelling.Prijs;
         }
 
         public void MakeEvent(Special special, Voorstelling voorstelling)
         {
             Titel = special.Titel;
-            DatumTijd = voorstelling.DatumTijd;
+            DatumTijd = voorstelling.BeginTijd;
             Aantal = special.Aantal;
 
         }

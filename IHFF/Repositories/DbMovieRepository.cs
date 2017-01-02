@@ -27,7 +27,7 @@ namespace IHFF.Repositories
             Movie mov = ctx.MOVIES.SingleOrDefault(i => i.ItemID == id);
 
             mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmbanner");
-            mov.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemId == mov.ItemID select v.DatumTijd).ToList();
+            mov.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemId == mov.ItemID select v.BeginTijd).ToList();
 
             return mov;
         }
@@ -38,7 +38,7 @@ namespace IHFF.Repositories
 
             tijden = (from v in ctx.VOORSTELLINGEN
                       where v.ItemId == movie.ItemID
-                      select v.DatumTijd).ToList();
+                      select v.BeginTijd).ToList();
 
             return tijden;
         }

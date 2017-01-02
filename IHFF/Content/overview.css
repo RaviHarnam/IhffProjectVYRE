@@ -165,7 +165,7 @@
   background: rgba(0, 0, 0, 0.6);
 }
 
-.hovereffect a.movie_index_item_description_button {
+.hovereffect .movie_index_item_description_button {
 
   display: inline-block; 
   line-height: 20px;
@@ -191,7 +191,7 @@
   background-color:#226493;
 }
 
-.hovereffect a.movie_index_item_description_button:hover {
+.hovereffect .movie_index_item_description_button {
   box-shadow: 0 0 5px #fff;
 }
 .hovereffect a.movie_index_item_description_button2:hover {
@@ -199,7 +199,7 @@
 }
 
 
-.hovereffect a.movie_index_item_description_button, .hovereffect h2 {
+.hovereffect .movie_index_item_description_button, .hovereffect h2 {
   -webkit-transform: scale(0.7);
   -ms-transform: scale(0.7);
   transform: scale(0.7);
@@ -224,7 +224,7 @@
 
 
 
-.hovereffect:hover a.movie_index_item_description_button, .hovereffect:hover h2 {
+.hovereffect:hover .movie_index_item_description_button, .hovereffect:hover h2 {
   opacity: 1;
   filter: alpha(opacity=100);
   -webkit-transform: scale(1);

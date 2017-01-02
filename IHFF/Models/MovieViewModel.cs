@@ -33,7 +33,7 @@ namespace IHFF.Models
 
             foreach(Voorstelling v in voorstellingen)
             {
-                Data.Add(v.DatumTijd);
+                Data.Add(v.BeginTijd);
             }
 
             ListItems = new SelectList(Data);

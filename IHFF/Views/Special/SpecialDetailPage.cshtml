@@ -35,7 +35,7 @@
         <select name="voorstellingId">
             @foreach (Voorstelling voorstelling in Model.Voorstellingen)
             {
-                <option value=@voorstelling.VoorstellingId>@voorstelling.DatumTijd.ToString("dd/MM/yy HH:mm")</option>
+                <option value=@voorstelling.VoorstellingId>@voorstelling.BeginTijd.ToString("dd/MM/yy HH:mm")</option>
             }
         </select>
         <br /><br />

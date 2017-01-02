@@ -27,20 +27,29 @@ namespace IHFF.Controllers
             return View(movies);
         }
         [HttpPost]
-        public ActionResult MovieOverview(int voorstellingId, Movie movie)
+        public ActionResult MovieOverview(int? voorstellingId, Movie movie, string aantal)
         {
-            Event eventx = movie.GetEvent(voorstellingId);
+            if (ModelState.IsValid)
+            {
+                int amount = 0;
+                if (voorstellingId != null && int.TryParse(aantal, out amount) && movie != null)
+                {
+                    if (amount > 0)
+                    {
+                        Event eventx = movie.GetEvent(voorstellingId.Value);
+                        eventx.Aantal = amount;
+                        if (Session["cart"] == null)
+                            Session["cart"] = new List<Event>();
 
-            if (Session["cart"] == null)
-                Session["cart"] = new List<Event>();
+                        List<Event> cartlist = (List<Event>)Session["cart"];
+                        cartlist.Add(eventx);
+                        Session["cart"] = cartlist;
 
-            List<Event> cartlist = (List<Event>)Session["cart"];
-            cartlist.Add(eventx);
-            Session["cart"] = cartlist;
-
-            //movie = dbMovie.GetMovie(movie.ItemID);
-            //movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);
-
+                        //movie = dbMovie.GetMovie(movie.ItemID);
+                        //movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);
+                    }
+                }
+            }
             return RedirectToAction("MovieOverview");
         }
         public ActionResult MovieDetailPage(int? movie_id)
@@ -51,15 +60,7 @@ namespace IHFF.Controllers
                 if (movie != null)
                 {
                     movie.Voorstellingen = (dbVoorstelling.GetVoorstellingen(movie.ItemID));
-                    List<SelectListItem> listItems = new List<SelectListItem>();
-                    foreach (DateTime dateTime in movie.Tijden)
-                    {
-                        SelectListItem item = new SelectListItem();
-                        item.Text = dateTime.ToString();
-                        item.Value = dateTime.ToString();
-                        listItems.Add(item);
-                    }
-
+                    
                     return View(movie);
                 }
             }
