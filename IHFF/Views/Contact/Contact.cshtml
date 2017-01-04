@@ -1,5 +1,5 @@
 ﻿@Styles.Render("~/Content/ContactStyle.css")
-@using IHFF.Models
+
 @{
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,7 +9,7 @@
 
 <article>
     <header>
-        <h2>Contactform</h2>
+        <h3>Contactform</h3>
     </header>
     <p>You can use the contact form below to contact the organization of the IHFF<br>All fields marked with a * are mandatory!</p>
     <form action="mailto:eise_wielinga@hotmail.com">
@@ -24,21 +24,21 @@
                 <input type="radio" name="geslacht" id="Mrs" value="Mrs" required>
                 <label for="miss" class="radio">Miss.</label>
                 <input type="radio" name="geslacht" id="Miss" value="Miss" required><br>
-                <label for="naam">Full name*:</label>
+                <label class="Label" for="naam">Full name*:</label>
                 <input type="text" id="naam" name="naam" placeholder="Name" required><br>
             </fieldset>
             <fieldset>
                 <legend><strong>Your contact details</strong></legend>
-                <label for="email">E-mail*:</label>
+                <label class="Label" for="email">E-mail*:</label>
                 <input type="email" id="email" name="email" placeholder="example@example.nl" required><br>
-                <label for="nummer">Phone number:</label>
+                <label class="Label" for="nummer">Phone number:</label>
                 <input type="tel" id="nummer" name="nummer" placeholder="06-12345678" pattern="\d{2}[\-]\d{8}"><br>
-                <label for="url">Web address:</label>
+                <label class="Label" for="url">Web address:</label>
                 <input type="url" id="url" name="url" placeholder="http://www.example.com"><br>
             </fieldset>
             <fieldset>
                 <legend><strong>Your message</strong></legend>
-                <label for="bericht">Message*:</label>
+                <label class="Label" for="bericht">Message*:</label>
                 <textarea id="bericht" name="bericht" required></textarea>
             </fieldset>
             <fieldset>
