@@ -8,18 +8,11 @@ float: left;
     width: 45%;
 }
 
-table{
-    width: 45%;
-}
-
-.tijden {
-    float: left;
-}
-
-.contact, .Prices{
-    float: left;
-}
 #bericht {
     height: 180px;
     width: 250px;
+}
+.GroteVeld{
+
+    margin-bottom: 25px;
 }
