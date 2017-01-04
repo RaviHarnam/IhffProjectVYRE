@@ -238,6 +238,7 @@
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Special.cs" />
     <Compile Include="Models\Voorstelling.cs" />
+    <Compile Include="Models\Zaal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DbFoodRepository.cs" />
     <Compile Include="Repositories\DbEmployeeRepository.cs" />
@@ -266,6 +267,7 @@
     <Content Include="Content\EditPages.css" />
     <Content Include="Content\FoodDetailPageStyle.css" />
     <Content Include="Content\FoodOverview.css" />
+    <Content Include="Content\FullOverview.css" />
     <Content Include="Content\Master.css" />
     <Content Include="Content\MovieDetailPageStyle.css" />
     <Content Include="Content\MuseumStyle.css" />

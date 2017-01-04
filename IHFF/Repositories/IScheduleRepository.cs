@@ -9,6 +9,6 @@ namespace IHFF.Repositories
 {
     interface IScheduleRepository
     {
-        IEnumerable<Voorstelling> getAllVoorstellingen(DayOfWeek dag);
+        IEnumerable<Voorstelling> getAllVoorstellingen();
     }
 }

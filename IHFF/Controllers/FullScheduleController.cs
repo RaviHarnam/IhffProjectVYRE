@@ -18,13 +18,11 @@ namespace IHFF.Controllers
             return RedirectToAction("FullSchedule");
         }
 
-        public ActionResult FullSchedule(DayOfWeek? day)
+        public ActionResult FullSchedule()
         {
-            if(day == null)
-            {
-                day = DayOfWeek.Monday;               
-            }
-            IEnumerable<Voorstelling> voorstellingen = repository.getAllVoorstellingen(day.Value);
+                         
+
+            IEnumerable<Voorstelling> voorstellingen = repository.getAllVoorstellingen();
            
             return View(voorstellingen);
         }

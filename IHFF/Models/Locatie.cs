@@ -22,6 +22,7 @@ namespace IHFF.Models
         [Display(Name = "City")]
         public string Plaats { get; set; }
         
+       
 
         public Locatie(string naam, string straat, int huisnummer, string toevoeging, string postcode, string plaats)
         {
