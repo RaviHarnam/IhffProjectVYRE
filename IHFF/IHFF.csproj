@@ -196,6 +196,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -260,6 +261,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AboutUsStyle.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CartStyle.css" />
@@ -337,6 +339,7 @@
     <Content Include="Views\Food\FoodOverview.cshtml" />
     <Content Include="Views\Food\_FoodOverview.cshtml" />
     <Content Include="Views\Food\FoodDetailPage.cshtml" />
+    <Content Include="Views\AboutUs\AboutUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
