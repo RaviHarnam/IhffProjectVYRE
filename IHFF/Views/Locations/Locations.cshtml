@@ -1,0 +1,53 @@
+﻿@Styles.Render("~/Content/AboutUsStyle.css")
+@{
+    ViewBag.Title = "Locations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Locations</h2>
+  
+    <div id="map"></div>
+    <script>
+        function initMap() {
+
+            var adres = 'London, UK';
+            var adres1 = 'Amsterdam, NL'
+
+             var map = new google.maps.Map(document.getElementById('map'), { 
+             mapTypeId: google.maps.MapTypeId.TERRAIN,
+             zoom: 8
+             });
+
+             var geocoder = new google.maps.Geocoder();
+
+            geocoder.geocode({
+                'address': adres                
+            },            
+         function(results, status) {
+            if(status == google.maps.GeocoderStatus.OK) {
+                new google.maps.Marker({
+                    position: results[0].geometry.location,
+                    map: map
+                });
+                map.setCenter(results[0].geometry.location);
+            }
+         });
+
+         var geocoder1 = new google.maps.Geocoder();
+         geocoder1.geocode({
+                'address': adres1
+         },
+         function (results, status) {
+             if (status == google.maps.GeocoderStatus.OK) {
+                 new google.maps.Marker({
+                     position: results[0].geometry.location,
+                     map: map
+                 });                 
+             }
+         });
+
+      }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEZwfuGfetRncNz7cV8NVozgH2OdX93Uw&callback=initMap">
+    </script>

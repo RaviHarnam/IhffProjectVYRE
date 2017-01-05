@@ -1,4 +1,3 @@
-
 using IHFF.Models;
 using System;
 using System.Collections.Generic;
@@ -26,6 +25,7 @@ namespace IHFF.Controllers
             IEnumerable<Movie> movies = dbMovie.GetAllMovies();
             return View(movies);
         }
+
         [HttpPost]
         [MultiButton(MatchFormKey = "action", MatchFormValue = "Add to cart")]
         public ActionResult MovieOverview(int? voorstellingId, Movie movie, string aantal)

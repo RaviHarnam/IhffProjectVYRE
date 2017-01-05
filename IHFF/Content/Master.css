@@ -9,22 +9,29 @@ body {
     margin-top: 0%;
     width: 75%;
     position: absolute;
-    left: 50%;
-    margin-left: -37.5%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     background-color: white;
     font-family: Roboto;
 }
 
+.contentENaside{    
+    margin-bottom: 1em;    
+}
+
 .content{
-    width: 75%;
     margin-left: 2%;
+    width: 70%;
     background-color: white;
 }
 
 .side-buttons {
     float: right;
-    margin-right: 3%;
-    margin-top: 2em;
+    margin-right: 2%;    
+    margin-top: 20px;
+    margin-bottom: 5%;
 }
 
 .side-buttons button {
@@ -32,7 +39,7 @@ body {
     height: 11.25em;
     background-color:#06AED5;
     display: block;
-    margin-top: 2em;
+    margin-top: 32px;
     border-style: none;
 }
 
@@ -172,15 +179,14 @@ h6{
 .header-img {
 }
 
-.left-img, .right-img{
+.home-img{
     height: 23em;
     width: 23em;
+    float: left;
     margin-bottom: 1.5em;
+    margin-right: 1.5em;
 }
 
-.left-img{
-    float: left;
-}
 
 .right-img{
     float: right;
@@ -194,3 +200,4 @@ h6{
     color:red;
     font-size: 70%;
 }
+

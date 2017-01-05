@@ -5,6 +5,7 @@ float: left;
 }
 
 .omschrijving{
+    float: left;
     width: 45%;
 }
 
@@ -18,4 +19,15 @@ table{
 
 .contact, .Prices{
     float: left;
+}
+
+.afbeelding{ 
+    width: 45%;
+    float: left;
+    margin-left: 5%;
+    margin-bottom: 2%;
+}
+
+section{
+    margin-bottom: 3%;
 }

@@ -1,0 +1,167 @@
+﻿@Styles.Render("~/Content/MuseumStyle.css")
+@Styles.Render("~/Content/overview.css")
+
+@using IHFF.Models
+@{
+    ViewBag.Title = "Index";
+}
+@model IEnumerable<Museum>
+
+<h2>Museums</h2>
+@{int museumNr = 0; }
+<table>
+    @Html.Hidden("museumId", 0)
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        <tr>
+            @for (int j = 0; j < 3; j++)
+                {
+                    if (museumNr < Model.Count())
+                    {
+                        if (Model.ElementAt(museumNr).MuseumAfbeelding != null)
+                        {
+                        <td>
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-lg-12">
+                                <div class="hovereffect">
+                                    <img class="img-responsive" src=@Model.ElementAt(museumNr).MuseumAfbeelding.Link alt=@Model.ElementAt(museumNr).Naam title="@Model.ElementAt(museumNr).Naam">
+                                    <div class="overlay">
+                                        <h2>@Model.ElementAt(museumNr).Naam</h2>
+
+                                        <!-- Trigger/Open The Modal -->
+                                        <!-- The Modal -->
+
+                                        <button id="@museumNr" class="movie_index_item_description_button">Voeg toe aan Cart</button>
+                                        <div class="modal">
+                                            <article class="modal-content">
+                                                <article class="modal-header">
+                                                    <button onclick="$(this).parent('div').style.display = 'none'" class="close">&times;</button>
+                                                    <h2>Modal Header</h2>
+                                                </article>
+
+                                                <div class="modal-footer">
+                                                    <h3>Do you have dinner plans yet? </h3>
+                                                </div>
+                                            </article>
+                                        </div>
+                                        <a href="SpaceOdysses.html" class="movie_index_item_description_button2">Wishlist</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(museumNr).Naam, "MuseumDetailPage", "Culture", 
+                                    new { museumId = Model.ElementAt(museumNr).MuseumID }, null) </p>
+                        </td>
+                        { museumNr++; }
+                    }
+                }
+            }
+
+
+
+        </tr>
+    }
+</table>
+
+<br />
+@Scripts.Render("~/bundles/jquery")
+
+
+<script>
+    $(document).ready(function () {
+
+        // When the user clicks anywhere outside of the modal, close it
+        $('.close').click(function () {
+            // If the clicked object is a modal.
+            $('.modal').css('display', 'none');
+        });
+
+        $('.movie_index_item_description_button').click(function () {
+            $(this).next()[0].style.display = "inline";
+            var title = $(this).prev('h2').html();
+            $('.modal-header').find('h2').html(title);
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+@*
+    @foreach (Museum m in Model)
+    {
+        <section>
+            <h3>@m.Naam</h3>
+            <p class="omschrijving">@m.Omschrijving</p>
+            <img class="afbeelding" src="@m.MuseumAfbeelding.Link" title="@m.Naam" />
+            <br />
+            <table class="tijden">
+                <tr>
+                    <th>Openingstijden:</th>
+                </tr>
+                <tr>
+                    <td>Maandag:</td>
+                    <td>@m.Maandag</td>
+                </tr>
+                <tr>
+                    <td>Dinsdag:</td>
+                    <td>@m.Dinsdag</td>
+                </tr>
+                <tr>
+                    <td>Woensdag:</td>
+                    <td>@m.Woensdag</td>
+                </tr>
+                <tr>
+                    <td>Donderdag:</td>
+                    <td>@m.Donderdag</td>
+                </tr>
+                <tr>
+                    <td>Vrijdag:</td>
+                    <td>@m.Vrijdag</td>
+                </tr>
+                <tr>
+                    <td>Zaterdag:</td>
+                    <td>@m.Zaterdag</td>
+                </tr>
+                <tr>
+                    <td>Zondag:</td>
+                    <td>@m.Zondag</td>
+                </tr>
+            </table>
+            <table class="contact">
+                <tr>
+                    <th>Contact:</th>
+                </tr>
+                <tr>
+                    <td>Website:</td>
+                    <td>@m.Website</td>
+                </tr>
+                <tr>
+                    <td>Telephone number:</td>
+                    <td>@m.Telefoon</td>
+                </tr>
+                <tr>
+                    <td>Locatie:</td>
+                    <td>@m.MuseumLocatie</td>
+                </tr>
+            </table>
+            <table class="Prices">
+                <tr>
+                    <th>Prices:</th>
+                </tr>
+                <tr>
+                    <td>Adults:</td>
+                    <td>@m.Adults</td>
+                </tr>
+                <tr>
+                    <td>Kids</td>
+                    <td>@m.Kids</td>
+                </tr>
+            </table>
+        </section>
+    } *@
+
