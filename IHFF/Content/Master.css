@@ -185,3 +185,12 @@ h6{
 .right-img{
     float: right;
 }
+
+.cartcount{
+    color:red;
+    font-size: 70%; 
+}
+.wishlistcount{
+    color:red;
+    font-size: 70%;
+}

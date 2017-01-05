@@ -107,6 +107,10 @@
 	background-color: #226493;
 }
 
+.movie_index_item_description_button2:hover{
+	background-color: #226493;
+}
+
 .company-image-overlay {
     width: 160px;
     height: 160px;
@@ -178,7 +182,7 @@
   background-color:#226493;
   cursor:pointer;
 }
-.hovereffect a.movie_index_item_description_button2{
+.hovereffect .movie_index_item_description_button2{
  
   display: inline-block;
   line-height: 20px;
@@ -194,7 +198,7 @@
 .hovereffect .movie_index_item_description_button {
   box-shadow: 0 0 5px #fff;
 }
-.hovereffect a.movie_index_item_description_button2:hover {
+.hovereffect .movie_index_item_description_button2:hover {
   box-shadow: 0 0 5px #fff;
 }
 
@@ -210,7 +214,7 @@
   color: #fff;
   text-transform: uppercase;
 }
-.hovereffect a.movie_index_item_description_button2, .hovereffect h2 {
+.hovereffect .movie_index_item_description_button2, .hovereffect h2 {
   -webkit-transform: scale(0.7);
   -ms-transform: scale(0.7);
   transform: scale(0.7);
@@ -232,7 +236,7 @@
   transform: scale(0.92);
 }
 
-.hovereffect:hover a.movie_index_item_description_button2, .hovereffect:hover h2 {
+.hovereffect:hover .movie_index_item_description_button2, .hovereffect:hover h2 {
   opacity: 1;
   filter: alpha(opacity=100);
   -webkit-transform: scale(0.92);

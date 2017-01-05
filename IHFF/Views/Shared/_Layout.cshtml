@@ -1,4 +1,4 @@
-﻿
+﻿@using IHFF.Models;
 <!DOCTYPE html>
 
 
@@ -9,12 +9,22 @@
     <!-- <link href="~/Content/Master.css" rel="stylesheet" type="text/css" /> -->
     @Styles.Render("~/Content/Master.css")
     @RenderSection("Scripts", required: false)
-    
-    
+    @{int cartCount = 0; }
+    @if (Session["Cart"] != null)
+    {
+        List<Event> events = (List<Event>)Session["Cart"];
+        cartCount = events.Count;
+    }
+    @{int wishListCount = 0; }
+    @if (Session["wishList"] != null)
+    {
+        List<Event> events = (List<Event>)Session["wishList"];
+        wishListCount = events.Count;
+    }
 </head>
 <body>
     <section>
-        <img class="header-logo" src="http://i.imgur.com/hgmXQXI.png"/>
+        <img class="header-logo" src="http://i.imgur.com/hgmXQXI.png" />
         <section id="header-imgs">
             <img class="header-img" src="http://imgur.com/1W31qIX.png" />
             <img class="header-img" src="http://imgur.com/gkrNHAA.png" />
@@ -25,13 +35,13 @@
     <section class="menu">
         <nav class="top-menu-bar">
             <ul>
-                <li id="menu-border-left"><h5>@Html.ActionLink("Home","Index","Home", null, new {@class= "link"})</h5></li>
-                <li><h5>@Html.ActionLink("Movies","MovieOverview","Movies",null ,new {@class= "link"})</h5></li>
-                <li><h5>@Html.ActionLink("Specials", "SpecialOverview","Special", null, new { @class = "link" }) </h5></li>
-                <li><h5>@Html.ActionLink("Food","FoodOverview","Food",null ,new {@class= "link"})</h5></li>
+                <li id="menu-border-left"><h5>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "link" })</h5></li>
+                <li><h5>@Html.ActionLink("Movies", "MovieOverview", "Movies", null, new { @class = "link" })</h5></li>
+                <li><h5>@Html.ActionLink("Specials", "SpecialOverview", "Special", null, new { @class = "link" }) </h5></li>
+                <li><h5>@Html.ActionLink("Food", "FoodOverview", "Food", null, new { @class = "link" })</h5></li>
                 <li><h5>Culture</h5></li>
-                <li class="right"><h5>@Html.ActionLink("Cart","Index","Cart", null, new {@class= "link"})</h5></li>
-                <li class="right" id="menu-border-left"><h5>Wishlist</h5></li>
+                <li class="right"><h5>@Html.ActionLink("Cart", "Index", "Cart", null, new { @class = "link" }) <span class="cartcount"> @cartCount </span></h5></li>
+                <li class="right"><h5>@Html.ActionLink("WishList", "Index", "WishList", null, new { @class = "link" }) <span class="wishlistcount"> @wishListCount </span></h5></li>
             </ul>
         </nav>
     </section>
@@ -62,7 +72,7 @@
         <ul id="footer-right">
             <li><h6>My wishlist</h6></li>
             <li><h6>Cart</h6></li>
-            <li><h6>@Html.ActionLink("Maintenence","LogIn","Employee", null, new {@Class = "link"})</h6></li>
+            <li><h6>@Html.ActionLink("Maintenence", "LogIn", "Employee", null, new { @Class = "link" })</h6></li>
         </ul>
     </footer>
 </body>

@@ -12,6 +12,10 @@ namespace IHFF.Models
         public int EventId { get; set; }
         [NotMapped]
         public int CartId { get; set; }
+        [NotMapped]
+        public int WishListId { get; set;}
+        [NotMapped]
+        public int Count { get; set; }
         public string Titel { get; set; }
         public int Bestellingid { get; set; }
         public int VoorstellingId { get; set; }

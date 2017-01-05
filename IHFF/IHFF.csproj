@@ -208,6 +208,7 @@
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\SpecialController.cs" />
     <Compile Include="Controllers\MuseumController.cs" />
+    <Compile Include="Controllers\WishListController.cs" />
     <Compile Include="Enum\Weekday.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -224,6 +225,7 @@
     <Compile Include="Models\Input\SpecialInputModel.cs" />
     <Compile Include="Models\Locatie.cs" />
     <Compile Include="Models\MovieViewModel.cs" />
+    <Compile Include="Models\MultiButtonAttribute.cs" />
     <Compile Include="Models\Museum.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventListRepresentation.cs" />
@@ -345,6 +347,7 @@
     <Content Include="Views\Food\FoodDetailPage.cshtml" />
     <Content Include="Views\AboutUs\AboutUs.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\WishList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
