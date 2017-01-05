@@ -8,6 +8,8 @@ namespace IHFF.Repositories
 {
     public class DbMealRepository : IMealRepository
     {
+        private IhffContext ctx = new IhffContext();
+        
         public IEnumerable<Maaltijd> GetAllMaaltijd()
         {
             throw new NotImplementedException();
@@ -15,7 +17,9 @@ namespace IHFF.Repositories
 
         public Maaltijd GetMaaltijd(int id)
         {
-            throw new NotImplementedException();
+            Maaltijd maaltijd = ctx.MAALTIJD.SingleOrDefault(m => m.MaaltijdID == id);
+            maaltijd.MaaltijdRestaurant = ctx.RESTAURANTS.SingleOrDefault(r => r.RestaurantID == maaltijd.RestaurantID);
+            return maaltijd;
         }
     }
 }
