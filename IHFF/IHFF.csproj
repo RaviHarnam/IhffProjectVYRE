@@ -204,6 +204,7 @@
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\FullScheduleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\SpecialController.cs" />
@@ -345,6 +346,7 @@
     <Content Include="Views\Food\FoodDetailPage.cshtml" />
     <Content Include="Views\AboutUs\AboutUs.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\Locations\Locations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
