@@ -49,18 +49,8 @@
                     <option value=@maaltijd.MaaltijdID> @maaltijd.BeginTijd.DayOfWeek @maaltijd.BeginTijd.ToString("dd/MM/yy") Dinner</option>
                 }
             }
-        </select>       
-         @*<select name="maaltijdtijd" id="tijd">
-             @foreach(Maaltijd maaltijd in Model.RestaurantMaaltijd)
-             {
-                 DateTime tijd = maaltijd.BeginTijd;
-                 while (tijd <= maaltijd.EindTijd)
-                 {
-                    <option value="@tijd.Hour">@tijd.ToString("HH")</option>
-                     {tijd = tijd.AddHours(1);}
-                 }
-             }*@            
-         @*</select>*@     
+        </select>   
+            
         <select name="maaltijdUur" id="uur">
 
         </select>  

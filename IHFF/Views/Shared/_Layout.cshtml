@@ -36,13 +36,15 @@
         </nav>
     </section>
 
-    <aside class="side-buttons">
-        <button><p>Full Schedule</p></button>
-        <button><p>Highlights</p></button>
-        <button><p>Combo Deals</p></button>
-    </aside>
-    <section class="content">
-        @RenderBody()
+    <section class="contentENaside">
+        <aside class="side-buttons">
+            <button><p>Full Schedule</p></button>
+            <button><p>Highlights</p></button>
+            <button><p>Combo Deals</p></button>
+        </aside>
+        <section class="content">            
+            @RenderBody()
+        </section>
     </section>
     <footer>
         <ul class="footer-left">
