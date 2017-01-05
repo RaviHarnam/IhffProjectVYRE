@@ -227,17 +227,17 @@
 .hovereffect:hover .movie_index_item_description_button, .hovereffect:hover h2 {
   opacity: 1;
   filter: alpha(opacity=100);
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
+  -webkit-transform: scale(0.92);
+  -ms-transform: scale(0.92);
+  transform: scale(0.92);
 }
 
 .hovereffect:hover a.movie_index_item_description_button2, .hovereffect:hover h2 {
   opacity: 1;
   filter: alpha(opacity=100);
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
+  -webkit-transform: scale(0.92);
+  -ms-transform: scale(0.92);
+  transform: scale(0.92);
 }
 
 
@@ -295,6 +295,7 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
+    
 }
 
 .close:hover,

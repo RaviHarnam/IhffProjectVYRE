@@ -1,19 +1,27 @@
 ﻿@using IHFF.Models;
 
 @model IEnumerable<Voorstelling>
-
+@Styles.Render("~/Content/FullOverview.css")
 @{
     ViewBag.Title = "FullSchedule";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{List<Locatie> locaties = new List<Locatie>();}
+@{List<Zaal> zalen = new List<Zaal>(); }
+
 @foreach (Voorstelling v in Model)
 {
     if (!locaties.Contains(v.VoorstellingLocatie))
     {
         locaties.Add(v.VoorstellingLocatie);
     }
-
+}
+@foreach (Voorstelling v in Model)
+{
+    if (!zalen.Contains(v.VoorstellingZaal))
+    {
+        zalen.Add(v.VoorstellingZaal);
+    }
 }
 <h2>Full Schedule</h2>
 <div class="schedule">
@@ -24,36 +32,110 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th scope="col">0:00</th>
-                    <th scope="col">1:00</th>
-                    <th scope="col">2:00</th>
-                    <th scope="col">3:00</th>
-                    <th scope="col">4:00</th>
-                    <th scope="col">5:00</th>
-                    <th scope="col">6:00</th>
-                    <th scope="col">7:00</th>
-                    <th scope="col">8:00</th>
-                    <th scope="col">9:00</th>
-                    <th scope="col">10:00</th>
-                    <th scope="col">11:00</th>
+                    @*<th scope="col">1:00</th>
+                        <th scope="col">2:00</th>
+                        <th scope="col">3:00</th>
+                        <th scope="col">4:00</th>
+                        <th scope="col">5:00</th>
+                        <th scope="col">6:00</th>
+                        <th scope="col">7:00</th>
+                        <th scope="col">8:00</th>
+                        <th scope="col">9:00</th>
+                        <th scope="col">10:00</th>
+                        <th scope="col">11:00</th>*@
+                    @*<th scope="col">12.00</th>
+                        <th scope="col">12.30</th>
+                        <th scope="col">13.00</th>
+                        <th scope="col">13.30</th>*@
+                    <th scope="col">14.00</th>
+                    <th scope="col" class="halfuur-header">14.30</th>
+                    <th scope="col">15.00</th>
+                    <th scope="col" class="halfuur-header">15.30</th>
+                    <th scope="col">16.00</th>
+                    <th scope="col" class="halfuur-header">16.30</th>
+                    <th scope="col">17.00</th>
+                    <th scope="col" class="halfuur-header">17.30</th>
+                    <th scope="col">18.00</th>
+                    <th scope="col" class="halfuur-header">18.30</th>
+                    <th scope="col">19.00</th>
+                    <th scope="col" class="halfuur-header">19.30</th>
+                    <th scope="col">20.00</th>
+                    <th scope="col" class="halfuur-header">20.30</th>
+                    <th scope="col">21.00</th>
+                    <th scope="col" class="halfuur-header">21.30</th>
+                    <th scope="col">22.00</th>
+                    <th scope="col" class="halfuur-header">22.30</th>
+                    <th scope="col">23.00</th>
+                    <th scope="col" class="halfuur-header">23.30</th>
+                    <th scope="col">0.00</th>
+                    <th scope="col" class="halfuur-header">0.30</th>
+                    <th scope="col">1.00</th>
                 </tr>
             </thead>
             <tbody>
-
                 @foreach (Locatie l in locaties)
                 {
                     <tr>
-                        <th scope="row">@l.Naam</th>
-
-                        @foreach (Voorstelling vo in Model.Where(m => m.VoorstellingLocatie == l))
-                        {
-                            int aantalHokjes = vo.
-                        }
+                        <th class="voorstelling_locatie" scope="row">@l.Naam</th>
                     </tr>
-                }
+                    foreach (Zaal z in zalen.Where(z => z.LocatieID == l.LocatieID))
+                    {
+                        <tr>
+                            <th class="voorstelling_zaal" scope="row">@z.ZaalNaam</th>
+                            @{Voorstelling vorige = null;}
+                            @foreach (Voorstelling vo in Model.Where(m => m.VoorstellingLocatie == l && m.BeginTijd.DayOfWeek == day && m.VoorstellingZaal.ZaalID == z.ZaalID).OrderBy(m => m.BeginTijd))
+                            {
+                                DateTime beginRooster = vo.BeginTijd;
+                                beginRooster = beginRooster - (new TimeSpan(14, 0, 0));
+                                int beginHokjes = (int)(beginRooster.Hour * 2) + (beginRooster.Minute / 30);
+                                DateTime EindRooster = vo.EindTijd;
+                                EindRooster = EindRooster - (new TimeSpan(14, 0, 0));
+                                if (vorige != null)
+                                {
+                                    //Meerder voorstellingen op 1 dag.
+                                    DateTime vorigeEindRooster = vorige.EindTijd;
+                                    vorigeEindRooster = vorigeEindRooster - (new TimeSpan(14, 0, 0));
+                                    int aantalHokjesleeg = beginHokjes - ((vorigeEindRooster.Hour * 2) + (vorigeEindRooster.Minute / 30));
+                                    for (int k = 1; k < aantalHokjesleeg; k++)
+                                    {
+                                        <td class="location-onzichtbaar"></td>
+                                    }
+                                }
+                                else
+                                {
+                                    for (int j = 0; j < beginHokjes; j++)
+                                    {
+                                        <td class="location-onzichtbaar"></td>
+                                    }
+                                }
 
+                                for (DateTime i = beginRooster; i <= EindRooster; i = i.AddMinutes(30))
+                                {
+                                    int aantalHokjes = (int)((vo.EindTijd - vo.BeginTijd).TotalMinutes / 30);
+                                    int hokje = aantalHokjes / 2;
+                                    if (i == beginRooster)
+                                    {
+                                        if (vo.VoorstellingItem is Movie)
+                                        {
+                                            <td title="@vo.VoorstellingItem.Titel" class="location-zichtbaar">@Html.ActionLink(vo.VoorstellingItem.Titel, "MovieDetailPage", "Movies", new {movie_id = vo.ItemId}, new { @Class = "link" })</td>
+                                        }
+                                        else //Special
+                                        {
+                                            <td title="@vo.VoorstellingItem.Titel" class="location-zichtbaar">@Html.ActionLink(vo.VoorstellingItem.Titel, "SpecialDetailPage", "Special", new {special_id = vo.ItemId}, new {@Class = "link"})</td>
+                                        }                                       
+                                    }
+                                    else
+                                    {
+                                        <td class="location-zichtbaar"></td>
+                                    }
+                                }
+                                vorige = vo;
+
+                            }
+                        </tr>
+                                    }
+                                }
             </tbody>
         </table>
-    }
-
+                                }
 </div>

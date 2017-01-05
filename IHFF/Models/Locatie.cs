@@ -22,8 +22,7 @@ namespace IHFF.Models
         [Required]
         [Display(Name = "Number")]
         public int Huisnummer { get; set; }
-
-        
+ 
         [Display(Name = "Addition")]
         [MaxLength(5)]
         public string Toevoeging { get; set; }
@@ -35,9 +34,7 @@ namespace IHFF.Models
         [Required]
         [Display(Name = "City")]
         public string Plaats { get; set; }
-
-
-
+ 
         public Locatie(string naam, string straat, int huisnummer, string toevoeging, string postcode, string plaats)
         {
             Naam = naam;
