@@ -93,7 +93,7 @@ namespace IHFF.Models.Input
             Zondag = m.Zondag;
             Telefoon = m.Telefoon;
             MuseumAfbeelding = m.MuseumAfbeelding;
-            MuseumLocatie = m.MuseumLocatie;           
+            MuseumLocatie = m.MuseumLocatie;    
         }
 
        

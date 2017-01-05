@@ -17,43 +17,51 @@
     @Html.HiddenFor(m => m.MuseumID)
     <p>
         @Html.LabelFor(m => m.Naam):
-        @Html.TextBoxFor(m => m.Naam, new { @Value = Model.Naam })               
+        @Html.TextBoxFor(m => m.Naam, new { @Value = Model.Naam })
     </p>
 
     if (Model.MuseumAfbeelding != null)
     {
-    <img class="bannerimg" src=@Model.MuseumAfbeelding.Link alt=@Model.Naam />
-    <p>
-        @Html.LabelFor(m => m.MuseumAfbeelding.Link):
-        @Html.TextBoxFor(m => m.MuseumAfbeelding.Link, new { @Value = Model.MuseumAfbeelding.Link, @Size = 30 })
-    </p>
+        <img class="bannerimg" src=@Model.MuseumAfbeelding.Link alt=@Model.Naam />
+        <p>
+            @Html.LabelFor(m => m.MuseumAfbeelding.Link):
+            @Html.TextBoxFor(m => m.MuseumAfbeelding.Link, new { @Value = Model.MuseumAfbeelding.Link, @Size = 30 })
+        </p>
     }
     <section class="summary">
         <h3>Summary</h3>
         @Html.TextAreaFor(m => m.Omschrijving, new { @Value = Model.Omschrijving, @Rows = 8, @cols = 40 })
     </section>
     <section class="info">
-        <h3>Openingstijden</h3>
+        <h3>Contact</h3>
+        <table>
+            
+            <tr>
+                <td> @Html.LabelFor(m => m.Telefoon):</td>
+                <td> @Html.TextBoxFor(m => m.Telefoon, new { @Value = Model.Telefoon, @Size = 30 })</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.Website):</td>
+                <td> @Html.TextBoxFor(m => m.Website, new { @Value = Model.Website, @Size = 30 })</td>
+            </tr>
+        </table>
+        <h3>Prices:</h3>
         <table>
             <tr>
-                <td> @Html.LabelFor(m => m.Telefoon)</td>
-                <td> @Html.TextBoxFor(m => m.Telefoon, new {@Value = Model.Telefoon, @Size = 30 })</td>                
+                <td> @Html.LabelFor(m => m.Adults):</td>
+                <td> @Html.TextBoxFor(m => m.Adults, new { @Value = Model.Adults, @Size = 30 })</td>
             </tr>
+
             <tr>
-                <td> @Html.LabelFor(m => m.Website)</td>
-                <td> @Html.TextBoxFor(m => m.Website, new {@Value = Model.Website, @Size = 30 })</td>
+                <td> @Html.LabelFor(m => m.Kids):</td>
+                <td> @Html.TextBoxFor(m => m.Kids, new { @Value = Model.Kids, @Size = 30 })</td>
             </tr>
+        </table>
+        <h3>Opening Hours</h3>
+        <table>
             <tr>
                 <td> @Html.LabelFor(m => m.Maandag):</td>
                 <td> @Html.TextBoxFor(m => m.Maandag, new { @Value = Model.Maandag, @Size = 30 })</td>
-            </tr>
-            <tr>
-                <td> @Html.LabelFor(m => m.Adults):</td>
-                <td> @Html.TextBoxFor(m => m.Adults, new {@Value = Model.Adults, @Size = 30 })</td>
-            </tr>
-            <tr>
-                <td> @Html.LabelFor(m => m.Kids)</td>
-                <td> @Html.TextBoxFor(m => m.Kids, new {@Value = Model.Kids, @Size = 30 })</td>
             </tr>
             <tr>
                 <td> @Html.LabelFor(m => m.Dinsdag):</td>

@@ -209,13 +209,14 @@ namespace IHFF.Repositories
 
         public void AddMuseum(Museum m)
         {
+            //Add location
             ctx.LOCATIES.Add(m.MuseumLocatie);
             ctx.SaveChanges();
             m.LocatieID = m.MuseumLocatie.LocatieID;
-
+            //Add Museum
             ctx.MUSEA.Add(m);
             ctx.SaveChanges();
-
+            //Add Picture
             m.MuseumAfbeelding.MuseumID = m.MuseumID;
             ctx.AFBEELDINGEN.Add(m.MuseumAfbeelding);
             ctx.SaveChanges();                        
