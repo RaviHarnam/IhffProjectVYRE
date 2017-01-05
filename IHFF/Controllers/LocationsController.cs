@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IHFF.Models;
+using IHFF.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +11,8 @@ namespace IHFF.Controllers
     public class LocationsController : Controller
     {
         // GET: Locations
+        private ILocatieRepository db = new dbLocatieRepository();
+
         public ActionResult Index()
         {
             return RedirectToAction("Locations");
@@ -16,7 +20,8 @@ namespace IHFF.Controllers
 
         public ActionResult Locations()
         {
-            return View();
+            IEnumerable<Locatie> locaties = db.GetLocaties();
+            return View(locaties);
         }
     }
 }

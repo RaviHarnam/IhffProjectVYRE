@@ -1,53 +1,117 @@
-﻿@Styles.Render("~/Content/AboutUsStyle.css")
+﻿@using IHFF.Models;
+@Styles.Render("~/Content/AboutUsStyle.css")
 @{
     ViewBag.Title = "Locations";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@model IEnumerable<Locatie>
 <h2>Locations</h2>
-  
-    <div id="map"></div>
-    <script>
-        function initMap() {
 
-            var adres = 'London, UK';
-            var adres1 = 'Amsterdam, NL'
 
-             var map = new google.maps.Map(document.getElementById('map'), { 
-             mapTypeId: google.maps.MapTypeId.TERRAIN,
-             zoom: 8
-             });
+@foreach (Locatie l in Model)
+{
+    <h2>@l.Naam</h2>
+    string part1 = "https://www.google.com/maps/embed/v1/place?key=AIzaSyAYYCY4xvWeS0uhR_0Q-IG1Mr35jCPU1cM";
+    string adres = String.Format("&q={0}%20{1},%20{2},%20NL", l.Straat.Replace(" ", "%20"), l.Huisnummer, l.Plaats.Replace(" ", "%20"));
+    string src = part1 + adres;
+    <iframe width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src="@src" allowfullscreen>
 
-             var geocoder = new google.maps.Geocoder();
+    </iframe>
+
+    <script type="text/javascript">
+        var adres = @Html.Raw(Json.Encode(l.Straat.ToString() + l.Huisnummer.ToString() + ", " + l.Plaats.ToString() + ", NL"));
+        codeAddress(adres);
+        </script>
+       
+}
+
+<div id="map"></div>
+<script>
+
+
+
+        @*<script type="text/javascript">
+         myFunction('@Html.Raw(Json.Encode(l.Straat.ToString() + l.Huisnummer.ToString() + "," + l.Plaats.ToString() + ", NL"))');
+</script>*@
+
+    
+</script>
+@*<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>*@  
+@*<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEZwfuGfetRncNz7cV8NVozgH2OdX93Uw&callback=initMap">
+</script>*@
+
+
+
+
+@*<script>
+ function initMap(obj) {
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                mapTypeId: google.maps.MapTypeId.TERRAIN,
+                zoom: 8
+            });
+
+            var geocoder = new google.maps.Geocoder();
+
+            var address = obj;
 
             geocoder.geocode({
-                'address': adres                
-            },            
-         function(results, status) {
-            if(status == google.maps.GeocoderStatus.OK) {
-                new google.maps.Marker({
-                    position: results[0].geometry.location,
-                    map: map
-                });
-                map.setCenter(results[0].geometry.location);
+            'address': address
+            },
+            function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK)
+            {
+            new google.maps.Marker({
+            position: results[0].geometry.location,
+            map: map
+            });
+            map.setCenter(results[0].geometry.location);
             }
-         });
+            });
+ }
 
-         var geocoder1 = new google.maps.Geocoder();
-         geocoder1.geocode({
-                'address': adres1
-         },
-         function (results, status) {
-             if (status == google.maps.GeocoderStatus.OK) {
-                 new google.maps.Marker({
-                     position: results[0].geometry.location,
-                     map: map
-                 });                 
-             }
-         });
+    </script>*@
 
-      }
-    </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEZwfuGfetRncNz7cV8NVozgH2OdX93Uw&callback=initMap">
-    </script>
+@*<iframe width="600"
+        height="450"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCEZwfuGfetRncNz7cV8NVozgH2OdX93Uw
+    &q=Space+Needle,Seattle+WA" allowfullscreen></iframe>*@
+
+
+
+ 
+
+<script>
+ var geocoder;
+ var map;
+ function codeAddress(address) {
+   geocoder = new google.maps.Geocoder();
+   geocoder.geocode({ 'address': address }, function (results, status) {
+     if (status == google.maps.GeocoderStatus.OK) {
+       var myOptions = {
+         zoom: 17,
+         center: results[0].geometry.location,
+         mapTypeId: google.maps.MapTypeId.ROADMAP
+       }
+       map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+       var marker = new google.maps.Marker({
+         map: map,
+         position: results[0].geometry.location
+       });
+       // create a marker
+       var marker = new google.maps.Marker({
+         position: results[0].geometry.location,
+         map: map,
+         title: 'Latitude: ' + results[0].geometry.location.Ya + ' Longitude :' + results[0].geometry.location.Za
+       });
+     }
+   });
+ }
+ 
+ 
+ </script>

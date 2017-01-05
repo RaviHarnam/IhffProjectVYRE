@@ -248,6 +248,7 @@
     <Compile Include="Repositories\DbEmployeeRepository.cs" />
     <Compile Include="Repositories\DbEventRepository.cs" />
     <Compile Include="Repositories\DbHotelRepository.cs" />
+    <Compile Include="Repositories\dbLocatieRepository.cs" />
     <Compile Include="Repositories\DbMealRepository.cs" />
     <Compile Include="Repositories\DbMovieRepository.cs" />
     <Compile Include="Repositories\DbMuseumRepository.cs" />
@@ -258,6 +259,7 @@
     <Compile Include="Repositories\IEventRepository.cs" />
     <Compile Include="Repositories\IFoodRepository.cs" />
     <Compile Include="Repositories\IHotelsRepository.cs" />
+    <Compile Include="Repositories\ILocatieRepository.cs" />
     <Compile Include="Repositories\IMealRepository.cs" />
     <Compile Include="Repositories\IMoviesRepository.cs" />
     <Compile Include="Repositories\IMuseumRepository.cs" />
