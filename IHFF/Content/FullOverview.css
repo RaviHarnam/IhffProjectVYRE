@@ -1,0 +1,44 @@
+﻿body {
+}
+
+table {
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    empty-cells: show;
+}
+
+.location-zichtbaar {
+    background-color: red;
+    font-size: 10px;
+    width: 50px;
+    height: 20px;
+}
+
+.location-onzichtbaar {
+    background-color: transparent;
+    width: 50px;
+}
+
+.halfuur-header{
+    color: transparent;
+}
+
+th{
+    font-size: 14px;
+    border: none;
+}
+td{
+    border: none;
+    height: 10px;
+}
+.voorstelling_locatie{
+    font-size: 18px;
+    text-align: left;
+}
+
+.voorstelling_zaal{
+    font-size: 14px;
+    color: darkslategrey;
+    text-align: center;
+}

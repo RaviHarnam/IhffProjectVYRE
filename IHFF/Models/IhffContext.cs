@@ -31,6 +31,7 @@ namespace IHFF.Models
             modelBuilder.Entity<Museum>().ToTable("MUSEUM");
             modelBuilder.Entity<Locatie>().ToTable("LOCATIE");
             modelBuilder.Entity<Maaltijd>().ToTable("MAALTIJD");
+            modelBuilder.Entity<Zaal>().ToTable("ZAAL");
         }
 
         // Database sets
@@ -45,5 +46,6 @@ namespace IHFF.Models
         public DbSet<Museum> MUSEA { get; set; }
         public DbSet<Locatie> LOCATIES { get; set; }
         public DbSet<Maaltijd> MAALTIJD { get; set; }
+        public DbSet<Zaal> ZALEN { get; set; }
     }
 }

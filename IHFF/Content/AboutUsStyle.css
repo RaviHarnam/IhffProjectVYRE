@@ -1,21 +1,4 @@
-﻿h3{
-width: 100%;
-float: left;
-
+﻿.tekst{
+    width: 80%;
 }
 
-.omschrijving{
-    width: 45%;
-}
-
-table{
-    width: 45%;
-}
-
-.tijden {
-    float: left;
-}
-
-.contact, .Prices{
-    float: left;
-}

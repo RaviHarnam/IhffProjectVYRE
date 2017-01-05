@@ -53,26 +53,6 @@ namespace IHFF.Models
             Telefoon = telefoon;
         }
 
-        
-        public void Edit(Museum m)
-        {
-            //this = m; ???????
-
-            Naam = m.Naam;
-            Omschrijving = m.Omschrijving;
-            Adults = m.Adults;
-            Kids = m.Kids;
-            Website = m.Website;
-            Maandag = m.Maandag;
-            Dinsdag = m.Dinsdag;
-            Woensdag = m.Woensdag;
-            Donderdag = m.Donderdag;
-            Vrijdag = m.Vrijdag;
-            Zaterdag = m.Zaterdag;
-            Zondag = m.Zondag;
-            Telefoon = m.Telefoon;
-        }
-
         public void ConvertFromMuseumInputModel(MuseumInputModel m)
         {
             Naam = m.Naam;
