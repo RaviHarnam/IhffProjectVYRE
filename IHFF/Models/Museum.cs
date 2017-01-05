@@ -14,7 +14,6 @@ namespace IHFF.Models
         public int MuseumID { get; set; }
         public string Naam { get; set; }
         public string Omschrijving { get; set; }  
-        
         public int LocatieID { get; set; }
         public string Telefoon { get; set; }
         public string Adults { get; set; }
@@ -52,26 +51,6 @@ namespace IHFF.Models
             Zaterdag = zaterdag;
             Zondag = zondag;
             Telefoon = telefoon;
-        }
-
-        
-        public void Edit(Museum m)
-        {
-            //this = m; ???????
-
-            Naam = m.Naam;
-            Omschrijving = m.Omschrijving;
-            Adults = m.Adults;
-            Kids = m.Kids;
-            Website = m.Website;
-            Maandag = m.Maandag;
-            Dinsdag = m.Dinsdag;
-            Woensdag = m.Woensdag;
-            Donderdag = m.Donderdag;
-            Vrijdag = m.Vrijdag;
-            Zaterdag = m.Zaterdag;
-            Zondag = m.Zondag;
-            Telefoon = m.Telefoon;
         }
 
         public void ConvertFromMuseumInputModel(MuseumInputModel m)

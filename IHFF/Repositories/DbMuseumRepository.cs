@@ -22,7 +22,33 @@ namespace IHFF.Repositories
 
         public List<Museum> GetAll()
         {
-            return ctx.MUSEA.ToList();
+            List<Museum> museumLijst = ctx.MUSEA.ToList();
+
+            foreach(Museum m in museumLijst)
+            {
+                m.MuseumAfbeelding = new Afbeelding();
+                m.MuseumAfbeelding.MuseumID = m.MuseumID;
+                m.MuseumAfbeelding.Link = (from afbeelding in ctx.AFBEELDINGEN
+                                           where afbeelding.MuseumID == m.MuseumID && afbeelding.Type == "museumoverview"
+                                           select afbeelding.Link).SingleOrDefault();
+            }
+
+            return museumLijst;
+        }
+
+        public Museum GetMuseum(int? museumId)
+        {
+            Museum museum = (from m in ctx.MUSEA
+                             where m.MuseumID == museumId
+                             select m).SingleOrDefault();
+
+            museum.MuseumAfbeelding = new Afbeelding();
+            museum.MuseumAfbeelding.MuseumID = museum.MuseumID;
+            museum.MuseumAfbeelding.Link = (from afb in ctx.AFBEELDINGEN
+                                            where afb.MuseumID == museumId && afb.Type == "museumbanner"
+                                            select afb.Link).SingleOrDefault();
+
+            return museum;
         }
     }
 }

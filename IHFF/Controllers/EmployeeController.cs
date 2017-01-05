@@ -24,6 +24,8 @@ namespace IHFF.Controllers
         }
         public ActionResult LogIn()
         {
+            if (System.Web.HttpContext.Current.User != null && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return RedirectToAction("ManagementWindow");
             return View();
         }
         [HttpPost]
@@ -200,7 +202,7 @@ namespace IHFF.Controllers
                 db.DeleteRestaurant(id.Value);
             return RedirectToAction("ManagementWindow");
         }
-
+        // Toevoegen van events
         [Authorize]
         public ActionResult AddMovie()
         {
@@ -250,12 +252,18 @@ namespace IHFF.Controllers
         [Authorize]
         [HttpPost]
         public ActionResult AddMuseum(MuseumInputModel m, string afbLink)
-        {
+        {            
             if(ModelState.IsValid)
             {
                 Museum mus = new Museum();
-                mus.ConvertFromMuseumInputModel(m);
+                //Locatie loc = new Locatie();
+
+                //loc.ConvertFromLocatieInputModel(l);
+                mus.ConvertFromMuseumInputModel(m);         
+                m.MuseumLocatie.Naam = m.Naam;
                 mus.MuseumAfbeelding = new Afbeelding(null, mus.MuseumID, null, afbLink, "museumbanner");
+                mus.MuseumLocatie = m.MuseumLocatie;
+                //mus.MuseumLocatie = loc;
                 db.AddMuseum(mus);
             }
             return RedirectToAction("ManagementWindow");

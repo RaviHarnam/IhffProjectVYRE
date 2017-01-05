@@ -29,7 +29,7 @@
                 <li><h5>@Html.ActionLink("Movies","MovieOverview","Movies",null ,new {@class= "link"})</h5></li>
                 <li><h5>@Html.ActionLink("Specials", "SpecialOverview","Special", null, new { @class = "link" }) </h5></li>
                 <li><h5>@Html.ActionLink("Food","FoodOverview","Food",null ,new {@class= "link"})</h5></li>
-                <li><h5>Culture</h5></li>
+                <li><h5>@Html.ActionLink("Culture", "MuseumOverview", "Culture", null, new { @class = "link" })</h5></li>
                 <li class="right"><h5>@Html.ActionLink("Cart","Index","Cart", null, new {@class= "link"})</h5></li>
                 <li class="right" id="menu-border-left"><h5>Wishlist</h5></li>
             </ul>
@@ -48,15 +48,15 @@
     </section>
     <footer>
         <ul class="footer-left">
-            <li id="home-button"><h6>Home</h6></li>
+            <li id="home-button"><h6>@Html.ActionLink("Home", "Index", "Home", null, new {@Class = "link"})</h6></li>
             <li><h6>@Html.ActionLink("Movies", "MovieOverview", "Movies", null, new { @class = "link" })</h6></li>
-            <li><h6>Specials</h6></li>
+            <li><h6>@Html.ActionLink("Specials", "SpecialOverview", "Special", null, new {@Class = "link"})</h6></li>
             <li><h6>@Html.ActionLink("Food", "FoodOverview", "Food", null, new { @class = "link" })</h6></li>
             <li><h6>Culture</h6></li>
         </ul>
         <ul id="footer-middle">
             <li><h6>Locations</h6></li>
-            <li><h6>@Html.ActionLink("AboutUs", "AboutUs", "AboutUs", null, new { @class = "link" })</h6></li>
+            <li><h6>@Html.ActionLink("About Us", "AboutUs", "AboutUs", null, new { @class = "link" })</h6></li>
             <li><h6>FAQ</h6></li>
             <li><h6>@Html.ActionLink("Contact", "Contact", "Contact", null, new { @class = "link" })</h6></li>
             <li><h6>Hotels</h6></li>
