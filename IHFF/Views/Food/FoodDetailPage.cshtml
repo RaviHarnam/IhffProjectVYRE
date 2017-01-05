@@ -40,7 +40,14 @@
             <option selected="selected"></option>
             @foreach (Maaltijd maaltijd in Model.RestaurantMaaltijd)
             {
-                <option value=@maaltijd.MaaltijdID> @maaltijd.BeginTijd.DayOfWeek @maaltijd.BeginTijd.ToString("dd/MM/yy")</option>                
+                if (maaltijd.BeginTijd.Hour < 16)
+                {
+                <option value=@maaltijd.MaaltijdID> @maaltijd.BeginTijd.DayOfWeek @maaltijd.BeginTijd.ToString("dd/MM/yy") Lunch</option>
+                }
+                else
+                {
+                    <option value=@maaltijd.MaaltijdID> @maaltijd.BeginTijd.DayOfWeek @maaltijd.BeginTijd.ToString("dd/MM/yy") Dinner</option>
+                }
             }
         </select>       
          @*<select name="maaltijdtijd" id="tijd">

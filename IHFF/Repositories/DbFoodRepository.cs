@@ -46,7 +46,8 @@ namespace IHFF.Repositories
             tijd = begintijd;
             double Verschil = (eindtijd - begintijd).TotalHours;
 
-            List<int> uren = new List<int>();
+            List<int> uren = new List<int>();    
+              
             for(int i = 0; i < Verschil; i++)
             {
                 tijd = begintijd.AddHours(i);

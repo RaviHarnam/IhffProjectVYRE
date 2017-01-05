@@ -49,14 +49,14 @@
             <li id="home-button"><h6>Home</h6></li>
             <li><h6>@Html.ActionLink("Movies", "MovieOverview", "Movies", null, new { @class = "link" })</h6></li>
             <li><h6>Specials</h6></li>
-            <li><h6>Food</h6></li>
+            <li><h6>@Html.ActionLink("Food", "FoodOverview", "Food", null, new { @class = "link" })</h6></li>
             <li><h6>Culture</h6></li>
         </ul>
         <ul id="footer-middle">
             <li><h6>Locations</h6></li>
-            <li><h6>About us</h6></li>
+            <li><h6>@Html.ActionLink("AboutUs", "AboutUs", "AboutUs", null, new { @class = "link" })</h6></li>
             <li><h6>FAQ</h6></li>
-            <li><h6>Contact</h6></li>
+            <li><h6>@Html.ActionLink("Contact", "Contact", "Contact", null, new { @class = "link" })</h6></li>
             <li><h6>Hotels</h6></li>
         </ul>
         <ul id="footer-right">
