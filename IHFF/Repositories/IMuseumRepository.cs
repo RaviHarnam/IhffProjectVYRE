@@ -12,5 +12,6 @@ namespace IHFF.Repositories
         List<Museum> GetAll();
         void AddMuseum(Museum museum);
         void DeleteMuseum(Museum museum);
+        Museum GetMuseum(int? museumId);
     }
 }
