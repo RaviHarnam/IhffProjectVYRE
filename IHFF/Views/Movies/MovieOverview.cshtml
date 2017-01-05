@@ -13,13 +13,13 @@
 @model IEnumerable<Movie>
 
 <h2>Movie Overview</h2>
-
+@Html.ActionLink("Full Schedule", "FullSchedule", "FullSchedule", null, new { @Class = "bllink" })
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Movies</title>
 </head>
 <body>
 
@@ -71,7 +71,7 @@
                                                                 <div class="pull-right">@Html.Hidden("voorstellingid", )
                                                              @Html.Hidden("returnUrl", Request.Url.PathAndQuery)<input type="submit" class="movie_index_item_description_button" value="Add  tocart" /></div>
                                                             }*@
-                                                       
+
                                                     </div>
                                                     <div class="modal-footer">
                                                         <h3>Do you have dinner plans yet? <!--Html.ActionLink("", "", "", null, new {Class = "" })--></h3>
@@ -86,8 +86,8 @@
                                                         modal.style.display = "block";
                                                     }
                                                 </script>*@
-                                            <a href="SpaceOdysses.html" class="movie_index_item_description_button2">Wishlist</a>  <!--a ref naar actionlink-->
-                                        </div>
+                                            <button onclick="location.href='@Url.Action("Wishlist", "MoviesController")'" id="@movieNr" class="movie_index_item_description_button2">Wishlist</button>
+                                           
                                     </div>
 
                                 </div>
@@ -179,7 +179,11 @@
                 var title = $(this).prev('h2').html();
                 $('.modal-header').find('h2').html(title);
             });
+
+
         });
     </script>
+
+
 </body>
 </html>

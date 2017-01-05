@@ -186,3 +186,18 @@ h6{
     margin-bottom: 1.5em;
     margin-right: 1.5em;
 }
+
+
+.right-img{
+    float: right;
+}
+
+.cartcount{
+    color:red;
+    font-size: 70%; 
+}
+.wishlistcount{
+    color:red;
+    font-size: 70%;
+}
+

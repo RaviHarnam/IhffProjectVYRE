@@ -27,6 +27,7 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
+        [MultiButton(MatchFormKey = "action", MatchFormValue = "Add to cart")]
         public ActionResult MovieOverview(int? voorstellingId, Movie movie, string aantal)
         {
             if (ModelState.IsValid)
@@ -52,6 +53,37 @@ namespace IHFF.Controllers
             }
             return RedirectToAction("MovieOverview");
         }
+
+        [HttpPost]
+        [ActionName("MovieOverview")]
+        [MultiButton(MatchFormKey = "action", MatchFormValue = "Add to wishlist")]
+        public ActionResult MovieOvervieww(int? voorstellingId, Movie movie, string aantal)
+        {
+            if (ModelState.IsValid)
+            {
+                int amount = 0;
+                if (voorstellingId != null && int.TryParse(aantal, out amount) && movie != null)
+                {
+                    if (amount > 0)
+                    {
+                        Event eventx = movie.GetEvent(voorstellingId.Value);
+                        eventx.Aantal = amount;
+                        if (Session["wishlist"] == null)
+                            Session["wishlist"] = new List<Event>();
+
+                        List<Event> wishList = (List<Event>)Session["wishlist"];
+                        wishList.Add(eventx);
+                        Session["wishlist"] = wishList;
+
+                        //movie = dbMovie.GetMovie(movie.ItemID);
+                        //movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);
+                    }
+                }
+            }
+            return RedirectToAction("MovieOverview");
+        }
+
+
         public ActionResult MovieDetailPage(int? movie_id)
         {
             if (movie_id != null)
@@ -80,6 +112,25 @@ namespace IHFF.Controllers
             List<Event> cartlist = (List<Event>)Session["cart"];
             cartlist.Add(eventx);
             Session["cart"] = cartlist;
+
+            movie = dbMovie.GetMovie(movie.ItemID);
+            movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);
+
+            return View(movie);
+        }
+
+        [HttpPost]
+        [ActionName("MovieDetailPage")]
+        public ActionResult MovieDetailPagee(Movie movie, int voorstellingId)
+        {
+            Event eventx = movie.GetEvent(voorstellingId);
+
+            if (Session["wishlist"] == null)
+                Session["wishlist"] = new List<Event>();
+
+            List<Event> wishList = (List<Event>)Session["wishlist"];
+            wishList.Add(eventx);
+            Session["wishlist"] = wishList;
 
             movie = dbMovie.GetMovie(movie.ItemID);
             movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);

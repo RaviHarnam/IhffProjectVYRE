@@ -15,6 +15,7 @@ namespace IHFF.Controllers
 
         public ActionResult Index()
         {
+            
             if (Session["cart"] == null)
                 Session["cart"] = new List<Event>();
 
@@ -24,7 +25,7 @@ namespace IHFF.Controllers
                 ev.CartId = cartList.IndexOf(ev);
 
             Session["cart"] = cartList;
-
+            
             return View(cartList);
 
         }

@@ -9,7 +9,7 @@ table {
 }
 
 .location-zichtbaar {
-    background-color: red;
+    background-color: darkcyan;
     font-size: 10px;
     width: 50px;
     height: 20px;
@@ -41,4 +41,9 @@ td{
     font-size: 14px;
     color: darkslategrey;
     text-align: center;
+}
+
+/*Side buttons (i.e Full Schedule) onzichtbaar maken. */
+.side-buttons{
+    display: none;
 }
