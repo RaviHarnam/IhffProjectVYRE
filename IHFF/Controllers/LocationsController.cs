@@ -11,7 +11,7 @@ namespace IHFF.Controllers
     public class LocationsController : Controller
     {
         // GET: Locations
-        private ILocatieRepository db = new dbLocatieRepository();
+        private ILocatieRepository db = new DbLocatieRepository();
 
         public ActionResult Index()
         {
