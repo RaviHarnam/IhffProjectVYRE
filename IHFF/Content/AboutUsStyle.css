@@ -1,4 +1,8 @@
 ﻿.tekst{
-    width: 80%;
+    width: 85%;
 }
 
+ #map {
+            height: 400px;
+            width: 75%;
+        }

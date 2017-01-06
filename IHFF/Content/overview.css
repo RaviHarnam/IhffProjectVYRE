@@ -62,11 +62,12 @@
     height: 40px;
     line-height: 30px;
     opacity: 1;
-    margin-bottom:35px;
+    margin-bottom:35px;    
        
 }
 .movie_index_item_title a {
     color: white;
+    text-decoration: none;
 }
 .movie_index_item_description_button{
     text-decoration: none;
@@ -107,6 +108,10 @@
 	background-color: #226493;
 }
 
+.movie_index_item_description_button2:hover{
+	background-color: #226493;
+}
+
 .company-image-overlay {
     width: 160px;
     height: 160px;
@@ -135,8 +140,11 @@
   position: absolute;
   overflow: hidden;
   top: 0;
-  left: 0;
- 
+  left: 0; 
+}
+.hovereffect .overlaytitel{
+    width: 250px;
+    left: -10px;
 }
 
 .hovereffect img {
@@ -178,7 +186,7 @@
   background-color:#226493;
   cursor:pointer;
 }
-.hovereffect a.movie_index_item_description_button2{
+.hovereffect .movie_index_item_description_button2{
  
   display: inline-block;
   line-height: 20px;
@@ -194,7 +202,7 @@
 .hovereffect .movie_index_item_description_button {
   box-shadow: 0 0 5px #fff;
 }
-.hovereffect a.movie_index_item_description_button2:hover {
+.hovereffect .movie_index_item_description_button2:hover {
   box-shadow: 0 0 5px #fff;
 }
 
@@ -210,7 +218,7 @@
   color: #fff;
   text-transform: uppercase;
 }
-.hovereffect a.movie_index_item_description_button2, .hovereffect h2 {
+.hovereffect .movie_index_item_description_button2, .hovereffect h2 {
   -webkit-transform: scale(0.7);
   -ms-transform: scale(0.7);
   transform: scale(0.7);
@@ -232,7 +240,7 @@
   transform: scale(0.92);
 }
 
-.hovereffect:hover a.movie_index_item_description_button2, .hovereffect:hover h2 {
+.hovereffect:hover .movie_index_item_description_button2, .hovereffect:hover h2 {
   opacity: 1;
   filter: alpha(opacity=100);
   -webkit-transform: scale(0.92);
@@ -291,11 +299,11 @@
 
 /* The Close Button */
 .close {
-    color: white;
+    color: black;
     float: right;
     font-size: 28px;
     font-weight: bold;
-    
+    margin-top: 15px;    
 }
 
 .close:hover,
@@ -319,7 +327,9 @@
     color: white;
 }
 
-
+table{
+    width: 764px;
+}
 
 
 

@@ -14,7 +14,6 @@ namespace IHFF.Models
         public int MuseumID { get; set; }
         public string Naam { get; set; }
         public string Omschrijving { get; set; }  
-        
         public int LocatieID { get; set; }
         public string Telefoon { get; set; }
         public string Adults { get; set; }
