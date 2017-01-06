@@ -209,7 +209,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\SpecialController.cs" />
-    <Compile Include="Controllers\MuseumController.cs" />
     <Compile Include="Controllers\WishListController.cs" />
     <Compile Include="Controllers\CultureController.cs" />
     <Compile Include="Enum\Weekday.cs" />

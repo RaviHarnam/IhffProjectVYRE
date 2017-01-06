@@ -134,6 +134,10 @@
   left: 0;
  
 }
+.hovereffect .overlaytitel{
+    width: 250px;
+    left: -10px;
+}
 
 .hovereffect img {
   display: block;
