@@ -6,7 +6,7 @@ using IHFF.Models;
 
 namespace IHFF.Repositories
 {
-    public class dbLocatieRepository : ILocatieRepository
+    public class DbLocatieRepository : ILocatieRepository
     {
         private IhffContext ctx = new IhffContext();
 

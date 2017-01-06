@@ -219,6 +219,7 @@
     <Compile Include="Models\Afbeelding.cs" />
     <Compile Include="Models\Bestelling.cs" />
     <Compile Include="Models\Input\AfbeeldingInputModel.cs" />
+    <Compile Include="Models\Input\HotelInputModel.cs" />
     <Compile Include="Models\Input\ItemInputModel.cs" />
     <Compile Include="Models\Input\LocatieInputModel.cs" />
     <Compile Include="Models\Input\MovieInputModel.cs" />
@@ -250,7 +251,7 @@
     <Compile Include="Repositories\DbEmployeeRepository.cs" />
     <Compile Include="Repositories\DbEventRepository.cs" />
     <Compile Include="Repositories\DbHotelRepository.cs" />
-    <Compile Include="Repositories\dbLocatieRepository.cs" />
+    <Compile Include="Repositories\DbLocatieRepository.cs" />
     <Compile Include="Repositories\DbMealRepository.cs" />
     <Compile Include="Repositories\DbMovieRepository.cs" />
     <Compile Include="Repositories\DbMuseumRepository.cs" />
@@ -359,6 +360,7 @@
     <Content Include="Views\Culture\MuseumDetailPage.cshtml" />
     <Content Include="Views\Culture\index.cshtml" />
     <Content Include="Views\Hotels\HotelsOverview.cshtml" />
+    <Content Include="Views\Employee\AddHotel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -230,5 +230,14 @@ namespace IHFF.Repositories
             ctx.AFBEELDINGEN.Add(r.RestaurantAfbeelding);
             ctx.SaveChanges();
         }
+
+        public void AddHotel(Hotel h)
+        {
+            ctx.HOTEL.Add(h);
+            h.HotelAfbeelding.HotelID = h.HotelId;
+            ctx.AFBEELDINGEN.Add(h.HotelAfbeelding);
+            ctx.SaveChanges();
+
+        }
     }
 }
