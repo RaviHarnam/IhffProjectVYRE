@@ -40,35 +40,37 @@
 
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-lg-12">
                                     <div class="hovereffect">
-                                      
-                                        <img class="img-responsive" src=@Model.ElementAt(restaurantNr).RestaurantAfbeelding.Link alt=@Model.ElementAt(restaurantNr).Naam title="@Model.ElementAt(restaurantNr).Naam">
-                                        <div class="overlay">
 
+                                        
+                                            <img class="img-responsive" src=@Model.ElementAt(restaurantNr).RestaurantAfbeelding.Link alt=@Model.ElementAt(restaurantNr).Naam title="@Model.ElementAt(restaurantNr).Naam">
+                                        
+                                                                                
+                                            <div class="overlay">
+                                                <a class="plaatjelink" href='@Url.Action("FoodDetailPage", "Food", new { food_id = Model.ElementAt(restaurantNr).RestaurantID }, null)'></a> 
+                                                <a href='@Url.Action("FoodDetailPage", "Food", new { food_id = Model.ElementAt(restaurantNr).RestaurantID }, null)'>
+                                                    <h2 class="overlaytitel">@Model.ElementAt(restaurantNr).Naam</h2>
+                                                </a>
 
-                                            <h2 class="overlaytitel">@Model.ElementAt(restaurantNr).Naam</h2>
+                                                    <button id="@restaurantNr" class="movie_index_item_description_button">Voeg toe aan Cart</button>
+                                                    <div class="modal">
+                                                        <article class="modal-content">
+                                                            <article class="modal-header">
+                                                                <button class="close">&times;</button>
 
+                                                                <h2>Modal Header</h2>
+                                                            </article>
+                                                            <div class="modal-body">
+                                                                @*@Html.Partial("_FoodOverview", @Model.ElementAt(restaurantNr))*@
 
-
-                                            <button id="@restaurantNr" class="movie_index_item_description_button">Voeg toe aan Cart</button>
-                                            <div class="modal">
-                                                <article class="modal-content">
-                                                    <article class="modal-header">
-                                                        <button  class="close">&times;</button>
-
-                                                        <h2>Modal Header</h2>
-                                                    </article>
-                                                    <div class="modal-body">
-                                                        @*@Html.Partial("_FoodOverview", @Model.ElementAt(restaurantNr))*@
-                                                      
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <h3>Do you have dinner plans yet? <!--Html.ActionLink("", "", "", null, new {Class = "" })--></h3>
+                                                            </div>
+                                                        </article>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <h3>Do you have dinner plans yet? <!--Html.ActionLink("", "", "", null, new {Class = "" })--></h3>
-                                                    </div>
-                                                </article>
-                                            </div>
-                                      
-                                        </div>
-                                    </div>
+
+</div>
+</div>
 
                                 </div>
                                 <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(restaurantNr).Naam, "FoodDetailPage", "Food", new { food_id = Model.ElementAt(restaurantNr).RestaurantID }, null) </p>
