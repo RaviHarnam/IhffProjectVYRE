@@ -93,11 +93,12 @@
     height: 40px;
     line-height: 30px;
     opacity: 1;
-    margin-bottom:35px;
+    margin-bottom:35px;    
        
 }
 .movie_index_item_title a {
     color: white;
+    text-decoration: none;
 }
 .cartbutton{
         text-decoration: none;
@@ -203,8 +204,11 @@
   position: absolute;
   overflow: hidden;
   top: 0;
-  left: 0;
- 
+  left: 0; 
+}
+.hovereffect .overlaytitel{
+    width: 250px;
+    left: -10px;
 }
 
 .hovereffect img {
@@ -359,12 +363,13 @@
 
 /* The Close Button */
 .close {
-    color: white;
+    color: black;
     float: right;
     font-size: 28px;
     font-weight: bold;
     background-color:#06AED5;
     border:none;
+    margin-top: 15px;    
 }
 
 .close:hover,
@@ -388,7 +393,9 @@
     color: white;
 }
 
-
+table{
+    width: 764px;
+}
 
 
 

@@ -23,6 +23,7 @@ namespace IHFF.Models
             modelBuilder.Entity<Item>().ToTable("ITEM");
             modelBuilder.Entity<Movie>().ToTable("MOVIE");
             modelBuilder.Entity<Special>().ToTable("SPECIAL");
+            modelBuilder.Entity<Hotel>().ToTable("HOTEL");
             modelBuilder.Entity<Event>().ToTable("EVENT");
             modelBuilder.Entity<Afbeelding>().ToTable("AFBEELDING");
             modelBuilder.Entity<Employee>().ToTable("MEDEWERKER");
@@ -38,6 +39,7 @@ namespace IHFF.Models
         public DbSet<Item> ITEMS { get; set; }
         public DbSet<Movie> MOVIES { get; set;}
         public DbSet<Special> SPECIALS { get; set;}
+        public DbSet<Hotel> HOTEL { get; set; }
         public DbSet<Event> EVENTS { get; set; }
         public DbSet<Afbeelding> AFBEELDINGEN { get; set; }
         public DbSet<Employee> EMPLOYEES { get; set; }

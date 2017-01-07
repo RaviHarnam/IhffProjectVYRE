@@ -14,6 +14,7 @@ namespace IHFF.Models
         public int? ItemID { get; set; }
         public int? MuseumID { get; set; }
         public int? RestaurantID { get; set; }
+        public int? HotelID { get; set; }
         public string Type { get; set; }
 
         public Afbeelding()
