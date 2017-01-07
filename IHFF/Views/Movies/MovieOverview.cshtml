@@ -67,10 +67,10 @@
                                                     <div class="modal-body">
                                                         @Html.Partial("_MovieOverview", @Model.ElementAt(movieNr))
                                                         @*@using (Html.BeginForm("AddToCart", "Cart"))
-                                                            {
-                                                                <div class="pull-right">@Html.Hidden("voorstellingid", )
-                                                             @Html.Hidden("returnUrl", Request.Url.PathAndQuery)<input type="submit" class="movie_index_item_description_button" value="Add  tocart" /></div>
-                                                            }*@
+                        {
+                            <div class="pull-right">@Html.Hidden("voorstellingid", )
+                         @Html.Hidden("returnUrl", Request.Url.PathAndQuery)<input type="submit" class="movie_index_item_description_button" value="Add  tocart" /></div>
+                        }*@
 
                                                     </div>
                                                     <div class="modal-footer">
@@ -78,18 +78,19 @@
                                                     </div>
                                                 </article>
                                             </div>
+
                                             @*<script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.js")" type="text/javascript"></script>
-                                                <script type="text/javascript">
-                                                    function toonpopup() {
-                                                        $("#inputform").slideDown("slow");
+            <script type="text/javascript">
+                function toonpopup() {
+                    $("#inputform").slideDown("slow");
 
-                                                        modal.style.display = "block";
-                                                    }
-                                                </script>*@
-                                            <button onclick="location.href='@Url.Action("Wishlist", "MoviesController")'" id="@movieNr" class="movie_index_item_description_button2">Wishlist</button>
-                                           
+                    modal.style.display = "block";
+                }
+            </script>*@
+                                            @*<button onclick="location.href='@Url.Action("Wishlist", "MoviesController")'" id="@movieNr" class="movie_index_item_description_button2">Wishlist</button>*@
+                                        </div> 
                                     </div>
-
+                                    
                                 </div>
                                 <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(movieNr).Titel, "MovieDetailPage", "Movies", new { movie_id = Model.ElementAt(movieNr).ItemID }, null) </p>
                                 @*<div id="inputform">

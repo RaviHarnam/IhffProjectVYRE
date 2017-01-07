@@ -1,8 +1,24 @@
 ﻿@using IHFF.Models;
 
 @model Movie
+@Styles.Render("~/Content/overview.css")
+ <div class="shortInfo">
+    <h3>Info</h3>
+    <p>Rating: @Model.Rating</p>
+    <p>Director: @Model.Director</p>
+    <p>Writers: @Model.Writers</p>
+    <p>Stars: @Model.Stars</p>
+   </div>
 
-<section class="form">
+<div class="crosselling">
+    <h3>Discover Haarlem!</h3>
+    <h4>Looking for Culture?</h4>
+    @Html.ActionLink("Culture", "MuseumOverview", "Culture", null, new { @Class = "cross" })
+    <h4>Looking for Hotels?</h4>
+    @Html.ActionLink("Hotels", "HotelsOverview", "Hotels", null, new { @Class = "cross" })
+
+</div>
+<section class="formPopup">
 @Html.ValidationSummary()
 @using (Html.BeginForm("MovieOverview", "Movies", FormMethod.Post))
 {
@@ -20,7 +36,9 @@
             }
         </select>
         <br /><br />
-        <input type="submit" formmethod="post" value="Add to cart" name="action" />
-        <input type="submit" formmethod="post" value="Add to wishlist" name="action"/>
+        <button name="button" class="cartbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
+        <button name="button" class="wishbutton" type="submit" formmethod="post" value="wishlist">Add to Wishlist</button>
+        <br />
 }
 </section>
+

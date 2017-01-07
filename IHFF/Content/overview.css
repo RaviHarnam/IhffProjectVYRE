@@ -12,7 +12,38 @@
 	display: block;
 }
 
-	
+.shortInfo{
+    position:absolute;
+    left:0px;
+    width:auto;
+    padding:10px;
+    float:left;
+    text-align:left;
+}
+.cross{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	position: relative;
+    top:5px;
+}	
+
+.crosselling{
+    position:absolute;
+    right:3%;
+    width:auto;
+    padding:10px;
+    float:right;
+    text-align:left;
+}
 .movie_index_item {
 	height: 50%;
 	width: 50%;
@@ -67,6 +98,39 @@
 }
 .movie_index_item_title a {
     color: white;
+}
+.cartbutton{
+        text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	margin-top:35px;
+	position: relative;
+    top:5px;
+}
+.wishbutton{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	margin-top:35px;
+	position: relative;
+    top:5px;
+
 }
 .movie_index_item_description_button{
     text-decoration: none;
@@ -299,7 +363,8 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
-    
+    background-color:#06AED5;
+    border:none;
 }
 
 .close:hover,
@@ -311,7 +376,7 @@
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #06AED5;
     color: white;
 }
 
@@ -319,7 +384,7 @@
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #06AED5;
     color: white;
 }
 

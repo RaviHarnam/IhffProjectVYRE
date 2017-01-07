@@ -27,61 +27,36 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        [MultiButton(MatchFormKey = "action", MatchFormValue = "Add to cart")]
-        public ActionResult MovieOverview(int? voorstellingId, Movie movie, string aantal)
+        public ActionResult MovieOverview(int? voorstellingId, Movie movie, string aantal, string button)
         {
-            if (ModelState.IsValid)
-            {
-                int amount = 0;
-                if (voorstellingId != null && int.TryParse(aantal, out amount) && movie != null)
+            
+
+                if (ModelState.IsValid)
                 {
-                    if (amount > 0)
+                    int amount = 0;
+                    if (voorstellingId != null && int.TryParse(aantal, out amount) && movie != null)
                     {
-                        Event eventx = movie.GetEvent(voorstellingId.Value);
-                        eventx.Aantal = amount;
-                        if (Session["cart"] == null)
-                            Session["cart"] = new List<Event>();
+                        if (amount > 0)
+                        {
+                            Event eventx = movie.GetEvent(voorstellingId.Value);
+                            eventx.Aantal = amount;
+                            if (Session[button] == null)
+                                Session[button] = new List<Event>();
 
-                        List<Event> cartlist = (List<Event>)Session["cart"];
-                        cartlist.Add(eventx);
-                        Session["cart"] = cartlist;
+                            List<Event> cartlist = (List<Event>)Session[button];
+                            cartlist.Add(eventx);
+                            Session[button] = cartlist;
 
-                        //movie = dbMovie.GetMovie(movie.ItemID);
-                        //movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);
+                            //movie = dbMovie.GetMovie(movie.ItemID);
+                            //movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);
+                        }
                     }
-                }
+
             }
             return RedirectToAction("MovieOverview");
         }
 
-        [HttpPost]
-        [ActionName("MovieOverview")]
-        [MultiButton(MatchFormKey = "action", MatchFormValue = "Add to wishlist")]
-        public ActionResult MovieOvervieww(int? voorstellingId, Movie movie, string aantal)
-        {
-            if (ModelState.IsValid)
-            {
-                int amount = 0;
-                if (voorstellingId != null && int.TryParse(aantal, out amount) && movie != null)
-                {
-                    if (amount > 0)
-                    {
-                        Event eventx = movie.GetEvent(voorstellingId.Value);
-                        eventx.Aantal = amount;
-                        if (Session["wishlist"] == null)
-                            Session["wishlist"] = new List<Event>();
 
-                        List<Event> wishList = (List<Event>)Session["wishlist"];
-                        wishList.Add(eventx);
-                        Session["wishlist"] = wishList;
-
-                        //movie = dbMovie.GetMovie(movie.ItemID);
-                        //movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);
-                    }
-                }
-            }
-            return RedirectToAction("MovieOverview");
-        }
 
 
         public ActionResult MovieDetailPage(int? movie_id)
