@@ -2,12 +2,15 @@
 
 @model Movie
 @Styles.Render("~/Content/overview.css")
+@{List<string> stars = new List<String>();
+    stars = Model.Stars.Split(',').ToList();}
+
  <div class="shortInfo">
     <h3>Info</h3>
     <p>Rating: @Model.Rating</p>
     <p>Director: @Model.Director</p>
     <p>Writers: @Model.Writers</p>
-    <p>Stars: @Model.Stars</p>
+    <p>Stars: @stars[0] , @if (stars[1] != null) {@stars[1]}...</p>
    </div>
 
 <div class="crosselling">

@@ -24,7 +24,7 @@ namespace IHFF.Repositories
             IEnumerable<Item> items = (from i in ctx.ITEMS select i).ToList();
             IEnumerable<Restaurant> restaurants = (from r in ctx.RESTAURANTS select r).ToList();
             IEnumerable<Museum> cultureEvents = (from c in ctx.MUSEA select c).ToList();
-            
+
             foreach (Item item in items)
                 events.Add(new EventListRepresentation(item));
 
@@ -82,7 +82,7 @@ namespace IHFF.Repositories
             {
                 dbMovie.Titel = movie.Titel;
                 dbMovie.Writers = movie.Writers;
-               
+
                 dbMovie.Stars = movie.Stars;
                 dbMovie.Rating = movie.Rating;
                 dbMovie.Omschrijving = movie.Omschrijving;
@@ -118,9 +118,9 @@ namespace IHFF.Repositories
                 dbRestaurant.Naam = restaurant.Naam;
                 dbRestaurant.Omschrijving = restaurant.Omschrijving;
                 Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == restaurant.RestaurantAfbeelding.AfbeeldingID && a.Type == "banner");
-                if (dbRestaurant != null)                
+                if (dbRestaurant != null)
                     dbRestaurant.RestaurantAfbeelding.Link = restaurant.RestaurantAfbeelding.Link;
-                
+
                 Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == restaurant.LocatieID);
                 if (dbLocatie != null)
                 {
@@ -154,7 +154,7 @@ namespace IHFF.Repositories
                 dbMuseum.Website = museum.Website;
 
                 Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == museum.MuseumID && a.Type == "museumbanner");
-                if (dbAfbeelding != null)                
+                if (dbAfbeelding != null)
                     dbAfbeelding.Link = museum.MuseumAfbeelding.Link;
 
                 Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == museum.LocatieID);
@@ -171,7 +171,27 @@ namespace IHFF.Repositories
 
         public void DeleteMovie(int movieid)
         {
-            throw new NotImplementedException();
+            Movie dbMovie = ctx.MOVIES.SingleOrDefault(m => m.ItemID == movieid);
+            if (dbMovie != null)
+                ctx.ITEMS.Remove(dbMovie);
+            Item dbItem = ctx.ITEMS.SingleOrDefault(m => m.ItemID == movieid);
+            if (dbItem != null)
+                ctx.MOVIES.Remove(dbMovie);
+            IEnumerable<Afbeelding> dbAfbeeldingen = (from a in ctx.AFBEELDINGEN
+                                                      where a.ItemID == movieid
+                                                      select a).ToList();
+            if (dbAfbeeldingen != null && dbAfbeeldingen.Any())
+                foreach (Afbeelding dbAfbeelding in dbAfbeeldingen)
+                    ctx.AFBEELDINGEN.Remove(dbAfbeelding);
+
+            IEnumerable<Voorstelling> dbVoorstellingen = (from v in ctx.VOORSTELLINGEN
+                                                          where v.ItemId == movieid
+                                                          select v).ToList();
+            if (dbVoorstellingen != null && dbAfbeeldingen.Any())
+                foreach (Voorstelling dbVoorstelling in dbVoorstellingen)
+                    ctx.VOORSTELLINGEN.Remove(dbVoorstelling);
+          
+            ctx.SaveChanges();
         }
 
         public void DeleteSpecial(int specialid)
@@ -189,7 +209,7 @@ namespace IHFF.Repositories
             //m.ItemID = ctx.ITEMS.Count() + 1;       
             ctx.MOVIES.Add(m);
             //Movie lstMov = ctx.MOVIES.Last(mov => mov.ItemID == mov.ItemID);
-           // m.ItemAfbeelding.ItemID = lstMov.ItemID;  
+            // m.ItemAfbeelding.ItemID = lstMov.ItemID;  
             //ctx.AFBEELDINGEN.Add(m.ItemAfbeelding);
             ctx.SaveChanges();
             //Add afbeelding
@@ -219,7 +239,7 @@ namespace IHFF.Repositories
             //Add Picture
             m.MuseumAfbeelding.MuseumID = m.MuseumID;
             ctx.AFBEELDINGEN.Add(m.MuseumAfbeelding);
-            ctx.SaveChanges();                        
+            ctx.SaveChanges();
         }
 
         public void AddRestaurant(Restaurant r)
@@ -234,6 +254,7 @@ namespace IHFF.Repositories
         public void AddHotel(Hotel h)
         {
             ctx.HOTEL.Add(h);
+            ctx.SaveChanges();
             h.HotelAfbeelding.HotelID = h.HotelId;
             ctx.AFBEELDINGEN.Add(h.HotelAfbeelding);
             ctx.SaveChanges();
