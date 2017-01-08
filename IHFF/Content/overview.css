@@ -12,7 +12,71 @@
 	display: block;
 }
 
-	
+.shortInfo{
+    position:absolute;
+    left:0px;
+    width:auto;
+    padding:10px;
+    float:left;
+    text-align:left;
+}
+.cross{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	position: relative;
+    top:5px;
+}	
+
+.crosselling{
+    position:absolute;
+    right:3%;
+    width:auto;
+    padding:10px;
+    float:right;
+    text-align:left;
+}
+
+.btnfestival{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	margin-top:35px;
+	position: relative;
+    top:5px;
+}
+
+.deletebtn , deletebtn:focus, deletebtn:active{
+    background: none;
+    border: none;
+    display: inline;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    outline-offset: 0;
+    cursor: pointer;
+    color: blue;
+}
+.deletebtn:active{
+    border: none;
+}
 .movie_index_item {
 	height: 50%;
 	width: 50%;
@@ -68,6 +132,39 @@
 .movie_index_item_title a {
     color: white;
     text-decoration: none;
+}
+.cartbutton{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	margin-top:35px;
+	position: relative;
+    top:5px;
+}
+.wishbutton{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	margin-top:35px;
+	position: relative;
+    top:5px;
+
 }
 .movie_index_item_description_button{
     text-decoration: none;
@@ -145,6 +242,17 @@
 .hovereffect .overlaytitel{
     width: 250px;
     left: -10px;
+}
+
+.plaatjelink {
+ position: absolute;
+ left: 0;
+ width: 250px;
+ height: 250px; 
+}
+
+.overlay a{
+    text-decoration: none;
 }
 
 .hovereffect img {
@@ -303,6 +411,8 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
+    background-color:#06AED5;
+    border:none;
     margin-top: 15px;    
 }
 
@@ -313,9 +423,38 @@
     cursor: pointer;
 }
 
+.modalDelete {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 60%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-contentDelete {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
 .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #06AED5;
     color: white;
 }
 
@@ -323,7 +462,23 @@
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #06AED5;
+    color: white;
+}
+
+
+
+.modal-headerDelete {
+    padding: 2px 16px;
+    background-color: #06AED5;
+    color: white;
+}
+
+.modal-bodyDelete {padding: 2px 16px;}
+
+.modal-footerDelete {
+    padding: 2px 16px;
+    background-color: #06AED5;
     color: white;
 }
 

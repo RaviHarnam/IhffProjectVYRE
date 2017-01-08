@@ -182,6 +182,7 @@ namespace IHFF.Controllers
             return RedirectToAction("ManagementWindow");
         }
         [Authorize]
+        [HttpPost]
         public ActionResult DeleteMovie(int? id)
         {
             if (id != null)
@@ -189,6 +190,7 @@ namespace IHFF.Controllers
             return RedirectToAction("ManagementWindow");
         }
         [Authorize]
+        [HttpPost]
         public ActionResult DeleteSpecial(int? id)
         {
             if (id != null)
@@ -196,6 +198,7 @@ namespace IHFF.Controllers
             return RedirectToAction("ManagementWindow");
         }
         [Authorize]
+        [HttpPost]
         public ActionResult DeleteRestaurant(int? id)
         {
             if (id != null)

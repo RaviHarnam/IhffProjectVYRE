@@ -34,10 +34,10 @@ namespace IHFF.Controllers
         [ActionName("Wishlist")]
         public ActionResult WishlistPost()
         {
-            if(Session["cart"] != null)            
+            if(Session["cart"] == null)            
                 Session["cart"] = new List<Event>();
 
-            List<Event> cartEvents = (List<Event>)Session["Cart"];
+            List<Event> cartEvents = (List<Event>)Session["cart"];
             if (Session["wishlist"] != null)
             {
                 List<Event> events = (List<Event>)Session["wishlist"];

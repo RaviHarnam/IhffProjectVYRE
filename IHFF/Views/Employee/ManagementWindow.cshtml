@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Styles.Render("~/Content/EditPages.css")
+@Styles.Render("~/Content/overview.css")
 
 <h2>Management Window</h2>
 @model IEnumerable<EventListRepresentation>
@@ -30,7 +31,27 @@
         <tr>
             <td>@movie.item.Titel</td>
             <td>@Html.ActionLink("Edit", "EditMovie", "Employee", new { id = movie.item.ItemID }, new { @Class = "management" })</td>
-            <td>@Html.ActionLink("Delete", "DeleteMovie", "Employee", new { id = movie.item.ItemID }, new { @Class = "management" })</td>
+            @*<td>@Html.ActionLink("Delete", "DeleteMovie", "Employee", new { id = movie.item.ItemID }, new { @Class = "management" })</td>*@
+            <td>
+                <button class="deletebtn">Delete</button>
+                <div class="modal">
+                    <article class="modal-content">
+                        <article class="modal-header">
+                            
+                            <button onclick="$(this).parent('div').style.display = 'none'" class="close">&times;</button>
+
+                            <h2>Are you sure you want to delete the following item?</h2>
+                        </article>
+                        <div class="modal-body">
+                            @Html.Partial("_DeleteFestivalObject", movie)
+                        </div>
+                        <div class="modal-footer">
+                            <h2></h2>
+                            <h2></h2>
+                        </div>
+                    </article>
+                </div>
+            </td>
         </tr>
     }
     <tr><td><h2>Specials</h2></td></tr>
@@ -58,9 +79,49 @@
         <tr>
             <td>@restaurant.restaurant.Naam</td>
             <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", new { id = restaurant.restaurant.RestaurantID }, new { @Class = "management" })</td>
-            <td>@Html.ActionLink("Delete", "DeleteRestaurant", "Employee", new { id = restaurant.restaurant.RestaurantID }, new { @Class = "management" })</td>
+            <td>
+                <button class="deletebtn"></button>
+                <div class="modalDelete">
+                    <article class="modal-contentDelete">
+                        <article class="modal-headerDelete">
+                            <button class="close">&times;</button>
+
+                            <h2>Modal Header</h2>
+                        </article>
+                        <div class="modal-bodyDelete">
+                            @Html.Partial("_DeleteFestivalObject", restaurant)
+                        </div>
+                        <div class="modal-footerDelete">
+                            <h3>Do you have dinner plans yet? <!--Html.ActionLink("", "", "", null, new {Class = "" })--></h3>
+                        </div>
+                    </article>
+                </div>
+            </td>
         </tr>
     }
 
+
+
 </table>
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+<script>
+        $(document).ready(function () {
+            
+            // When the user clicks anywhere outside of the modal, close it
+            $('.close').click(function () {
+                // If the clicked object is a modal.
+                $('.modal').css('display', 'none');
+            });
+        
+
+            $('.deletebtn').click(function () {
+                $(this).next()[0].style.display = "inline";
+            });
+
+
+        });
+</script>
 

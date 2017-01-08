@@ -1,0 +1,49 @@
+﻿@using IHFF.Models;
+
+@model EventListRepresentation
+
+@Styles.Render("~/Content/overview.css")
+
+@if(Model.culture != null) //Museum
+{
+    <h2>@Model.culture.Naam</h2>
+    using (Html.BeginForm("DeleteMuseum", "Employee", FormMethod.Post))
+    {
+        @Html.Hidden("id", Model.culture.MuseumID)
+        <input type="submit" value="Delete Museum"/>
+        <input type="submit" value="Cancel" />
+    }
+}
+else if (Model.item is Movie) //Movie
+{
+    <h2>@Model.item.Titel</h2>
+    using (Html.BeginForm("DeleteMovie", "Employee", FormMethod.Post))
+    {
+        @Html.Hidden("id", Model.item.ItemID)
+        <input class="btnfestival" type="submit" value="Delete Movie" />
+        <input class="btnfestival" type="submit" value="Cancel" />
+        <br />
+    }
+}
+else if (Model.restaurant != null) //Restaurant
+{
+    <h2>@Model.restaurant.Naam</h2>
+    using (Html.BeginForm("DeleteRestaurant", "Employee", FormMethod.Post))
+    {
+        @Html.Hidden("id", Model.restaurant.RestaurantID)
+        <input type="submit" value="Delete Restaurant" />
+        <input type="submit" value="Cancel" />
+        <br/>
+    }
+}
+else //Special
+{
+    <h2>@Model.item.Titel</h2>
+    using (Html.BeginForm("DeleteSpecial", "Employee", FormMethod.Post))
+    {
+        @Html.Hidden("id", Model.item.ItemID)
+        <input type="submit" value="Delete Special" />
+        <input type="submit" value="Cancel" />
+        <br />
+    }
+}

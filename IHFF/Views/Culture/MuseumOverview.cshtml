@@ -25,26 +25,28 @@
                                 <div class="hovereffect">
                                     <img class="img-responsive" src=@Model.ElementAt(museumNr).MuseumAfbeelding.Link alt=@Model.ElementAt(museumNr).Naam title="@Model.ElementAt(museumNr).Naam">
                                     <div class="overlay">
-                                        <h2 class="overlaytitel">@Model.ElementAt(museumNr).Naam</h2>
+                                        <a class="plaatjelink" href='@Url.Action("MuseumDetailPage", "Culture", new { museumId = Model.ElementAt(museumNr).MuseumID }, null)'></a>
+                                        <a href='@Url.Action("MuseumDetailPage", "Culture", new { museumId = Model.ElementAt(museumNr).MuseumID }, null)'>
+                                            <h2 class="overlaytitel">@Model.ElementAt(museumNr).Naam</h2>
+                                        </a>
+                                            <!-- Trigger/Open The Modal -->
+                                            <!-- The Modal -->
 
-                                        <!-- Trigger/Open The Modal -->
-                                        <!-- The Modal -->
+                                            <button id="@museumNr" class="movie_index_item_description_button">Voeg toe aan Cart</button>
+                                            <div class="modal">
+                                                <article class="modal-content">
+                                                    <article class="modal-header">
+                                                        <button onclick="$(this).parent('div').style.display = 'none'" class="close">&times;</button>
+                                                        <h2>Modal Header</h2>
+                                                    </article>
 
-                                        <button id="@museumNr" class="movie_index_item_description_button">Voeg toe aan Cart</button>
-                                        <div class="modal">
-                                            <article class="modal-content">
-                                                <article class="modal-header">
-                                                    <button onclick="$(this).parent('div').style.display = 'none'" class="close">&times;</button>
-                                                    <h2>Modal Header</h2>
+                                                    <div class="modal-footer">
+                                                        <h3>Do you have dinner plans yet? </h3>
+                                                    </div>
                                                 </article>
-
-                                                <div class="modal-footer">
-                                                    <h3>Do you have dinner plans yet? </h3>
-                                                </div>
-                                            </article>
-                                        </div>
-                                        <a href="SpaceOdysses.html" class="movie_index_item_description_button2">Wishlist</a>
-                                    </div>
+                                            </div>
+                                            <a href="SpaceOdysses.html" class="movie_index_item_description_button2">Wishlist</a>
+</div>
                                 </div>
 
                             </div>
