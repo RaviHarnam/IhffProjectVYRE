@@ -145,7 +145,6 @@
 	opacity: 1.0; 
 	text-align:center;
 	margin: 0 auto;
-	margin-top:35px;
 	position: relative;
     top:5px;
 }
@@ -244,6 +243,10 @@
     left: -10px;
 }
 
+.overlaytitel{
+    text-decoration: none;
+}
+
 .plaatjelink {
  position: absolute;
  left: 0;
@@ -253,6 +256,7 @@
 
 .overlay a{
     text-decoration: none;
+    color:white;
 }
 
 .hovereffect img {

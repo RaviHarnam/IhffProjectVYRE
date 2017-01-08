@@ -28,9 +28,9 @@
     @Html.HiddenFor(m => m.ItemID)
     @Html.Label("Aantal", new {@for = "aantal" })
     <br />
-        @Html.TextBox("aantal")
+        @Html.TextBox("aantal", null, new { @size = "14" })
         <br /><br />
-        @Html.Label("Datum");
+        @Html.Label("Datum")
     <br />
         <select name="voorstellingId">
             @foreach (Voorstelling voorstelling in Model.Voorstellingen)

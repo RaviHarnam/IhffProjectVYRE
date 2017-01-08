@@ -1,5 +1,5 @@
 ﻿@Styles.Render("~/Content/MovieDetailPageStyle.css")
-
+@Styles.Render("~/Content/overview.css")
 @using IHFF.Models;
 @model Movie
 @{
@@ -28,9 +28,9 @@
     @using (Html.BeginForm("MovieDetailpage", "Movies", FormMethod.Post))
     {
         @Html.HiddenFor(m => m.ItemID)
-        @Html.LabelFor(m => m.Aantal)
+        @Html.Label("Aantal", new { @for = "aantal" })
         <br/>
-        @Html.TextBoxFor(m => m.Aantal)
+        @Html.TextBox("aantal", null, new { @size = "14" })
         <br/><br/>
         @Html.Label("Datum");
         <br/>
@@ -39,10 +39,10 @@
             {
                 <option value=@voorstelling.VoorstellingId>@voorstelling.BeginTijd.ToString("dd/MM/yy HH:mm")</option>
             }
-        </select>
-        <br/><br/>
-        <input class="cartbutton" type="submit" formmethod="post" value="Add to cart" name="cart" />
-        <input class="wishbutton" type="submit" formmethod="post" value="Add to wishlist" name="wishlist" />
+        </select>   
+        <button name="button" class="cartbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
+        <button name="button" class="wishbutton" type="submit" formmethod="post" value="wishlist">Add to Wishlist</button>
+    
 
 
 
