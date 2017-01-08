@@ -35,7 +35,7 @@ namespace IHFF.Controllers
             return RedirectToAction("FoodOverview");
         }
         [HttpPost]
-        public ActionResult FoodDetailPage(Restaurant r, string aantal, int maaltijdid, int maaltijdUur, string minuten)
+        public ActionResult FoodDetailPage(Restaurant r, string aantal, int maaltijdid, int maaltijdUur, string minuten) //Cart
         {
             int aantalConverted = 0;
             int minutenConverted = 0;
@@ -45,25 +45,69 @@ namespace IHFF.Controllers
                 Event eventx = new Event();
                 eventx.Aantal = aantalConverted;
                 Maaltijd m = dbMeal.GetMaaltijd(maaltijdid);
-               
+
                 //Uren
                 eventx.DatumTijd = m.BeginTijd;
-                eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(eventx.DatumTijd.Hour, 0,0);
+                eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(eventx.DatumTijd.Hour, 0, 0);
                 eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(maaltijdUur, 0, 0);
                 //Minuten
                 eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(0, eventx.DatumTijd.Minute, 0);
-                eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(0, minutenConverted, 0);                
+                eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(0, minutenConverted, 0);
+                //Rest
+                eventx.Titel = m.MaaltijdRestaurant.Naam;
+                eventx.Prijs = m.MaaltijdPrijs;
+                eventx.MaaltijdId = m.MaaltijdID;
+                if (Request.Form["buttoncart"] != null)
+                {
+                    if (Session["cart"] == null)
+                        Session["cart"] = new List<Event>();
+
+                    List<Event> cartlist = (List<Event>)Session["cart"];
+                    cartlist.Add(eventx);
+                    Session["cart"] = cartlist;
+                }
+                else if(Request.Form["buttonwish"] != null)
+                {
+                    if (Session["wishlist"] == null)
+                        Session["wishlist"] = new List<Event>();
+
+                    List<Event> wishlistList = (List<Event>)Session["wishlist"];
+                    wishlistList.Add(eventx);
+                    Session["wishlist"] = wishlistList;
+                }                
+            }
+            return View(rst);
+        }
+        [HttpPost]
+        public ActionResult FoodDetailWishlist(Restaurant r, string aantal, int maaltijdid, int maaltijdUur, string minuten) //Wishlist
+        {
+            int aantalConverted = 0;
+            int minutenConverted = 0;
+            Restaurant rst = dbFood.GetRestaurant(r.RestaurantID);
+            if (int.TryParse(aantal, out aantalConverted) && int.TryParse(minuten, out minutenConverted))
+            {
+                Event eventx = new Event();
+                eventx.Aantal = aantalConverted;
+                Maaltijd m = dbMeal.GetMaaltijd(maaltijdid);
+
+                //Uren
+                eventx.DatumTijd = m.BeginTijd;
+                eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(eventx.DatumTijd.Hour, 0, 0);
+                eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(maaltijdUur, 0, 0);
+                //Minuten
+                eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(0, eventx.DatumTijd.Minute, 0);
+                eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(0, minutenConverted, 0);
                 //Rest
                 eventx.Titel = m.MaaltijdRestaurant.Naam;
                 eventx.Prijs = m.MaaltijdPrijs;
                 eventx.MaaltijdId = m.MaaltijdID;
 
-                if (Session["cart"] == null)
-                    Session["cart"] = new List<Event>();
+                if (Session["wishlist"] == null)
+                    Session["wishlist"] = new List<Event>();
 
-                List<Event> cartlist = (List<Event>)Session["cart"];
-                cartlist.Add(eventx);
-                Session["cart"] = cartlist;
+                List<Event> wishlistList = (List<Event>)Session["wishlist"];
+                wishlistList.Add(eventx);
+                Session["wishlist"] = wishlistList;
             }
             return View(rst);
         }
