@@ -39,7 +39,7 @@ else if (Model.restaurant != null) //Restaurant
     using (Html.BeginForm("DeleteRestaurant", "Employee", FormMethod.Post))
     {
         @Html.Hidden("id", Model.restaurant.RestaurantID)
-        <input type="submit" value="Delete Restaurant" />
+        <input class="btnfestival" type="submit" value="Delete Restaurant" />
     }
     using (Html.BeginForm("ManagementWindow", "Employee", FormMethod.Get))
     {
@@ -54,7 +54,7 @@ else //Special
     using (Html.BeginForm("DeleteSpecial", "Employee", FormMethod.Post))
     {
         @Html.Hidden("id", Model.item.ItemID)
-        <input type="submit" value="Delete Special" />
+        <input class="btnfestival" type="submit" value="Delete Special" />
     }
     using (Html.BeginForm("ManagementWindow", "Employee", FormMethod.Get))
     {

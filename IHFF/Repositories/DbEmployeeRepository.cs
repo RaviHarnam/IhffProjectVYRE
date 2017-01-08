@@ -128,6 +128,7 @@ namespace IHFF.Repositories
                     dbLocatie.Straat = restaurant.RestaurantLocatie.Straat;
                     dbLocatie.Huisnummer = restaurant.RestaurantLocatie.Huisnummer;
                     dbLocatie.Toevoeging = restaurant.RestaurantLocatie.Toevoeging;
+                    dbLocatie.Postcode = restaurant.RestaurantLocatie.Postcode;
                     dbLocatie.Plaats = restaurant.RestaurantLocatie.Plaats;
                 }
                 ctx.SaveChanges();
@@ -166,9 +167,9 @@ namespace IHFF.Repositories
         public void DeleteMuseum(int museumid)
         {
             Museum dbMuseum = ctx.MUSEA.SingleOrDefault(m => m.MuseumID == museumid);
-            Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(m => m.LocatieID == dbMuseum.LocatieID);
-            if (dbLocatie != null)
-                ctx.Entry(dbLocatie).State = EntityState.Deleted;
+            //Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(m => m.LocatieID == dbMuseum.LocatieID);
+            //if (dbLocatie != null) //On delelte Cascade betekent dat dit niet meer hoeft
+            //    ctx.Entry(dbLocatie).State = EntityState.Deleted;
             IEnumerable<Afbeelding> dbAfbeeldingen = (from a in ctx.AFBEELDINGEN
                                                       where a.MuseumID == museumid
                                                       select a).ToList();
@@ -245,22 +246,20 @@ namespace IHFF.Repositories
                 foreach (Afbeelding dbAfbeelding in dbAfbeeldingen)
                     ctx.AFBEELDINGEN.Remove(dbAfbeelding);
 
-            Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == dbRestaurant.LocatieID);
-            if (dbLocatie != null)
-                ctx.LOCATIES.Remove(dbLocatie);
+            //On delete cascade will remove this for me
+            //Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == dbRestaurant.LocatieID);
+            //if (dbLocatie != null)
+            //    ctx.LOCATIES.Remove(dbLocatie);
 
             ctx.SaveChanges();
         }
 
         public void AddMovie(Movie m)
-        {
-            //m.ItemID = ctx.ITEMS.Count() + 1;       
+        {        
+            //Add movie    
             ctx.MOVIES.Add(m);
-            //Movie lstMov = ctx.MOVIES.Last(mov => mov.ItemID == mov.ItemID);
-            // m.ItemAfbeelding.ItemID = lstMov.ItemID;  
-            //ctx.AFBEELDINGEN.Add(m.ItemAfbeelding);
             ctx.SaveChanges();
-            //Add afbeelding
+            //Add picture
             m.ItemAfbeelding.ItemID = m.ItemID;
             ctx.AFBEELDINGEN.Add(m.ItemAfbeelding);
             ctx.SaveChanges();
@@ -292,8 +291,14 @@ namespace IHFF.Repositories
 
         public void AddRestaurant(Restaurant r)
         {
+            //Add location
+            ctx.LOCATIES.Add(r.RestaurantLocatie);
+            ctx.SaveChanges();
+            //Add restaurant
+            r.LocatieID = r.RestaurantLocatie.LocatieID;
             ctx.RESTAURANTS.Add(r);
             ctx.SaveChanges();
+            //Add picture
             r.RestaurantAfbeelding.RestaurantID = r.RestaurantID;
             ctx.AFBEELDINGEN.Add(r.RestaurantAfbeelding);
             ctx.SaveChanges();

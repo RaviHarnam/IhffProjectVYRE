@@ -256,6 +256,7 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult AddMuseum(MuseumInputModel m, string afbLink)
         {
+            m.MuseumLocatie.Naam = m.Naam;
             if (ModelState.IsValid)
             {
                 Museum mus = new Museum();
@@ -281,12 +282,14 @@ namespace IHFF.Controllers
         [Authorize]
         [HttpPost]
         public ActionResult AddRestaurant(RestaurantInputModel r, string afbLink)
-        {
+        {            
             if (ModelState.IsValid)
             {
                 Restaurant rst = new Restaurant();
                 rst.ConvertFromRestaurantInputModel(r);
+                r.RestaurantLocatie.Naam = r.Naam;
                 rst.RestaurantAfbeelding = new Afbeelding(null, null, rst.RestaurantID, afbLink, "Restaurantbanner");
+                rst.RestaurantLocatie = r.RestaurantLocatie;
                 db.AddRestaurant(rst);
             }
             return RedirectToAction("ManagementWindow");
