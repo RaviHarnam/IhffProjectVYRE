@@ -60,7 +60,26 @@
         <tr>
             <td>@special.item.Titel</td>
             <td>@Html.ActionLink("Edit", "EditSpecial", "Employee", new { id = special.item.ItemID }, new { @Class = "management" })</td>
-            <td>@Html.ActionLink("Delete", "DeleteSpecial", "Employee", new { id = special.item.ItemID }, new { @Class = "management" })</td>
+            <td>
+                <button class="deletebtn">Delete</button>
+                <div class="modal">
+                    <article class="modal-content">
+                        <article class="modal-header">
+
+                            <button onclick="$(this).parent('div').style.display = 'none'" class="close">&times;</button>
+
+                            <h2>Are you sure you want to delete the following item?</h2>
+                        </article>
+                        <div class="modal-body">
+                            @Html.Partial("_DeleteFestivalObject", special)
+                        </div>
+                        <div class="modal-footer">
+                            <h2></h2>
+                            <h2></h2>
+                        </div>
+                    </article>
+                </div>
+            </td>
         </tr>
     }
 
@@ -70,7 +89,26 @@
         <tr>
             <td>@museum.culture.Naam </td>
             <td>@Html.ActionLink("Edit", "EditMuseum", "Employee", new { id = museum.culture.MuseumID }, new { @Class = "management" })</td>
-            <td>@Html.ActionLink("Delete", "DeleteMuseum", "Employee", new { id = museum.culture.MuseumID }, new { @Class = "management" })</td>
+            <td>
+                <button class="deletebtn">Delete</button>
+                <div class="modal">
+                    <article class="modal-content">
+                        <article class="modal-header">
+
+                            <button onclick="$(this).parent('div').style.display = 'none'" class="close">&times;</button>
+
+                            <h2>Are you sure you want to delete the following item?</h2>
+                        </article>
+                        <div class="modal-body">
+                            @Html.Partial("_DeleteFestivalObject", museum)
+                        </div>
+                        <div class="modal-footer">
+                            <h2></h2>
+                            <h2></h2>
+                        </div>
+                    </article>
+                </div>
+            </td>
         </tr>
     }
     <tr><td><h2>Restaurants</h2></td></tr>
@@ -78,25 +116,27 @@
     {
         <tr>
             <td>@restaurant.restaurant.Naam</td>
-            <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", new { id = restaurant.restaurant.RestaurantID }, new { @Class = "management" })</td>
+            <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", new { id = restaurant.restaurant.RestaurantID }, new { @Class = "management" })</td>           
             <td>
-                <button class="deletebtn"></button>
-                <div class="modalDelete">
-                    <article class="modal-contentDelete">
-                        <article class="modal-headerDelete">
-                            <button class="close">&times;</button>
+                <button class="deletebtn">Delete</button>
+                <div class="modal">
+                    <article class="modal-content">
+                        <article class="modal-header">
 
-                            <h2>Modal Header</h2>
+                            <button onclick="$(this).parent('div').style.display = 'none'" class="close">&times;</button>
+
+                            <h2>Are you sure you want to delete the following item?</h2>
                         </article>
-                        <div class="modal-bodyDelete">
+                        <div class="modal-body">
                             @Html.Partial("_DeleteFestivalObject", restaurant)
                         </div>
-                        <div class="modal-footerDelete">
-                            <h3>Do you have dinner plans yet? <!--Html.ActionLink("", "", "", null, new {Class = "" })--></h3>
+                        <div class="modal-footer">
+                            <h2></h2>
+                            <h2></h2>
                         </div>
                     </article>
                 </div>
-            </td>
+            </td>            
         </tr>
     }
 

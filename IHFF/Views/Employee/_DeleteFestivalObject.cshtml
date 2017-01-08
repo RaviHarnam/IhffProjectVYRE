@@ -4,15 +4,19 @@
 
 @Styles.Render("~/Content/overview.css")
 
-@if(Model.culture != null) //Museum
+@if (Model.culture != null) //Museum
 {
     <h2>@Model.culture.Naam</h2>
     using (Html.BeginForm("DeleteMuseum", "Employee", FormMethod.Post))
     {
         @Html.Hidden("id", Model.culture.MuseumID)
-        <input type="submit" value="Delete Museum"/>
-        <input type="submit" value="Cancel" />
+        <input class="btnfestival" type="submit" value="Delete Museum" />
     }
+    using (Html.BeginForm("ManagementWindow", "Employee", FormMethod.Get))
+    {
+        <input class="btnfestival" type="submit" value="Cancel" />
+    }
+    <br />
 }
 else if (Model.item is Movie) //Movie
 {
@@ -21,9 +25,13 @@ else if (Model.item is Movie) //Movie
     {
         @Html.Hidden("id", Model.item.ItemID)
         <input class="btnfestival" type="submit" value="Delete Movie" />
-        <input class="btnfestival" type="submit" value="Cancel" />
-        <br />
     }
+    using (Html.BeginForm("ManagementWindow", "Employee", FormMethod.Get))
+    {
+        <input class="btnfestival" type="submit" value="Cancel" />
+    }
+    <br />
+
 }
 else if (Model.restaurant != null) //Restaurant
 {
@@ -32,9 +40,13 @@ else if (Model.restaurant != null) //Restaurant
     {
         @Html.Hidden("id", Model.restaurant.RestaurantID)
         <input type="submit" value="Delete Restaurant" />
-        <input type="submit" value="Cancel" />
-        <br/>
     }
+    using (Html.BeginForm("ManagementWindow", "Employee", FormMethod.Get))
+    {
+        <input class="btnfestival" type="submit" value="Cancel" />
+    }
+    <br />
+
 }
 else //Special
 {
@@ -43,7 +55,11 @@ else //Special
     {
         @Html.Hidden("id", Model.item.ItemID)
         <input type="submit" value="Delete Special" />
-        <input type="submit" value="Cancel" />
-        <br />
     }
+    using (Html.BeginForm("ManagementWindow", "Employee", FormMethod.Get))
+    {
+        <input class="btnfestival" type="submit" value="Cancel" />
+    }
+    <br />
+
 }
