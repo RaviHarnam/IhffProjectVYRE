@@ -78,40 +78,7 @@ namespace IHFF.Controllers
             }
             return View(rst);
         }
-        [HttpPost]
-        public ActionResult FoodDetailWishlist(Restaurant r, string aantal, int maaltijdid, int maaltijdUur, string minuten) //Wishlist
-        {
-            int aantalConverted = 0;
-            int minutenConverted = 0;
-            Restaurant rst = dbFood.GetRestaurant(r.RestaurantID);
-            if (int.TryParse(aantal, out aantalConverted) && int.TryParse(minuten, out minutenConverted))
-            {
-                Event eventx = new Event();
-                eventx.Aantal = aantalConverted;
-                Maaltijd m = dbMeal.GetMaaltijd(maaltijdid);
-
-                //Uren
-                eventx.DatumTijd = m.BeginTijd;
-                eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(eventx.DatumTijd.Hour, 0, 0);
-                eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(maaltijdUur, 0, 0);
-                //Minuten
-                eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(0, eventx.DatumTijd.Minute, 0);
-                eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(0, minutenConverted, 0);
-                //Rest
-                eventx.Titel = m.MaaltijdRestaurant.Naam;
-                eventx.Prijs = m.MaaltijdPrijs;
-                eventx.MaaltijdId = m.MaaltijdID;
-
-                if (Session["wishlist"] == null)
-                    Session["wishlist"] = new List<Event>();
-
-                List<Event> wishlistList = (List<Event>)Session["wishlist"];
-                wishlistList.Add(eventx);
-                Session["wishlist"] = wishlistList;
-            }
-            return View(rst);
-        }
-
+        
         public ActionResult FillUren(int maaltijdId)
         {
             var uren = dbFood.GetUren(maaltijdId);
