@@ -40,7 +40,6 @@
 
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-lg-12">
                                     <div class="hovereffect">
-
                                         
                                             <img class="img-responsive" src=@Model.ElementAt(restaurantNr).RestaurantAfbeelding.Link alt=@Model.ElementAt(restaurantNr).Naam title="@Model.ElementAt(restaurantNr).Naam">
                                         
@@ -69,18 +68,15 @@
                                                         </article>
                                                     </div>
 
-</div>
-</div>
+                                            </div>
+                                </div>
 
                                 </div>
                                 <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(restaurantNr).Naam, "FoodDetailPage", "Food", new { food_id = Model.ElementAt(restaurantNr).RestaurantID }, null) </p>
                                
                             </td>
 
-
                             { restaurantNr++; }
-
-
                         }
                     }
                 }

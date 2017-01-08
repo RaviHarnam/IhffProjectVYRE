@@ -1,7 +1,23 @@
 ﻿@using IHFF.Models;
 
 @model Special
+@Styles.Render("~/Content/overview.css")
 
+
+<div class="shortInfo">
+    <h3>Info</h3>
+    <p>Rating: @Model.Speaker</p>
+    <p>Director: @Model.SpokenLanguage</p>
+</div>
+
+<div class="crosselling">
+    <h3>Discover Haarlem!</h3>
+    <h4>Looking for Culture?</h4>
+    @Html.ActionLink("Culture", "MuseumOverview", "Culture", null, new { @Class = "cross" })
+    <h4>Looking for Hotels?</h4>
+    @Html.ActionLink("Hotels", "HotelsOverview", "Hotels", null, new { @Class = "cross" })
+
+</div>
 <section class="form">
     @Html.ValidationSummary()
     @using (Html.BeginForm("SpecialOverview", "Special", FormMethod.Post))
@@ -20,6 +36,8 @@
             }
         </select>
         <br /><br />
-        <input type="submit" formmethod="post" value="Add to cart" />
+        <button name="button" class="cartbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
+        <button name="button" class="wishbutton" type="submit" formmethod="post" value="wishlist">Add to Wishlist</button>
+        <br />
     }
 </section>

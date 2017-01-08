@@ -50,7 +50,7 @@ namespace IHFF.Controllers
 
 
         [HttpPost]
-        public ActionResult SpecialOverview(int? voorstellingId, Special special, string aantal)
+        public ActionResult SpecialOverview(int? voorstellingId, Special special, string aantal, string button)
         {
             if (ModelState.IsValid)
             {
@@ -61,12 +61,12 @@ namespace IHFF.Controllers
                     {
                         Event eventx = special.GetEvent(voorstellingId.Value);
                         eventx.Aantal = amount;
-                        if (Session["cart"] == null)
-                            Session["cart"] = new List<Event>();
+                        if (Session[button] == null)
+                            Session[button] = new List<Event>();
 
-                        List<Event> cartlist = (List<Event>)Session["cart"];
+                        List<Event> cartlist = (List<Event>)Session[button];
                         cartlist.Add(eventx);
-                        Session["cart"] = cartlist;
+                        Session[button] = cartlist;
                     }
                 }
                 //special = dbSpecial.GetSpecial(special.ItemID);

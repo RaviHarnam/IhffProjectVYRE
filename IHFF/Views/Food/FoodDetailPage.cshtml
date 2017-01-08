@@ -1,5 +1,5 @@
-﻿@Styles.Render("~/Content/FoodDetailPageStyle.css")
-
+﻿@Styles.Render("~/Content/MovieDetailPageStyle.css")
+@Styles.Render("~/Content/overview.css")
 @using IHFF.Models;
 @model Restaurant
 @{
@@ -42,7 +42,7 @@
             {
                 if (maaltijd.BeginTijd.Hour < 16)
                 {
-                <option value=@maaltijd.MaaltijdID> @maaltijd.BeginTijd.DayOfWeek @maaltijd.BeginTijd.ToString("dd/MM/yy") Lunch</option>
+                    <option value=@maaltijd.MaaltijdID> @maaltijd.BeginTijd.DayOfWeek @maaltijd.BeginTijd.ToString("dd/MM/yy") Lunch</option>
                 }
                 else
                 {
@@ -56,7 +56,8 @@
         </select>  
          @Html.TextBox("minuten",null,  new {@type = "number", @min = "0", @max = "59", @pattern = "[0-9]", @size = "10"})
         <br /><br />
-        <input type="submit" formmethod="post" value="Add to cart" />
+        <button name="buttoncart" class="cartbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
+        <button name="buttonwish" class="wishbutton" type="submit" formmethod="post" value="wishlist">Add to Wishlist</button>
     }
 </section>
 
