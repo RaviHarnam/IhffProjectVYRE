@@ -50,9 +50,9 @@
                                         <div class="overlay">
 
                                             <a class="plaatjelink" href='@Url.Action("MovieDetailPage", "Movies", new { movie_id = Model.ElementAt(movieNr).ItemID }, null)'></a>
-                                            <a href='@Url.Action("MovieDetailPage", "Movies", new { movie_id = Model.ElementAt(movieNr).ItemID }, null)'>
-                                                <h2 class="overlaytitel">@Model.ElementAt(movieNr).Titel</h2>
-                                            </a>
+                                            <a href='@Url.Action("MovieDetailPage", "Movies", new { movie_id = Model.ElementAt(movieNr).ItemID }, null)'></a>
+                                                <h2 class="overlaytitel">@Html.ActionLink(@Model.ElementAt(movieNr).Titel, "MovieDetailPage","Movies", new { movie_id = Model.ElementAt(movieNr).ItemID }, null)</h2>
+                                            
 
                                             <!-- Trigger/Open The Modal -->
                                             <!-- The Modal -->
@@ -68,7 +68,7 @@
                                                     <div class="modal-body">
                                                         @Html.Partial("_MovieOverview", @Model.ElementAt(movieNr))
                                                         @*@using (Html.BeginForm("AddToCart", "Cart"))
-                                                            {
+                                                            { 
                                                                 <div class="pull-right">@Html.Hidden("voorstellingid", )
                                                              @Html.Hidden("returnUrl", Request.Url.PathAndQuery)<input type="submit" class="movie_index_item_description_button" value="Add  tocart" /></div>
                                                             }*@

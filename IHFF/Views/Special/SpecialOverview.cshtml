@@ -50,15 +50,15 @@
                                         <img class="img-responsive" src=@Model.ElementAt(specialNr).ItemAfbeelding.Link alt=@Model.ElementAt(specialNr).Titel title="@Model.ElementAt(specialNr).Titel">
                                         <div class="overlay">
                                             <a class="plaatjelink" href='@Url.Action("SpecialDetailPage", "Special", new { special_id = Model.ElementAt(specialNr).ItemID }, null)'></a>
-                                            <a href='@Url.Action("SpecialDetailPage", "Special", new { special_id = Model.ElementAt(specialNr).ItemID }, null)'>
+                                            <a href='@Url.Action("SpecialDetailPage", "Special", new { special_id = Model.ElementAt(specialNr).ItemID }, null)'></a>
 
                                                 <h2 class="overlaytitel">@Model.ElementAt(specialNr).Titel</h2>
-                                            </a>
+                                            
 
                                                 <!-- Trigger/Open The Modal -->
                                                 <!-- The Modal -->
 
-                                                <button id="@specialNr" class="movie_index_item_description_button">Voeg toe aan Cart</button>
+                                                <button id="@specialNr" class="movie_index_item_description_button">Add to</button>
                                                 <div class="modal">
                                                     <article class="modal-content">
                                                         <article class="modal-header">
@@ -89,7 +89,7 @@
                     modal.style.display = "block";
                 }
             </script>*@
-                                                <a href="SpaceOdysses.html" class="movie_index_item_description_button2">Wishlist</a>  <!--a ref naar actionlink-->
+                                                @*<a href="SpaceOdysses.html" class="movie_index_item_description_button2">Wishlist</a>*@  <!--a ref naar actionlink-->
 </div>
                                     </div>
 
