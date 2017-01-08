@@ -129,6 +129,11 @@
     margin-bottom:35px;    
        
 }
+
+.movie_index_item_title:hover{
+background-color: #06AED5;
+}
+
 .movie_index_item_title a {
     color: white;
     text-decoration: none;
@@ -200,12 +205,13 @@
 
     
 }
-.movie_index_item_description_button:hover{
-	background-color: #226493;
+.hovereffect .movie_index_item_description_button:hover{	
+    background-color: #06AED5;
+}
 }
 
-.movie_index_item_description_button2:hover{
-	background-color: #226493;
+.hovereffect .movie_index_item_description_button2:hover{
+	background-color: #06AED5;
 }
 
 .company-image-overlay {
