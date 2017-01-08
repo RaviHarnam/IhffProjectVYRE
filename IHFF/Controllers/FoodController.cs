@@ -48,11 +48,11 @@ namespace IHFF.Controllers
                
                 //Uren
                 eventx.DatumTijd = m.BeginTijd;
-                int verschilUren = eventx.DatumTijd.Hour - maaltijdUur;
-                eventx.DatumTijd.AddHours(verschilUren);
+                eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(eventx.DatumTijd.Hour, 0,0);
+                eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(maaltijdUur, 0, 0);
                 //Minuten
-                int verschilMinuten = eventx.DatumTijd.Minute - minutenConverted;
-                eventx.DatumTijd.AddMinutes(minutenConverted);
+                eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(0, eventx.DatumTijd.Minute, 0);
+                eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(0, minutenConverted, 0);                
                 //Rest
                 eventx.Titel = m.MaaltijdRestaurant.Naam;
                 eventx.Prijs = m.MaaltijdPrijs;
