@@ -12,41 +12,54 @@ namespace IHFF.Models.Input
         public int MuseumID { get; set; }
         [Required]
         [Display(Name = "Name")]
+        [StringLength(50, ErrorMessage = "The Name field has a maximum size of 50.")]
         public string Naam { get; set; }
         [Required]
+        [StringLength(4000, ErrorMessage = "The Summary field has a maximum size of 4000.")]
         public string Omschrijving { get; set; }
 
         public int LocatieID { get; set; }
         [Required]
+        [StringLength(1000, ErrorMessage = "The Telephone field has a maximum size of 1000.")]
         [Display(Name = "Telephone")]
         public string Telefoon { get; set; }
         [Required]
+        [StringLength(40, ErrorMessage = "The Adults field has a maximum size of 40.")]
         public string Adults { get; set; }
         [Required]
+        [StringLength(40, ErrorMessage = "The Kids field has a maximum size of 40.")]
         public string Kids { get; set; }
         [Required]
+        [StringLength(100, ErrorMessage = "The Website field has a maximum size of 100.")]
         public string Website { get; set; }
 
         [Required]
         [Display(Name = "Monday")]
+        [StringLength(20, ErrorMessage = "The Monday field has a maximum size of 20.")]
         public string Maandag { get; set; }
         [Required]
         [Display(Name = "Tuesday")]
+        [StringLength(20, ErrorMessage = "The Tuesday field has a maximum size of 20.")]
         public string Dinsdag { get; set; }
         [Required]
         [Display(Name = "Wednesday")]
+        [StringLength(20, ErrorMessage = "The Wednesday field has a maximum size of 20.")]
         public string Woensdag { get; set; }
         [Required]
         [Display(Name = "Thursday")]
+        [StringLength(20, ErrorMessage = "The Thursday field has a maximum size of 20.")]
         public string Donderdag { get; set; }
         [Required]
         [Display(Name = "Friday")]
+        [StringLength(20, ErrorMessage = "The Friday field has a maximum size of 20.")]
         public string Vrijdag { get; set; }
         [Required]
         [Display(Name = "Saturday")]
+        [StringLength(20, ErrorMessage = "The Saturday field has a maximum size of 20.")]
         public string Zaterdag { get; set; }
         [Required]
         [Display(Name = "Sunday")]
+        [StringLength(20, ErrorMessage = "The Sunday field has a maximum size of 20.")]
         public string Zondag { get; set; }
 
         [NotMapped]

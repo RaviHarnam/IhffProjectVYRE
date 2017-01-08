@@ -33,45 +33,43 @@
 
         <section class="info">
 
-            <h3>Info</h3>
+            <h3>Info:</h3>
             <table>
                 <tr>
                     <td> @Html.LabelFor(m => m.Telefoon):</td>
-                    <td> @Html.TextBoxFor(m => m.Telefoon, new { @Size = 30 })</td>
+                    <td> @Html.TextBoxFor(m => m.Telefoon, new { @Size = 30, @placeholder = "00 12345678"})</td>
                 </tr>
                 <tr>
                     <td> @Html.LabelFor(m => m.Website):</td>
-                    <td> @Html.TextBoxFor(m => m.Website, new { @Size = 30 })</td>
+                    <td> @Html.TextBoxFor(m => m.Website, new { @Size = 30, @placeholder = "http://i.imgur.com/example.png" })</td>
                 </tr>
                 <tr>
                     <td> @Html.LabelFor(m => m.Email):</td>
-                    <td> @Html.TextBoxFor(m => m.Email)</td>
+                    <td> @Html.TextBoxFor(m => m.Email, new {@placeholder = "example@gmail.com"})</td>
                 </tr>
             </table>                       
-            <h3>Location</h3>
+            <h3>Location:</h3>
             <table>
                 <tr>
-                    <td> @Html.LabelFor(m => m.RestaurantLocatie.Straat)</td>
-                    <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Straat)</td>
+                    <td> @Html.LabelFor(m => m.RestaurantLocatie.Straat):</td>
+                    <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Straat, new { @placeholder = "Street"})</td>
                 </tr>
                 <tr>
-                    <td> @Html.LabelFor(m => m.RestaurantLocatie.Huisnummer)</td>
-                    <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Huisnummer, null, new { @type = "number" })</td>
+                    <td> @Html.LabelFor(m => m.RestaurantLocatie.Huisnummer):</td>
+                    <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Huisnummer, null, new {@type = "number", @placeholder = "20"})</td>
                 </tr>
                 <tr>
-                    <td> @Html.LabelFor(m => m.RestaurantLocatie.Toevoeging)</td>
-                    <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Toevoeging)</td>
+                    <td> @Html.LabelFor(m => m.RestaurantLocatie.Toevoeging):</td>
+                    <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Toevoeging, new {@placeholder = "A"})</td>
                 </tr>
                 <tr>
-                    <td> @Html.LabelFor(m => m.RestaurantLocatie.Postcode)</td>
-                    <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Postcode)</td>
+                    <td> @Html.LabelFor(m => m.RestaurantLocatie.Postcode):</td>
+                    <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Postcode, new { @placeholder = "2000 AA"})</td>
                 </tr>
                 <tr>
-                    <td> @Html.LabelFor(m => m.RestaurantLocatie.Plaats)</td>
-                    <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Plaats)</td>
+                    <td> @Html.LabelFor(m => m.RestaurantLocatie.Plaats):</td>
+                    <td> @Html.TextBoxFor(m => m.RestaurantLocatie.Plaats, new {@placeholder = "City"})</td>
                 </tr>
             </table>
-
         </section>
-
 }
