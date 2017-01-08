@@ -91,13 +91,13 @@ namespace IHFF.Controllers
                         cartlist.Add(eventx);
                         Session[button] = cartlist;
 
-                        movie = dbMovie.GetMovie(movie.ItemID);
-                        movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);
+                        
                     }
                 }
 
             }
-
+            movie = dbMovie.GetMovie(movie.ItemID);
+            movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);
             return View(movie);
         }
 
