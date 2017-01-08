@@ -354,6 +354,7 @@
     <Content Include="Views\Food\FoodDetailPage.cshtml" />
     <Content Include="Views\AboutUs\AboutUs.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\Employee\AddRestaurant.cshtml" />
     <Content Include="Views\WishList\Index.cshtml" />
     <Content Include="Views\Locations\Locations.cshtml" />
     <Content Include="Views\Culture\_MovieOverview.cshtml" />

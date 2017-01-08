@@ -10,6 +10,7 @@ namespace IHFF.Models.Input
     public class RestaurantInputModel
     {
         public int RestaurantID { get; set; }
+
         [Display(Name = "Name")]
         [Required]
         public string Naam { get; set; }
@@ -23,7 +24,9 @@ namespace IHFF.Models.Input
         public string Email { get; set; }
         [Required]
         public string Website { get; set; }
+
         public int LocatieID { get; set; }
+
         [NotMapped]
         public virtual Afbeelding RestaurantAfbeelding { get; set; }
         [NotMapped]

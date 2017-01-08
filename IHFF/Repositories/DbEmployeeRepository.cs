@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using IHFF.Models;
+using System.Data.Entity;
 
 namespace IHFF.Repositories
 {
@@ -127,6 +128,7 @@ namespace IHFF.Repositories
                     dbLocatie.Straat = restaurant.RestaurantLocatie.Straat;
                     dbLocatie.Huisnummer = restaurant.RestaurantLocatie.Huisnummer;
                     dbLocatie.Toevoeging = restaurant.RestaurantLocatie.Toevoeging;
+                    dbLocatie.Postcode = restaurant.RestaurantLocatie.Postcode;
                     dbLocatie.Plaats = restaurant.RestaurantLocatie.Plaats;
                 }
                 ctx.SaveChanges();
@@ -165,8 +167,22 @@ namespace IHFF.Repositories
         public void DeleteMuseum(int museumid)
         {
             Museum dbMuseum = ctx.MUSEA.SingleOrDefault(m => m.MuseumID == museumid);
+            //Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(m => m.LocatieID == dbMuseum.LocatieID);
+            //if (dbLocatie != null) //On delelte Cascade betekent dat dit niet meer hoeft
+            //    ctx.Entry(dbLocatie).State = EntityState.Deleted;
+            IEnumerable<Afbeelding> dbAfbeeldingen = (from a in ctx.AFBEELDINGEN
+                                                      where a.MuseumID == museumid
+                                                      select a).ToList();
+            if (dbAfbeeldingen != null && dbAfbeeldingen.Any())
+                foreach (Afbeelding dbAfbeelding in dbAfbeeldingen)
+                    ctx.Entry(dbAfbeelding).State = EntityState.Deleted;
+
+          
             if (dbMuseum != null)
-                ctx.MUSEA.Remove(dbMuseum);
+                ctx.Entry(dbMuseum).State = EntityState.Deleted;
+
+
+            ctx.SaveChanges();
         }
 
         public void DeleteMovie(int movieid)
@@ -190,29 +206,60 @@ namespace IHFF.Repositories
             if (dbVoorstellingen != null && dbAfbeeldingen.Any())
                 foreach (Voorstelling dbVoorstelling in dbVoorstellingen)
                     ctx.VOORSTELLINGEN.Remove(dbVoorstelling);
-          
+
             ctx.SaveChanges();
         }
 
         public void DeleteSpecial(int specialid)
         {
-            throw new NotImplementedException();
+            Special dbSpecial = ctx.SPECIALS.SingleOrDefault(s => s.ItemID == specialid);
+            if (dbSpecial != null)
+                ctx.SPECIALS.Remove(dbSpecial);
+            Item dbItem = ctx.ITEMS.SingleOrDefault(s => s.ItemID == specialid);
+            if (dbItem != null)
+                ctx.ITEMS.Remove(dbItem);
+            IEnumerable<Afbeelding> dbAfbeeldingen = (from a in ctx.AFBEELDINGEN
+                                                      where a.ItemID == specialid
+                                                      select a).ToList();
+            if (dbAfbeeldingen != null && dbAfbeeldingen.Any())
+                foreach (Afbeelding dbAfbeelding in dbAfbeeldingen)
+                    ctx.AFBEELDINGEN.Remove(dbAfbeelding);
+            IEnumerable<Voorstelling> dbVoorstellingen = (from v in ctx.VOORSTELLINGEN
+                                                          where v.ItemId == specialid
+                                                          select v).ToList();
+            if (dbVoorstellingen != null && dbVoorstellingen.Any())
+                foreach (Voorstelling dbVoorstelling in dbVoorstellingen)
+                    ctx.VOORSTELLINGEN.Remove(dbVoorstelling);
+
+            ctx.SaveChanges();
         }
 
         public void DeleteRestaurant(int restaurantid)
         {
-            throw new NotImplementedException();
+            Restaurant dbRestaurant = ctx.RESTAURANTS.SingleOrDefault(r => r.RestaurantID == restaurantid);
+            if (dbRestaurant != null)
+                ctx.RESTAURANTS.Remove(dbRestaurant);
+            IEnumerable<Afbeelding> dbAfbeeldingen = (from a in ctx.AFBEELDINGEN
+                                                      where a.RestaurantID == restaurantid
+                                                      select a).ToList();
+            if (dbAfbeeldingen != null && dbAfbeeldingen.Any())
+                foreach (Afbeelding dbAfbeelding in dbAfbeeldingen)
+                    ctx.AFBEELDINGEN.Remove(dbAfbeelding);
+
+            //On delete cascade will remove this for me
+            //Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == dbRestaurant.LocatieID);
+            //if (dbLocatie != null)
+            //    ctx.LOCATIES.Remove(dbLocatie);
+
+            ctx.SaveChanges();
         }
 
         public void AddMovie(Movie m)
-        {
-            //m.ItemID = ctx.ITEMS.Count() + 1;       
+        {        
+            //Add movie    
             ctx.MOVIES.Add(m);
-            //Movie lstMov = ctx.MOVIES.Last(mov => mov.ItemID == mov.ItemID);
-            // m.ItemAfbeelding.ItemID = lstMov.ItemID;  
-            //ctx.AFBEELDINGEN.Add(m.ItemAfbeelding);
             ctx.SaveChanges();
-            //Add afbeelding
+            //Add picture
             m.ItemAfbeelding.ItemID = m.ItemID;
             ctx.AFBEELDINGEN.Add(m.ItemAfbeelding);
             ctx.SaveChanges();
@@ -244,8 +291,14 @@ namespace IHFF.Repositories
 
         public void AddRestaurant(Restaurant r)
         {
+            //Add location
+            ctx.LOCATIES.Add(r.RestaurantLocatie);
+            ctx.SaveChanges();
+            //Add restaurant
+            r.LocatieID = r.RestaurantLocatie.LocatieID;
             ctx.RESTAURANTS.Add(r);
             ctx.SaveChanges();
+            //Add picture
             r.RestaurantAfbeelding.RestaurantID = r.RestaurantID;
             ctx.AFBEELDINGEN.Add(r.RestaurantAfbeelding);
             ctx.SaveChanges();

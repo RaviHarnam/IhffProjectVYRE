@@ -11,7 +11,7 @@ namespace IHFF.Models
     {
         public int LocatieID { get; set; }
 
-        [Required]
+        
         [Display(Name = "Name")]
         public string Naam { get; set; }
 

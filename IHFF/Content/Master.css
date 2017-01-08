@@ -102,7 +102,7 @@ body {
     /*alleen voor meest rechter laten gelden niet voor beide*/
 }
 
-#wishlist {
+#wishList {
     border-left: 0.063em solid #000000;
     width: 12%;
 }
