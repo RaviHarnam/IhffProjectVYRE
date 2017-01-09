@@ -309,7 +309,11 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult AddHotel(Hotel h)
         {
-
+            if (ModelState.IsValid)
+            {
+                h.HotelAfbeelding.Type = "HotelBanner";
+                db.AddHotel(h);
+            }
 
             return RedirectToAction("ManagementWindow");
         }
