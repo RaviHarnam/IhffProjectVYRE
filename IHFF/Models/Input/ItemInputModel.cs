@@ -10,14 +10,14 @@ namespace IHFF.Models.Input
     public abstract class ItemInputModel
     {
         public int ItemID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "The Title field is required.")]
         [Display(Name = "Title")]
-        [StringLength(100, ErrorMessage = "The title field has a maximum size of 100.")]
+        [StringLength(100, ErrorMessage = "The Title field has a maximum size of 100.")]
         public string Titel { get; set; }
-        [Required]
+        [Required(ErrorMessage = "The Summary field is required.")]
         [StringLength(4000, ErrorMessage = "The summary field has a maximum size of 4000.")]
         public string Omschrijving { get; set; }
-        [Required]
+        
         public bool Highlight { get; set; }
 
         [NotMapped]
