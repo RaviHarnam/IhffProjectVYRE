@@ -17,12 +17,29 @@ namespace IHFF.Repositories
 
         public List<Hotel> GetAll()
         {
-            throw new NotImplementedException();
+            List<Hotel> hotels = ctx.HOTEL.ToList();
+            foreach (Hotel h in hotels)
+            {
+                h.HotelAfbeelding = (from afb in ctx.AFBEELDINGEN
+                                          where afb.HotelID == h.HotelId && afb.Type ==""
+                                          select afb).SingleOrDefault();
+            }
+
+            return hotels;
         }
 
         public Hotel GetHotel(int hotelId)
         {
-            throw new NotImplementedException();
+            Hotel h = (from hot in ctx.HOTEL
+                       where hot.HotelId == hotelId
+                       select hot).SingleOrDefault();
+
+            h.HotelAfbeelding = (from afb in ctx.AFBEELDINGEN
+                                 where afb.HotelID == hotelId
+                                 select afb).SingleOrDefault();
+
+            return h;
+
         }
 
         public void Remove(int hotelId)

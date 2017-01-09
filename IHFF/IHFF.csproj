@@ -363,6 +363,7 @@
     <Content Include="Views\Hotels\HotelsOverview.cshtml" />
     <Content Include="Views\Employee\AddHotel.cshtml" />
     <Content Include="Views\Employee\_DeleteFestivalObject.cshtml" />
+    <Content Include="Views\Hotels\HotelDetailPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -312,6 +312,7 @@ namespace IHFF.Controllers
             if (ModelState.IsValid)
             {
                 h.HotelAfbeelding.Type = "HotelBanner";
+                h.HotelOverviewAfbeelding.Type = "HotelOverview";
                 db.AddHotel(h);
             }
 
