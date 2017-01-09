@@ -29,7 +29,7 @@ body {
 
 .side-buttons {
     float: right;
-    margin-right: 5%;    
+    margin-right: 2%;    
     margin-top: 20px;
     margin-bottom: 5%;
 }
@@ -89,6 +89,12 @@ body {
     margin-left: -10em;
 }
 
+#Navbartotaal{
+margin-left: 2%;
+margin-right: 2%;
+-webkit-padding-start: 0px !important;
+}
+
 #menu-border-left{
     border-left: 0.063em solid #000000;
 }
@@ -102,9 +108,13 @@ body {
     /*alleen voor meest rechter laten gelden niet voor beide*/
 }
 
-#wishlist {
+#Cart{
+    width:auto;
+}
+
+#wishList {
     border-left: 0.063em solid #000000;
-    width: 12%;
+    width: auto;
 }
 
 .top-menu-bar p{

@@ -129,6 +129,11 @@
     margin-bottom:35px;    
        
 }
+
+.movie_index_item_title:hover{
+background-color: #06AED5;
+}
+
 .movie_index_item_title a {
     color: white;
     text-decoration: none;
@@ -145,10 +150,13 @@
 	opacity: 1.0; 
 	text-align:center;
 	margin: 0 auto;
-	margin-top:35px;
 	position: relative;
     top:5px;
 }
+.cartbutton:hover{
+    background-color: #06AED5;
+}
+
 .wishbutton{
     text-decoration: none;
     color: white !important;
@@ -164,8 +172,11 @@
 	margin-top:35px;
 	position: relative;
     top:5px;
-
 }
+.wishbutton:hover{
+    background-color: #06AED5;
+}
+
 .movie_index_item_description_button{
     text-decoration: none;
     color: white !important;
@@ -201,12 +212,13 @@
 
     
 }
-.movie_index_item_description_button:hover{
-	background-color: #226493;
+.hovereffect .movie_index_item_description_button:hover{	
+    background-color: #06AED5;
 }
 
-.movie_index_item_description_button2:hover{
-	background-color: #226493;
+
+.hovereffect .movie_index_item_description_button2:hover{
+	background-color: #06AED5;
 }
 
 .company-image-overlay {
@@ -244,6 +256,10 @@
     left: -10px;
 }
 
+.overlaytitel{
+    text-decoration: none;
+}
+
 .plaatjelink {
  position: absolute;
  left: 0;
@@ -253,6 +269,7 @@
 
 .overlay a{
     text-decoration: none;
+    color:white;
 }
 
 .hovereffect img {

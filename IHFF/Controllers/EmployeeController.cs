@@ -222,8 +222,9 @@ namespace IHFF.Controllers
                 mov.ConvertFromAddInputModel(m);
                 mov.ItemAfbeelding = new Afbeelding(mov.ItemID, null, null, afbLink, "filmbanner");
                 db.AddMovie(mov);
+                return RedirectToAction("ManagementWindow");
             }
-            return RedirectToAction("ManagementWindow");
+            return View(m);
         }
 
         [Authorize]
@@ -242,8 +243,9 @@ namespace IHFF.Controllers
                 spc.ConvertFromSpecialInputModel(s);
                 spc.ItemAfbeelding = new Afbeelding(spc.ItemID, null, null, afbLink, "specialbanner");
                 db.AddSpecial(spc);
+                return RedirectToAction("ManagementWindow");
             }
-            return RedirectToAction("ManagementWindow");
+            return View(s);
         }
 
         [Authorize]
@@ -256,6 +258,7 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult AddMuseum(MuseumInputModel m, string afbLink)
         {
+            m.MuseumLocatie.Naam = m.Naam;
             if (ModelState.IsValid)
             {
                 Museum mus = new Museum();
@@ -268,8 +271,9 @@ namespace IHFF.Controllers
                 mus.MuseumLocatie = m.MuseumLocatie;
                 //mus.MuseumLocatie = loc;
                 db.AddMuseum(mus);
+                return RedirectToAction("ManagementWindow");
             }
-            return RedirectToAction("ManagementWindow");
+            return View(m);
         }
 
         [Authorize]
@@ -281,15 +285,18 @@ namespace IHFF.Controllers
         [Authorize]
         [HttpPost]
         public ActionResult AddRestaurant(RestaurantInputModel r, string afbLink)
-        {
+        {            
             if (ModelState.IsValid)
             {
                 Restaurant rst = new Restaurant();
                 rst.ConvertFromRestaurantInputModel(r);
+                r.RestaurantLocatie.Naam = r.Naam;
                 rst.RestaurantAfbeelding = new Afbeelding(null, null, rst.RestaurantID, afbLink, "Restaurantbanner");
+                rst.RestaurantLocatie = r.RestaurantLocatie;
                 db.AddRestaurant(rst);
+                return RedirectToAction("ManagementWindow");
             }
-            return RedirectToAction("ManagementWindow");
+            return View(r);
         }
 
         [Authorize]

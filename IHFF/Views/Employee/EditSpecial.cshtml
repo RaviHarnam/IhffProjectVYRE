@@ -16,28 +16,28 @@
     <input type="Submit" value="Update special" formmethod="Post" class="Edit-update" size="30" />
     <p>
         @Html.LabelFor(m => m.Titel):
-        @Html.TextBoxFor(m => m.Titel, new { @Value = Model.Titel })
+        @Html.TextBoxFor(m => m.Titel, new { @Value = Model.Titel, @placeholder = Model.Titel})
     </p>
 
     <img class="bannerimg" src=@Model.ItemAfbeelding.Link width="700" height="350"/>
     <p>
         @Html.LabelFor(m => m.ItemAfbeelding.Link):
-        @Html.TextBoxFor(m => m.ItemAfbeelding.Link, new { @Value = Model.ItemAfbeelding.Link, @Size = 30 })
+        @Html.TextBoxFor(m => m.ItemAfbeelding.Link, new { @Value = Model.ItemAfbeelding.Link, @Size = 30, @placeholder = Model.ItemAfbeelding.Link})
     </p>
     <section class="summary">
         <h3>Summary</h3>
-        @Html.TextAreaFor(m => m.Omschrijving, new { @Value = Model.Omschrijving, @Rows = 8, @cols = 40 })
+        @Html.TextAreaFor(m => m.Omschrijving, new { @Value = Model.Omschrijving, @Rows = 8, @cols = 40, @placeholder = Model.Omschrijving})
     </section>
     <section class="info">
         <h3>Info</h3>
         <table>
             <tr>
                 <td> @Html.LabelFor(m => m.Speaker):</td>
-                <td> @Html.TextBoxFor(m => m.Speaker, new { @Value = Model.Speaker, @Size = 30 })</td>
+                <td> @Html.TextBoxFor(m => m.Speaker, new { @Value = Model.Speaker, @Size = 30, @placeholder = Model.Speaker})</td>
             </tr>
             <tr>
                 <td> @Html.LabelFor(m => m.SpokenLanguage):</td>
-                <td> @Html.TextBoxFor(m => m.SpokenLanguage, new { @Value = Model.SpokenLanguage, @Size = 30 })</td>
+                <td> @Html.TextBoxFor(m => m.SpokenLanguage, new { @Value = Model.SpokenLanguage, @Size = 30, @placeholder = Model.SpokenLanguage})</td>
             </tr>
         </table>
     </section>

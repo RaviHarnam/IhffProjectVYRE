@@ -18,13 +18,13 @@
 
 <p>
     @Html.LabelFor(m => m.Titel):
-    @Html.TextBoxFor(m => m.Titel, new { @Value = Model.Titel })
+    @Html.TextBoxFor(m => m.Titel, new { @Value = Model.Titel, @placeholder = Model.Titel})
 </p>
 
 <img class="bannerimg" src=@Model.ItemAfbeelding.Link />
 <p>
     @Html.LabelFor(m => m.ItemAfbeelding.Link):
-    @Html.TextBoxFor(m => m.ItemAfbeelding.Link, new { @Value = Model.ItemAfbeelding.Link, @Size = 30 })
+    @Html.TextBoxFor(m => m.ItemAfbeelding.Link, new { @Value = Model.ItemAfbeelding.Link, @Size = 30, @placeholder = Model.ItemAfbeelding.Link})
 
     @Html.DropDownListFor(h => h.Highlight, new SelectList(new[]
     {
@@ -38,26 +38,26 @@
 </p>
 <section class="summary">
     <h3>Summary</h3>
-    @Html.TextAreaFor(m => m.Omschrijving, new { @Value = Model.Omschrijving, @Rows = 8, @cols = 40 })
+    @Html.TextAreaFor(m => m.Omschrijving, new { @Value = Model.Omschrijving, @Rows = 8, @cols = 40, @placeholder = Model.Omschrijving })
 </section>
 <section class="info">
     <h3>Info</h3>
     <table>       
         <tr>
             <td> @Html.LabelFor(m => m.Rating):</td>
-            <td> @Html.TextBoxFor(m => m.Rating, new { @Value = Model.Rating, @Size = 30 })</td>
+            <td> @Html.TextBoxFor(m => m.Rating, new { @Value = Model.Rating, @Size = 30, @placeholder = Model.Rating})</td>
         </tr>
         <tr>
             <td> @Html.LabelFor(m => m.Director):</td>
-            <td> @Html.TextBoxFor(m => m.Director, new { @Value = Model.Director, @Size = 30 })</td>
+            <td> @Html.TextBoxFor(m => m.Director, new { @Value = Model.Director, @Size = 30, @placeholder = @Model.Rating})</td>
         </tr>
         <tr>
             <td> @Html.LabelFor(m => m.Writers):</td>
-            <td> @Html.TextBoxFor(m => m.Writers, new { @Value = Model.Writers, @Size = 30 })</td>
+            <td> @Html.TextBoxFor(m => m.Writers, new { @Value = Model.Writers, @Size = 30, @placeholder = Model.Writers})</td>
         </tr>
         <tr>
             <td> @Html.LabelFor(m => m.Stars):</td>
-            <td> @Html.TextBoxFor(m => m.Stars, new { @Value = Model.Stars, @Size = 30 }) </td>
+            <td> @Html.TextBoxFor(m => m.Stars, new { @Value = Model.Stars, @Size = 30, @placeholder = Model.Stars}) </td>
         </tr>
 
 
