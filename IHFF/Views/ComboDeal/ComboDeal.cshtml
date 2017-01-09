@@ -1,0 +1,40 @@
+﻿@Styles.Render("~/Content/MovieDetailPageStyle.css")
+@using IHFF.Models
+@model List<ComboDeal>
+@{
+    ViewBag.Title = "ComboDeal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Combo Deals</h2>
+
+@foreach(ComboDeal c in Model)
+{
+    <h3>@c.voorstelling1.BeginTijd.DayOfWeek dayticket</h3>
+    <table class="COMBOtable">
+        <tr>
+            <td class="COMBOleft">Film 1:</td>
+            <td>@c.film1.Titel</td>
+            <td class="COMBOright">@c.voorstelling1.BeginTijd.ToString("HH:mm")</td>
+            <td class="COMBOright">till @c.voorstelling1.EindTijd.ToString("HH:mm")</td>
+        </tr>
+        <tr>
+            <td class="COMBOleft">Film 2:</td>
+            <td>@c.film2.Titel</td>
+            <td class="COMBOright">@c.voorstelling2.BeginTijd.ToString("HH:mm")</td>
+            <td class="COMBOright">till @c.voorstelling2.EindTijd.ToString("HH:mm")</td>
+        </tr>
+        <tr>
+            <td class="COMBOleft">Special:</td>
+            <td>@c.special.Titel</td>
+            <td class="COMBOright">@c.voorstelling3.BeginTijd.ToString("HH:mm")</td>
+            <td class="COMBOright">till @c.voorstelling3.EindTijd.ToString("HH:mm")</td>
+        </tr>
+        <tr>
+            <td id="COMBOleft" class="COMBOleftTOtop">Price:</td>
+            <td class="COMBOleftTOtop">€17,50</td>
+            <td><button name="buttoncart" class="cartCOMBObutton" type="submit" formmethod="post" value="cart">Add to Cart</button></td>
+            <td><button name="buttonwish" class="wishCOMBObutton" type="submit" formmethod="post" value="wishlist">Add to Wishlist</button></td>
+        </tr>
+    </table>
+}

@@ -7,20 +7,18 @@ namespace IHFF.Models
 {
     public class Klant
     {
-        public int id { get; set; }
-        public string email { get; set; }
-        public string naam { get; set; }
+        public int KlantID { get; set; }
+        public string Email { get; set; }
+        public string Naam { get; set; }
 
-        public Bestelling KlantID
+        public Klant(string email, string naam)
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            Email = email;
+            Naam = naam;
         }
+        public Klant()
+        {
 
+        }
     }
 }

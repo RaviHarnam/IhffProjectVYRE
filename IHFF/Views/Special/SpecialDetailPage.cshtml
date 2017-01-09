@@ -1,5 +1,5 @@
 ﻿@Styles.Render("~/Content/MovieDetailPageStyle.css")
-
+@Styles.Render("~/Content/overview.css")
 @using IHFF.Models;
 @model Special
 @{
@@ -35,10 +35,11 @@
         <select name="voorstellingId">
             @foreach (Voorstelling voorstelling in Model.Voorstellingen)
             {
-                <option value=@voorstelling.VoorstellingId>@voorstelling.BeginTijd.ToString("dd/MM/yy HH:mm")</option>
+                <option value=@voorstelling.VoorstellingID>@voorstelling.BeginTijd.ToString("dd/MM/yy HH:mm")</option>
             }
         </select>
         <br /><br />
-        <input type="submit" formmethod="post" value="Add to cart" />
+        <button name="button" class="cartbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
+        <button name="button" class="wishbutton" type="submit" formmethod="post" value="wishlist">Add to Wishlist</button>
     }
 </section>

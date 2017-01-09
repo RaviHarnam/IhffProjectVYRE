@@ -138,6 +138,7 @@ background-color: #06AED5;
     color: white;
     text-decoration: none;
 }
+
 .cartbutton{
     text-decoration: none;
     color: white !important;
@@ -176,7 +177,27 @@ background-color: #06AED5;
 .wishbutton:hover{
     background-color: #06AED5;
 }
+.moverview{
+    float:left;
+    overflow:hidden;
+    width:50%;
+}
+a.fullsched{
+    float:right;
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    height: 44px;
+    line-height: 2.75em;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin-top:4%;
+	position: relative;
+    margin-right:4.5%;
 
+
+}
 .movie_index_item_description_button{
     text-decoration: none;
     color: white !important;
@@ -503,5 +524,17 @@ table{
     width: 764px;
 }
 
+.contacttabel{
+    width: 400px;
+}
+
+.contacttabel .links{
+    text-align: left;
+    width: 30%;
+}
+
+.contacttabel h3{    
+    margin-bottom: 12px;
+}
 
 
