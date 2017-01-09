@@ -16,13 +16,32 @@
     <p>@Model.Omschrijving</p>
 </section>
 <section class="info">
-    <h3>Info</h3>
-    @Html.LabelFor(m => m.Telefoon)
-    <p>Telephone: @Model.Telefoon</p>
-    <p>Email: @Model.Email</p>
-    <p>Website: <a href="@Model.Website"></a></p>
-    <p>Location: @Model.RestaurantLocatie.Straat @Model.RestaurantLocatie.Huisnummer @Model.RestaurantLocatie.Toevoeging</p>
-    <p>Postal code: @Model.RestaurantLocatie.Postcode @Model.RestaurantLocatie.Plaats</p>
+    <table class="contacttabel">
+        <tr>
+            <th>Info:</th>
+            <th></th>
+        </tr>        
+        <tr>
+            <td>Website:</td>
+            <td><a href="@Model.Website">@Model.Website</a></td>
+        </tr>
+        <tr>
+            <td>Telephone number:</td>
+            <td>@Model.Telefoon</td>
+        </tr>
+        <tr>
+            <td>E-mal:</td>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <td>Location:</td>
+            <td>@Model.RestaurantLocatie.Straat @Model.RestaurantLocatie.Huisnummer</td>
+        </tr>
+        <tr>
+            <td>Postal code:</td>
+            <td>@Model.RestaurantLocatie.Postcode, @Model.RestaurantLocatie.Plaats</td>
+        </tr>
+    </table>
 </section>
 <br />
 <section class="form">
