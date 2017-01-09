@@ -123,3 +123,11 @@ width: 120px;
 .COMBOleftTOtop{
     vertical-align: middle !important;
 }
+
+.COMBOleft{
+    width: 80px;
+}
+
+#COMBOleft{
+    width: 80px;
+}
