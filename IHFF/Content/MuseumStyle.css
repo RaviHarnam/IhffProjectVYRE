@@ -11,6 +11,7 @@ float: left;
 
 table{
     width: 45%;
+    margin-bottom: 1em;
 }
 
 .tijden {
@@ -31,3 +32,11 @@ table{
 section{
     margin-bottom: 3%;
 }
+
+.links{
+    text-align: left;
+    width: 30%;
+}
+
+
+
