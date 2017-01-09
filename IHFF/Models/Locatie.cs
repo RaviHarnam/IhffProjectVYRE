@@ -14,26 +14,25 @@ namespace IHFF.Models
         [Display(Name = "Name")]        
         public string Naam { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "The field Street is required.")]
         [Display(Name = "Street")]
         [StringLength(100, ErrorMessage = "The Street field has a maximum size of 100.")]
         public string Straat { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "The field Number is required.")]
         [Display(Name = "Number")]  
-        [StringLength(5, ErrorMessage = "The Number field has a maximum size of 5.")]    
         public int Huisnummer { get; set; }
  
         [Display(Name = "Addition")]
         [StringLength(5, ErrorMessage = "The Addition field has a maximum size of 5.")]
         public string Toevoeging { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "The Postal field is required.")]
         [Display(Name = "Postal")]
         [StringLength(6, ErrorMessage = "The Postal field has a maximum size of 6.")]
         public string Postcode { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "The City field is required.")]
         [Display(Name = "City")]
         [StringLength(25, ErrorMessage = "The City field has a maximum size of 25.")]
         public string Plaats { get; set; }

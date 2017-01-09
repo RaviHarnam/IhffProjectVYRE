@@ -8,10 +8,11 @@ namespace IHFF.Models.Input
 {
     public class SpecialInputModel : ItemInputModel
     {
-        [Required]
+        [Required(ErrorMessage = "The Speaker field is required.")]
         [StringLength(50, ErrorMessage = "The Speaker field has a maximum size of 50.")]
         public string Speaker { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "The Spoken Language field is required.")]
         [Display(Name = "Spoken language")]
         [StringLength(50, ErrorMessage = "The Spoken Language field has a maximum size of 50.")]
         public string SpokenLanguage { get; set; }
