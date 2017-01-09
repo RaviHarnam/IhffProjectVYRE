@@ -9,8 +9,8 @@ namespace IHFF.Models
 {
     public class Voorstelling
     {
-        public int VoorstellingId { get; set; }
-        public int ItemId { get; set; }
+        public int VoorstellingID { get; set; }
+        public int ItemID { get; set; }
         //public string Categorie { get; set; }
         public DateTime BeginTijd { get; set; }
         public DateTime EindTijd { get; set; }

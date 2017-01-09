@@ -1,0 +1,12 @@
+﻿@model String
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Payment using @Model</h2>
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <input value="Complete transaction" type="submit" />
+}

@@ -9,23 +9,25 @@ namespace IHFF.Models
 {
     public class Event
     {
-        public int EventId { get; set; }
-        [NotMapped]
-        public int CartId { get; set; }
-        [NotMapped]
-        public int WishListId { get; set;}
-        [NotMapped]
-        public int Count { get; set; }
+        public int EventID { get; set; }
+
+        
+
         public string Titel { get; set; }
-        public int Bestellingid { get; set; }
-        public int VoorstellingId { get; set; }
+        public int BestellingID { get; set; }
+        public int? VoorstellingID { get; set; }
         public decimal Prijs { get; set; }
         public int Aantal { get; set; }
         public DateTime DatumTijd { get; set; }
         [NotMapped]
         public string GeselecteerdeDatumTijd { get; set; }
-        public int MaaltijdId { get; set; }
+        public int? MaaltijdID { get; set; }
         public Event() { }
+
+        [NotMapped]
+        public int CartId { get; set; }
+        [NotMapped]
+        public int WishListId { get; set; }
 
         public void MakeEvent(Movie movie, Voorstelling voorstelling)
         {

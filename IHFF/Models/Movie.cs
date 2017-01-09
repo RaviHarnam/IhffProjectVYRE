@@ -46,7 +46,7 @@ namespace IHFF.Models
         {
             Voorstelling voorstelling = new Voorstelling();
             voorstelling = dbVoorstelling.GetVoorstelling(voorstellingId);
-            Titel = dbMovie.GetMovie(voorstelling.ItemId).Titel;
+            Titel = dbMovie.GetMovie(voorstelling.ItemID).Titel;
 
 
             Event eventx = new Event();

@@ -19,7 +19,7 @@ namespace IHFF.Repositories
                 //v.VoorstellingNaam = ctx.ITEMS.SingleOrDefault(i => i.ItemID == v.ItemId).Titel;
                 v.VoorstellingLocatie = ctx.LOCATIES.Single(l => l.LocatieID == v.LocatieId);
                 v.VoorstellingZaal = ctx.ZALEN.SingleOrDefault(z => z.ZaalID == v.ZaalID);
-                v.VoorstellingItem = ctx.ITEMS.SingleOrDefault(i => i.ItemID == v.ItemId);
+                v.VoorstellingItem = ctx.ITEMS.SingleOrDefault(i => i.ItemID == v.ItemID);
             }
             return voorstellingen;
         }

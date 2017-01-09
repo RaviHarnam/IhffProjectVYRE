@@ -13,7 +13,7 @@ namespace IHFF.Repositories
         public Voorstelling GetVoorstelling(int voorstellingId)
         {
             Voorstelling voorstelling = (from v in ctx.VOORSTELLINGEN
-                                         where v.VoorstellingId == voorstellingId
+                                         where v.VoorstellingID == voorstellingId
                                          select v).SingleOrDefault();
 
             return voorstelling;
@@ -22,7 +22,7 @@ namespace IHFF.Repositories
         public Voorstelling GetVoorstelling(int itemId, DateTime DatumTijd)
         {
             Voorstelling voorstelling = (from v in ctx.VOORSTELLINGEN
-                                         where v.ItemId == itemId && v.BeginTijd == DatumTijd
+                                         where v.ItemID == itemId && v.BeginTijd == DatumTijd
                                          select v).SingleOrDefault();
 
             return voorstelling;
@@ -31,7 +31,7 @@ namespace IHFF.Repositories
         public List<Voorstelling> GetVoorstellingen (int itemId)
         {
             List<Voorstelling> voorstellingen = (from v in ctx.VOORSTELLINGEN
-                                         where v.ItemId == itemId
+                                         where v.ItemID == itemId
                                          select v).ToList();
 
             return voorstellingen;

@@ -37,11 +37,13 @@
         <select name="voorstellingId">
             @foreach (Voorstelling voorstelling in Model.Voorstellingen)
             {
-                <option value=@voorstelling.VoorstellingId>@voorstelling.BeginTijd.ToString("dd/MM/yy HH:mm")</option>
+                <option value=@voorstelling.VoorstellingID>@voorstelling.BeginTijd.ToString("dd/MM/yy HH:mm")</option>
             }
         </select>   
+        <div class="buttonsdetailpage">
         <button name="button" class="cartbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
         <button name="button" class="wishbutton" type="submit" formmethod="post" value="wishlist">Add to Wishlist</button>
+        </div>
     
 
 

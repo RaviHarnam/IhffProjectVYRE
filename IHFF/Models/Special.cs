@@ -38,7 +38,7 @@ namespace IHFF.Models
         {
             Voorstelling voorstelling = new Voorstelling();
             voorstelling = dbVoorstelling.GetVoorstelling(voorstellingId);
-            Titel = dbSpecial.GetSpecial (voorstelling.ItemId).Titel;
+            Titel = dbSpecial.GetSpecial (voorstelling.ItemID).Titel;
 
 
             Event eventx = new Event();

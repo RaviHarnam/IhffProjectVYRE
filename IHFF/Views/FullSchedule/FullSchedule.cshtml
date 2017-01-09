@@ -120,11 +120,11 @@
                                     {
                                         if (vo.VoorstellingItem is Movie)
                                         {
-                                            <td title="@vo.VoorstellingItem.Titel" class="location-zichtbaar">@Html.ActionLink(vo.VoorstellingItem.Titel, "MovieDetailPage", "Movies", new {movie_id = vo.ItemId}, new { @Class = "link" })</td>
+                                            <td title="@vo.VoorstellingItem.Titel" class="location-zichtbaar">@Html.ActionLink(vo.VoorstellingItem.Titel, "MovieDetailPage", "Movies", new {movie_id = vo.ItemID}, new { @Class = "link" })</td>
                                         }
                                         else //Special
                                         {
-                                            <td title="@vo.VoorstellingItem.Titel" class="location-zichtbaar">@Html.ActionLink(vo.VoorstellingItem.Titel, "SpecialDetailPage", "Special", new {special_id = vo.ItemId}, new {@Class = "link"})</td>
+                                            <td title="@vo.VoorstellingItem.Titel" class="location-zichtbaar">@Html.ActionLink(vo.VoorstellingItem.Titel, "SpecialDetailPage", "Special", new {special_id = vo.ItemID}, new {@Class = "link"})</td>
                                         }                                       
                                     }
                                     else
