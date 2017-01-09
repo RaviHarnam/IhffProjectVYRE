@@ -47,6 +47,9 @@ namespace IHFF.Repositories
             museum.MuseumAfbeelding.Link = (from afb in ctx.AFBEELDINGEN
                                             where afb.MuseumID == museumId && afb.Type == "museumbanner"
                                             select afb.Link).SingleOrDefault();
+            museum.MuseumLocatie = (from loc in ctx.LOCATIES
+                                    where loc.LocatieID == museum.LocatieID
+                                    select loc).SingleOrDefault();
 
             return museum;
         }

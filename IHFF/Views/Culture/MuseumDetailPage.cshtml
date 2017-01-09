@@ -1,8 +1,83 @@
-﻿@using IHFF.Models;
+﻿@Styles.Render("~/Content/MuseumStyle.css")
+@using IHFF.Models;
 @{
     ViewBag.Title = "MuseumDetailPage";
 }
 
 @model Museum
 
-<h2>@Model.Naam</h2>
+<h3>@Model.Naam</h3>
+<p class="omschrijving">@Model.Omschrijving</p>
+<img class="afbeelding" src="@Model.MuseumAfbeelding.Link" title="@Model.Naam" />
+<br />
+<table class="tijden">
+    <tr>
+        <th class="links">Opening hours:</th>
+        <th class="right"></th>
+    </tr>
+    <tr>
+        <td class="links">Monday:</tdclass="links">
+        <td class="right">@Model.Maandag</td>
+    </tr>
+    <tr>
+        <td class="links">Tuesday:</td>
+        <td class="right">@Model.Dinsdag</td>
+    </tr>
+    <tr>
+        <td class="links">Wednesday:</td>
+        <td class="right">@Model.Woensdag</td>
+    </tr>
+    <tr>
+        <td class="links">Thursday:</td>
+        <td class="right">@Model.Donderdag</td>
+    </tr>
+    <tr>
+        <td class="links">Friday:</td>
+        <td class="right">@Model.Vrijdag</td>
+    </tr>
+    <tr>
+        <td class="links">Saterday:</td>
+        <td class="right">@Model.Zaterdag</td>
+    </tr>
+    <tr>
+        <td class="links">Sunday:</td>
+        <td>@Model.Zondag</td>
+    </tr>
+</table>
+<table class="contact">
+    <tr>
+        <th class="links">Contact:</th>
+        <th class="right"></th>
+    </tr>
+    <tr>
+        <td class="links">Website:</td>
+        <td class="right"><a href="@Model.Website">@Model.Website</a></td>
+    </tr>
+    <tr>
+        <td class="links">Telephone number:</td>
+        <td class="right">@Model.Telefoon</td>
+    </tr>
+    <tr>
+        <td class="links">Location:</td>
+        <td class="right">@Model.MuseumLocatie.Straat @Model.MuseumLocatie.Huisnummer @Model.MuseumLocatie.Toevoeging</td>
+    </tr>
+    <tr>
+        <td class="links">Postal code:</td>
+        <td class="right">@Model.MuseumLocatie.Postcode, @Model.MuseumLocatie.Plaats</td>
+    </tr>
+</table>
+<p></p>
+<table class="Prices">
+    <tr>
+        <th class="links">Prices:</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td class="links">Adults:</td>
+        <td class="right">@Model.Adults</td>
+    </tr>
+    <tr>
+        <td class="links">Kids</td>
+        <td class="right">@Model.Kids</td>
+    </tr>
+</table>
