@@ -20,6 +20,9 @@ namespace IHFF.Models
         [NotMapped]
         public virtual Afbeelding ItemAfbeelding {get; set;}
 
+        [NotMapped]
+        public virtual List<Voorstelling> ItemVoorstelling { get; set; }
+
         public Item(string titel, string omschrijving, bool highlight)   
         {           
             Titel = titel;

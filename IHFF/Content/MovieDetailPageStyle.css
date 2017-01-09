@@ -65,10 +65,61 @@
     background-color: #06AED5;
 }
 
+.cartCOMBObutton{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	position: relative;
+    float: right;
+}
+.cartCOMBObutton:hover{
+    background-color: #06AED5;
+}
+
+.wishCOMBObutton{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	position: relative;
+    float: right;
+}
+.wishCOMBObutton:hover{
+    background-color: #06AED5;
+}
 .foodsummary {
     width: 45%;
     text-align: left;
     padding: 0.5em 0.5em 0.5em 0.5em;    
     float: left;
 }
+.COMBOright {
+text-align: right;
+width: 120px;
+}
 
+.COMBOtable{
+    min-width: 450px;
+    width: 82%;
+}
+.COMBOtable td{   
+    vertical-align: text-top;
+}
+.COMBOleftTOtop{
+    vertical-align: middle !important;
+}
