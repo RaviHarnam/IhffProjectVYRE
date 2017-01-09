@@ -21,7 +21,7 @@ namespace IHFF.Repositories
         public IEnumerable<Event> GetBybestellingId(int bestellingId)
         {
             IEnumerable<Event> events = (from e in ctx.EVENTS
-                                         where e.Bestellingid == bestellingId
+                                         where e.BestellingID == bestellingId
                                          select e).ToList();
 
             return events;
@@ -30,7 +30,7 @@ namespace IHFF.Repositories
         public Event GetById(int eventId)
         {
             Event eventx = (from e in ctx.EVENTS
-                            where e.EventId == eventId
+                            where e.EventID == eventId
                             select e).SingleOrDefault();
 
             return eventx;
@@ -45,13 +45,13 @@ namespace IHFF.Repositories
         {
             Event eventx = new Event();
 
-            eventx.VoorstellingId = voorstelling.VoorstellingId;
+            eventx.VoorstellingID = voorstelling.VoorstellingID;
             eventx.Titel = (from i in ctx.ITEMS
-                            where i.ItemID == voorstelling.ItemId
+                            where i.ItemID == voorstelling.ItemID
                             select i.Titel).SingleOrDefault();
             eventx.DatumTijd = voorstelling.BeginTijd;
             eventx.Prijs = (from v in ctx.VOORSTELLINGEN
-                            where v.VoorstellingId == voorstelling.VoorstellingId
+                            where v.VoorstellingID == voorstelling.VoorstellingID
                             select v.Prijs).SingleOrDefault();
             eventx.Aantal = aantal;
 

@@ -66,7 +66,7 @@ namespace IHFF.Repositories
         {
             Movie mov = ctx.MOVIES.SingleOrDefault(m => m.ItemID == id);
             mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmbanner");
-            mov.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemId == mov.ItemID select v.BeginTijd).ToList();
+            mov.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemID == mov.ItemID select v.BeginTijd).ToList();
             return mov;
         }
         public Special GetSpecial(int id)
@@ -201,7 +201,7 @@ namespace IHFF.Repositories
                     ctx.AFBEELDINGEN.Remove(dbAfbeelding);
 
             IEnumerable<Voorstelling> dbVoorstellingen = (from v in ctx.VOORSTELLINGEN
-                                                          where v.ItemId == movieid
+                                                          where v.ItemID == movieid
                                                           select v).ToList();
             if (dbVoorstellingen != null && dbAfbeeldingen.Any())
                 foreach (Voorstelling dbVoorstelling in dbVoorstellingen)
@@ -225,7 +225,7 @@ namespace IHFF.Repositories
                 foreach (Afbeelding dbAfbeelding in dbAfbeeldingen)
                     ctx.AFBEELDINGEN.Remove(dbAfbeelding);
             IEnumerable<Voorstelling> dbVoorstellingen = (from v in ctx.VOORSTELLINGEN
-                                                          where v.ItemId == specialid
+                                                          where v.ItemID == specialid
                                                           select v).ToList();
             if (dbVoorstellingen != null && dbVoorstellingen.Any())
                 foreach (Voorstelling dbVoorstelling in dbVoorstellingen)

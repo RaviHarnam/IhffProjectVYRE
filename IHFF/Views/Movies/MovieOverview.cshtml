@@ -12,17 +12,17 @@
 
 @model IEnumerable<Movie>
 
-<h2>Movie Overview</h2>
-@Html.ActionLink("Full Schedule", "FullSchedule", "FullSchedule", null, new { @Class = "bllink" })
-<!DOCTYPE html>
+<h2 class="moverview">Movie Overview</h2>
+@Html.ActionLink("Full Schedule", "FullSchedule", "FullSchedule", null, new { @Class = "fullsched" })
 
-<html>
+
+
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Movies</title>
 </head>
 <body>
-
+   
     @{int movieNr = 0; }
     @*<select id="filmlocationinput" name="locationid">
             @foreach (FilmLocation locatie in Model.Film.FilmLocation)
@@ -230,4 +230,4 @@
 
 
 </body>
-</html>
+

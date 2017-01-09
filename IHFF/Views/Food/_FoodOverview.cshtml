@@ -4,22 +4,60 @@
 
 <section class="form">
     @Html.ValidationSummary()
-    @using (Html.BeginForm("MovieOverview", "Movies", FormMethod.Post))
+    @using (Html.BeginForm("FoodDetailPage", "Food", FormMethod.Post))
     {
-        @Html.HiddenFor(r => r.ItemID)
-        @Html.LabelFor(r => r.Aantal)
+        @Html.HiddenFor(r => r.RestaurantID)
+        @Html.Label("Amount")
         <br />
-        @Html.TextBoxFor(r => r.Aantal)
+        @Html.TextBox("aantal")
         <br /><br />
-        @Html.Label("Datum");
+        @Html.Label("Date and Time");
         <br />
-        <select name="voorstellingId">
-            @foreach (Voorstelling voorstelling in Model.Voorstellingen)
+        <select name="maaltijdid" id="@(Model.RestaurantID)" onchange="FillUren(this)">
+            <option selected="selected"></option>
+            @foreach (Maaltijd maaltijd in Model.RestaurantMaaltijd)
             {
-                <option value=@voorstelling.VoorstellingId>@voorstelling.DatumTijd.ToString("dd/MM/yy HH:mm")</option>
+                if (maaltijd.BeginTijd.Hour < 16)
+                {
+                    <option value=@maaltijd.MaaltijdID> @maaltijd.BeginTijd.DayOfWeek @maaltijd.BeginTijd.ToString("dd/MM/yy") Lunch</option>
+                }
+                else
+                {
+                    <option value=@maaltijd.MaaltijdID> @maaltijd.BeginTijd.DayOfWeek @maaltijd.BeginTijd.ToString("dd/MM/yy") Dinner</option>
+                }
             }
         </select>
+
+        <select name="maaltijdUur" id="@(Model.Naam)"></select>
+        @Html.TextBox("minuten", null, new { @type = "number", @min = "0", @max = "59", @pattern = "[0-9]", @size = "10" })
         <br /><br />
-        <input type="submit" formmethod="post" value="Add to cart" />
+        <button name="buttoncart" class="cartbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
+        <button name="buttonwish" class="wishbutton" type="submit" formmethod="post" value="wishlist">Add to Wishlist</button>
+        <br />
     }
 </section>
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+<script>
+    function FillUren(ele) {
+        var id = ele.id;    
+        var dagele = document.getElementById(id);    
+        var dagId = $('#dagele').val();
+        var uurele = id;
+        $.ajax({
+            url: '/Food/FillUren',
+            type: "GET",
+            dataType: "JSON",
+            data: { maaltijdId: dagId },
+            success: function (uren) {
+                $("#uurele").html(""); // clear before appending new list
+                $.each(uren, function (i, uur) {
+                    $("#uurele").append(
+                    $('<option></option>').val(uur).html(uur));
+                });
+            }
+        });
+    }
+</script>

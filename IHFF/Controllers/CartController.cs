@@ -13,9 +13,14 @@ namespace IHFF.Controllers
     {
         private IEventRepository repository = new DbEventRepository();
 
+        
         public ActionResult Index()
         {
-            
+            return RedirectToAction("Cart");
+        }
+
+        public ActionResult Cart()
+        {
             if (Session["cart"] == null)
                 Session["cart"] = new List<Event>();
 
@@ -25,11 +30,22 @@ namespace IHFF.Controllers
                 ev.CartId = cartList.IndexOf(ev);
 
             Session["cart"] = cartList;
-            
-            return View(cartList);
 
+            return View("Index", cartList);
         }
-
+        [HttpPost]
+        public ActionResult Cart(string Email, string Name, string payment, string pickup)
+        {
+            if (!string.IsNullOrWhiteSpace(Name) && pickup == "1") //Desk
+            {
+                if (!string.IsNullOrWhiteSpace(payment))
+                    return RedirectToAction("Payment", "Payment", new { pickup = "Desk", payment = payment, name = Name });
+            }
+            else if (!string.IsNullOrWhiteSpace(Email) && pickup == "2") //Send by Email
+                if (!string.IsNullOrWhiteSpace(payment))
+                    return RedirectToAction("Payment", "Payment", new {pickup = "Email", payment = payment, email = Email });                       
+            return View();
+        }
         public ActionResult DeleteCartItem(List<Event> cartList, int? cartId)
         {
             if (cartId != null)

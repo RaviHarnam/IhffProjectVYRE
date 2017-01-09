@@ -17,7 +17,7 @@ namespace IHFF.Repositories
             foreach (Movie mov in movies)
             {
                 mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmoverview");
-                mov.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemId == mov.ItemID select v).ToList();
+                mov.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == mov.ItemID select v).ToList();
             }
                         
             return movies;
@@ -28,7 +28,7 @@ namespace IHFF.Repositories
             Movie mov = ctx.MOVIES.SingleOrDefault(i => i.ItemID == id);
 
             mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmbanner");
-            mov.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemId == mov.ItemID select v.BeginTijd).ToList();
+            mov.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemID == mov.ItemID select v.BeginTijd).ToList();
 
             return mov;
         }
@@ -38,7 +38,7 @@ namespace IHFF.Repositories
             List<DateTime> tijden = new List<DateTime>();
 
             tijden = (from v in ctx.VOORSTELLINGEN
-                      where v.ItemId == movie.ItemID
+                      where v.ItemID == movie.ItemID
                       select v.BeginTijd).ToList();
 
             return tijden;

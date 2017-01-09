@@ -17,7 +17,7 @@ namespace IHFF.Repositories
             foreach (Special spec in specials)
             {
                 spec.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == spec.ItemID && a.Type == "specialoverview");
-                spec.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemId == spec.ItemID select v).ToList();
+                spec.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == spec.ItemID select v).ToList();
             }
 
             return specials;
@@ -28,7 +28,7 @@ namespace IHFF.Repositories
             Special spec = ctx.SPECIALS.SingleOrDefault(i => i.ItemID == id);
 
             spec.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == spec.ItemID && a.Type == "specialbanner");
-            spec.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemId == spec.ItemID select v.BeginTijd).ToList();
+            spec.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemID == spec.ItemID select v.BeginTijd).ToList();
 
             return spec;
         }
@@ -38,7 +38,7 @@ namespace IHFF.Repositories
             List<DateTime> tijden = new List<DateTime>();
 
             tijden = (from v in ctx.VOORSTELLINGEN
-                      where v.ItemId == movie.ItemID
+                      where v.ItemID == movie.ItemID
                       select v.BeginTijd).ToList();
 
             return tijden;
