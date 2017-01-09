@@ -19,7 +19,7 @@ namespace IHFF.Models
         [StringLength(100, ErrorMessage = "The Street field has a maximum size of 100.")]
         public string Straat { get; set; }
 
-        [Required(ErrorMessage = "The field Number is required.")]
+        [Required(ErrorMessage = "The Number field is required.")]
         [Display(Name = "Number")]  
         public int Huisnummer { get; set; }
  

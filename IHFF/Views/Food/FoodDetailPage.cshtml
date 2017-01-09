@@ -11,18 +11,37 @@
 
 <img class="bannerimg" src=@Model.RestaurantAfbeelding.Link />
 
-<section class="summary">
+<section class="foodsummary">
     <h3>Summary</h3>
     <p>@Model.Omschrijving</p>
 </section>
 <section class="info">
-    <h3>Info</h3>
-    @Html.LabelFor(m => m.Telefoon)
-    <p>Telephone: @Model.Telefoon</p>
-    <p>Email: @Model.Email</p>
-    <p>Website: <a href="@Model.Website"></a></p>
-    <p>Location: @Model.RestaurantLocatie.Straat @Model.RestaurantLocatie.Huisnummer @Model.RestaurantLocatie.Toevoeging</p>
-    <p>Postal code: @Model.RestaurantLocatie.Postcode @Model.RestaurantLocatie.Plaats</p>
+    <table class="contacttabel">
+        <tr>
+            <th class="links"><h3>Info:</h3></th>
+            <th class="right"></th>
+        </tr>
+        <tr>
+            <td class="links">Website:</td>
+            <td class="right"><a href="@Model.Website">@Model.Website</a></td>
+        </tr>
+        <tr>
+            <td class="links">Telephone number:</td>
+            <td class="right">@Model.Telefoon</td>
+        </tr>
+        <tr>
+            <td class="links">E-mail:</td>
+            <td class="right">@Model.Email</td>
+        </tr>
+        <tr>
+            <td class="links">Location:</td>
+            <td class="right">@Model.RestaurantLocatie.Straat @Model.RestaurantLocatie.Huisnummer @Model.RestaurantLocatie.Toevoeging</td>
+        </tr>
+        <tr>
+            <td class="links">Postal code:</td>
+            <td class="right">@Model.RestaurantLocatie.Postcode, @Model.RestaurantLocatie.Plaats</td>
+        </tr>
+    </table>
 </section>
 <br />
 <section class="form">
@@ -56,8 +75,8 @@
         </select>  
          @Html.TextBox("minuten",null,  new {@type = "number", @min = "0", @max = "59", @pattern = "[0-9]", @size = "10"})
         <br /><br />
-        <button name="buttoncart" class="cartbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
-        <button name="buttonwish" class="wishbutton" type="submit" formmethod="post" value="wishlist">Add to Wishlist</button>
+        <button name="buttoncart" class="cartfoodbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
+        <button name="buttonwish" class="wishfoodbutton" type="submit" formmethod="post" value="wishlist">Add to Wishlist</button>
     }
 </section>
 

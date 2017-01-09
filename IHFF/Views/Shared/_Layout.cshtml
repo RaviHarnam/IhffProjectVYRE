@@ -52,7 +52,7 @@
         <aside class="side-buttons">
             <button><p>@Html.ActionLink("FullSchedule", "FullSchedule", "FullSchedule", null, new { @Class = "link" })</p></button>
             <button><p>Highlights</p></button>
-            <button><p>Combo Deals</p></button>
+            <button><p>@Html.ActionLink("Combo Deals", "ComboDeal", "ComboDeal", null, new { @Class = "link" })</p></button>
         </aside>
         <section class="content">            
             @RenderBody()

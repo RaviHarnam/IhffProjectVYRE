@@ -199,6 +199,7 @@
     <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ComboDealController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Afbeelding.cs" />
     <Compile Include="Models\Bestelling.cs" />
+    <Compile Include="Models\ComboDeal.cs" />
     <Compile Include="Models\Input\AfbeeldingInputModel.cs" />
     <Compile Include="Models\Input\HotelInputModel.cs" />
     <Compile Include="Models\Input\ItemInputModel.cs" />
@@ -252,6 +254,7 @@
     <Compile Include="Repositories\DbEmployeeRepository.cs" />
     <Compile Include="Repositories\DbEventRepository.cs" />
     <Compile Include="Repositories\DbHotelRepository.cs" />
+    <Compile Include="Repositories\DbItemRepository.cs" />
     <Compile Include="Repositories\DbLocatieRepository.cs" />
     <Compile Include="Repositories\DbMealRepository.cs" />
     <Compile Include="Repositories\DbMovieRepository.cs" />
@@ -264,6 +267,7 @@
     <Compile Include="Repositories\IEventRepository.cs" />
     <Compile Include="Repositories\IFoodRepository.cs" />
     <Compile Include="Repositories\IHotelsRepository.cs" />
+    <Compile Include="Repositories\IItemRepository.cs" />
     <Compile Include="Repositories\ILocatieRepository.cs" />
     <Compile Include="Repositories\IMealRepository.cs" />
     <Compile Include="Repositories\IMoviesRepository.cs" />
@@ -367,6 +371,7 @@
     <Content Include="Views\Employee\_DeleteFestivalObject.cshtml" />
     <Content Include="Views\Payment\Payment.cshtml" />
     <Content Include="Views\Payment\Done.cshtml" />
+    <Content Include="Views\ComboDeal\ComboDeal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

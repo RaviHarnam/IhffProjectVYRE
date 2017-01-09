@@ -78,12 +78,30 @@ tr #Delete {
     width: 10em;
 }
 
+.ConfirmButton{
+	height: 55px;
+}
+
 .ConfirmButton td{
     border: none;
 }
 
 .ConfirmButton button{
-    
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	position: relative;   
+}
+.ConfirmButton button:hover{
+    background-color: #06AED5;
 }
 
 .deleteCross{
