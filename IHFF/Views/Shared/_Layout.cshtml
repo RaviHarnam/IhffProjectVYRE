@@ -24,8 +24,8 @@
 </head>
 <body>
     <section>
-        <img class="header-logo" src="http://i.imgur.com/hgmXQXI.png" />
         <section id="header-imgs">
+            <img class="header-logo" src="http://i.imgur.com/hgmXQXI.png" />
             <img class="header-img" src="http://imgur.com/1W31qIX.png" />
             <img class="header-img" src="http://imgur.com/gkrNHAA.png" />
             <img class="header-img" src="http://imgur.com/RK1RAOO.png" />
@@ -43,7 +43,7 @@
                 <li><h5>@Html.ActionLink("Culture", "MuseumOverview", "Culture", null, new { @class = "link" })</h5></li>
                 <li class="right" id="Cart"><h5>@Html.ActionLink("Cart", "Index", "Cart", null, new { @class = "link" }) <span class="cartcount"> @cartCount </span></h5></li>
                 <li class="right" id="wishList"><h5>@Html.ActionLink("WishList", "Index", "WishList", null, new { @class = "link" }) <span class="wishlistcount"> @wishListCount </span></h5></li>
-                <!-- <li class="right" id="wishlist"><h5>Html.ActionLink("WishList", "Index", "WishList", null, new { class = "link" }) <span class="wishlistcount"> wishListCount </span></h5></li>   -->          
+                <!-- <li class="right" id="wishlist"><h5>Html.ActionLink("WishList", "Index", "WishList", null, new { class = "link" }) <span class="wishlistcount"> wishListCount </span></h5></li>   -->
             </ul>
         </nav>
     </section>
@@ -54,25 +54,25 @@
             <button><p>Highlights</p></button>
             <button><p>@Html.ActionLink("Combo Deals", "ComboDeal", "ComboDeal", null, new { @Class = "link" })</p></button>
         </aside>
-        <section class="content">            
+        <section class="content">
             @RenderBody()
         </section>
     </section>
     <footer>
         <ul class="footer-left">
-            <li id="home-button"><h6>@Html.ActionLink("Home", "Index", "Home", null, new {@Class = "link"})</h6></li>
+            <li><h6>@Html.ActionLink("Home", "Index", "Home", null, new { @Class = "link" })</h6></li>
             <li><h6>@Html.ActionLink("Movies", "MovieOverview", "Movies", null, new { @class = "link" })</h6></li>
-            <li><h6>@Html.ActionLink("Specials", "SpecialOverview", "Special", null, new {@Class = "link"})</h6></li>
+            <li><h6>@Html.ActionLink("Specials", "SpecialOverview", "Special", null, new { @Class = "link" })</h6></li>
             <li><h6>@Html.ActionLink("Food", "FoodOverview", "Food", null, new { @class = "link" })</h6></li>
             <li><h6>@Html.ActionLink("Culture", "MuseumOverview", "Culture", null, new { @class = "link" })</h6></li>
         </ul>
-        <ul id="footer-middle">
+        <ul class="footer-middle">
             <li><h6>@Html.ActionLink("Locations", "Locations", "Locations", null, new { @class = "link" })</h6></li>
-            <li><h6>@Html.ActionLink("About Us", "AboutUs", "AboutUs", null, new { @class = "link" })</h6></li>            
+            <li><h6>@Html.ActionLink("About Us", "AboutUs", "AboutUs", null, new { @class = "link" })</h6></li>
             <li><h6>@Html.ActionLink("Contact", "Contact", "Contact", null, new { @class = "link" })</h6></li>
             <li><h6>@Html.ActionLink("Hotels", "HotelsOverview", "Hotels", null, new { @class = "link" })</h6></li>
         </ul>
-        <ul id="footer-right">
+        <ul class="footer-right">
             <li><h6>@Html.ActionLink("WishList", "Index", "WishList", null, new { @class = "link" })</h6></li>
             <li><h6>@Html.ActionLink("Cart", "Index", "Cart", null, new { @class = "link" })</h6></li>
             <li><h6>@Html.ActionLink("Maintenance", "LogIn", "Employee", null, new { @Class = "link" })</h6></li>

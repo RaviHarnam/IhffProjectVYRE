@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "HotelDetailPage";
+}
+@using IHFF.Models
+@model Hotel
+
+<h3>@Model.Naam</h3>
+<p>@Model.Omschrijving</p>
+<img class="afbeelding" src="@Model.HotelAfbeelding.Link" title="@Model.Naam" />
+<table class="contact">
+    <tr>
+        <th class="links">Contact:</th>
+        <th class="right"></th>
+    </tr>
+    <tr>
+        <td class="links">Website:</td>
+        <td class="right"><a href="@Model.Website">@Model.Website</a></td>
+    </tr>
+</table>

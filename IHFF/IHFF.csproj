@@ -369,6 +369,7 @@
     <Content Include="Views\Hotels\HotelsOverview.cshtml" />
     <Content Include="Views\Employee\AddHotel.cshtml" />
     <Content Include="Views\Employee\_DeleteFestivalObject.cshtml" />
+    <Content Include="Views\Hotels\HotelDetailPage.cshtml" />
     <Content Include="Views\Payment\Payment.cshtml" />
     <Content Include="Views\Payment\Done.cshtml" />
     <Content Include="Views\ComboDeal\ComboDeal.cshtml" />

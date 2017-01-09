@@ -109,7 +109,7 @@ margin-right: 2%;
 }
 
 #Cart{
-    width:auto;
+    width: auto;
 }
 
 #wishList {
@@ -136,11 +136,12 @@ footer{
     background-color: #086788;
     color: white;
     float: left;
-    margin-bottom: -1em;
+    margin-bottom: -1em
 }
 
 footer ul{
     display: inline-block;
+    margin-right: 9em;
 }
 
 footer ul li{
@@ -148,18 +149,17 @@ footer ul li{
     padding: 0.1em 0.5em 0.1em 0.5em;
 }
 
-#footer-left{
+.footer-left{
     float: left;
     margin-left: 1%;
-    margin-right: 24%;
 }
 
-#footer-middle{
+.footer-middle{
     float:left;
-    margin-right: 24%;
+    margin-right: 10%
 }
 
-#footer-right{
+.footer-right{
     float: left;
 }
 
@@ -182,7 +182,8 @@ h6{
 .header-logo {
     margin-left: 2%;
     margin-top: 2%;
-    width: 12em;
+    width: 18em;
+    margin-right: 3em;
 }
 
 #header-imgs{
@@ -191,6 +192,8 @@ h6{
 }
 
 .header-img {
+    margin-right: 1em;
+    height: 6em
 }
 
 .home-img{

@@ -1,7 +1,85 @@
-﻿
+﻿@Styles.Render("~/Content/overview.css")
+@Scripts.Render("~/bundles/modernizr")
+@using IHFF.Models
 @{
     ViewBag.Title = "HotelsOverview";
 }
+@model List<Hotel>
 
-<h2>HotelsOverview</h2>
+
+@{int hotelNr = 0; }
+<table>
+    @Html.Hidden("hotelId", 0)
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        <tr>
+            @for (int j = 0; j < 3; j++)
+                {
+                    if (hotelNr < Model.Count())
+                    {
+                        if (Model.ElementAt(hotelNr).HotelAfbeelding != null)
+                        {
+                        <td>
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-lg-12">
+                                <div class="hovereffect">
+                                    <img class="img-responsive" src=@Model.ElementAt(hotelNr).HotelAfbeelding.Link alt=@Model.ElementAt(hotelNr).Naam title="@Model.ElementAt(hotelNr).Naam">
+                                    <div class="overlay">
+                                        <a class="plaatjelink" href='@Url.Action("HotelDetailPage", "Hotels", new { hotelId = Model.ElementAt(hotelNr).HotelId }, null)'></a>
+                                        <a href='@Url.Action("HotelDetailPage", "Hotels", new { hotelId = Model.ElementAt(hotelNr).HotelId }, null)'>
+                                            <h2 class="overlaytitel">@Model.ElementAt(hotelNr).Naam</h2>
+                                        </a>
+                                        <!-- Trigger/Open The Modal -->
+                                        <!-- The Modal -->
+
+                                        <div class="modal">
+                                            <article class="modal-content">
+                                                <article class="modal-header">
+                                                    <h2>Modal Header</h2>
+                                                </article>
+
+                                                <div class="modal-footer">
+                                                    <h3>Do you have dinner plans yet? </h3>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <p class="movie_index_item_title">
+                                @Html.ActionLink(Model.ElementAt(hotelNr).Naam, "HotelDetailPage", "Hotels",
+                                    new { hotelId = Model.ElementAt(hotelNr).HotelId }, null)
+                        </p>
+                    </td>
+                        { hotelNr++; }
+                    }
+                }
+            }
+
+
+
+        </tr>
+    }
+</table>
+
+<br />
+@Scripts.Render("~/bundles/jquery")
+
+
+<script>
+    $(document).ready(function () {
+
+        // When the user clicks anywhere outside of the modal, close it
+        $('.close').click(function () {
+            // If the clicked object is a modal.
+            $('.modal').css('display', 'none');
+        });
+
+        $('.movie_index_item_description_button').click(function () {
+            $(this).next()[0].style.display = "inline";
+            var title = $(this).prev('h2').html();
+            $('.modal-header').find('h2').html(title);
+        });
+    });
+</script>
 

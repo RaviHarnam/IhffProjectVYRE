@@ -306,10 +306,17 @@ namespace IHFF.Repositories
 
         public void AddHotel(Hotel h)
         {
+
             ctx.HOTEL.Add(h);
             ctx.SaveChanges();
-            h.HotelAfbeelding.HotelID = h.HotelId;
+            int hotelId = (from hot in ctx.HOTEL
+                         where h.Naam == hot.Naam
+                         select hot.HotelId).ToList()[0];
+            h.HotelAfbeelding.HotelID = hotelId;
+            h.HotelOverviewAfbeelding.HotelID = hotelId;
             ctx.AFBEELDINGEN.Add(h.HotelAfbeelding);
+            ctx.SaveChanges();
+            ctx.AFBEELDINGEN.Add(h.HotelOverviewAfbeelding);
             ctx.SaveChanges();
 
         }

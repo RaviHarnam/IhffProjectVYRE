@@ -12,23 +12,34 @@ namespace IHFF.Models
         [Key]
         public int HotelId { get; set; }
 
-        [Display(Name = "Name")]
+        [Display(Name = "Name:")]
         public string Naam { get; set; }
         
-        [Display(Name = "Description")]
+        [Display(Name = "Description:")]
         public string Omschrijving { get; set; }
 
-        [Display(Name = "Address")]
+        [Display(Name = "Address:")]
         public string Adres { get; set; }
 
-        [Display(Name ="Telephone Number")]
+        [Display(Name = "Postal code:")]
+        public string PostalCode { get; set; }
+
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Display(Name ="Telephone Number:")]
         public string TelefoonNummer { get; set; }
 
-        [Display(Name = "Website")]
+        [Display(Name = "Website:")]
         public string Website { get; set; }
 
         [NotMapped]
+        [Display(Name = "Banner image:")]
         public Afbeelding HotelAfbeelding { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Overview image:")]
+        public Afbeelding HotelOverviewAfbeelding { get; set; }
 
         public Hotel() { }
         

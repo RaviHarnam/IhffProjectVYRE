@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IHFF.Repositories;
+using IHFF.Models;
 
 namespace IHFF.Controllers
 {
     public class HotelsController : Controller
     {
+        IHotelsRepository db = new DbHotelRepository();
         // GET: Hotels
         public ActionResult Index()
         {
@@ -16,9 +19,16 @@ namespace IHFF.Controllers
 
         public ActionResult HotelsOverview()
         {
+            List<Hotel> hotels = db.GetAll();
 
+            return View(hotels);
+        }
 
-            return View();
+        public ActionResult HotelDetailPage(int hotelId)
+        {
+            Hotel hotel = db.GetHotel(hotelId);
+
+            return View(hotel);
         }
     }
 }
