@@ -14,7 +14,7 @@ namespace IHFF.Repositories
             IEnumerable<Item> items = ctx.ITEMS.ToList();
             foreach (Item item in items)
                 item.ItemVoorstelling = (from v in ctx.VOORSTELLINGEN
-                                         where v.ItemId == item.ItemID
+                                         where v.ItemID == item.ItemID
                                          select v).ToList();
             return items;
         }
