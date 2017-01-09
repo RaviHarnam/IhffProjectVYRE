@@ -1,7 +1,47 @@
-﻿
+﻿@using IHFF.Models
 @{
     ViewBag.Title = "AddHotel";
 }
 
-<h2>AddHotel</h2>
+@model Hotel
+@Html.ValidationSummary()
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <h2>AddHotel</h2>
+    <input type="submit" value="Add Hotel" formmethod="post" class="Edit-update" size="30" />
 
+    <p>
+        @Html.LabelFor(m => m.Naam)
+        @Html.TextBoxFor(m => m.Naam)
+    </p>
+    <img src="" alt="placeholder" class="empty_afb" width="759" height="435" />
+    <p>
+        @Html.LabelFor(m => m.HotelAfbeelding.Link)
+        @Html.TextBoxFor(m => m.HotelAfbeelding.Link)
+    </p>
+    <section class="Description">
+        <h3>Description</h3>
+        @Html.TextAreaFor(m => m.Omschrijving)
+    </section>
+    <section class="info">
+         <h3>info</h3>
+        <table>
+            <tr>
+                <td>@Html.LabelFor(m => m.Adres)</td>
+                <td>@Html.TextBoxFor(m => m.Adres)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.TelefoonNummer)</td>
+                <td>@Html.TextBoxFor(m => m.TelefoonNummer)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.Website)</td>
+                <td>@Html.TextBoxFor(m => m.Website)</td>
+            </tr>
+        </table>
+    </section>
+}
+
+
+
+@*Van der Valk is a hotel/restaurant chain all over the Netherlands. Van der Valk also has other facilities then just rooms and a restaurant, you can, for example, hire rooms to for speeches or parties. Van der Valk has rooms available from €129 per person per night. they can also provide arrangements for certain rooms for a set amount of time at a reduced price, which could include breakfast and diner.*@

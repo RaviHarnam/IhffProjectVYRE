@@ -38,5 +38,6 @@ namespace IHFF.Repositories
         void AddSpecial(Special s);
         void AddMuseum(Museum m);
         void AddRestaurant(Restaurant r);
+        void AddHotel(Hotel h);
     }
 }
