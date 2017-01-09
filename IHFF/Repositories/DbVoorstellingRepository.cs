@@ -25,14 +25,15 @@ namespace IHFF.Repositories
                                          where v.ItemID == itemId && v.BeginTijd == DatumTijd
                                          select v).SingleOrDefault();
 
+            //voorstelling.VoorstellingItem = ctx.ITEMS.SingleOrDefault(i => i.ItemID == voorstelling.ItemID);
             return voorstelling;
         }
 
-        public List<Voorstelling> GetVoorstellingen (int itemId)
+        public List<Voorstelling> GetVoorstellingen(int itemId)
         {
             List<Voorstelling> voorstellingen = (from v in ctx.VOORSTELLINGEN
-                                         where v.ItemID == itemId
-                                         select v).ToList();
+                                                 where v.ItemID == itemId
+                                                 select v).ToList();
 
             return voorstellingen;
         }

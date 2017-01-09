@@ -10,5 +10,6 @@ namespace IHFF.Repositories
     interface IItemRepository
     {
         IEnumerable<Item> GetAllItems();
+        Item GetItem(int itemid);
     }
 }

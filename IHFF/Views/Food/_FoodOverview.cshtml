@@ -4,16 +4,16 @@
 
 <section class="form">
     @Html.ValidationSummary()
-    @using (Html.BeginForm("FoodDetailPage", "Food", FormMethod.Post))
+    @using (Html.BeginForm("FoodOverview", "Food", FormMethod.Post))
     {
-        @Html.HiddenFor(r => r.RestaurantID)
+        @Html.Hidden("restaurantid", Model.RestaurantID)
         @Html.Label("Amount")
         <br />
         @Html.TextBox("aantal")
         <br /><br />
         @Html.Label("Date and Time");
         <br />
-        <select name="maaltijdid" id="@(Model.RestaurantID)" onchange="FillUren(this)">
+        <select name="maaltijdid" id="@(Model.RestaurantID)" class="@(Model.LocatieID)" onchange="FillUren(this)">
             <option selected="selected"></option>
             @foreach (Maaltijd maaltijd in Model.RestaurantMaaltijd)
             {
@@ -27,8 +27,7 @@
                 }
             }
         </select>
-
-        <select name="maaltijdUur" id="@(Model.Naam)"></select>
+        <select name="maaltijdUur" id="@(Model.LocatieID)"></select>
         @Html.TextBox("minuten", null, new { @type = "number", @min = "0", @max = "59", @pattern = "[0-9]", @size = "10" })
         <br /><br />
         <button name="buttoncart" class="cartbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
@@ -42,19 +41,20 @@
 <script src="~/Scripts/modernizr-2.6.2.js"></script>
 <script>
     function FillUren(ele) {
-        var id = ele.id;    
-        var dagele = document.getElementById(id);    
-        var dagId = $('#dagele').val();
-        var uurele = id;
+        @*var uurid = @Html.Raw(Json.Encode(Model.LocatieID));*@
+        var uurid = ele.className;
+        
+        //alert(uurid);
+        var dagId = $('#' + ele.id).val();       
         $.ajax({
             url: '/Food/FillUren',
             type: "GET",
             dataType: "JSON",
             data: { maaltijdId: dagId },
             success: function (uren) {
-                $("#uurele").html(""); // clear before appending new list
+                $('#' + uurid).html(""); // clear before appending new list
                 $.each(uren, function (i, uur) {
-                    $("#uurele").append(
+                    $('#' + uurid).append(
                     $('<option></option>').val(uur).html(uur));
                 });
             }
