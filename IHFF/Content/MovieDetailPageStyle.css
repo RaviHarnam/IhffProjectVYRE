@@ -25,3 +25,50 @@
     margin-bottom: 2em;
     margin-left: 50%;
 }
+
+.cartfoodbutton{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	position: relative;
+    top:-111px;
+}
+.cartfoodbutton:hover{
+    background-color: #06AED5;
+}
+
+.wishfoodbutton{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	margin-top:35px;
+	position: relative;
+    top:-134px;
+}
+.wishfoodbutton:hover{
+    background-color: #06AED5;
+}
+
+.foodsummary {
+    width: 45%;
+    text-align: left;
+    padding: 0.5em 0.5em 0.5em 0.5em;    
+    float: left;
+}
+

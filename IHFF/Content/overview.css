@@ -507,5 +507,13 @@ table{
     width: 400px;
 }
 
+.contacttabel .links{
+    text-align: left;
+    width: 30%;
+}
+
+.contacttabel h3{    
+    margin-bottom: 12px;
+}
 
 
