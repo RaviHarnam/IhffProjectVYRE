@@ -13,7 +13,7 @@
         <br /><br />
         @Html.Label("Date and Time");
         <br />
-        <select name="maaltijdid" id="@(Model.RestaurantID)" class="@(Model.LocatieID)" onchange="FillUren(this)">
+        <select name="maaltijdid" id="@(Model.RestaurantID)" class="@(Model.RestaurantID + 10)" onchange="FillUren(this)">
             <option selected="selected"></option>
             @foreach (Maaltijd maaltijd in Model.RestaurantMaaltijd)
             {
@@ -27,7 +27,7 @@
                 }
             }
         </select>
-        <select name="maaltijdUur" id="@(Model.LocatieID)"></select>
+        <select name="maaltijdUur" id="@(Model.RestaurantID + 10)"></select>
         @Html.TextBox("minuten", null, new { @type = "number", @min = "0", @max = "59", @pattern = "[0-9]", @size = "10" })
         <br /><br />
         <button name="buttoncart" class="cartbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
