@@ -17,14 +17,14 @@ namespace IHFF.Controllers
 
         public ActionResult Index()
         {
-            if (System.Web.HttpContext.Current.User != null && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            if (System.Web.HttpContext.Current.User != null && System.Web.HttpContext.Current.User.Identity.IsAuthenticated && Session["loggedin_employee"] != null)
                 return RedirectToAction("ManagementWindow");
             return View("LogIn");
 
         }
         public ActionResult LogIn()
         {
-            if (System.Web.HttpContext.Current.User != null && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            if (System.Web.HttpContext.Current.User != null && System.Web.HttpContext.Current.User.Identity.IsAuthenticated && Session["loggedin_employee"] != null)
                 return RedirectToAction("ManagementWindow");
             return View();
         }
@@ -36,7 +36,7 @@ namespace IHFF.Controllers
                 if (db.EmployeeExist(emp))
                 {
                     FormsAuthentication.SetAuthCookie(emp.Gebruikersnaam, false);
-                    Session["loggedin_employee"] = emp;
+                    Session["loggedin_employee"] = emp;             
                     return RedirectToAction("ManagementWindow", "Employee");
                 }
                 else
@@ -50,11 +50,13 @@ namespace IHFF.Controllers
             IEnumerable<EventListRepresentation> events = db.GetAllEvents();
             return View(events);
         }
+        [HttpPost]
         [Authorize]
-        public ActionResult LogOff()
+        public ActionResult SignOut()
         {
-            FormsAuthentication.SignOut();
-            return RedirectToAction("LogIn");
+            FormsAuthentication.SignOut();           
+            Session["loggedin_employee"] = null;
+            return RedirectToAction("Index", "Home");         
         }
         [Authorize]
         public ActionResult EditMovie(int? id)
