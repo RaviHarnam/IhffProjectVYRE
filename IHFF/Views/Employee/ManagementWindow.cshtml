@@ -1,12 +1,25 @@
-﻿@using IHFF.Models;
+﻿
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<head>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+</head>
+@using IHFF.Models;
 @{
     ViewBag.Title = "ManagementWindow";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Styles.Render("~/Content/EditPages.css")
 @Styles.Render("~/Content/overview.css")
-
+@Styles.Render("~/Content/EditPages.css")
 <h2>Management Window</h2>
+
+@using (Html.BeginForm("SignOut", "Employee", FormMethod.Post))
+{
+    <input type="submit" class="logoff" value="Sign Out"/>
+}
 @model IEnumerable<EventListRepresentation>
 
 <p>Do you want to add an event? </p>
@@ -37,7 +50,7 @@
                 <div class="modal">
                     <article class="modal-content">
                         <article class="modal-header">
-                            
+
                             <button onclick="$(this).parent('div').style.display = 'none'" class="close">&times;</button>
 
                             <h2>Are you sure you want to delete the following item?</h2>
@@ -116,7 +129,7 @@
     {
         <tr>
             <td>@restaurant.restaurant.Naam</td>
-            <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", new { id = restaurant.restaurant.RestaurantID }, new { @Class = "management" })</td>           
+            <td>@Html.ActionLink("Edit", "EditRestaurant", "Employee", new { id = restaurant.restaurant.RestaurantID }, new { @Class = "management" })</td>
             <td>
                 <button class="deletebtn">Delete</button>
                 <div class="modal">
@@ -136,7 +149,7 @@
                         </div>
                     </article>
                 </div>
-            </td>            
+            </td>
         </tr>
     }
 
@@ -148,20 +161,22 @@
 <script src="~/Scripts/modernizr-2.6.2.js"></script>
 
 <script>
-        $(document).ready(function () {
-            
-            // When the user clicks anywhere outside of the modal, close it
-            $('.close').click(function () {
-                // If the clicked object is a modal.
-                $('.modal').css('display', 'none');
-            });
-        
+    $(document).ready(function () {
 
-            $('.deletebtn').click(function () {
-                $(this).next()[0].style.display = "inline";
-            });
-
-
+        // When the user clicks anywhere outside of the modal, close it
+        $('.close').click(function () {
+            // If the clicked object is a modal.
+            $('.modal').css('display', 'none');
         });
+
+
+        $('.deletebtn').click(function () {
+            $(this).next()[0].style.display = "inline";
+        });
+
+        function OnAjaxSucess(data) {
+            window.location.href = data.Url;
+        }
+    });
 </script>
 
