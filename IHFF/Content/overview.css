@@ -139,6 +139,86 @@ background-color: #06AED5;
     text-decoration: none;
 }
 
+.cartdetailbutton{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+    margin-left: 160px;
+	position: relative;
+    top:-90px;
+}
+.cartdetailbutton:hover{
+    background-color: #06AED5;
+}
+
+.wishdetailbutton{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+    margin-left: 160px;
+	margin-top:35px;
+	position: relative;
+    top:-111px;
+}
+.wishdetailbutton:hover{
+    background-color: #06AED5;
+}
+.cartSdetailbutton{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+    margin-left: 180px;
+	position: relative;
+    top:-108px;
+}
+.cartSdetailbutton:hover{
+    background-color: #06AED5;
+}
+
+.wishSdetailbutton{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+    margin-left: 160px;
+	margin-top:35px;
+	position: relative;
+    top:-130px;
+}
+.wishSdetailbutton:hover {
+        background-color: #06AED5;
+    }
 .cartbutton{
     text-decoration: none;
     color: white !important;
@@ -177,6 +257,9 @@ background-color: #06AED5;
 .wishbutton:hover{
     background-color: #06AED5;
 }
+
+
+
 .moverview{
     float:left;
     overflow:hidden;

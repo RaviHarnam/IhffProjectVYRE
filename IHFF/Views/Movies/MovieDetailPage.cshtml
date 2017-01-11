@@ -30,7 +30,7 @@
         @Html.HiddenFor(m => m.ItemID)
         @Html.Label("Aantal", new { @for = "aantal" })
         <br/>
-        @Html.TextBox("aantal", null, new { @size = "14" })
+        @Html.TextBox("aantal")
         <br/><br/>
         @Html.Label("Datum");
         <br/>
@@ -41,8 +41,8 @@
             }
         </select>   
         <div class="buttonsdetailpage">
-        <button name="button" class="cartbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
-        <button name="button" class="wishbutton" type="submit" formmethod="post" value="wishlist">Add to Wishlist</button>
+        <button name="button" class="cartdetailbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
+        <button name="button" class="wishdetailbutton" type="submit" formmethod="post" value="wishlist">Add to Wishlist</button>
         </div>
     
 
