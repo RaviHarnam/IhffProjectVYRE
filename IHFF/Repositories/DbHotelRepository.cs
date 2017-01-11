@@ -20,9 +20,9 @@ namespace IHFF.Repositories
             List<Hotel> hotels = ctx.HOTEL.ToList();
             foreach (Hotel h in hotels)
             {
-                h.HotelAfbeelding = (from afb in ctx.AFBEELDINGEN
-                                          where afb.HotelID == h.HotelId && afb.Type ==""
-                                          select afb).SingleOrDefault();
+                h.HotelOverviewAfbeelding = (from afb in ctx.AFBEELDINGEN
+                                             where afb.HotelID == h.HotelId && afb.Type == "HotelOverview"
+                                             select afb).SingleOrDefault();
             }
 
             return hotels;
@@ -35,7 +35,7 @@ namespace IHFF.Repositories
                        select hot).SingleOrDefault();
 
             h.HotelAfbeelding = (from afb in ctx.AFBEELDINGEN
-                                 where afb.HotelID == hotelId
+                                 where afb.HotelID == hotelId && afb.Type == "HotelBanner"
                                  select afb).SingleOrDefault();
 
             return h;
