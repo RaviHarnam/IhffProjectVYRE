@@ -27,11 +27,11 @@
 @using (Html.BeginForm("MovieOverview", "Movies", FormMethod.Post))
 {
     @Html.HiddenFor(m => m.ItemID)
-    @Html.Label("Aantal", new {@for = "aantal" })
+    @Html.Label("Amount", new {@for = "aantal" })
     <br />
         @Html.TextBox("aantal", null, new { @size = "14" })
         <br /><br />
-        @Html.Label("Datum")
+        @Html.Label("Date (dd/mm/yy)")
     <br />
         <select name="voorstellingId">
             @foreach (Voorstelling voorstelling in Model.Voorstellingen)

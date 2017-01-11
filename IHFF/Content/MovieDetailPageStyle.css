@@ -20,10 +20,10 @@
 }
 
 .form{
-    float: left;
-    width: 100%;
+    float: right;
+    position: relative;
+    width: 50%;
     margin-bottom: 2em;
-    margin-left: 50%;
 }
 
 .cartfoodbutton{
@@ -38,7 +38,7 @@
 	opacity: 1.0; 
 	text-align:center;
 	margin: 0 auto;
-    margin-left: 265px;
+    margin-left: 300px;
 	position: relative;
     top:-111px;
 }
@@ -58,7 +58,7 @@
 	opacity: 1.0; 
 	text-align:center;
 	margin: 0 auto;
-    margin-left: 265px;
+    margin-left: 300px;
 	margin-top:35px;
 	position: relative;
     top:-134px;
@@ -115,12 +115,19 @@ text-align: right;
 width: 120px;
 }
 
+.COMBOmidCORRECT{
+    min-width: 240px;
+    vertical-align: middle !important;
+    text-align: right;
+    padding-right: 5px; 
+}
+
 .COMBOtable{
     min-width: 450px;
     width: 82%;
 }
 .COMBOtable td{   
-    vertical-align: text-top;
+    vertical-align: text-top;    
 }
 .COMBOleftTOtop{
     vertical-align: middle !important;
@@ -132,4 +139,15 @@ width: 120px;
 
 #COMBOleft{
     width: 80px;
+}
+
+#aantal{
+    width: 110px;
+}
+#Aantal{
+    width: 110px;
+}
+
+.VoorstellingDatum{
+    width: 110px;
 }
