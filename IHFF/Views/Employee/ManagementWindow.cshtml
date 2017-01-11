@@ -20,9 +20,9 @@
 <p></p>
 <table>
     <tr>
-        <th>Name</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th class="MngmntWindowTableHeader">Name</th>
+        <th class="MngmntWindowTableHeader">Edit</th>
+        <th class="MngmntWindowTableHeader">Delete</th>
     </tr>
     <tr><td><h2>Movies</h2></td></tr>
     @foreach (EventListRepresentation movie in Model.Where(m => m.item != null && m.item is Movie))
