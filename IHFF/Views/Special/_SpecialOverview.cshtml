@@ -19,13 +19,12 @@
 
 </div>
 <section class="form">
-    @Html.ValidationSummary()
     @using (Html.BeginForm("SpecialOverview", "Special", FormMethod.Post))
     {
-        @Html.HiddenFor(m => m.ItemID)
-        @Html.Label("Aantal", new { @for = "aantal" })
+        @Html.LabelFor(m =>m.Specialbestellinginputmodel.Aantal)
         <br />
-        @Html.TextBox("aantal")
+        @Html.TextBoxFor(m => m.Specialbestellinginputmodel.Aantal)
+        @Html.ValidationMessageFor(m => m.Specialbestellinginputmodel.Aantal)
         <br /><br />
         @Html.Label("Datum");
         <br />

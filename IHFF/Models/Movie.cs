@@ -30,6 +30,9 @@ namespace IHFF.Models
         [NotMapped]
         public virtual int Aantal { get; set; }
 
+        [NotMapped]
+        public virtual ItemBestellingInputModel Moviebestellinginputmodel { get; set; }
+
         public Movie()
         {
 

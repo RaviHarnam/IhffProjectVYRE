@@ -43,6 +43,18 @@ namespace IHFF.Repositories
 
             return tijden;
         }
+
+        public Movie GetMovieByVoorstellingID (int voorstellingid)
+        {
+            Movie mov = (from v in ctx.VOORSTELLINGEN
+                      from m in ctx.MOVIES
+                      where m.ItemID == v.ItemID
+                      && v.VoorstellingID == voorstellingid
+                      select m).SingleOrDefault();
+            mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmbanner");
+            mov.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == mov.ItemID select v).ToList();
+            return mov;
+        }
     }
 }
 

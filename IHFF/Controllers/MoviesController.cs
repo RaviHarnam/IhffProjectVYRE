@@ -5,7 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IHFF.Repositories;
-
+using IHFF.Helpers;
+using IHFF.Models.Input;
 
 namespace IHFF.Controllers
 {
@@ -13,6 +14,7 @@ namespace IHFF.Controllers
     {
         private IMoviesRepository dbMovie = new DbMovieRepository();
         private IVoorstellingRepository dbVoorstelling = new DbVoorstellingRepository();
+        MakeEventHelper eventHelper = MakeEventHelper.GetInstance();
 
         public ActionResult Index()
         {
@@ -26,44 +28,15 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult MovieOverview(int? voorstellingId, Movie movie, string aantal, string button)
+        public ActionResult MovieOverview(int? voorstellingId, Movie mInput, string button)
         {
-            
+
             if (ModelState.IsValid)
             {
-                int amount = 0;
-                if (voorstellingId != null && int.TryParse(aantal, out amount) && movie != null)
-                {
-                    if (amount > 0)
-                    {
-                        
-                        Voorstelling v = dbVoorstelling.GetVoorstelling(voorstellingId.Value);
-                        
-                        if (v.GereserveerdePlaatsen < v.MaxPlaatsen)
-                        {
-                            Event eventx = new Event();
-                            Movie m = dbMovie.GetMovie(v.ItemID);
-                            eventx.Aantal = amount;
-                            eventx.DatumTijd = v.BeginTijd;
-                            eventx.Prijs = v.Prijs;
-                            eventx.Titel = m.Titel;
-                            eventx.VoorstellingID = v.VoorstellingID;
-                            //Event eventx = movie.GetEvent(voorstellingId.Value);
-                            //eventx.Aantal = amount;
-                            if (Session[button] == null)
-                                Session[button] = new List<Event>();
-
-                            List<Event> cartlist = (List<Event>)Session[button];
-                            cartlist.Add(eventx);
-                            Session[button] = cartlist;
-                        }                  
-                    }                   
-                }
+                eventHelper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, button);
             }
             return RedirectToAction("MovieOverview");
         }
-
-
 
 
         public ActionResult MovieDetailPage(int? movie_id)
@@ -81,63 +54,19 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult MovieDetailPage(int? voorstellingId, Movie movie, string aantal, string button)
+        public ActionResult MovieDetailPage(int? voorstellingId, Movie mInput, string button)
         {
-            if (ModelState.IsValid)
+            if (voorstellingId != null)
             {
-                int amount = 0;
-                if (voorstellingId != null && int.TryParse(aantal, out amount) && movie != null)
+                if (ModelState.IsValid)
                 {
-                    if (amount > 0)
-                    {
-
-                        Voorstelling v = dbVoorstelling.GetVoorstelling(voorstellingId.Value);
-
-                        if (v.GereserveerdePlaatsen < v.MaxPlaatsen)
-                        {
-                            Event eventx = new Event();
-                            Movie m = dbMovie.GetMovie(v.ItemID);
-                            eventx.Aantal = amount;
-                            eventx.DatumTijd = v.BeginTijd;
-                            eventx.Prijs = v.Prijs;
-                            eventx.Titel = m.Titel;
-                            eventx.VoorstellingID = v.VoorstellingID;
-                            //Event eventx = movie.GetEvent(voorstellingId.Value);
-                            //eventx.Aantal = amount;
-                            if (Session[button] == null)
-                                Session[button] = new List<Event>();
-
-                            List<Event> cartlist = (List<Event>)Session[button];
-                            cartlist.Add(eventx);
-                            Session[button] = cartlist;
-                        }
-
-                    }
+                    eventHelper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, button);
                 }
-
+                Movie m = dbMovie.GetMovieByVoorstellingID(voorstellingId.Value);
+                return View(m);
             }
-            movie = dbMovie.GetMovie(movie.ItemID);
-            movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);
-            return View(movie);
+            return RedirectToAction("MovieOverview");
         }
 
-        //[HttpPost]
-        //[ActionName("MovieDetailPage")]
-        //public ActionResult MovieDetailPagee(Movie movie, int voorstellingId)
-        //{
-        //    Event eventx = movie.GetEvent(voorstellingId);
-
-        //    if (Session["wishlist"] == null)
-        //        Session["wishlist"] = new List<Event>();
-
-        //    List<Event> wishList = (List<Event>)Session["wishlist"];
-        //    wishList.Add(eventx);
-        //    Session["wishlist"] = wishList;
-
-        //    movie = dbMovie.GetMovie(movie.ItemID);
-        //    movie.Voorstellingen = dbVoorstelling.GetVoorstellingen(movie.ItemID);
-
-        //    return View(movie);
-        //}
     }
 }
