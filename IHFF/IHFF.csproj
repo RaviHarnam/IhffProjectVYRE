@@ -285,6 +285,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CartStyle.css" />
     <Content Include="Content\ContactStyle.css" />
+    <Content Include="Content\CultureStyle.css" />
     <Content Include="Content\EditPages.css" />
     <Content Include="Content\FoodDetailPageStyle.css" />
     <Content Include="Content\FoodOverview.css" />

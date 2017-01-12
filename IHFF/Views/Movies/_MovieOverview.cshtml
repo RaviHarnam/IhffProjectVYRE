@@ -29,11 +29,13 @@
 {
     
     @Html.LabelFor(m => m.Moviebestellinginputmodel.Aantal )
+    @Html.HiddenFor(m => m.ItemID)
+    @Html.Label("Amount", new {@for = "aantal" })
     <br />
         @Html.TextBoxFor(m => m.Moviebestellinginputmodel.Aantal)
         @Html.ValidationMessageFor(m => m.Moviebestellinginputmodel.Aantal)
         <br /><br />
-        @Html.Label("Datum")
+        @Html.Label("Date (dd/mm/yy)")
     <br />
         <select name="voorstellingId">
             @foreach (Voorstelling voorstelling in Model.Voorstellingen)

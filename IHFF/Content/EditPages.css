@@ -28,4 +28,30 @@ td{
     
 }
 
+.logoff, .logoff:active{
+    line-height: 45px;
+    height: 44px;
+    background-color: #226493;
+    text-align: center;
+    width: 120px;
+    float: right;
+    margin-right: 30%;
+    text-decoration: none;
+    color: white;
+    border: 0px;
+    cursor: pointer;
+}
+
+.loginForm{
+    margin-left: 20%;
+    margin-top: 15%;
+}
+.loginFieldset{
+    width: 5%;
+    padding-left: 40%;
+    padding-right: 40%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
     

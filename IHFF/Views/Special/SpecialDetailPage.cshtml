@@ -32,7 +32,7 @@
         <br /><br />
         @Html.Label("Datum");
         <br />
-        <select name="voorstellingId">
+        <select name="voorstellingId" class="VoorstellingDatum">
             @foreach (Voorstelling voorstelling in Model.Voorstellingen)
             {
                 <option value=@voorstelling.VoorstellingID>@voorstelling.BeginTijd.ToString("dd/MM/yy HH:mm")</option>

@@ -34,8 +34,10 @@
 	margin: 0 auto;
 	position: relative;
     top:5px;
-}	
-
+}
+.cross:hover {
+    background-color: #06AED5;
+}
 .crosselling{
     position:absolute;
     right:3%;
@@ -140,20 +142,20 @@ background-color: #06AED5;
 }
 
 .cartdetailbutton{
-    text-decoration: none;
+        text-decoration: none;
     color: white !important;
     background-color: #226493;
     border-radius: 5px;
     height: 44px;
     display: block;
     line-height: 20px;
-    width: 120px !important; 
-	opacity: 1.0; 
-	text-align:center;
-	margin: 0 auto;
-    margin-left: 160px;
-	position: relative;
-    top:-90px;
+    width: 120px !important;
+    opacity: 1.0;
+    text-align: center;
+    margin: 0 auto;
+    margin-left: 150px;
+    position: relative;
+    top: -90px;
 }
 .cartdetailbutton:hover{
     background-color: #06AED5;
@@ -167,14 +169,14 @@ background-color: #06AED5;
     height: 44px;
     display: block;
     line-height: 20px;
-    width: 120px !important; 
-	opacity: 1.0; 
-	text-align:center;
-	margin: 0 auto;
-    margin-left: 160px;
-	margin-top:35px;
-	position: relative;
-    top:-111px;
+    width: 120px !important;
+    opacity: 1.0;
+    text-align: center;
+    margin: 0 auto;
+    margin-left: 150px;
+    margin-top: 35px;
+    position: relative;
+    top: -111px;
 }
 .wishdetailbutton:hover{
     background-color: #06AED5;
@@ -187,13 +189,13 @@ background-color: #06AED5;
     height: 44px;
     display: block;
     line-height: 20px;
-    width: 120px !important; 
-	opacity: 1.0; 
-	text-align:center;
-	margin: 0 auto;
-    margin-left: 180px;
-	position: relative;
-    top:-108px;
+    width: 120px !important;
+    opacity: 1.0;
+    text-align: center;
+    margin: 0 auto;
+    margin-left: 160px;
+    position: relative;
+    top: -108px;
 }
 .cartSdetailbutton:hover{
     background-color: #06AED5;
@@ -268,19 +270,20 @@ background-color: #06AED5;
     width:50%;
 }
 a.fullsched{
-    float:right;
+    float: left;
     text-decoration: none;
     color: white !important;
     background-color: #226493;
     height: 44px;
     line-height: 2.75em;
-    width: 120px !important; 
-	opacity: 1.0; 
-	text-align:center;
-	margin-top:4%;
-	position: relative;
-    margin-right:4.5%;
-
+    width: 16% !important;
+    min-width: 100px !important;
+    opacity: 1.0;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 19px;
+    margin-left: 16.5%;
+    border: 1px solid black;
 
 }
 .movie_index_item_description_button{

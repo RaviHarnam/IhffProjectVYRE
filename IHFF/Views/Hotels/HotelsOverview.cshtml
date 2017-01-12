@@ -1,85 +1,74 @@
-﻿@Styles.Render("~/Content/overview.css")
-@Scripts.Render("~/bundles/modernizr")
-@using IHFF.Models
+﻿@using IHFF.Models
 @{
     ViewBag.Title = "HotelsOverview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Styles.Render("~/Content/overview.css")
+@Scripts.Render("~/bundles/modernizr")
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+
 @model List<Hotel>
 
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Hotel</title>
+</head>
 
-@{int hotelNr = 0; }
-<table>
-    @Html.Hidden("hotelId", 0)
-    @for (int i = 0; i < Model.Count(); i++)
-    {
-        <tr>
-            @for (int j = 0; j < 3; j++)
+<body>
+    <h3>Hotels</h3>
+    @{int hotelNr = 0; }
+    <table>
+        @Html.Hidden("hotelId", 0)
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                @for (int j = 0; j < 3; j++)
                 {
                     if (hotelNr < Model.Count())
                     {
-                        if (Model.ElementAt(hotelNr).HotelAfbeelding != null)
+                        if (Model.ElementAt(hotelNr).HotelOverviewAfbeelding != null)
                         {
-                        <td>
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-lg-12">
-                                <div class="hovereffect">
-                                    <img class="img-responsive" src=@Model.ElementAt(hotelNr).HotelAfbeelding.Link alt=@Model.ElementAt(hotelNr).Naam title="@Model.ElementAt(hotelNr).Naam">
-                                    <div class="overlay">
-                                        <a class="plaatjelink" href='@Url.Action("HotelDetailPage", "Hotels", new { hotelId = Model.ElementAt(hotelNr).HotelId }, null)'></a>
-                                        <a href='@Url.Action("HotelDetailPage", "Hotels", new { hotelId = Model.ElementAt(hotelNr).HotelId }, null)'>
+                            <td>
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-lg-12">
+                                    <div class="hovereffect">
+                                        <img class="img-responsive" src=@Model.ElementAt(hotelNr).HotelOverviewAfbeelding.Link alt=@Model.ElementAt(hotelNr).Naam title="@Model.ElementAt(hotelNr).Naam">
+                                        <div class="overlay">
+                                            <a class="plaatjelink" href='@Url.Action("HotelDetailPage", "Hotels", new { hotelId = Model.ElementAt(hotelNr).HotelId }, null)'></a>
+                                            <a href='@Url.Action("HotelDetailPage", "Hotels", new { hotelId = Model.ElementAt(hotelNr).HotelId }, null)'></a>
                                             <h2 class="overlaytitel">@Model.ElementAt(hotelNr).Naam</h2>
-                                        </a>
-                                        <!-- Trigger/Open The Modal -->
-                                        <!-- The Modal -->
-
-                                        <div class="modal">
-                                            <article class="modal-content">
-                                                <article class="modal-header">
-                                                    <h2>Modal Header</h2>
-                                                </article>
-
-                                                <div class="modal-footer">
-                                                    <h3>Do you have dinner plans yet? </h3>
-                                                </div>
-                                            </article>
                                         </div>
                                     </div>
                                 </div>
-
-                            </div>
-                            <p class="movie_index_item_title">
-                                @Html.ActionLink(Model.ElementAt(hotelNr).Naam, "HotelDetailPage", "Hotels",
+                                <p class="movie_index_item_title">
+                                    @Html.ActionLink(Model.ElementAt(hotelNr).Naam, "HotelDetailPage", "Hotels",
                                     new { hotelId = Model.ElementAt(hotelNr).HotelId }, null)
-                        </p>
-                    </td>
+                                </p>
+                            </td>
+                        }
                         { hotelNr++; }
                     }
                 }
-            }
+            </tr>
+        }
+    </table>
+    <br />
+    @Scripts.Render("~/bundles/jquery")
 
+    <script>
+        $(document).ready(function () {
 
+            // When the user clicks anywhere outside of the modal, close it
+            $('.close').click(function () {
+                // If the clicked object is a modal.
+                $('.modal').css('display', 'none');
+            });
 
-        </tr>
-    }
-</table>
-
-<br />
-@Scripts.Render("~/bundles/jquery")
-
-
-<script>
-    $(document).ready(function () {
-
-        // When the user clicks anywhere outside of the modal, close it
-        $('.close').click(function () {
-            // If the clicked object is a modal.
-            $('.modal').css('display', 'none');
+            $('.movie_index_item_description_button').click(function () {
+                $(this).next()[0].style.display = "inline";
+                var title = $(this).prev('h2').html();
+                $('.modal-header').find('h2').html(title);
+            });
         });
-
-        $('.movie_index_item_description_button').click(function () {
-            $(this).next()[0].style.display = "inline";
-            var title = $(this).prev('h2').html();
-            $('.modal-header').find('h2').html(title);
-        });
-    });
-</script>
-
+    </script>
+</body>
