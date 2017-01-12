@@ -25,12 +25,12 @@ namespace IHFF.Repositories
 
         public Movie GetMovie(int id)
         {    
-            Movie mov = ctx.MOVIES.SingleOrDefault(i => i.ItemID == id);
+            Movie movie = ctx.MOVIES.SingleOrDefault(i => i.ItemID == id);
 
-            mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmbanner");
-            mov.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemID == mov.ItemID select v.BeginTijd).ToList();
+            movie.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == movie.ItemID && a.Type == "filmbanner");
+            movie.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemID == movie.ItemID select v.BeginTijd).ToList();
 
-            return mov;
+            return movie;
         }
 
         public List<DateTime> GetMovieTijden(Movie movie)
@@ -46,14 +46,14 @@ namespace IHFF.Repositories
 
         public Movie GetMovieByVoorstellingID (int voorstellingid)
         {
-            Movie mov = (from v in ctx.VOORSTELLINGEN
+            Movie movie = (from v in ctx.VOORSTELLINGEN
                       from m in ctx.MOVIES
                       where m.ItemID == v.ItemID
                       && v.VoorstellingID == voorstellingid
                       select m).SingleOrDefault();
-            mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmbanner");
-            mov.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == mov.ItemID select v).ToList();
-            return mov;
+            movie.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == movie.ItemID && a.Type == "filmbanner");
+            movie.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == movie.ItemID select v).ToList();
+            return movie;
         }
     }
 }

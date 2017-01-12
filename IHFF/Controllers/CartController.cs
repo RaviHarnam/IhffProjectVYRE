@@ -25,12 +25,15 @@ namespace IHFF.Controllers
                 Session["cart"] = new List<Event>();
 
             List<Event> cartList = (List<Event>)Session["cart"];
-
+            decimal totaal = 0;
             foreach (Event ev in cartList)
+            {
                 ev.CartId = cartList.IndexOf(ev);
+                totaal += ev.BerekenTotaalPrijs();
+            }
 
             Session["cart"] = cartList;
-
+            Session["totaalPrijs"] = totaal;
             return View("Index", cartList);
         }
         [HttpPost]
