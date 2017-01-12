@@ -16,10 +16,10 @@ namespace IHFF.Controllers
         {
             return RedirectToAction("Cart", "Cart");
         }
-
+        
         public ActionResult Payment(string payment, string name, string email, string pickup)
         {
-            Session["bestellingInfo"] = new List<string>()
+            Session["bestellingInfo"] = new List<string>() //Vullen met bestellingopties
             {
                 payment, name, email, pickup
             };
@@ -37,11 +37,11 @@ namespace IHFF.Controllers
                 if(events.Count > 0)
                 {
                     db.MaakBestelling(events, info[0], info[1], info[2], info[3]); //Maak bestelling in database    
-                    Session["cart"] = null; 
-                    return RedirectToAction("Done");
+                    Session["cart"] = null; //Cart legen
+                    return RedirectToAction("Done"); //Betaling gelukt
                 }
             }
-            return RedirectToAction("Cart", "Cart");
+            return RedirectToAction("Cart", "Cart"); //Terug naar cart omdat cart leeg is
         }
 
         public ActionResult Done()

@@ -225,6 +225,7 @@
     <Compile Include="Models\Input\HotelInputModel.cs" />
     <Compile Include="Models\Input\ItemInputModel.cs" />
     <Compile Include="Models\Input\LocatieInputModel.cs" />
+    <Compile Include="Models\Input\MaaltijdBestellingInputModel.cs" />
     <Compile Include="Models\Input\MovieInputModel.cs" />
     <Compile Include="Models\Input\MuseumInputModel.cs" />
     <Compile Include="Models\Input\RestaurantInputModel.cs" />

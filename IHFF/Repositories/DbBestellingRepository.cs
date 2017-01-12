@@ -10,7 +10,7 @@ namespace IHFF.Repositories
     {
         private IhffContext ctx = new IhffContext();
 
-        public IEnumerable<Bestelling> GetBestellingen()
+        public IEnumerable<Bestelling> GetBestellingen() //Ophalen van bestellingen
         {
             IEnumerable<Bestelling> bestellingen = ctx.BESTELLINGEN.ToList();
             return bestellingen;
@@ -30,20 +30,20 @@ namespace IHFF.Repositories
             //Add Events
             foreach (Event ev in events)
             {
-                ev.BestellingID = b.BestellingID;
-                ctx.EVENTS.Add(ev);
+                ev.BestellingID = b.BestellingID; //Vullen bestellingID in de event
+                ctx.EVENTS.Add(ev); //Adden van events
                 if (ev.VoorstellingID != null) //Update voorstelling plaatsen
                 {
                     Voorstelling v = ctx.VOORSTELLINGEN.SingleOrDefault(m => m.VoorstellingID == ev.VoorstellingID.Value);
                     v.GereserveerdePlaatsen = v.GereserveerdePlaatsen + ev.Aantal;
                 }
-                if(ev.MaaltijdID != null)
+                if(ev.MaaltijdID != null) //Update Maaltijd plaatsen
                 {
                     Maaltijd m = ctx.MAALTIJD.SingleOrDefault(c => c.MaaltijdID == ev.MaaltijdID.Value);
                     m.GereserveerdePlaatsen = m.GereserveerdePlaatsen + ev.Aantal;
                 }
             }
-            ctx.SaveChanges();
+            ctx.SaveChanges(); //Sla de bestelling, plus events en klant op en update plaatsen
         }
     }
 }

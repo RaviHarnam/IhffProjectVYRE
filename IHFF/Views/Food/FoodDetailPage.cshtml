@@ -51,7 +51,7 @@
         @Html.HiddenFor(r => r.RestaurantID)
         @Html.Label("Amount")
         <br />
-        @Html.TextBox("aantal")
+        @Html.TextBoxFor(m => m.MaaltijdInputModel.Aantal)
         <br /><br />
         @Html.Label("Date and Time");
         <br />
@@ -73,7 +73,7 @@
         <select name="maaltijdUur" id="uur">
 
         </select>  
-         @Html.TextBox("minuten",null,  new {@type = "number", @min = "0", @max = "59", @pattern = "[0-9]", @size = "10"})
+         @Html.TextBoxFor(m => m.MaaltijdInputModel.minuten,null,  new {@type = "number", @size = "10"})
         <br /><br />
         <button name="buttoncart" class="cartfoodbutton" type="submit" formmethod="post" value="cart">Add to Cart</button>
         <button name="buttonwish" class="wishfoodbutton" type="submit" formmethod="post" value="wishlist">Add to Wishlist</button>

@@ -19,11 +19,9 @@ namespace IHFF.Controllers
         }
 
         public ActionResult FullSchedule()
-        {
-                         
-
-            IEnumerable<Voorstelling> voorstellingen = repository.getAllVoorstellingen();
-           
+        {                        
+            //Voorstellingen ophalen
+            IEnumerable<Voorstelling> voorstellingen = repository.getAllVoorstellingen();           
             return View(voorstellingen);
         }
     }

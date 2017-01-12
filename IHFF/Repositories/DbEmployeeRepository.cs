@@ -168,8 +168,9 @@ namespace IHFF.Repositories
         {
             Museum dbMuseum = ctx.MUSEA.SingleOrDefault(m => m.MuseumID == museumid);
             //Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(m => m.LocatieID == dbMuseum.LocatieID);
-            //if (dbLocatie != null) //On delelte Cascade betekent dat dit niet meer hoeft
+            //if (dbLocatie != null) //On delete Cascade betekent dat dit niet meer hoeft
             //    ctx.Entry(dbLocatie).State = EntityState.Deleted;
+
             IEnumerable<Afbeelding> dbAfbeeldingen = (from a in ctx.AFBEELDINGEN
                                                       where a.MuseumID == museumid
                                                       select a).ToList();
@@ -247,7 +248,7 @@ namespace IHFF.Repositories
                     ctx.AFBEELDINGEN.Remove(dbAfbeelding);
 
             //On delete cascade will remove this for me
-            //Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == dbRestaurant.LocatieID);
+            Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == dbRestaurant.LocatieID);
             //if (dbLocatie != null)
             //    ctx.LOCATIES.Remove(dbLocatie);
 

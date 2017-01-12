@@ -9,14 +9,14 @@
 @{List<Locatie> locaties = new List<Locatie>();}
 @{List<Zaal> zalen = new List<Zaal>(); }
 
-@foreach (Voorstelling v in Model)
+@foreach (Voorstelling v in Model) //Lijst van locaties
 {
     if (!locaties.Contains(v.VoorstellingLocatie))
     {
         locaties.Add(v.VoorstellingLocatie);
     }
 }
-@foreach (Voorstelling v in Model)
+@foreach (Voorstelling v in Model) //Lijst van voorstellingzalen
 {
     if (!zalen.Contains(v.VoorstellingZaal))
     {
@@ -25,11 +25,11 @@
 }
 @{List<int> dagen = new List<int>() { 3, 4, 5, 6, 0 };}
 <h2>Full Schedule</h2>
-@*DayOfWeek day in Enum.GetValues(typeof(DayOfWeek))*@
+@*DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)) //lopen door juiste dagen*@
 <div class="schedule">
-    @foreach (int dagIndex in dagen)
+    @foreach (int dagIndex in dagen) //Loop door dagen
     {    
-        DayOfWeek day = (DayOfWeek)dagIndex;
+        DayOfWeek day = (DayOfWeek)dagIndex; //Dag van de week die nu aan de beurt is
         <h2>@day</h2>
         <table class="dagvandeweek">
             <thead>
@@ -76,63 +76,63 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (Locatie l in locaties)
+                @foreach (Locatie l in locaties) //Lopen door locaties
                 {
                     <tr>
                         <th class="voorstelling_locatie" scope="row">@l.Naam</th>
                     </tr>
-                    foreach (Zaal z in zalen.Where(z => z.LocatieID == l.LocatieID))
+                    foreach (Zaal z in zalen.Where(z => z.LocatieID == l.LocatieID)) //Lopen door zalen
                     {
                         <tr>
                             <th class="voorstelling_zaal" scope="row">@z.ZaalNaam</th>
                             @{Voorstelling vorige = null;}
                             @foreach (Voorstelling vo in Model.Where(m => m.VoorstellingLocatie == l && m.BeginTijd.DayOfWeek == day && m.VoorstellingZaal.ZaalID == z.ZaalID).OrderBy(m => m.BeginTijd))
                             {
-                                DateTime beginRooster = vo.BeginTijd;
-                                beginRooster = beginRooster - (new TimeSpan(14, 0, 0));
-                                int beginHokjes = (int)(beginRooster.Hour * 2) + (beginRooster.Minute / 30);
-                                DateTime EindRooster = vo.EindTijd;
-                                EindRooster = EindRooster - (new TimeSpan(14, 0, 0));
-                                if (vorige != null)
+                                DateTime beginRooster = vo.BeginTijd; //Begintijd
+                                beginRooster = beginRooster - (new TimeSpan(14, 0, 0)); //begintijd aangepast aan grote van schedule
+                                int beginHokjes = (int)(beginRooster.Hour * 2) + (beginRooster.Minute / 30); //Aantal halve uren
+                                DateTime EindRooster = vo.EindTijd; //Eindtijd
+                                EindRooster = EindRooster - (new TimeSpan(14, 0, 0)); //Eindtijd aangepast aan grote van schedule
+                                if (vorige != null) //Er zijn meerdere vorstellingen op 1 dag (als true)
                                 {
                                     //Meerder voorstellingen op 1 dag.
-                                    DateTime vorigeEindRooster = vorige.EindTijd;
-                                    vorigeEindRooster = vorigeEindRooster - (new TimeSpan(14, 0, 0));
-                                    int aantalHokjesleeg = beginHokjes - ((vorigeEindRooster.Hour * 2) + (vorigeEindRooster.Minute / 30));
-                                    for (int k = 1; k < aantalHokjesleeg; k++)
+                                    DateTime vorigeEindRooster = vorige.EindTijd; //Vorige eindtijd
+                                    vorigeEindRooster = vorigeEindRooster - (new TimeSpan(14, 0, 0)); //Vorige eindtijd aangepast aan schedule
+                                    int aantalHokjesleeg = beginHokjes - ((vorigeEindRooster.Hour * 2) + (vorigeEindRooster.Minute / 30)); //Aantal halve uren
+                                    for (int k = 1; k < aantalHokjesleeg; k++) //Lopen van lege hokjes tussen vorige eindtijd en volgende begintijd
                                     {
                                         <td class="location-onzichtbaar"></td>
                                     }
                                 }
-                                else
+                                else //Er is maar 1 voorstelling op de dag
                                 {
-                                    for (int j = 0; j < beginHokjes; j++)
+                                    for (int j = 0; j < beginHokjes; j++) //Maken lege hokjes voor de begintijd van de voorstelling
                                     {
                                         <td class="location-onzichtbaar"></td>
                                     }
                                 }
 
-                                for (DateTime i = beginRooster; i <= EindRooster; i = i.AddMinutes(30))
+                                for (DateTime i = beginRooster; i <= EindRooster; i = i.AddMinutes(30)) //Maken van gevulde hokjes
                                 {
-                                    int aantalHokjes = (int)((vo.EindTijd - vo.BeginTijd).TotalMinutes / 30);
-                                    int hokje = aantalHokjes / 2;
-                                    if (i == beginRooster)
+                                    int aantalHokjes = (int)((vo.EindTijd - vo.BeginTijd).TotalMinutes / 30); //Aantal halve uren
+                                    
+                                    if (i == beginRooster) //Maken van hokje voor movie met titel erin
                                     {
                                         if (vo.VoorstellingItem is Movie)
                                         {
                                             <td title="@vo.VoorstellingItem.Titel" class="location-zichtbaar">@Html.ActionLink(vo.VoorstellingItem.Titel, "MovieDetailPage", "Movies", new {movie_id = vo.ItemID}, new { @Class = "link" })</td>
                                         }
-                                        else //Special
+                                        else //Special (met titel)
                                         {
                                             <td title="@vo.VoorstellingItem.Titel" class="location-zichtbaar">@Html.ActionLink(vo.VoorstellingItem.Titel, "SpecialDetailPage", "Special", new {special_id = vo.ItemID}, new {@Class = "link"})</td>
                                         }                                       
                                     }
-                                    else
+                                    else //Hokjes zonder titel
                                     {
                                         <td class="location-zichtbaar"></td>
                                     }
                                 }
-                                vorige = vo;
+                                vorige = vo; //Invullen vorige voorstelling
 
                             }
                         </tr>
