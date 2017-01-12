@@ -62,8 +62,8 @@ namespace IHFF.Controllers
                 {
                     MakeEventHelper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, button);
                 }
-                Movie m = dbMovie.GetMovieByVoorstellingID(voorstellingId.Value);
-                return View(m);
+                Movie movie = dbMovie.GetMovieByVoorstellingID(voorstellingId.Value);
+                return View(movie);
             }
             return RedirectToAction("MovieOverview");
         }
