@@ -1,0 +1,18 @@
+﻿.afbeelding {
+    width: 50%;
+    float: left;
+    margin-bottom: 5%;
+}
+
+p {
+    width: 45%;
+    float: left;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+.contact{
+    text-align: left;
+    width: 55%;
+    float: left;
+}

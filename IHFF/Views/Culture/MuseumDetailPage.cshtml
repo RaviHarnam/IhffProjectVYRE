@@ -10,7 +10,29 @@
 <p class="omschrijving">@Model.Omschrijving</p>
 <img class="afbeelding" src="@Model.MuseumAfbeelding.Link" title="@Model.Naam" />
 <br />
-<table class="tijden">
+<table class="Contact">
+    <tr>
+        <th class="links">Contact:</th>
+        <th class="right"></th>
+    </tr>
+    <tr>
+        <td class="links">Website:</td>
+        <td class="right"><a href="@Model.Website">@Model.Website</a></td>
+    </tr>
+    <tr>
+        <td class="links">Telephone number:</td>
+        <td class="right">@Model.Telefoon</td>
+    </tr>
+    <tr>
+        <td class="links">Location:</td>
+        <td class="right">@Model.MuseumLocatie.Straat @Model.MuseumLocatie.Huisnummer @Model.MuseumLocatie.Toevoeging</td>
+    </tr>
+    <tr>
+        <td class="links">Postal code:</td>
+        <td class="right">@Model.MuseumLocatie.Postcode, @Model.MuseumLocatie.Plaats</td>
+    </tr>
+</table>
+<table class="Tijden">
     <tr>
         <th class="links">Opening hours:</th>
         <th class="right"></th>
@@ -44,29 +66,6 @@
         <td>@Model.Zondag</td>
     </tr>
 </table>
-<table class="contact">
-    <tr>
-        <th class="links">Contact:</th>
-        <th class="right"></th>
-    </tr>
-    <tr>
-        <td class="links">Website:</td>
-        <td class="right"><a href="@Model.Website">@Model.Website</a></td>
-    </tr>
-    <tr>
-        <td class="links">Telephone number:</td>
-        <td class="right">@Model.Telefoon</td>
-    </tr>
-    <tr>
-        <td class="links">Location:</td>
-        <td class="right">@Model.MuseumLocatie.Straat @Model.MuseumLocatie.Huisnummer @Model.MuseumLocatie.Toevoeging</td>
-    </tr>
-    <tr>
-        <td class="links">Postal code:</td>
-        <td class="right">@Model.MuseumLocatie.Postcode, @Model.MuseumLocatie.Plaats</td>
-    </tr>
-</table>
-<p></p>
 <table class="Prices">
     <tr>
         <th class="links">Prices:</th>
@@ -81,3 +80,4 @@
         <td class="right">@Model.Kids</td>
     </tr>
 </table>
+

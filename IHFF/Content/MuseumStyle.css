@@ -1,42 +1,46 @@
-﻿h3{
-width: 100%;
-float: left;
-
+﻿h3 {
+    width: 100%;
+    float: left;
 }
 
-.omschrijving{
+.omschrijving {
     float: left;
     width: 45%;
 }
 
-table{
+table {
     width: 45%;
     margin-bottom: 1em;
 }
 
-.tijden {
+.Tijden {
     float: left;
 }
 
-.contact, .Prices{
+.Contact {
     float: left;
+    margin-right: 5%;
 }
 
-.afbeelding{ 
+.Prices{
+    float: left;
+    margin-bottom: 5%;
+    margin-right: 5%;
+}
+
+.afbeelding {
     width: 45%;
     float: left;
     margin-left: 5%;
     margin-bottom: 2%;
 }
 
-section{
+section {
     margin-bottom: 3%;
 }
 
-.links{
+.links {
     text-align: left;
     width: 30%;
 }
-
-
 

@@ -1,4 +1,5 @@
-﻿
+﻿@Styles.Render("~/Content/CultureStyle.css")
+
 @{
     ViewBag.Title = "HotelDetailPage";
 }
@@ -6,12 +7,28 @@
 @model Hotel
 
 <h3>@Model.Naam</h3>
-<p>@Model.Omschrijving</p>
+<p class="omschrijving">@Model.Omschrijving</p>
 <img class="afbeelding" src="@Model.HotelAfbeelding.Link" title="@Model.Naam" />
 <table class="contact">
     <tr>
         <th class="links">Contact:</th>
         <th class="right"></th>
+    </tr>
+    <tr>
+        <td class="links">Address:</td>
+        <td class="rechts">@Model.Adres</td>
+    </tr>
+    <tr>
+        <td class="links">Postal code:</td>
+        <td class="rechts">@Model.PostalCode</td>
+    </tr>
+    <tr>
+        <td class="links">City:</td>
+        <td class="rechts">@Model.City</td>
+    </tr>
+    <tr>
+        <td class="links">Telephone number:</td>
+        <td class="rechts">@Model.TelefoonNummer</td>
     </tr>
     <tr>
         <td class="links">Website:</td>
