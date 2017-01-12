@@ -24,13 +24,13 @@
 </section>
 <br/>
 <section class="form">
-    @Html.ValidationSummary()
+ 
     @using (Html.BeginForm("MovieDetailpage", "Movies", FormMethod.Post))
     {
-        @Html.HiddenFor(m => m.ItemID)
-        @Html.Label("Aantal", new { @for = "aantal" })
+        @Html.LabelFor(m => m.Moviebestellinginputmodel.Aantal)
         <br/>
-        @Html.TextBox("aantal")
+        @Html.TextBoxFor(m => m.Moviebestellinginputmodel.Aantal)
+        @Html.ValidationMessageFor(m => m.Moviebestellinginputmodel.Aantal)
         <br/><br/>
         @Html.Label("Datum");
         <br/>

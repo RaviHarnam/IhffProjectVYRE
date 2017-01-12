@@ -24,6 +24,9 @@ namespace IHFF.Models
         public virtual List<DateTime> Tijden { get; set; }
         [NotMapped]
         public virtual int Aantal { get; set; }
+        [NotMapped]
+        public virtual ItemBestellingInputModel Specialbestellinginputmodel { get; set; }
+
 
         public Special(string titel, string omschrijving, bool highlight, string speaker, string spokenlanguage) : base(titel, omschrijving, highlight)
         {

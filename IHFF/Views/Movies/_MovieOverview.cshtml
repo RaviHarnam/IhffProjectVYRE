@@ -1,5 +1,6 @@
 ﻿@using IHFF.Models;
 
+
 @model Movie
 @Styles.Render("~/Content/overview.css")
 @{List<string> stars = new List<String>();
@@ -26,10 +27,13 @@
   
 @using (Html.BeginForm("MovieOverview", "Movies", FormMethod.Post))
 {
+    
+    @Html.LabelFor(m => m.Moviebestellinginputmodel.Aantal )
     @Html.HiddenFor(m => m.ItemID)
     @Html.Label("Amount", new {@for = "aantal" })
     <br />
-        @Html.TextBox("aantal", null, new { @size = "14" })
+        @Html.TextBoxFor(m => m.Moviebestellinginputmodel.Aantal)
+        @Html.ValidationMessageFor(m => m.Moviebestellinginputmodel.Aantal)
         <br /><br />
         @Html.Label("Date (dd/mm/yy)")
     <br />

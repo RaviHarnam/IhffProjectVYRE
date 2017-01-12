@@ -217,12 +217,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\MakeEventHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Afbeelding.cs" />
     <Compile Include="Models\Bestelling.cs" />
     <Compile Include="Models\ComboDeal.cs" />
     <Compile Include="Models\Input\AfbeeldingInputModel.cs" />
     <Compile Include="Models\Input\HotelInputModel.cs" />
+    <Compile Include="Models\Input\ItemBestellingInputModel.cs" />
     <Compile Include="Models\Input\ItemInputModel.cs" />
     <Compile Include="Models\Input\LocatieInputModel.cs" />
     <Compile Include="Models\Input\MaaltijdBestellingInputModel.cs" />

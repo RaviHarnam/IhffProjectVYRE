@@ -104,6 +104,26 @@ tr #Delete {
     background-color: #06AED5;
 }
 
+.wishToCartbutton{
+    float:left;
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	position: relative; 
+}
+
+.wishToCartbutton:hover{
+    background-color: #06AED5;
+}
+
 .deleteCross{
     text-decoration: none;
     color: black;

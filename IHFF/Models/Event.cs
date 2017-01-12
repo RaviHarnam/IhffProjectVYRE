@@ -57,6 +57,11 @@ namespace IHFF.Models
             Aantal = special.Aantal;
 
         }
+
+        public decimal BerekenTotaalPrijs()
+        {
+            return Prijs * Aantal;
+        }
     }
 
 }

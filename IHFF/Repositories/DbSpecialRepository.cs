@@ -43,5 +43,17 @@ namespace IHFF.Repositories
 
             return tijden;
         }
+
+        public Special GetSpecialByVoorstellingID(int voorstellingid)
+        {
+            Special special = (from v in ctx.VOORSTELLINGEN
+                         from s in ctx.SPECIALS
+                         where s.ItemID == v.ItemID
+                         && v.VoorstellingID == voorstellingid
+                         select s).SingleOrDefault();
+            special.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == special.ItemID && a.Type == "specialbanner");
+            special.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == special.ItemID select v).ToList();
+            return special;
+        }
     }
 }
