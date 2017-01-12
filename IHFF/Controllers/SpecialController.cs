@@ -13,7 +13,7 @@ namespace IHFF.Controllers
     {
         private ISpecialRepository dbSpecial = new DbSpecialRepository();
         IVoorstellingRepository dbVoorstelling = new DbVoorstellingRepository();
-        MakeEventHelper eventHelper = MakeEventHelper.GetInstance();
+     
 
         // GET: Special
         public ActionResult Index()
@@ -32,7 +32,7 @@ namespace IHFF.Controllers
         {
             if (ModelState.IsValid)
             {
-                eventHelper.MakeEvent(voorstellingId.Value, sInput.Specialbestellinginputmodel.Aantal, button);
+                MakeEventHelper.MakeEvent(voorstellingId.Value, sInput.Specialbestellinginputmodel.Aantal, button);
             }
             return RedirectToAction("SpecialOverview");
         }
@@ -41,18 +41,10 @@ namespace IHFF.Controllers
         {
             if (special_id != null)
             {
-                Special special = dbSpecial.GetSpecial(special_id.Value);
+                Special special = dbSpecial.GetSpecial(special_id.Value); // checkt of de special met het gegeven id wel bestaat
                 if (special != null)
                 {
                     special.Voorstellingen = (dbVoorstelling.GetVoorstellingen(special.ItemID));
-                    List<SelectListItem> listItems = new List<SelectListItem>();
-                    foreach (DateTime datetime in special.Tijden)
-                    {
-                        SelectListItem item = new SelectListItem();
-                        item.Text = datetime.ToString();
-                        item.Value = datetime.ToString();
-                        listItems.Add(item);
-                    }
                     return View(special);
                 }
             }
@@ -67,7 +59,7 @@ namespace IHFF.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    eventHelper.MakeEvent(voorstellingId.Value, sInput.Specialbestellinginputmodel.Aantal, button);
+                    MakeEventHelper.MakeEvent(voorstellingId.Value, sInput.Specialbestellinginputmodel.Aantal, button);
                 }
 
                 Special s = dbSpecial.GetSpecialByVoorstellingID(voorstellingId.Value);

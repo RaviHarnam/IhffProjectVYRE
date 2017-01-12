@@ -11,7 +11,7 @@ namespace IHFF.Controllers
 {
     public class CartController : Controller
     {
-        private IEventRepository repository = new DbEventRepository();
+        
 
         
         public ActionResult Index()

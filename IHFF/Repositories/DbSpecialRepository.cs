@@ -46,14 +46,14 @@ namespace IHFF.Repositories
 
         public Special GetSpecialByVoorstellingID(int voorstellingid)
         {
-            Special spec = (from v in ctx.VOORSTELLINGEN
+            Special special = (from v in ctx.VOORSTELLINGEN
                          from s in ctx.SPECIALS
                          where s.ItemID == v.ItemID
                          && v.VoorstellingID == voorstellingid
                          select s).SingleOrDefault();
-            spec.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == spec.ItemID && a.Type == "specialbanner");
-            spec.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == spec.ItemID select v).ToList();
-            return spec;
+            special.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == special.ItemID && a.Type == "specialbanner");
+            special.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == special.ItemID select v).ToList();
+            return special;
         }
     }
 }

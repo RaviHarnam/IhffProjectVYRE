@@ -30,9 +30,10 @@ namespace IHFF.Controllers
 
             return View("Index", wishList);
         }
+
         [HttpPost]
         [ActionName("Wishlist")]
-        public ActionResult WishlistPost()
+        public ActionResult WishlistPost() // post de events uit wishlist naar cart.
         {
             if(Session["cart"] == null)            
                 Session["cart"] = new List<Event>();
@@ -53,7 +54,7 @@ namespace IHFF.Controllers
             return RedirectToAction("Wishlist");
         }
 
-        public ActionResult DeleteWishItem(List<Event> wishList, int? wishlistId)
+        public ActionResult DeleteWishItem(List<Event> wishList, int? wishlistId) // delete een specifieke wishlist item uit de lijst
         {
             if (wishlistId != null)
             {

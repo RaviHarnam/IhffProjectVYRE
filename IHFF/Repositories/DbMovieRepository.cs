@@ -23,6 +23,7 @@ namespace IHFF.Repositories
             return movies;
         }
 
+        //haal 1 movie op met een specifieke id.
         public Movie GetMovie(int id)
         {    
             Movie movie = ctx.MOVIES.SingleOrDefault(i => i.ItemID == id);
@@ -33,6 +34,7 @@ namespace IHFF.Repositories
             return movie;
         }
 
+        //haal de tijden van de movie op
         public List<DateTime> GetMovieTijden(Movie movie)
         {
             List<DateTime> tijden = new List<DateTime>();
@@ -44,6 +46,7 @@ namespace IHFF.Repositories
             return tijden;
         }
 
+        // hier haal je een movie op op basis van de voorstellingID die deze movie heeft.
         public Movie GetMovieByVoorstellingID (int voorstellingid)
         {
             Movie movie = (from v in ctx.VOORSTELLINGEN

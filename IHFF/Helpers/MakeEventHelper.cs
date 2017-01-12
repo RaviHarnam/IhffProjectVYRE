@@ -11,31 +11,24 @@ namespace IHFF.Helpers
 {
     public class MakeEventHelper
     {
-        private IMoviesRepository dbMovie = new DbMovieRepository();
+        
         private IVoorstellingRepository dbVoorstelling = new DbVoorstellingRepository();
         private IItemRepository dbItemRespository = new DbItemRepository();
 
-        private static MakeEventHelper uniqueInstance;
 
-        private MakeEventHelper() { }
+        public MakeEventHelper() { }
 
-        public static MakeEventHelper GetInstance()
+
+        public static void MakeEvent(int voorstellingId, int aantal, string button) // gebruik deze helper methode om niet steeds dezelfde code in mijn controller te gebruike.
         {
-            if (uniqueInstance == null)
-                uniqueInstance = new MakeEventHelper();
-
-            return uniqueInstance;
-        }
-
-        public void MakeEvent(int voorstellingId, int aantal, string button)
-        {
+            MakeEventHelper eventHelper = new MakeEventHelper();
             bool eventAlInCart = false;
-            Voorstelling v = dbVoorstelling.GetVoorstelling(voorstellingId);
+            Voorstelling v = eventHelper.dbVoorstelling.GetVoorstelling(voorstellingId);
             if (v.GereserveerdePlaatsen < v.MaxPlaatsen)
             {
-
+                
                 Event eventx = new Event();
-                Item i = dbItemRespository.GetItem(v.ItemID);
+                Item i = eventHelper.dbItemRespository.GetItem(v.ItemID);
                 eventx.Aantal = aantal;
                 eventx.DatumTijd = v.BeginTijd;
                 eventx.Prijs = v.Prijs;

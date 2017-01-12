@@ -9,7 +9,7 @@ namespace IHFF.Repositories
     public class DbFoodRepository : IFoodRepository
     {
         private IhffContext ctx = new IhffContext();
-
+        //Haal alle restaurants op
         public IEnumerable<Restaurant> GetAllRestaurants()
         {
             IEnumerable<Restaurant> restaurants = ctx.RESTAURANTS.ToList();
@@ -24,7 +24,7 @@ namespace IHFF.Repositories
 
             return restaurants;
         }
-
+        //Haal 1 restaurant op
         public Restaurant GetRestaurant(int id)
         {
             Restaurant rst = ctx.RESTAURANTS.SingleOrDefault(i => i.RestaurantID == id);
@@ -36,7 +36,7 @@ namespace IHFF.Repositories
                                       select m).ToList();
             return rst;
         }
-
+        //Maaltijdtijden ophalen
         public IEnumerable<int> GetUren(int maaltijdId)
         {
             DateTime begintijd = (from m in ctx.MAALTIJD where m.MaaltijdID == maaltijdId select m.BeginTijd).SingleOrDefault();
