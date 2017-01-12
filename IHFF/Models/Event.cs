@@ -29,34 +29,7 @@ namespace IHFF.Models
         [NotMapped]
         public int WishListId { get; set; }
 
-        public void MakeEvent(Movie movie, Voorstelling voorstelling)
-        {
-            Titel = movie.Titel;
-            DatumTijd = voorstelling.BeginTijd;
-            Aantal = movie.Aantal;
-            Prijs = voorstelling.Prijs;
-        }
-        public void MakeEvent2(Movie movie, Voorstelling voorstelling)
-        {
-            Titel = movie.Titel;
-            DatumTijd = voorstelling.BeginTijd;
-            Prijs = voorstelling.Prijs;
-        }
-
-        public void MakeEvent2(Special special, Voorstelling voorstelling)
-        {
-            Titel = special.Titel;
-            DatumTijd = voorstelling.BeginTijd;
-            Prijs = voorstelling.Prijs;
-        }
-
-        public void MakeEvent(Special special, Voorstelling voorstelling)
-        {
-            Titel = special.Titel;
-            DatumTijd = voorstelling.BeginTijd;
-            Aantal = special.Aantal;
-
-        }
+       
 
         public decimal BerekenTotaalPrijs()
         {

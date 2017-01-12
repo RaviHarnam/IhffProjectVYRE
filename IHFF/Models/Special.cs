@@ -37,18 +37,7 @@ namespace IHFF.Models
         {
         }
 
-        public Event GetEvent(int voorstellingId)
-        {
-            Voorstelling voorstelling = new Voorstelling();
-            voorstelling = dbVoorstelling.GetVoorstelling(voorstellingId);
-            Titel = dbSpecial.GetSpecial (voorstelling.ItemID).Titel;
-
-
-            Event eventx = new Event();
-            eventx.MakeEvent2(this, voorstelling);
-
-            return eventx;
-        }
+       
         public void Edit(Special spc)
         {
             Titel = spc.Titel;

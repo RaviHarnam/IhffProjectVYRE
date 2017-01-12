@@ -31,12 +31,7 @@ namespace IHFF.Models
         {
             //Leeg
         }
-        public decimal BerekenTotaal()
-        {
-            //foreach (Event ev in Events)
-            //    TotaalPrijs += ev.BerekenPrijs;
-            return TotaalPrijs;
-        }
+       
 
     }
 }
