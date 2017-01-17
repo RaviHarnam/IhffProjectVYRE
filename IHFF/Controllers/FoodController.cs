@@ -57,6 +57,7 @@ namespace IHFF.Controllers
                     eventx.Titel = m.MaaltijdRestaurant.Naam;
                     eventx.Prijs = m.MaaltijdPrijs;
                     eventx.MaaltijdID = m.MaaltijdID;
+                    eventx.EventEindTijd = m.EindTijd;
                     if (Request.Form["buttoncart"] != null)
                     {
                         if (Session["cart"] == null)

@@ -140,3 +140,32 @@ tr #Delete {
 #removeBoxEmail{
     display: none;
 }
+
+/* Wishlist table*/
+.location-onzichtbaar{
+    color: transparent;
+}
+.location-zichtbaar{
+    background-color: darkcyan;
+    color: white;
+    font-size: 10px;
+}
+.halfuur-header{
+    color: transparent;
+}
+.dagvandeweek{
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    empty-cells: show;
+}
+.voorstelling_locatie{
+    font-size: 18px;
+    text-align: left;
+}
+
+.voorstelling_zaal{
+    font-size: 14px;
+    color: darkslategrey;
+    text-align: center;
+}

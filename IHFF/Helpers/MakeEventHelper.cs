@@ -31,8 +31,10 @@ namespace IHFF.Helpers
                 Item i = eventHelper.dbItemRespository.GetItem(v.ItemID);
                 eventx.Aantal = aantal;
                 eventx.DatumTijd = v.BeginTijd;
+                eventx.EventEindTijd = v.EindTijd;
                 eventx.Prijs = v.Prijs;
                 eventx.Titel = i.Titel;
+                eventx.EventVoorstelling = v;
                 eventx.VoorstellingID = v.VoorstellingID;
                 if (HttpContext.Current.Session[button] == null)
                     HttpContext.Current.Session[button] = new List<Event>();

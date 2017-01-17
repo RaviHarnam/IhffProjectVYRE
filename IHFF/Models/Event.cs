@@ -11,8 +11,6 @@ namespace IHFF.Models
     {
         public int EventID { get; set; }
 
-        
-
         public string Titel { get; set; }
         public int BestellingID { get; set; }
         public int? VoorstellingID { get; set; }
@@ -28,8 +26,12 @@ namespace IHFF.Models
         public int CartId { get; set; }
         [NotMapped]
         public int WishListId { get; set; }
-
-       
+        [NotMapped]
+        public virtual Voorstelling EventVoorstelling { get; set; }
+        [NotMapped]
+        public virtual Maaltijd EventMaaltijd { get; set; }
+        [NotMapped]
+        public virtual DateTime EventEindTijd { get; set; }
 
         public decimal BerekenTotaalPrijs()
         {
