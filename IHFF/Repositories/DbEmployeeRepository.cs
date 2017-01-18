@@ -24,7 +24,8 @@ namespace IHFF.Repositories
             List<EventListRepresentation> events = new List<EventListRepresentation>();
             IEnumerable<Item> items = (from i in ctx.ITEMS select i).ToList();
             IEnumerable<Restaurant> restaurants = (from r in ctx.RESTAURANTS select r).ToList();
-            IEnumerable<Museum> cultureEvents = (from c in ctx.MUSEA select c).ToList();
+            IEnumerable<Museum> musea = (from c in ctx.MUSEA select c).ToList();
+            IEnumerable<Hotel> hotels = (from h in ctx.HOTEL select h).ToList();
 
             foreach (Item item in items)
                 events.Add(new EventListRepresentation(item));
@@ -32,8 +33,11 @@ namespace IHFF.Repositories
             foreach (Restaurant restaurant in restaurants)
                 events.Add(new EventListRepresentation(restaurant));
 
-            foreach (Museum culture in cultureEvents)
+            foreach (Museum culture in musea)
                 events.Add(new EventListRepresentation(culture));
+
+            foreach (Hotel hotel in hotels)
+                events.Add(new EventListRepresentation(hotel));
 
             return events;
         }
@@ -74,6 +78,23 @@ namespace IHFF.Repositories
             Special spc = ctx.SPECIALS.SingleOrDefault(s => s.ItemID == id);
             spc.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == id && a.Type == "specialbanner");
             return spc;
+        }
+
+        public Hotel GetHotel(int id)
+        {
+            Hotel hotel = ctx.HOTEL.SingleOrDefault(hot => hot.HotelId == id);
+            List<Afbeelding> dbAfbeeldingen = (from afb in ctx.AFBEELDINGEN
+                                               where afb.HotelID == id
+                                               select afb).ToList();
+            foreach(Afbeelding afb in dbAfbeeldingen)
+            {
+                if (afb.Type == "HotelBanner")
+                    hotel.HotelAfbeelding = afb;
+                if (afb.Type == "HotelOverview")
+                    hotel.HotelOverviewAfbeelding = afb;
+            }
+
+            return hotel;
         }
 
         public void UpdateMovie(Movie movie)
@@ -164,6 +185,23 @@ namespace IHFF.Repositories
             }
         }
 
+        public void UpdateHotel(Hotel hotel)
+        {
+            Hotel dbHotel = ctx.HOTEL.SingleOrDefault(hot => hot.HotelId == hotel.HotelId);
+            if(dbHotel != null)
+            {
+                dbHotel = hotel;
+                Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(afb => afb.HotelID == hotel.HotelId && afb.Type == "HotelBanner");
+                if (dbAfbeelding != null)
+                    dbAfbeelding.Link = hotel.HotelAfbeelding.Link;
+
+                Afbeelding dbOverviewAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(afb => afb.HotelID == hotel.HotelId && afb.Type == "HotelOverview");
+                if (dbOverviewAfbeelding != null)
+                    dbOverviewAfbeelding.Link = hotel.HotelOverviewAfbeelding.Link;
+                ctx.SaveChanges();
+            }
+        }
+
         public void DeleteMuseum(int museumid)
         {
             Museum dbMuseum = ctx.MUSEA.SingleOrDefault(m => m.MuseumID == museumid);
@@ -177,7 +215,7 @@ namespace IHFF.Repositories
                 foreach (Afbeelding dbAfbeelding in dbAfbeeldingen)
                     ctx.Entry(dbAfbeelding).State = EntityState.Deleted;
 
-          
+
             if (dbMuseum != null)
                 ctx.Entry(dbMuseum).State = EntityState.Deleted;
 
@@ -254,8 +292,24 @@ namespace IHFF.Repositories
             ctx.SaveChanges();
         }
 
+        public void DeleteHotel(int hotelId)
+        {
+            Hotel dbHotel = ctx.HOTEL.SingleOrDefault(h => h.HotelId == hotelId);
+            if (dbHotel != null)
+            {
+                ctx.HOTEL.Remove(dbHotel);
+                IEnumerable<Afbeelding> dbAfbeeldingen = (from afb in ctx.AFBEELDINGEN
+                                                          where afb.HotelID == dbHotel.HotelId
+                                                          select afb).ToList();
+                foreach (Afbeelding dbAfbeelding in dbAfbeeldingen)
+                    ctx.AFBEELDINGEN.Remove(dbAfbeelding);
+            }
+
+            ctx.SaveChanges();
+        }
+
         public void AddMovie(Movie m)
-        {        
+        {
             //Add movie    
             ctx.MOVIES.Add(m);
             ctx.SaveChanges();
@@ -310,8 +364,8 @@ namespace IHFF.Repositories
             ctx.HOTEL.Add(h);
             ctx.SaveChanges();
             int hotelId = (from hot in ctx.HOTEL
-                         where h.Naam == hot.Naam
-                         select hot.HotelId).ToList()[0];
+                           where h.Naam == hot.Naam
+                           select hot.HotelId).ToList()[0];
             h.HotelAfbeelding.HotelID = hotelId;
             h.HotelOverviewAfbeelding.HotelID = hotelId;
             ctx.AFBEELDINGEN.Add(h.HotelAfbeelding);

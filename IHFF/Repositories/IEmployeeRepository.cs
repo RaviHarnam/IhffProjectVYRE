@@ -20,18 +20,21 @@ namespace IHFF.Repositories
         Restaurant GetRestaurant(int id);
         Movie GetMovie(int id);
         Special GetSpecial(int id);
+        Hotel GetHotel(int id);
 
         //Updaten van een item
         void UpdateMovie(Movie movie);
         void UpdateSpecial(Special special);
         void UpdateRestaurant(Restaurant restaurant);
         void UpdateMuseum(Museum museum);
+        void UpdateHotel(Hotel hotel);
 
         //Deleten van een item
         void DeleteMuseum(int museumid);
         void DeleteMovie(int movieid);
         void DeleteSpecial(int specialid);
         void DeleteRestaurant(int restaurantid);
+        void DeleteHotel(int hotelId);
 
         //Toevoegen van een item
         void AddMovie(Movie m);

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using IHFF.Models.Input;
 
 namespace IHFF.Models
 {
@@ -50,6 +51,19 @@ namespace IHFF.Models
             Adres = adres;
             TelefoonNummer = telefoonNummer;
             Website = website;
+        }
+
+        public void ConvertFromInputModel(HotelInputModel hotel)
+        {
+            Naam = hotel.Naam;
+            Omschrijving = hotel.Omschrijving;
+            Adres = hotel.Adres;
+            PostalCode = hotel.PostalCode;
+            City = hotel.City;
+            TelefoonNummer = hotel.TelefoonNummer;
+            Website = hotel.Website;
+            HotelAfbeelding = hotel.BannerAfbeelding;
+            HotelOverviewAfbeelding = hotel.OverviewAfbeelding;
         }
     }
 }

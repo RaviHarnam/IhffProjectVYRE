@@ -374,6 +374,7 @@
     <Content Include="Views\Payment\Payment.cshtml" />
     <Content Include="Views\Payment\Done.cshtml" />
     <Content Include="Views\ComboDeal\ComboDeal.cshtml" />
+    <Content Include="Views\Employee\EditHotel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

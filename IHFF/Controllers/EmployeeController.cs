@@ -36,7 +36,7 @@ namespace IHFF.Controllers
                 if (db.EmployeeExist(emp))
                 {
                     FormsAuthentication.SetAuthCookie(emp.Gebruikersnaam, false);
-                    Session["loggedin_employee"] = emp;             
+                    Session["loggedin_employee"] = emp;
                     return RedirectToAction("ManagementWindow", "Employee");
                 }
                 else
@@ -54,9 +54,9 @@ namespace IHFF.Controllers
         [Authorize]
         public ActionResult SignOut()
         {
-            FormsAuthentication.SignOut();           
+            FormsAuthentication.SignOut();
             Session["loggedin_employee"] = null;
-            return RedirectToAction("Index", "Home");         
+            return RedirectToAction("Index", "Home");
         }
         [Authorize]
         public ActionResult EditMovie(int? id)
@@ -174,6 +174,24 @@ namespace IHFF.Controllers
                 ModelState.AddModelError("edit-error", "The Museum you tried to edit had some incorrectly filled fields.");
             return View(museum);
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EditHotel(HotelInputModel hotel)
+        { 
+            Hotel hotelToEdit = db.GetHotel(hotel.HotelId);
+
+            if (ModelState.IsValid)
+            {
+                hotelToEdit.ConvertFromInputModel(hotel);
+                db.UpdateHotel(hotelToEdit);
+            }
+            else
+            {
+                ModelState.AddModelError("edit-error", "The Museum you tried to edit had some incorrectly filled fields.");
+            }
+            return View(hotelToEdit);
+        }
         // Deleten van events
         [Authorize]
         public ActionResult DeleteMuseum(int? id)
@@ -205,6 +223,14 @@ namespace IHFF.Controllers
         {
             if (id != null)
                 db.DeleteRestaurant(id.Value);
+            return RedirectToAction("ManagementWindow");
+        }
+        [Authorize]
+        [HttpPost]
+        public ActionResult DeleteHotel(int? id)
+        {
+            if (id != null)
+                db.DeleteHotel(id.Value);
             return RedirectToAction("ManagementWindow");
         }
         // Toevoegen van events
@@ -287,7 +313,7 @@ namespace IHFF.Controllers
         [Authorize]
         [HttpPost]
         public ActionResult AddRestaurant(RestaurantInputModel r, string afbLink)
-        {            
+        {
             if (ModelState.IsValid)
             {
                 Restaurant rst = new Restaurant();
