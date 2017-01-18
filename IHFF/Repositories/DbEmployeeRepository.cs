@@ -26,6 +26,7 @@ namespace IHFF.Repositories
             IEnumerable<Restaurant> restaurants = (from r in ctx.RESTAURANTS select r).ToList();
             IEnumerable<Museum> musea = (from c in ctx.MUSEA select c).ToList();
             IEnumerable<Hotel> hotels = (from h in ctx.HOTEL select h).ToList();
+            IEnumerable<NewsMessage> news = (from m in ctx.NEWSMESSAGE select m).ToList();
 
             foreach (Item item in items)
                 events.Add(new EventListRepresentation(item));
@@ -38,6 +39,9 @@ namespace IHFF.Repositories
 
             foreach (Hotel hotel in hotels)
                 events.Add(new EventListRepresentation(hotel));
+
+            foreach (NewsMessage msg in news)
+                events.Add(new EventListRepresentation(msg));
 
             return events;
         }
@@ -86,7 +90,7 @@ namespace IHFF.Repositories
             List<Afbeelding> dbAfbeeldingen = (from afb in ctx.AFBEELDINGEN
                                                where afb.HotelID == id
                                                select afb).ToList();
-            foreach(Afbeelding afb in dbAfbeeldingen)
+            foreach (Afbeelding afb in dbAfbeeldingen)
             {
                 if (afb.Type == "HotelBanner")
                     hotel.HotelAfbeelding = afb;
@@ -95,6 +99,12 @@ namespace IHFF.Repositories
             }
 
             return hotel;
+        }
+
+        public NewsMessage GetNewsMessage(int id)
+        {
+            NewsMessage msg = ctx.NEWSMESSAGE.SingleOrDefault(m => m.Id == id);
+            return msg;
         }
 
         public void UpdateMovie(Movie movie)
@@ -188,7 +198,7 @@ namespace IHFF.Repositories
         public void UpdateHotel(Hotel hotel)
         {
             Hotel dbHotel = ctx.HOTEL.SingleOrDefault(hot => hot.HotelId == hotel.HotelId);
-            if(dbHotel != null)
+            if (dbHotel != null)
             {
                 dbHotel = hotel;
                 Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(afb => afb.HotelID == hotel.HotelId && afb.Type == "HotelBanner");
@@ -198,6 +208,16 @@ namespace IHFF.Repositories
                 Afbeelding dbOverviewAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(afb => afb.HotelID == hotel.HotelId && afb.Type == "HotelOverview");
                 if (dbOverviewAfbeelding != null)
                     dbOverviewAfbeelding.Link = hotel.HotelOverviewAfbeelding.Link;
+                ctx.SaveChanges();
+            }
+        }
+
+        public void UpdateNews(NewsMessage msg)
+        {
+            NewsMessage dbMsg = ctx.NEWSMESSAGE.SingleOrDefault(m => m.Id == msg.Id);
+            if(dbMsg != null)
+            {
+                dbMsg = msg;
                 ctx.SaveChanges();
             }
         }
@@ -309,6 +329,14 @@ namespace IHFF.Repositories
             ctx.SaveChanges();
         }
 
+        public void DeleteNews(int newsId)
+        {
+            NewsMessage msg = ctx.NEWSMESSAGE.SingleOrDefault(n => n.Id == newsId);
+            if (msg != null)
+                ctx.NEWSMESSAGE.Remove(msg);
+            ctx.SaveChanges();
+        }
+
         public void AddMovie(Movie m)
         {
             //Add movie    
@@ -361,7 +389,6 @@ namespace IHFF.Repositories
 
         public void AddHotel(Hotel h)
         {
-
             ctx.HOTEL.Add(h);
             ctx.SaveChanges();
             int hotelId = (from hot in ctx.HOTEL
@@ -374,6 +401,12 @@ namespace IHFF.Repositories
             ctx.AFBEELDINGEN.Add(h.HotelOverviewAfbeelding);
             ctx.SaveChanges();
 
+        }
+
+        public void AddNews(NewsMessage msg)
+        {
+            ctx.NEWSMESSAGE.Add(msg);
+            ctx.SaveChanges();
         }
     }
 }

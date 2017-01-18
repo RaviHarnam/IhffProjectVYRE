@@ -24,16 +24,15 @@ namespace IHFF.Controllers
             return View(hotels);
         }
 
-        public ActionResult HotelDetailPage()
+        public ActionResult HotelDetailPage(int? hotelId)
         {
+            if (hotelId != null)
+            {
+                Hotel hotel = db.GetHotel(hotelId.Value);
+
+                return View(hotel);
+            }
             return RedirectToAction("HotelsOverview");
-        }
-
-        public ActionResult HotelDetailPage(int hotelId)
-        {
-            Hotel hotel = db.GetHotel(hotelId);
-
-            return View(hotel);
         }
     }
 }

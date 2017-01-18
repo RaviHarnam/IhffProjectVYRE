@@ -13,6 +13,7 @@ namespace IHFF.Controllers
     public class EmployeeController : Controller
     {
         private IEmployeeRepository db = new DbEmployeeRepository();
+        INewsMessageRepository dbNews = new DbNewsMessageRepository();
         // GET: Employee
 
         public ActionResult Index()
@@ -209,6 +210,28 @@ namespace IHFF.Controllers
             return View(hotel);
         }
 
+        [Authorize]
+        public ActionResult EditNews()
+        {
+            List<NewsMessage> news = dbNews.GetAll();
+            return View(news);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EditNews(NewsMessage msg)
+        {
+            if (ModelState.IsValid)
+            {
+                NewsMessage msgToEdit = db.GetNewsMessage(msg.Id);
+                db.UpdateNews(msgToEdit);
+            }
+            else
+                ModelState.AddModelError("edit-error", "The News message you tried to edit had some incorrectly filled fields.");
+
+            return View(msg);
+        }
+
         // Deleten van events
         [Authorize]
         public ActionResult DeleteMuseum(int? id)
@@ -250,6 +273,15 @@ namespace IHFF.Controllers
                 db.DeleteHotel(id.Value);
             return RedirectToAction("ManagementWindow");
         }
+        [Authorize]
+        [HttpPost]
+        public ActionResult DeleteNews(int? id)
+        {
+            if (id != null)
+                db.DeleteNews(id.Value);
+            return RedirectToAction("ManagementWindow");
+        }
+
         // Toevoegen van events
         [Authorize]
         public ActionResult AddMovie()
@@ -357,6 +389,25 @@ namespace IHFF.Controllers
                 db.AddHotel(h);
             }
 
+            return RedirectToAction("ManagementWindow");
+        }
+
+        [Authorize]
+        public ActionResult AddNews()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddNews(NewsMessage msg)
+        {
+            if (ModelState.IsValid)
+            {
+                msg.TimeOfPost = DateTime.Now;
+                db.AddNews(msg);
+
+            }
             return RedirectToAction("ManagementWindow");
         }
     }

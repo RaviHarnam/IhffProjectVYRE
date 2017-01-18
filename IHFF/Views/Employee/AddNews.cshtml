@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "AddNews";
+}
+
+@using IHFF.Models
+@model NewsMessage
+
+<h2>Add News</h2>
+@using (Html.BeginForm(FormMethod.Post))
+{
+<br />
+@Html.LabelFor(m => m.Title)
+@Html.TextBoxFor(m => m.Title)
+<br />
+@Html.LabelFor(m => m.Message)
+@Html.TextAreaFor(m => m.Message)
+<br />
+<input type="submit" value="Add News Message" formmethod="post" />
+}
+
+

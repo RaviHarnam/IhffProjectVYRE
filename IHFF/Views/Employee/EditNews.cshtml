@@ -1,0 +1,15 @@
+﻿@using IHFF.Models
+@model NewsMessage
+<table>
+    @using (Html.BeginForm(FormMethod.Post))
+    {
+        <tr>
+            <td>@Html.LabelFor(m => m.Title)</td>
+            <td>@Html.TextBoxFor(m => m.Title, new { @Value = Model.Title, @Size = 30, @placeholder = Model.Title})</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Message)</td>
+            <td>@Html.TextAreaFor(m => m.Message, new { @Value = Model.Message, @Rows = 8, @Columns = 40, @placeholder = Model.Message} ) </td>
+        </tr>
+    }
+</table>
