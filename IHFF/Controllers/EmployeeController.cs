@@ -37,6 +37,7 @@ namespace IHFF.Controllers
             {
                 if (db.EmployeeExist(emp))
                 {
+
                     FormsAuthentication.SetAuthCookie(emp.Gebruikersnaam, false); //Maken cookie
                     Session["loggedin_employee"] = emp; //Session met ingelogde gebruiker maken.           
                     return RedirectToAction("ManagementWindow", "Employee");
@@ -63,7 +64,7 @@ namespace IHFF.Controllers
         {
             FormsAuthentication.SignOut(); //Uitloggen          
             Session["loggedin_employee"] = null; //Session leegmaken
-            return RedirectToAction("Index", "Home");         
+            return RedirectToAction("Index", "Home");
         }
         [Authorize]
         public ActionResult EditMovie(int? id)
@@ -121,6 +122,18 @@ namespace IHFF.Controllers
             }
             return RedirectToAction("ManagementWindow");
         }
+
+        public ActionResult EditHotel(int? id)
+        {
+            if (id != null)
+            {
+                Hotel hotel = db.GetHotel(id.Value);
+                HotelInputModel hotelInputModel = new HotelInputModel(hotel);
+                return View(hotelInputModel);
+            }
+            return RedirectToAction("ManagementWindow");
+        }
+
         [Authorize]
         [HttpPost]
         public ActionResult EditMovie(MovieInputModel movie)
@@ -177,6 +190,25 @@ namespace IHFF.Controllers
                 ModelState.AddModelError("edit-error", "The Museum you tried to edit had some incorrectly filled fields.");
             return View(museum);
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EditHotel(HotelInputModel hotel)
+        {
+
+            if (ModelState.IsValid)
+            {
+                Hotel hotelToEdit = db.GetHotel(hotel.HotelId);
+                hotelToEdit.ConvertFromInputModel(hotel);
+                db.UpdateHotel(hotelToEdit);
+            }
+            else
+            {
+                ModelState.AddModelError("edit-error", "The Hotel you tried to edit had some incorrectly filled fields.");
+            }
+            return View(hotel);
+        }
+
         // Deleten van events
         [Authorize]
         public ActionResult DeleteMuseum(int? id)
@@ -208,6 +240,14 @@ namespace IHFF.Controllers
         {
             if (id != null)
                 db.DeleteRestaurant(id.Value);
+            return RedirectToAction("ManagementWindow");
+        }
+        [Authorize]
+        [HttpPost]
+        public ActionResult DeleteHotel(int? id)
+        {
+            if (id != null)
+                db.DeleteHotel(id.Value);
             return RedirectToAction("ManagementWindow");
         }
         // Toevoegen van events
@@ -268,11 +308,11 @@ namespace IHFF.Controllers
             m.MuseumLocatie.Naam = m.Naam;
             if (ModelState.IsValid)
             {
-                Museum mus = new Museum();                            
+                Museum mus = new Museum();
                 mus.ConvertFromMuseumInputModel(m);
                 m.MuseumLocatie.Naam = m.Naam;
                 mus.MuseumAfbeelding = new Afbeelding(null, mus.MuseumID, null, afbLink, "museumbanner");
-                mus.MuseumLocatie = m.MuseumLocatie;             
+                mus.MuseumLocatie = m.MuseumLocatie;
                 db.AddMuseum(mus);
                 return RedirectToAction("ManagementWindow");
             }
@@ -288,7 +328,7 @@ namespace IHFF.Controllers
         [Authorize]
         [HttpPost]
         public ActionResult AddRestaurant(RestaurantInputModel r, string afbLink)
-        {            
+        {
             if (ModelState.IsValid)
             {
                 Restaurant rst = new Restaurant();

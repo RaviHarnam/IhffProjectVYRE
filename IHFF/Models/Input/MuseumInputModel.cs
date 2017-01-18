@@ -18,6 +18,7 @@ namespace IHFF.Models.Input
 
         [Required(ErrorMessage = "The Summary field is required.")]
         [StringLength(4000, ErrorMessage = "The Summary field has a maximum size of 4000.")]
+        [Display(Name = "Description")]
         public string Omschrijving { get; set; }
 
         public int LocatieID { get; set; }
