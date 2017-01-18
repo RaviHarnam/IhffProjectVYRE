@@ -22,8 +22,10 @@
 
     <img class="bannerimg" width="890" height="380" src="" />
     <p>
-        @Html.Label("Link"):
-        @Html.TextBox("afbLink", null, new { @Size = 30 })
+        @Html.Label("Banner Picture Link"):
+        @Html.TextBox("afbLink", null, new { @Size = 30 }) <br/>
+        @Html.Label("Overview Picture Link"):
+        @Html.TextBox("afbLinkOverview", null, new {@Size = 30 })
     </p>
 
         <section class="summary">

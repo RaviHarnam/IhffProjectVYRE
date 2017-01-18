@@ -31,6 +31,8 @@ namespace IHFF.Models
         public virtual List<Maaltijd> RestaurantMaaltijd { get; set; }
         [NotMapped]
         public virtual MaaltijdBestellingInputModel MaaltijdInputModel { get; set; }
+        [NotMapped]
+        public virtual Afbeelding OverviewAfbeelding { get; set; }
 
         public Restaurant(string naam, string omschrijving, string telefoon, string email, string website)
         {
@@ -66,12 +68,21 @@ namespace IHFF.Models
             Telefoon = r.Telefoon;
             Email = r.Email;
             Website = r.Website;
-            RestaurantAfbeelding = r.RestaurantAfbeelding;
+            RestaurantAfbeelding.Link = r.RestaurantAfbeelding.Link;
+            OverviewAfbeelding.Link = r.OverviewAfbeelding.Link;
             RestaurantLocatie = r.RestaurantLocatie;
             //RestaurantLocatie.Straat = r.RestaurantLocatie.Straat;
             //RestaurantLocatie.Huisnummer = r.RestaurantLocatie.Huisnummer;
             //RestaurantLocatie.Toevoeging = r.RestaurantLocatie.Toevoeging;
             //RestaurantLocatie.Postcode = r.RestaurantLocatie.Postcode;
+        }
+        public void ConvertFromAddInputModel(RestaurantInputModel r)
+        {
+            Naam = r.Naam;
+            Omschrijving = r.Omschrijving;
+            Telefoon = r.Telefoon;
+            Email = r.Email;
+            Website = r.Website;
         }
 
     }
