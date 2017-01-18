@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IHFF.Models;
+using IHFF.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,13 @@ namespace IHFF.Controllers
 {
     public class HomeController : Controller
     {
+        IItemRepository itemRepository = new DbItemRepository();
+
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<Highlight> highlights = itemRepository.GetAllHighlightsBanner();
+            
+            return View(highlights);
         }
 
         public ActionResult About()
