@@ -227,7 +227,9 @@ namespace IHFF.Repositories
             NewsMessage dbMsg = ctx.NEWSMESSAGE.SingleOrDefault(m => m.Id == msg.Id);
             if(dbMsg != null)
             {
-                dbMsg = msg;
+                dbMsg.Title = msg.Title;
+                dbMsg.Message = msg.Message;
+                dbMsg.TimeOfPost = DateTime.Now;
                 ctx.SaveChanges();
             }
         }
