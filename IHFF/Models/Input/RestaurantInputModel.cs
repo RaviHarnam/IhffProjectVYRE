@@ -39,6 +39,8 @@ namespace IHFF.Models.Input
         [NotMapped]
         public virtual Afbeelding RestaurantAfbeelding { get; set; }
         [NotMapped]
+        public virtual Afbeelding OverviewAfbeelding { get; set; }
+        [NotMapped]
         public virtual Locatie RestaurantLocatie { get; set; }
 
         public RestaurantInputModel(string naam, string omschrijving, string telefoon, string email, string website)
@@ -65,6 +67,7 @@ namespace IHFF.Models.Input
             LocatieID = r.LocatieID;
             RestaurantLocatie = r.RestaurantLocatie;
             RestaurantAfbeelding = r.RestaurantAfbeelding;
+            OverviewAfbeelding = r.OverviewAfbeelding;
         }
     }
 }
