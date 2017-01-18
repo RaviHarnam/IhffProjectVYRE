@@ -22,6 +22,11 @@ namespace IHFF.Models
 
         [NotMapped]
         public virtual List<Voorstelling> ItemVoorstelling { get; set; }
+        [NotMapped]
+        public virtual List<Voorstelling> Voorstellingen { get; set; }
+
+        [NotMapped]
+        public virtual Afbeelding OverviewAfbeelding { get; set; }
 
         public Item(string titel, string omschrijving, bool highlight)   
         {           

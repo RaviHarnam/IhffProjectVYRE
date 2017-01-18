@@ -204,6 +204,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\FullScheduleController.cs" />
+    <Compile Include="Controllers\HighlightController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Models\Afbeelding.cs" />
     <Compile Include="Models\Bestelling.cs" />
     <Compile Include="Models\ComboDeal.cs" />
+    <Compile Include="Models\Highlight.cs" />
     <Compile Include="Models\Input\AfbeeldingInputModel.cs" />
     <Compile Include="Models\Input\HotelInputModel.cs" />
     <Compile Include="Models\Input\ItemBestellingInputModel.cs" />
@@ -377,6 +379,7 @@
     <Content Include="Views\Payment\Payment.cshtml" />
     <Content Include="Views\Payment\Done.cshtml" />
     <Content Include="Views\ComboDeal\ComboDeal.cshtml" />
+    <Content Include="Views\Highlight\Highlights.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

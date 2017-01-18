@@ -19,9 +19,13 @@ namespace IHFF.Models.Input
         public string Omschrijving { get; set; }
         
         public bool Highlight { get; set; }
-
+        
         [NotMapped]
         public virtual Afbeelding ItemAfbeelding {get;set;}
+
+        [NotMapped]
+        public virtual Afbeelding OverviewAfbeelding { get; set; }
+
         public ItemInputModel(string titel, string omschrijving, bool highlight)
         {            
             Titel = titel;

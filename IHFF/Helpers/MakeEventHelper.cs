@@ -25,8 +25,7 @@ namespace IHFF.Helpers
             bool eventAlInCart = false;
             Voorstelling v = eventHelper.dbVoorstelling.GetVoorstelling(voorstellingId);
             if (v.GereserveerdePlaatsen < v.MaxPlaatsen)
-            {
-                
+            {    
                 Event eventx = new Event();
                 Item i = eventHelper.dbItemRespository.GetItem(v.ItemID);
                 eventx.Aantal = aantal;

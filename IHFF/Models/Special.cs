@@ -18,8 +18,8 @@ namespace IHFF.Models
         public string Speaker { get; set; }
         [Display(Name = "Spoken Language")]
         public string SpokenLanguage { get; set; }
-        [NotMapped]
-        public virtual List<Voorstelling> Voorstellingen { get; set; }
+        //[NotMapped]
+        //public virtual List<Voorstelling> Voorstellingen { get; set; }
         [NotMapped]
         public virtual List<DateTime> Tijden { get; set; }
         [NotMapped]
@@ -27,6 +27,7 @@ namespace IHFF.Models
         [NotMapped]
         public virtual ItemBestellingInputModel Specialbestellinginputmodel { get; set; }
 
+        
 
         public Special(string titel, string omschrijving, bool highlight, string speaker, string spokenlanguage) : base(titel, omschrijving, highlight)
         {
@@ -38,16 +39,7 @@ namespace IHFF.Models
         }
 
        
-        public void Edit(Special spc)
-        {
-            Titel = spc.Titel;
-            Omschrijving = spc.Omschrijving;
-            ItemAfbeelding.Link = spc.ItemAfbeelding.Link;
-            Highlight = spc.Highlight;
-            Speaker = spc.Speaker;
-            SpokenLanguage = spc.SpokenLanguage;
-        }
-
+       
         public void ConvertFromSpecialInputModel(SpecialInputModel m)
         {
             SpokenLanguage = m.SpokenLanguage;
@@ -58,6 +50,7 @@ namespace IHFF.Models
             Highlight = m.Highlight;
             ItemID = m.ItemID;
             ItemAfbeelding = m.ItemAfbeelding;
+            OverviewAfbeelding = m.OverviewAfbeelding;
         }
     }
 }

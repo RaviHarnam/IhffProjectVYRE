@@ -219,13 +219,14 @@ namespace IHFF.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddMovie(MovieInputModel m, string afbLink)
+        public ActionResult AddMovie(MovieInputModel m, string afbLink, string afbLinkOverview)
         {
             if (ModelState.IsValid)
             {
                 Movie mov = new Movie();
                 mov.ConvertFromAddInputModel(m); //Maak een Movie van de input
                 mov.ItemAfbeelding = new Afbeelding(mov.ItemID, null, null, afbLink, "filmbanner");
+                mov.OverviewAfbeelding = new Afbeelding(mov.ItemID, null, null, afbLinkOverview, "filmoverview");
                 db.AddMovie(mov);
                 return RedirectToAction("ManagementWindow");
             }
@@ -240,13 +241,14 @@ namespace IHFF.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddSpecial(SpecialInputModel s, string afbLink)
+        public ActionResult AddSpecial(SpecialInputModel s, string afbLink, string afbLinkOverview)
         {
             if (ModelState.IsValid)
             {
                 Special spc = new Special();
                 spc.ConvertFromSpecialInputModel(s); //Maak een Special van de input
                 spc.ItemAfbeelding = new Afbeelding(spc.ItemID, null, null, afbLink, "specialbanner");
+                spc.OverviewAfbeelding = new Afbeelding(spc.ItemID, null, null, afbLinkOverview, "specialoverview");
                 db.AddSpecial(spc);
                 return RedirectToAction("ManagementWindow");
             }
