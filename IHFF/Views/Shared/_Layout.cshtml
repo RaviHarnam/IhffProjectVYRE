@@ -56,10 +56,16 @@
 
     <section class="contentENaside">
         <aside class="side-buttons">
-            <button><p>@Html.ActionLink("Full schedule", "FullSchedule", "FullSchedule", null, new { @Class = "link" })</p></button>
-            <button><p>@Html.ActionLink("Highlights", "Highlights", "Highlight", null, new {@Class = "link" })</p></button>
-            <button><p>@Html.ActionLink("Combo Deals", "ComboDeal", "ComboDeal", null, new { @Class = "link" })</p></button>
-        </aside>
+           <a class="side-buttons-link" href='@Url.Action("FullSchedule", "FullSchedule")'>
+                <section><p>@Html.ActionLink("Full schedule", "FullSchedule", "FullSchedule", null, new { @Class = "link" })</p></section>
+            </a>
+            <a class="side-buttons-link" href='@Url.Action("Highlights", "Highlight")'>
+                <section><p>@Html.ActionLink("Highlights", "Highlights", "Highlight", null, new { @Class = "link" })</p></section>
+            </a>
+            <a class="side-buttons-link" href='@Url.Action("ComboDeal", "ComboDeal")'>
+                <section><p>@Html.ActionLink("Combo Deals", "ComboDeal", "ComboDeal", null, new { @Class = "link" })</p></section>
+            </a>
+</aside>
         <section class="content">
             @RenderBody()
         </section>
