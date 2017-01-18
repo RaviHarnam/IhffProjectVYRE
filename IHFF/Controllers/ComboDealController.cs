@@ -75,6 +75,7 @@ namespace IHFF.Controllers
                 event1.DatumTijd = v1.BeginTijd;
                 event1.Prijs = decimal.Parse("8,75");
                 event1.Titel = i1.Titel;
+                event1.EventVoorstelling = v1;
 
                 Event event2 = new Event();
                 event2.Aantal = aantal;
@@ -83,6 +84,7 @@ namespace IHFF.Controllers
                 event2.DatumTijd = v2.BeginTijd;
                 event2.Prijs = decimal.Parse("8,75");
                 event2.Titel = i2.Titel;
+                event2.EventVoorstelling = v2;
 
                 Event event3 = new Event();
                 event3.Aantal = aantal;
@@ -91,9 +93,10 @@ namespace IHFF.Controllers
                 event3.DatumTijd = v3.BeginTijd;
                 event3.Prijs = 0;
                 event3.Titel = i3.Titel;
+                event3.EventVoorstelling = v3;
 
-               
-                    if (Session[button] == null)
+
+                if (Session[button] == null)
                         Session[button] = new List<Event>();
                     List<Event> events = (List<Event>)Session[button];
                     events.Add(event1);
