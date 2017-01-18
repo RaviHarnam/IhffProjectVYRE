@@ -37,13 +37,9 @@ namespace IHFF.Controllers
             {
                 if (db.EmployeeExist(emp))
                 {
-<<<<<<< HEAD
-                    FormsAuthentication.SetAuthCookie(emp.Gebruikersnaam, false);
-                    Session["loggedin_employee"] = emp;
-=======
+
                     FormsAuthentication.SetAuthCookie(emp.Gebruikersnaam, false); //Maken cookie
                     Session["loggedin_employee"] = emp; //Session met ingelogde gebruiker maken.           
->>>>>>> 70371571a1218291d642f70508738a1d1bb5ed09
                     return RedirectToAction("ManagementWindow", "Employee");
                 }
                 else //Gebruiker bestaat niet
@@ -66,15 +62,9 @@ namespace IHFF.Controllers
         [Authorize]
         public ActionResult SignOut()
         {
-<<<<<<< HEAD
-            FormsAuthentication.SignOut();
-            Session["loggedin_employee"] = null;
-            return RedirectToAction("Index", "Home");
-=======
             FormsAuthentication.SignOut(); //Uitloggen          
             Session["loggedin_employee"] = null; //Session leegmaken
             return RedirectToAction("Index", "Home");         
->>>>>>> 70371571a1218291d642f70508738a1d1bb5ed09
         }
         [Authorize]
         public ActionResult EditMovie(int? id)
