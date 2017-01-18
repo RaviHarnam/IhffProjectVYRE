@@ -155,3 +155,10 @@ width: 120px;
 #MaaltijdInputModel_minuten{
     width: 50px !important;
 }
+
+#Moviebestellinginputmodel_Aantal{
+     width: 50px !important;
+}
+#Specialbestellinginputmodel_Aantal{
+     width: 50px !important;
+}
