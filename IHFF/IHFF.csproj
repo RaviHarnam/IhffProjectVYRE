@@ -210,6 +210,7 @@
     <Compile Include="Controllers\HotelsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\SpecialController.cs" />
     <Compile Include="Controllers\WishListController.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\NewsMessage.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Special.cs" />
     <Compile Include="Models\Voorstelling.cs" />
@@ -264,6 +266,7 @@
     <Compile Include="Repositories\DbMealRepository.cs" />
     <Compile Include="Repositories\DbMovieRepository.cs" />
     <Compile Include="Repositories\DbMuseumRepository.cs" />
+    <Compile Include="Repositories\DbNewsMessageRepository.cs" />
     <Compile Include="Repositories\DbScheduleRepository.cs" />
     <Compile Include="Repositories\DbSpecialRepository.cs" />
     <Compile Include="Repositories\DbVoorstellingRepository.cs" />
@@ -277,6 +280,7 @@
     <Compile Include="Repositories\IMealRepository.cs" />
     <Compile Include="Repositories\IMoviesRepository.cs" />
     <Compile Include="Repositories\IMuseumRepository.cs" />
+    <Compile Include="Repositories\INewsMessageRepository.cs" />
     <Compile Include="Repositories\IScheduleRepository.cs" />
     <Compile Include="Repositories\ISpecialRepository.cs" />
     <Compile Include="Repositories\IVoorstellingRepository.cs" />
@@ -382,6 +386,9 @@
     <Content Include="Views\ComboDeal\ComboDeal.cshtml" />
     <Content Include="Views\Highlight\Highlights.cshtml" />
     <Content Include="Views\Employee\EditHotel.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Employee\AddNews.cshtml" />
+    <Content Include="Views\Employee\EditNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

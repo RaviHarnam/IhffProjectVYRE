@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "News";
+}
+@using IHFF.Models
+@model List<NewsMessage>
+
+<h2>News</h2>
+<br />
+@foreach(NewsMessage msg in Model)
+{
+    <h3>@msg.Title</h3>
+    <p>@msg.Message</p>
+    <p>@msg.TimeOfPost</p>
+}
