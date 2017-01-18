@@ -79,7 +79,8 @@ namespace IHFF.Models.Input
         public virtual Afbeelding MuseumAfbeelding { get; set; }
         [NotMapped]
         public virtual Locatie MuseumLocatie { get; set; }
-        
+        [NotMapped]
+        public virtual Afbeelding OverviewAfbeelding { get; set; }
        
         public MuseumInputModel(string naam, string omschrijving, string adults, string kids, string website, string maandag, string dinsdag, string woensdag, string donderdag, string vrijdag, string zaterdag, string zondag, string telefoon)
         {
@@ -119,6 +120,7 @@ namespace IHFF.Models.Input
             Zondag = m.Zondag;
             Telefoon = m.Telefoon;
             MuseumAfbeelding = m.MuseumAfbeelding;
+            OverviewAfbeelding = m.OverviewAfbeelding;
             MuseumLocatie = m.MuseumLocatie;    
         }
 

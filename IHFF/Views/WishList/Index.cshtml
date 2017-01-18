@@ -162,14 +162,9 @@
 
                                             if (i == beginRooster) //Maken van hokje voor movie met titel erin
                                             {
-                                                if (ev.VoorstellingID != null) //Film or special
-                                                {
-                                                    <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
-                                                }
-                                                else //maaltijd
-                                                {
-                                                    <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
-                                                }
+                                                                               
+                                                    <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">Reservation: @ev.DatumTijd.ToString("HH:mm") - @ev.EventEindTijd.ToString("HH:mm")</td>
+                                                
                                             }
                                             else
                                             {
@@ -226,14 +221,9 @@
 
                                                         if (i == beginRooster) //Maken van hokje voor movie met titel erin
                                                         {
-                                                            if (ev.VoorstellingID != null) //Film or special
-                                                            {
+                                                           
                                                                 <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
-                                                            }
-                                                            else //maaltijd
-                                                            {
-                                                                <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
-                                                            }
+                                                           
                                                         }
                                                         else
                                                         {

@@ -51,6 +51,7 @@ namespace IHFF.Repositories
             Museum cult = ctx.MUSEA.SingleOrDefault(c => c.MuseumID == id);
             cult.MuseumAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == cult.MuseumID && a.Type == "museumbanner");
             cult.MuseumLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == cult.LocatieID);
+            cult.OverviewAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == cult.MuseumID && a.Type == "museumoverview");
             return cult;
         }
 
@@ -67,6 +68,7 @@ namespace IHFF.Repositories
             Restaurant rst = ctx.RESTAURANTS.SingleOrDefault(r => r.RestaurantID == id);
             rst.RestaurantAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == rst.RestaurantID && a.Type == "restaurantbanner");
             rst.RestaurantLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == rst.LocatieID);
+            rst.OverviewAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == rst.RestaurantID && a.Type == "restaurantoverview");
             return rst;
         }
 
@@ -153,10 +155,12 @@ namespace IHFF.Repositories
                 dbRestaurant.Website = restaurant.Website;
                 dbRestaurant.Naam = restaurant.Naam;
                 dbRestaurant.Omschrijving = restaurant.Omschrijving;
-                Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == restaurant.RestaurantAfbeelding.AfbeeldingID && a.Type == "banner");
+                Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == restaurant.RestaurantAfbeelding.AfbeeldingID && a.Type == "restaurantbanner");
                 if (dbRestaurant != null)
-                    dbRestaurant.RestaurantAfbeelding.Link = restaurant.RestaurantAfbeelding.Link;
-
+                    dbAfbeelding.Link = restaurant.RestaurantAfbeelding.Link;
+                Afbeelding dbOverview = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == restaurant.OverviewAfbeelding.AfbeeldingID && a.Type == "restaurantoverview");
+                if (dbOverview != null)
+                    dbOverview.Link = restaurant.OverviewAfbeelding.Link;
                 Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == restaurant.LocatieID);
                 if (dbLocatie != null)
                 {
@@ -193,7 +197,9 @@ namespace IHFF.Repositories
                 Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == museum.MuseumID && a.Type == "museumbanner");
                 if (dbAfbeelding != null)
                     dbAfbeelding.Link = museum.MuseumAfbeelding.Link;
-
+                Afbeelding dbOverview = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == museum.MuseumID && a.Type == "museumoverview");
+                if (dbOverview != null)
+                    dbOverview.Link = museum.OverviewAfbeelding.Link;
                 Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == museum.LocatieID);
                 ctx.SaveChanges();
             }
@@ -380,9 +386,13 @@ namespace IHFF.Repositories
             //Add Museum
             ctx.MUSEA.Add(m);
             ctx.SaveChanges();
-            //Add Picture
+            //Add Picture(banner)
             m.MuseumAfbeelding.MuseumID = m.MuseumID;
             ctx.AFBEELDINGEN.Add(m.MuseumAfbeelding);
+            //Add Picture(overview)
+            m.OverviewAfbeelding.MuseumID = m.MuseumID;
+            ctx.AFBEELDINGEN.Add(m.OverviewAfbeelding);
+            //Save Changes
             ctx.SaveChanges();
         }
 
@@ -395,9 +405,13 @@ namespace IHFF.Repositories
             r.LocatieID = r.RestaurantLocatie.LocatieID;
             ctx.RESTAURANTS.Add(r);
             ctx.SaveChanges();
-            //Add picture
+            //Add picture(banner)
             r.RestaurantAfbeelding.RestaurantID = r.RestaurantID;
             ctx.AFBEELDINGEN.Add(r.RestaurantAfbeelding);
+            //Add picture(overview)
+            r.OverviewAfbeelding.RestaurantID = r.RestaurantID;
+            ctx.AFBEELDINGEN.Add(r.OverviewAfbeelding);
+            //Save Changes
             ctx.SaveChanges();
         }
 
