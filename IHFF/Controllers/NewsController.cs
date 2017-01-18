@@ -16,6 +16,8 @@ namespace IHFF.Controllers
         {
             List<NewsMessage> news = dbNews.GetAll();
 
+            news.Reverse();
+
             return View(news);
         }
     }
