@@ -1,0 +1,12 @@
+﻿.newsEntry{
+    margin-bottom: 7%;
+    border-top: solid black 0.05em;
+}
+
+input{
+    margin-bottom: 2%;
+}
+
+.left{
+    width: 30%;
+}

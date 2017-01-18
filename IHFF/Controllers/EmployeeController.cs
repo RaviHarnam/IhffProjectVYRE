@@ -135,6 +135,16 @@ namespace IHFF.Controllers
             return RedirectToAction("ManagementWindow");
         }
 
+        public ActionResult EditNews(int? id)
+        {
+            if(id != null)
+            {
+                NewsMessage msg = db.GetNewsMessage(id.Value);
+                return View(msg);
+            }
+            return RedirectToAction("ManagementWindow");
+        }
+
         [Authorize]
         [HttpPost]
         public ActionResult EditMovie(MovieInputModel movie)
@@ -211,20 +221,12 @@ namespace IHFF.Controllers
         }
 
         [Authorize]
-        public ActionResult EditNews()
-        {
-            List<NewsMessage> news = dbNews.GetAll();
-            return View(news);
-        }
-
-        [Authorize]
         [HttpPost]
         public ActionResult EditNews(NewsMessage msg)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && db.GetNewsMessage(msg.Id) != null)
             {
-                NewsMessage msgToEdit = db.GetNewsMessage(msg.Id);
-                db.UpdateNews(msgToEdit);
+                db.UpdateNews(msg);
             }
             else
                 ModelState.AddModelError("edit-error", "The News message you tried to edit had some incorrectly filled fields.");
