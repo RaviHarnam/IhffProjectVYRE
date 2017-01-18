@@ -11,9 +11,9 @@ namespace IHFF.Controllers
 {
     public class CartController : Controller
     {
-        
 
-        
+
+
         public ActionResult Index()
         {
             return RedirectToAction("Cart");
@@ -26,12 +26,20 @@ namespace IHFF.Controllers
 
             List<Event> cartList = (List<Event>)Session["cart"];
             decimal totaal = 0;
+
+            
             foreach (Event ev in cartList)
             {
                 ev.CartId = cartList.IndexOf(ev);
+                decimal korting = 0;
+                if (cartList.Where(m => m.EventVoorstelling != null).Count() > 1)
+                {
+                    korting = decimal.Parse("0,05");
+                }
                 totaal += ev.BerekenTotaalPrijs();
+                totaal = totaal - (totaal * korting);
             }
-
+            
             Session["cart"] = cartList;
             Session["totaalPrijs"] = totaal;
             return View("Index", cartList);
@@ -46,7 +54,7 @@ namespace IHFF.Controllers
             }
             else if (!string.IsNullOrWhiteSpace(Email) && pickup == "2") //Send by Email
                 if (!string.IsNullOrWhiteSpace(payment))
-                    return RedirectToAction("Payment", "Payment", new {pickup = "Email", payment = payment, email = Email });                       
+                    return RedirectToAction("Payment", "Payment", new { pickup = "Email", payment = payment, email = Email });
             return View();
         }
         public ActionResult DeleteCartItem(List<Event> cartList, int? cartId)
