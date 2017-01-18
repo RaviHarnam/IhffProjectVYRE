@@ -27,19 +27,24 @@ namespace IHFF.Controllers
             List<Event> cartList = (List<Event>)Session["cart"];
             decimal totaal = 0;
 
-            
+            decimal korting = 0;
             foreach (Event ev in cartList)
             {
-                ev.CartId = cartList.IndexOf(ev);
-                decimal korting = 0;
-                if (cartList.Where(m => m.EventVoorstelling != null).Count() > 1)
+                ev.CartId = cartList.IndexOf(ev);          
+                if (ev.EventVoorstelling != null)
                 {
-                    korting = decimal.Parse("0,05");
+                    if (cartList.Where(m => m.EventVoorstelling != null).Count() > 1)
+                    {
+                        if (ev.Prijs != 0)
+                        {
+                            korting = decimal.Parse("0.05");
+                        }
+                    }
                 }
-                totaal += ev.BerekenTotaalPrijs();
-                totaal = totaal - (totaal * korting);
+                totaal += ev.BerekenTotaalPrijs();                         
             }
-            
+            totaal = totaal - (totaal * korting);
+            totaal = Math.Round(totaal, 2, MidpointRounding.AwayFromZero);
             Session["cart"] = cartList;
             Session["totaalPrijs"] = totaal;
             return View("Index", cartList);
