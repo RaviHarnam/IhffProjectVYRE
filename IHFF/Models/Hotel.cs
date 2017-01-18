@@ -62,8 +62,8 @@ namespace IHFF.Models
             City = hotel.City;
             TelefoonNummer = hotel.TelefoonNummer;
             Website = hotel.Website;
-            HotelAfbeelding = hotel.BannerAfbeelding;
-            HotelOverviewAfbeelding = hotel.OverviewAfbeelding;
+            HotelAfbeelding.Link = hotel.BannerAfbeelding.Link;
+            HotelOverviewAfbeelding.Link = hotel.OverviewAfbeelding.Link;
         }
     }
 }

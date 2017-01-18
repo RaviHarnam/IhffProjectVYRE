@@ -14,6 +14,7 @@
 {
     <h2>Edit Special: @Model.Titel</h2>
     <input type="Submit" value="Update special" formmethod="Post" class="Edit-update" size="30" />
+    @Html.HiddenFor(m => m.ItemID)
     <p>
         @Html.LabelFor(m => m.Titel):
         @Html.TextBoxFor(m => m.Titel, new { @Value = Model.Titel, @placeholder = Model.Titel})
@@ -21,9 +22,21 @@
 
     <img class="bannerimg" src=@Model.ItemAfbeelding.Link width="700" height="350"/>
     <p>
-        @Html.LabelFor(m => m.ItemAfbeelding.Link):
-        @Html.TextBoxFor(m => m.ItemAfbeelding.Link, new { @Value = Model.ItemAfbeelding.Link, @Size = 30, @placeholder = Model.ItemAfbeelding.Link})
+        @Html.LabelFor(m => m.ItemAfbeelding.Link, "Banner Picture Link"):
+        @Html.TextBoxFor(m => m.ItemAfbeelding.Link, new { @Value = Model.ItemAfbeelding.Link, @Size = 30, @placeholder = Model.ItemAfbeelding.Link}) <br/>
+        @Html.LabelFor(m => m.OverviewAfbeelding.Link, "Overview Picture Link"):
+        @Html.TextBoxFor(m => m.OverviewAfbeelding.Link, new {@placeholder = Model.OverviewAfbeelding.Link })
     </p>
+
+    @Html.DropDownListFor(h => h.Highlight, new SelectList(new[]
+    {
+    new SelectListItem { Value = "False", Text="False", Selected = true},
+    new SelectListItem { Value = "True", Text="True"},
+    },
+    "Value",
+    "Text"
+    ), new { @Class = "DropDownHighlight" })
+    @Html.LabelFor(m => m.Highlight, "Highlight: ", new { @Class = "DropDownHighlight" })
     <section class="summary">
         <h3>Summary</h3>
         @Html.TextAreaFor(m => m.Omschrijving, new { @Value = Model.Omschrijving, @Rows = 8, @cols = 40, @placeholder = Model.Omschrijving})

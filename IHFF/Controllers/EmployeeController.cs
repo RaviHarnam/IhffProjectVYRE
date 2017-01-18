@@ -64,7 +64,7 @@ namespace IHFF.Controllers
         {
             FormsAuthentication.SignOut(); //Uitloggen          
             Session["loggedin_employee"] = null; //Session leegmaken
-            return RedirectToAction("Index", "Home");         
+            return RedirectToAction("Index", "Home");
         }
         [Authorize]
         public ActionResult EditMovie(int? id)
@@ -122,6 +122,18 @@ namespace IHFF.Controllers
             }
             return RedirectToAction("ManagementWindow");
         }
+
+        public ActionResult EditHotel(int? id)
+        {
+            if (id != null)
+            {
+                Hotel hotel = db.GetHotel(id.Value);
+                HotelInputModel hotelInputModel = new HotelInputModel(hotel);
+                return View(hotelInputModel);
+            }
+            return RedirectToAction("ManagementWindow");
+        }
+
         [Authorize]
         [HttpPost]
         public ActionResult EditMovie(MovieInputModel movie)
@@ -182,20 +194,21 @@ namespace IHFF.Controllers
         [Authorize]
         [HttpPost]
         public ActionResult EditHotel(HotelInputModel hotel)
-        { 
-            Hotel hotelToEdit = db.GetHotel(hotel.HotelId);
+        {
 
             if (ModelState.IsValid)
             {
+                Hotel hotelToEdit = db.GetHotel(hotel.HotelId);
                 hotelToEdit.ConvertFromInputModel(hotel);
                 db.UpdateHotel(hotelToEdit);
             }
             else
             {
-                ModelState.AddModelError("edit-error", "The Museum you tried to edit had some incorrectly filled fields.");
+                ModelState.AddModelError("edit-error", "The Hotel you tried to edit had some incorrectly filled fields.");
             }
-            return View(hotelToEdit);
+            return View(hotel);
         }
+
         // Deleten van events
         [Authorize]
         public ActionResult DeleteMuseum(int? id)
@@ -246,13 +259,14 @@ namespace IHFF.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddMovie(MovieInputModel m, string afbLink)
+        public ActionResult AddMovie(MovieInputModel m, string afbLink, string afbLinkOverview)
         {
             if (ModelState.IsValid)
             {
                 Movie mov = new Movie();
                 mov.ConvertFromAddInputModel(m); //Maak een Movie van de input
                 mov.ItemAfbeelding = new Afbeelding(mov.ItemID, null, null, afbLink, "filmbanner");
+                mov.OverviewAfbeelding = new Afbeelding(mov.ItemID, null, null, afbLinkOverview, "filmoverview");
                 db.AddMovie(mov);
                 return RedirectToAction("ManagementWindow");
             }
@@ -267,13 +281,14 @@ namespace IHFF.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddSpecial(SpecialInputModel s, string afbLink)
+        public ActionResult AddSpecial(SpecialInputModel s, string afbLink, string afbLinkOverview)
         {
             if (ModelState.IsValid)
             {
                 Special spc = new Special();
                 spc.ConvertFromSpecialInputModel(s); //Maak een Special van de input
                 spc.ItemAfbeelding = new Afbeelding(spc.ItemID, null, null, afbLink, "specialbanner");
+                spc.OverviewAfbeelding = new Afbeelding(spc.ItemID, null, null, afbLinkOverview, "specialoverview");
                 db.AddSpecial(spc);
                 return RedirectToAction("ManagementWindow");
             }
@@ -293,11 +308,11 @@ namespace IHFF.Controllers
             m.MuseumLocatie.Naam = m.Naam;
             if (ModelState.IsValid)
             {
-                Museum mus = new Museum();                            
+                Museum mus = new Museum();
                 mus.ConvertFromMuseumInputModel(m);
                 m.MuseumLocatie.Naam = m.Naam;
                 mus.MuseumAfbeelding = new Afbeelding(null, mus.MuseumID, null, afbLink, "museumbanner");
-                mus.MuseumLocatie = m.MuseumLocatie;             
+                mus.MuseumLocatie = m.MuseumLocatie;
                 db.AddMuseum(mus);
                 return RedirectToAction("ManagementWindow");
             }

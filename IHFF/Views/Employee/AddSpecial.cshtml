@@ -21,9 +21,10 @@
 </p>
     <img src="" alt="placeholder" class="empty_afb" width="890" height="380" />
     <p>
-        @Html.Label("afbLink", "Picture Link"):
-        @Html.TextBox("afbLink", "", new { @Size = 30, @placeholder = "http://i.imgur.com/example.png" } )
-
+        @Html.Label("afbLink", "Banner Picture Link"):
+        @Html.TextBox("afbLink", "", new { @Size = 30, @placeholder = "http://i.imgur.com/example.png" } ) <br/>
+        @Html.Label("afbLinkOverview", "Overview Picture Link")
+        @Html.TextBox("afbLinkOverview", "", new {@Size = 30, @placeholder = "http://i.imgur.com/example.png" })
         @Html.DropDownListFor(h => h.Highlight, new SelectList(new[]
     {
     new SelectListItem { Value = "False", Text="False", Selected = true},
