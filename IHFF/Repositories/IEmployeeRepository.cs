@@ -21,6 +21,7 @@ namespace IHFF.Repositories
         Movie GetMovie(int id);
         Special GetSpecial(int id);
         Hotel GetHotel(int id);
+        NewsMessage GetNewsMessage(int id);
 
         //Updaten van een item
         void UpdateMovie(Movie movie);
@@ -28,6 +29,7 @@ namespace IHFF.Repositories
         void UpdateRestaurant(Restaurant restaurant);
         void UpdateMuseum(Museum museum);
         void UpdateHotel(Hotel hotel);
+        void UpdateNews(NewsMessage msg);
 
         //Deleten van een item
         void DeleteMuseum(int museumid);
@@ -35,6 +37,7 @@ namespace IHFF.Repositories
         void DeleteSpecial(int specialid);
         void DeleteRestaurant(int restaurantid);
         void DeleteHotel(int hotelId);
+        void DeleteNews(int newsId);
 
         //Toevoegen van een item
         void AddMovie(Movie m);
@@ -42,5 +45,6 @@ namespace IHFF.Repositories
         void AddMuseum(Museum m);
         void AddRestaurant(Restaurant r);
         void AddHotel(Hotel h);
+        void AddNews(NewsMessage msg);
     }
 }

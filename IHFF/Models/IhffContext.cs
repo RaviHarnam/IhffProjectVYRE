@@ -35,6 +35,7 @@ namespace IHFF.Models
             modelBuilder.Entity<Zaal>().ToTable("ZAAL");
             modelBuilder.Entity<Bestelling>().ToTable("BESTELLING");
             modelBuilder.Entity<Klant>().ToTable("KLANT");
+            modelBuilder.Entity<NewsMessage>().ToTable("NEWSMESSAGE");
         }
 
         // Database sets
@@ -53,5 +54,6 @@ namespace IHFF.Models
         public DbSet<Zaal> ZALEN { get; set; }
         public DbSet<Bestelling> BESTELLINGEN { get; set; }
         public DbSet<Klant> KLANTEN { get; set; }
+        public DbSet<NewsMessage> NEWSMESSAGE { get; set; }
     }
 }
