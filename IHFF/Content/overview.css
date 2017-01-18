@@ -286,6 +286,10 @@ a.fullsched{
     border: 1px solid black;
 
 }
+a.fullsched:hover{
+    background-color: #06AED5;
+}
+
 .movie_index_item_description_button{
     text-decoration: none;
     color: white !important;

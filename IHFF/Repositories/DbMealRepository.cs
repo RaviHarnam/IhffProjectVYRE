@@ -19,6 +19,7 @@ namespace IHFF.Repositories
         {
             Maaltijd maaltijd = ctx.MAALTIJD.SingleOrDefault(m => m.MaaltijdID == id);
             maaltijd.MaaltijdRestaurant = ctx.RESTAURANTS.SingleOrDefault(r => r.RestaurantID == maaltijd.RestaurantID);
+            maaltijd.MaaltijdLocatie = ctx.LOCATIES.SingleOrDefault(r => r.LocatieID == maaltijd.MaaltijdRestaurant.LocatieID);
             return maaltijd;
         }
     }

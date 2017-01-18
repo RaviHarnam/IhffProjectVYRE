@@ -1,4 +1,5 @@
 ﻿@Styles.Render("~/Content/CartStyle.css")
+@Styles.Render("~/Content/FullOverview.css")
 @using IHFF.Models;
 
 @{
@@ -12,18 +13,29 @@
 
 @foreach (Event ev in Model) //Lijst van locaties
 {
-    Locatie loc = ev.EventVoorstelling.VoorstellingLocatie;
-    if(!locaties.Exists(m => m.LocatieID == loc.LocatieID))
+    Locatie loc = null;
+    if (ev.EventMaaltijd != null)
+    {
+        loc = ev.EventMaaltijd.MaaltijdLocatie;
+    }
+    else if (ev.EventVoorstelling != null)
+    {
+        loc = ev.EventVoorstelling.VoorstellingLocatie;
+    }
+    if (!locaties.Exists(m => m.LocatieID == loc.LocatieID))
     {
         locaties.Add(loc);
     }
 }
 @foreach (Event ev in Model) //Lijst van voorstellingzalen
 {
-    Zaal za = ev.EventVoorstelling.VoorstellingZaal;
-    if (!zalen.Exists(m => m.ZaalID == za.ZaalID))
+    if (ev.EventVoorstelling != null)
     {
-        zalen.Add(za);
+        Zaal za = ev.EventVoorstelling.VoorstellingZaal;
+        if (!zalen.Exists(m => m.ZaalID == za.ZaalID))
+        {
+            zalen.Add(za);
+        }
     }
 }
 
@@ -74,6 +86,12 @@
                 <thead>
                     <tr>
                         <th></th>
+                        <th scope="col">11.00</th>
+                        <th scope="col" class="halfuur-header">11.30</th>
+                        <th scope="col">12.00</th>
+                        <th scope="col" class="halfuur-header">12.30</th>
+                        <th scope="col">13.00</th>
+                        <th scope="col" class="halfuur-header">13.30</th>
                         <th scope="col">14.00</th>
                         <th scope="col" class="halfuur-header">14.30</th>
                         <th scope="col">15.00</th>
@@ -104,66 +122,137 @@
                     {
                         <tr>
                             <th class="voorstelling_locatie" scope="row">@l.Naam</th>
-                        </tr>
-                        foreach (Zaal z in zalen.Where(z => z.LocatieID == l.LocatieID)) //Lopen door zalen
-                        {
-                            <tr>
-                                <th class="voorstelling_zaal" scope="row">@z.ZaalNaam</th>
-                                @{Event vorige = null;}
-                                @foreach (Event ev in Model.Where(m => m.DatumTijd.DayOfWeek == day && m.EventVoorstelling.VoorstellingLocatie.LocatieID == l.LocatieID && m.EventVoorstelling.VoorstellingZaal.ZaalID == z.ZaalID).OrderBy(m => m.DatumTijd))
+
+                            @*@{Event eve = Model.SingleOrDefault(m => m.DatumTijd.DayOfWeek == day && m.EventMaaltijd.MaaltijdLocatie == l) ?? new Event();}*@
+
+                            @{Event vorige = null;}
+                            @foreach (Event ev in Model.Where(m => m.DatumTijd.DayOfWeek == day).OrderBy(m => m.DatumTijd))
+                            {
+                                if (ev.EventMaaltijd != null)
                                 {
-                                    DateTime beginRooster = ev.DatumTijd; //Begintijd
-                                    beginRooster = beginRooster - (new TimeSpan(14, 0, 0)); //begintijd aangepast aan grote van schedule
-                                    int beginHokjes = (int)(beginRooster.Hour * 2) + (beginRooster.Minute / 30); //Aantal halve uren
-                                    DateTime EindRooster = ev.EventEindTijd; //Eindtijd
-                                    EindRooster = EindRooster - (new TimeSpan(14, 0, 0)); //Eindtijd aangepast aan grote van schedule
-                                    if (vorige != null) //Er zijn meerdere vorstellingen op 1 dag (als true)
+                                    if (ev.EventMaaltijd.MaaltijdLocatie.LocatieID == l.LocatieID)
                                     {
-                                        //Meerder voorstellingen op 1 dag.
-                                        DateTime vorigeEindRooster = vorige.EventEindTijd; //Vorige eindtijd
-                                        vorigeEindRooster = vorigeEindRooster - (new TimeSpan(14, 0, 0)); //Vorige eindtijd aangepast aan schedule
-                                        int aantalHokjesleeg = beginHokjes - ((vorigeEindRooster.Hour * 2) + (vorigeEindRooster.Minute / 30)); //Aantal halve uren
-                                        for (int k = 1; k < aantalHokjesleeg; k++) //Lopen van lege hokjes tussen vorige eindtijd en volgende begintijd
+                                        DateTime beginRooster = ev.DatumTijd; //Begintijd
+                                        beginRooster = beginRooster - (new TimeSpan(11, 0, 0)); //begintijd aangepast aan grote van schedule
+                                        int beginHokjes = (int)(beginRooster.Hour * 2) + (beginRooster.Minute / 30); //Aantal halve uren
+                                        DateTime EindRooster = ev.EventEindTijd; //Eindtijd
+                                        EindRooster = EindRooster - (new TimeSpan(11, 0, 0)); //Eindtijd aangepast aan grote van schedule
+                                        if (vorige != null) //Er zijn meerdere vorstellingen op 1 dag (als true)
                                         {
-                                            <td width="38" height="54" class="location-onzichtbaar"></td>
-                                        }
-                                    }
-                                    else //Er is maar 1 voorstelling op de dag
-                                    {
-                                        for (int j = 0; j < beginHokjes; j++) //Maken lege hokjes voor de begintijd van de voorstelling
-                                        {
-                                            <td width="38" height="54" class="location-onzichtbaar"></td>
-                                        }
-                                    }
-
-                                    for (DateTime i = beginRooster; i <= EindRooster; i = i.AddMinutes(30)) //Maken van gevulde hokjes
-                                    {
-                                        int aantalHokjes = (int)((ev.EventEindTijd - ev.DatumTijd).TotalMinutes / 30); //Aantal halve uren
-
-                                        if (i == beginRooster) //Maken van hokje voor movie met titel erin
-                                        {
-                                            if (ev.VoorstellingID != null) //Film or special
+                                            //Meerder voorstellingen op 1 dag.
+                                            DateTime vorigeEindRooster = vorige.EventEindTijd; //Vorige eindtijd
+                                            vorigeEindRooster = vorigeEindRooster - (new TimeSpan(11, 0, 0)); //Vorige eindtijd aangepast aan schedule
+                                            int aantalHokjesleeg = beginHokjes - ((vorigeEindRooster.Hour * 2) + (vorigeEindRooster.Minute / 30)); //Aantal halve uren
+                                            for (int k = 1; k < aantalHokjesleeg; k++) //Lopen van lege hokjes tussen vorige eindtijd en volgende begintijd
                                             {
-                                                <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
-                                            }
-                                            else //maaltijd
-                                            {
-                                                <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
+                                                <td width="38" height="54" class="location-onzichtbaar"></td>
                                             }
                                         }
-                                        else
+                                        else //Er is maar 1 voorstelling op de dag
                                         {
-                                            <td class="location-zichtbaar"></td>
+                                            for (int j = 0; j < beginHokjes; j++) //Maken lege hokjes voor de begintijd van de voorstelling
+                                            {
+                                                <td width="38" height="54" class="location-onzichtbaar"></td>
+                                            }
                                         }
+
+                                        for (DateTime i = beginRooster; i <= EindRooster; i = i.AddMinutes(30)) //Maken van gevulde hokjes
+                                        {
+                                            int aantalHokjes = (int)((ev.EventEindTijd - ev.DatumTijd).TotalMinutes / 30); //Aantal halve uren
+
+                                            if (i == beginRooster) //Maken van hokje voor movie met titel erin
+                                            {
+                                                if (ev.VoorstellingID != null) //Film or special
+                                                {
+                                                    <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
+                                                }
+                                                else //maaltijd
+                                                {
+                                                    <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <td class="location-zichtbaar"></td>
+                                            }
+                                        }
+                                        vorige = ev;
                                     }
-                                    vorige = ev;
+
                                 }
+                            }
+                            
+                        </tr>
+                                foreach (Zaal z in zalen.Where(z => z.LocatieID == l.LocatieID)) //Lopen door zalen
+                                {
+                                    <tr>
+                                        <th class="voorstelling_zaal" scope="row">@z.ZaalNaam</th>
 
-                            </tr>
+                                        @{Event vorigeVo = null;}
+
+                                        @foreach (Event ev in Model.Where(m => m.DatumTijd.DayOfWeek == day).OrderBy(m => m.DatumTijd))
+                                        {
+                                            if (ev.EventVoorstelling != null)
+                                            {
+                                                if (ev.EventVoorstelling.VoorstellingLocatie.LocatieID == l.LocatieID && ev.EventVoorstelling.VoorstellingZaal.ZaalID == z.ZaalID)
+                                                {
+                                                    DateTime beginRooster = ev.DatumTijd; //Begintijd
+                                                    beginRooster = beginRooster - (new TimeSpan(11, 0, 0)); //begintijd aangepast aan grote van schedule
+                                                    int beginHokjes = (int)(beginRooster.Hour * 2) + (beginRooster.Minute / 30); //Aantal halve uren
+                                                    DateTime EindRooster = ev.EventEindTijd; //Eindtijd
+                                                    EindRooster = EindRooster - (new TimeSpan(11, 0, 0)); //Eindtijd aangepast aan grote van schedule
+                                                    if (vorige != null) //Er zijn meerdere vorstellingen op 1 dag (als true)
+                                                    {
+                                                        //Meerder voorstellingen op 1 dag.
+                                                        DateTime vorigeEindRooster = vorigeVo.EventEindTijd; //Vorige eindtijd
+                                                        vorigeEindRooster = vorigeEindRooster - (new TimeSpan(11, 0, 0)); //Vorige eindtijd aangepast aan schedule
+                                                        int aantalHokjesleeg = beginHokjes - ((vorigeEindRooster.Hour * 2) + (vorigeEindRooster.Minute / 30)); //Aantal halve uren
+                                                        for (int k = 1; k < aantalHokjesleeg; k++) //Lopen van lege hokjes tussen vorige eindtijd en volgende begintijd
+                                                        {
+                                                            <td width="38" height="54" class="location-onzichtbaar"></td>
+                                                        }
+                                                    }
+                                                    else //Er is maar 1 voorstelling op de dag
+                                                    {
+                                                        for (int j = 0; j < beginHokjes; j++) //Maken lege hokjes voor de begintijd van de voorstelling
+                                                        {
+                                                            <td width="38" height="54" class="location-onzichtbaar"></td>
+                                                        }
+                                                    }
+
+                                                    for (DateTime i = beginRooster; i <= EindRooster; i = i.AddMinutes(30)) //Maken van gevulde hokjes
+                                                    {
+                                                        int aantalHokjes = (int)((ev.EventEindTijd - ev.DatumTijd).TotalMinutes / 30); //Aantal halve uren
+
+                                                        if (i == beginRooster) //Maken van hokje voor movie met titel erin
+                                                        {
+                                                            if (ev.VoorstellingID != null) //Film or special
+                                                            {
+                                                                <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
+                                                            }
+                                                            else //maaltijd
+                                                            {
+                                                                <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <td class="location-zichtbaar"></td>
+                                                        }
+                                                    }
+                                                    vorigeVo = ev;
+                                                }
+
+                                            }
+
                                         }
-                                    }
+                                        
+                                    </tr>
+
+                                                }
+                                            }
                 </tbody>
             </table>
-                                    }
+                                            }
     </content>
 </body>
