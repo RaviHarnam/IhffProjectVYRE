@@ -24,6 +24,9 @@ namespace IHFF.Models
         public virtual List<DateTime> Tijden { get; set; }
         [NotMapped]
         public virtual int Aantal { get; set; }
+        [NotMapped]
+        public virtual ItemBestellingInputModel Specialbestellinginputmodel { get; set; }
+
 
         public Special(string titel, string omschrijving, bool highlight, string speaker, string spokenlanguage) : base(titel, omschrijving, highlight)
         {
@@ -34,18 +37,7 @@ namespace IHFF.Models
         {
         }
 
-        public Event GetEvent(int voorstellingId)
-        {
-            Voorstelling voorstelling = new Voorstelling();
-            voorstelling = dbVoorstelling.GetVoorstelling(voorstellingId);
-            Titel = dbSpecial.GetSpecial (voorstelling.ItemID).Titel;
-
-
-            Event eventx = new Event();
-            eventx.MakeEvent2(this, voorstelling);
-
-            return eventx;
-        }
+       
         public void Edit(Special spc)
         {
             Titel = spc.Titel;

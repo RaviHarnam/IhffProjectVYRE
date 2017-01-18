@@ -17,16 +17,18 @@ namespace IHFF.Controllers
 
         public ActionResult Index()
         {
+            //Doorverwijzen naar managementwindow als gebruiker al ingelogd is
             if (System.Web.HttpContext.Current.User != null && System.Web.HttpContext.Current.User.Identity.IsAuthenticated && Session["loggedin_employee"] != null)
                 return RedirectToAction("ManagementWindow");
-            return View("LogIn");
+            return View("LogIn"); //Gaan naar inlogPagina
 
         }
         public ActionResult LogIn()
         {
+            //Doorverwijzen naar managementwindow als de gebruiker al ingelogd is
             if (System.Web.HttpContext.Current.User != null && System.Web.HttpContext.Current.User.Identity.IsAuthenticated && Session["loggedin_employee"] != null)
                 return RedirectToAction("ManagementWindow");
-            return View();
+            return View(); //Gaan naar inlogpagna
         }
         [HttpPost]
         public ActionResult LogIn(Employee emp)
@@ -35,11 +37,16 @@ namespace IHFF.Controllers
             {
                 if (db.EmployeeExist(emp))
                 {
+<<<<<<< HEAD
                     FormsAuthentication.SetAuthCookie(emp.Gebruikersnaam, false);
                     Session["loggedin_employee"] = emp;
+=======
+                    FormsAuthentication.SetAuthCookie(emp.Gebruikersnaam, false); //Maken cookie
+                    Session["loggedin_employee"] = emp; //Session met ingelogde gebruiker maken.           
+>>>>>>> 70371571a1218291d642f70508738a1d1bb5ed09
                     return RedirectToAction("ManagementWindow", "Employee");
                 }
-                else
+                else //Gebruiker bestaat niet
                     ModelState.AddModelError("login-error", "The username and/or password provided is incorrect.");
             }
             return View(emp);
@@ -47,16 +54,27 @@ namespace IHFF.Controllers
         [Authorize]
         public ActionResult ManagementWindow()
         {
-            IEnumerable<EventListRepresentation> events = db.GetAllEvents();
-            return View(events);
+            if (Session["loggedin_employee"] != null) //Check of de Session nog bestaat, workaround voor Cookie bug
+            {
+                IEnumerable<EventListRepresentation> events = db.GetAllEvents();
+                return View(events);
+            }
+            FormsAuthentication.SignOut(); //Clear cookie omdat gebruiker niet ingelogd is.(MVC bug)
+            return RedirectToAction("LogIn");
         }
         [HttpPost]
         [Authorize]
         public ActionResult SignOut()
         {
+<<<<<<< HEAD
             FormsAuthentication.SignOut();
             Session["loggedin_employee"] = null;
             return RedirectToAction("Index", "Home");
+=======
+            FormsAuthentication.SignOut(); //Uitloggen          
+            Session["loggedin_employee"] = null; //Session leegmaken
+            return RedirectToAction("Index", "Home");         
+>>>>>>> 70371571a1218291d642f70508738a1d1bb5ed09
         }
         [Authorize]
         public ActionResult EditMovie(int? id)
@@ -118,11 +136,10 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult EditMovie(MovieInputModel movie)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) //Alles goed ingevuld
             {
                 Movie movToEdit = db.GetMovie(movie.ItemID);
-                movToEdit.ConvertFromMovieInputModel(movie);
-                //movToEdit.Edit(movToEdit);
+                movToEdit.ConvertFromMovieInputModel(movie); //Maken van Movie van input model
                 db.UpdateMovie(movToEdit);
             }
             else
@@ -136,8 +153,7 @@ namespace IHFF.Controllers
             if (ModelState.IsValid)
             {
                 Special spcToEdit = db.GetSpecial(special.ItemID);
-                spcToEdit.ConvertFromSpecialInputModel(special);
-                //spcToEdit.Edit(spcToEdit);
+                spcToEdit.ConvertFromSpecialInputModel(special); //Make special from input model
                 db.UpdateSpecial(spcToEdit);
             }
             else
@@ -151,8 +167,7 @@ namespace IHFF.Controllers
             if (ModelState.IsValid)
             {
                 Restaurant rstToEdit = db.GetRestaurant(restaurant.RestaurantID);
-                rstToEdit.ConvertFromRestaurantInputModel(restaurant);
-                //rstToEdit.Edit(restaurant);
+                rstToEdit.ConvertFromRestaurantInputModel(restaurant); //Make restaurant from input model              
                 db.UpdateRestaurant(rstToEdit);
             }
             else
@@ -166,8 +181,7 @@ namespace IHFF.Controllers
             if (ModelState.IsValid)
             {
                 Museum musToEdit = db.GetMuseum(museum.MuseumID);
-                musToEdit.ConvertFromMuseumInputModel(museum);
-                //musToEdit.Edit(musToEdit);
+                musToEdit.ConvertFromMuseumInputModel(museum); //Make museum from input model
                 db.UpdateMuseum(musToEdit);
             }
             else
@@ -247,7 +261,7 @@ namespace IHFF.Controllers
             if (ModelState.IsValid)
             {
                 Movie mov = new Movie();
-                mov.ConvertFromAddInputModel(m);
+                mov.ConvertFromAddInputModel(m); //Maak een Movie van de input
                 mov.ItemAfbeelding = new Afbeelding(mov.ItemID, null, null, afbLink, "filmbanner");
                 db.AddMovie(mov);
                 return RedirectToAction("ManagementWindow");
@@ -268,7 +282,7 @@ namespace IHFF.Controllers
             if (ModelState.IsValid)
             {
                 Special spc = new Special();
-                spc.ConvertFromSpecialInputModel(s);
+                spc.ConvertFromSpecialInputModel(s); //Maak een Special van de input
                 spc.ItemAfbeelding = new Afbeelding(spc.ItemID, null, null, afbLink, "specialbanner");
                 db.AddSpecial(spc);
                 return RedirectToAction("ManagementWindow");
@@ -289,15 +303,11 @@ namespace IHFF.Controllers
             m.MuseumLocatie.Naam = m.Naam;
             if (ModelState.IsValid)
             {
-                Museum mus = new Museum();
-                //Locatie loc = new Locatie();
-
-                //loc.ConvertFromLocatieInputModel(l);
+                Museum mus = new Museum();                            
                 mus.ConvertFromMuseumInputModel(m);
                 m.MuseumLocatie.Naam = m.Naam;
                 mus.MuseumAfbeelding = new Afbeelding(null, mus.MuseumID, null, afbLink, "museumbanner");
-                mus.MuseumLocatie = m.MuseumLocatie;
-                //mus.MuseumLocatie = loc;
+                mus.MuseumLocatie = m.MuseumLocatie;             
                 db.AddMuseum(mus);
                 return RedirectToAction("ManagementWindow");
             }
@@ -317,7 +327,7 @@ namespace IHFF.Controllers
             if (ModelState.IsValid)
             {
                 Restaurant rst = new Restaurant();
-                rst.ConvertFromRestaurantInputModel(r);
+                rst.ConvertFromRestaurantInputModel(r); //Maken van een Restaurant van input model
                 r.RestaurantLocatie.Naam = r.Naam;
                 rst.RestaurantAfbeelding = new Afbeelding(null, null, rst.RestaurantID, afbLink, "Restaurantbanner");
                 rst.RestaurantLocatie = r.RestaurantLocatie;

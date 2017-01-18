@@ -7,5 +7,6 @@ namespace IHFF.Repositories
     {
         IEnumerable<Special> GetAllSpecials();
         Special GetSpecial(int id);
+        Special GetSpecialByVoorstellingID(int voorstellingid);
     }
 }

@@ -30,6 +30,9 @@ namespace IHFF.Models
         [NotMapped]
         public virtual int Aantal { get; set; }
 
+        [NotMapped]
+        public virtual ItemBestellingInputModel Moviebestellinginputmodel { get; set; }
+
         public Movie()
         {
 
@@ -42,18 +45,7 @@ namespace IHFF.Models
             Writers = writers;
         }
 
-        public Event GetEvent(int voorstellingId)
-        {
-            Voorstelling voorstelling = new Voorstelling();
-            voorstelling = dbVoorstelling.GetVoorstelling(voorstellingId);
-            Titel = dbMovie.GetMovie(voorstelling.ItemID).Titel;
-
-
-            Event eventx = new Event();
-            eventx.MakeEvent2(this, voorstelling);
-
-            return eventx;
-        }
+       
 
         public void ConvertFromMovieInputModel(MovieInputModel m)
         {

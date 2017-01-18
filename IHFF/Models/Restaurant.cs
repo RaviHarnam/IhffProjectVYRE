@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
+
 namespace IHFF.Models
 {
     public class Restaurant
@@ -28,6 +29,8 @@ namespace IHFF.Models
         public virtual Locatie RestaurantLocatie { get; set; }
         [NotMapped]
         public virtual List<Maaltijd> RestaurantMaaltijd { get; set; }
+        [NotMapped]
+        public virtual MaaltijdBestellingInputModel MaaltijdInputModel { get; set; }
 
         public Restaurant(string naam, string omschrijving, string telefoon, string email, string website)
         {

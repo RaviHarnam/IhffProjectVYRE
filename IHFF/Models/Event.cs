@@ -11,8 +11,6 @@ namespace IHFF.Models
     {
         public int EventID { get; set; }
 
-        
-
         public string Titel { get; set; }
         public int BestellingID { get; set; }
         public int? VoorstellingID { get; set; }
@@ -28,34 +26,16 @@ namespace IHFF.Models
         public int CartId { get; set; }
         [NotMapped]
         public int WishListId { get; set; }
+        [NotMapped]
+        public virtual Voorstelling EventVoorstelling { get; set; }
+        [NotMapped]
+        public virtual Maaltijd EventMaaltijd { get; set; }
+        [NotMapped]
+        public virtual DateTime EventEindTijd { get; set; }
 
-        public void MakeEvent(Movie movie, Voorstelling voorstelling)
+        public decimal BerekenTotaalPrijs()
         {
-            Titel = movie.Titel;
-            DatumTijd = voorstelling.BeginTijd;
-            Aantal = movie.Aantal;
-            Prijs = voorstelling.Prijs;
-        }
-        public void MakeEvent2(Movie movie, Voorstelling voorstelling)
-        {
-            Titel = movie.Titel;
-            DatumTijd = voorstelling.BeginTijd;
-            Prijs = voorstelling.Prijs;
-        }
-
-        public void MakeEvent2(Special special, Voorstelling voorstelling)
-        {
-            Titel = special.Titel;
-            DatumTijd = voorstelling.BeginTijd;
-            Prijs = voorstelling.Prijs;
-        }
-
-        public void MakeEvent(Special special, Voorstelling voorstelling)
-        {
-            Titel = special.Titel;
-            DatumTijd = voorstelling.BeginTijd;
-            Aantal = special.Aantal;
-
+            return Prijs * Aantal;
         }
     }
 

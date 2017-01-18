@@ -7,7 +7,11 @@
 }
 
 @model IEnumerable<Event>
-
+@{decimal totaal = 0;}
+@if(Session["totaalPrijs"] != null)
+{
+    totaal = (decimal)Session["totaalPrijs"];
+}
 <head>
     <title>Cart</title>
 </head>
@@ -21,7 +25,7 @@
                 <th class="Title"><h3>Title</h3></th>
                 <th class="Time"><h3>Time</h3></th>
                 <th class="Amount"><h3>Amount</h3></th>
-                <th class="Price"><h3>Price</h3></th>
+                <th class="Price"><h3>Price (ppu)</h3></th>
                 <th class="Delete"><h3>Delete</h3></th>
             </tr>
             @foreach (Event m in Model)
@@ -61,6 +65,12 @@
                     <input type="text" id="removeBoxName" name="Name" />
                     <label for="Email" id="lbl_email" style="display: none;">E-mail:</label>
                     <input type="text" id="removeBoxEmail" name="Email" style="display: none;"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br/>
+                <span>Sub total: @totaal</span>
                 </td>
             </tr>
             <tr class="ConfirmButton">

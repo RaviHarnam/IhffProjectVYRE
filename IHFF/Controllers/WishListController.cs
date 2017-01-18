@@ -23,16 +23,17 @@ namespace IHFF.Controllers
 
             List<Event> wishList = (List<Event>)Session["wishlist"];
 
-            foreach (Event ev in wishList)
-                ev.CartId = wishList.IndexOf(ev);
+            foreach (Event eventx in wishList)
+                eventx.CartId = wishList.IndexOf(eventx); // assign cartid aan event
 
-            Session["wishlist"] = wishList;
+            Session["wishlist"] = wishList; // sla hem weer op in de session
 
             return View("Index", wishList);
         }
+
         [HttpPost]
         [ActionName("Wishlist")]
-        public ActionResult WishlistPost()
+        public ActionResult WishlistPost() // post de events uit wishlist naar cart.
         {
             if(Session["cart"] == null)            
                 Session["cart"] = new List<Event>();
@@ -53,7 +54,7 @@ namespace IHFF.Controllers
             return RedirectToAction("Wishlist");
         }
 
-        public ActionResult DeleteWishItem(List<Event> wishList, int? wishlistId)
+        public ActionResult DeleteWishItem(List<Event> wishList, int? wishlistId) // delete een specifieke wishlist item uit de lijst
         {
             if (wishlistId != null)
             {

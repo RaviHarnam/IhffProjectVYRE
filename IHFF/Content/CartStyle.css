@@ -104,6 +104,26 @@ tr #Delete {
     background-color: #06AED5;
 }
 
+.wishToCartbutton{
+    float:left;
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 120px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	margin: 0 auto;
+	position: relative; 
+}
+
+.wishToCartbutton:hover{
+    background-color: #06AED5;
+}
+
 .deleteCross{
     text-decoration: none;
     color: black;
@@ -119,4 +139,33 @@ tr #Delete {
 
 #removeBoxEmail{
     display: none;
+}
+
+/* Wishlist table*/
+.location-onzichtbaar{
+    color: transparent;
+}
+.location-zichtbaar{
+    background-color: darkcyan;
+    color: white;
+    font-size: 10px;
+}
+.halfuur-header{
+    color: transparent;
+}
+.dagvandeweek{
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    empty-cells: show;
+}
+.voorstelling_locatie{
+    font-size: 18px;
+    text-align: left;
+}
+
+.voorstelling_zaal{
+    font-size: 14px;
+    color: darkslategrey;
+    text-align: center;
 }
