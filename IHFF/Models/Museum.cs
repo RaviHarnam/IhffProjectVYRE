@@ -29,6 +29,9 @@ namespace IHFF.Models
         [NotMapped]
         public virtual Afbeelding MuseumAfbeelding { get; set; }
         [NotMapped]
+        public virtual Afbeelding OverviewAfbeelding { get; set; }
+
+        [NotMapped]
         public virtual Locatie MuseumLocatie { get; set; }
 
         public Museum()
@@ -56,8 +59,27 @@ namespace IHFF.Models
         public void ConvertFromMuseumInputModel(MuseumInputModel m)
         {
             Naam = m.Naam;
-            MuseumID = m.MuseumID;
-            //LocatieID = m.LocatieID;
+            MuseumID = m.MuseumID;           
+            Omschrijving = m.Omschrijving;
+            Adults = m.Adults;
+            Kids = m.Kids;
+            Website = m.Website;
+            Maandag = m.Maandag;
+            Dinsdag = m.Dinsdag;
+            Woensdag = m.Woensdag;
+            Donderdag = m.Donderdag;
+            Vrijdag = m.Vrijdag;
+            Zaterdag = m.Zaterdag;
+            Zondag = m.Zondag;
+            Telefoon = m.Telefoon;
+            m.MuseumAfbeelding.Link = m.MuseumAfbeelding.Link;
+            m.OverviewAfbeelding.Link = m.OverviewAfbeelding.Link;
+        }
+
+        public void ConvertFromAddInputModel(MuseumInputModel m)
+        {
+            Naam = m.Naam;
+            MuseumID = m.MuseumID;          
             Omschrijving = m.Omschrijving;
             Adults = m.Adults;
             Kids = m.Kids;

@@ -337,15 +337,16 @@ namespace IHFF.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddMuseum(MuseumInputModel m, string afbLink)
+        public ActionResult AddMuseum(MuseumInputModel m, string afbLink, string afbLinkOverview)
         {
             m.MuseumLocatie.Naam = m.Naam;
             if (ModelState.IsValid)
             {
                 Museum mus = new Museum();
-                mus.ConvertFromMuseumInputModel(m);
+                mus.ConvertFromAddInputModel(m);
                 m.MuseumLocatie.Naam = m.Naam;
                 mus.MuseumAfbeelding = new Afbeelding(null, mus.MuseumID, null, afbLink, "museumbanner");
+                mus.OverviewAfbeelding = new Afbeelding(null, mus.MuseumID, null, afbLinkOverview, "museumoverview");
                 mus.MuseumLocatie = m.MuseumLocatie;
                 db.AddMuseum(mus);
                 return RedirectToAction("ManagementWindow");
@@ -361,14 +362,15 @@ namespace IHFF.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddRestaurant(RestaurantInputModel r, string afbLink)
+        public ActionResult AddRestaurant(RestaurantInputModel r, string afbLink, string afbLinkOverview)
         {
             if (ModelState.IsValid)
             {
                 Restaurant rst = new Restaurant();
-                rst.ConvertFromRestaurantInputModel(r); //Maken van een Restaurant van input model
+                rst.ConvertFromAddInputModel(r); //Maken van een Restaurant van input model
                 r.RestaurantLocatie.Naam = r.Naam;
-                rst.RestaurantAfbeelding = new Afbeelding(null, null, rst.RestaurantID, afbLink, "Restaurantbanner");
+                rst.RestaurantAfbeelding = new Afbeelding(null, null, rst.RestaurantID, afbLink, "restaurantbanner");
+                rst.OverviewAfbeelding = new Afbeelding(null, null, rst.RestaurantID, afbLinkOverview, "restaurantoverview");
                 rst.RestaurantLocatie = r.RestaurantLocatie;
                 db.AddRestaurant(rst);
                 return RedirectToAction("ManagementWindow");

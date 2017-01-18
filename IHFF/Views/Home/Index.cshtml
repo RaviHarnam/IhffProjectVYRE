@@ -5,21 +5,24 @@
 @model IEnumerable<Highlight>
 
 
-<div class="cycle-slideshow">
+<div class="cycle-slideshow" width="100%" height="50%">
 
     @foreach (Highlight highlight in Model)
     {
         if (highlight.MovieHighlight != null)
         {
-            <img class="HomeBannerIMG" src="@highlight.MovieHighlight.ItemAfbeelding.Link" title="@highlight.MovieHighlight.Titel" />
-                //<h2 class="overlaytitel">@Html.ActionLink(@highlight.MovieHighlight.Titel, "MovieDetailPage", "Movies", new { movie_id = @highlight.MovieHighlight.ItemID }, null)</h2>
+            //<a href='@Url.Action("MovieDetailPage", "Movies", new { movie_id = @highlight.MovieHighlight.ItemID })'>
+                <img src="@highlight.MovieHighlight.ItemAfbeelding.Link" title="@highlight.MovieHighlight.Titel" id="@highlight.MovieHighlight.ItemID" onclick="MovieHomeBanner"/>
+            //</a>
         }
         else
         {
+            //omdat in A zit pakt ie de selector niet goed
             if (highlight.SpecialHighlight != null)
             {
-                <img class="HomeBannerIMG" src="@highlight.SpecialHighlight.ItemAfbeelding.Link" title="@highlight.SpecialHighlight.Titel" />
-                //<h2 class="overlaytitel">@Html.ActionLink(@highlight.SpecialHighlight.Titel, "SpecialDetailPage", "Special", new { special_id = @highlight.SpecialHighlight.ItemID }, null)</h2>
+                //<a href='@Url.Action("SpecialDetailPage", "Special", new { movie_id = @highlight.SpecialHighlight.ItemID })'>
+                    <img src="@highlight.SpecialHighlight.ItemAfbeelding.Link" title="@highlight.SpecialHighlight.Titel" onclick="SpecialHomeBanner" />
+                //</a>
             }
         }
     }
@@ -59,3 +62,4 @@
         </tr>
     </tbody>
 </table>
+

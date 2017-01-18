@@ -145,14 +145,14 @@
                                             int aantalHokjesleeg = beginHokjes - ((vorigeEindRooster.Hour * 2) + (vorigeEindRooster.Minute / 30)); //Aantal halve uren
                                             for (int k = 1; k < aantalHokjesleeg; k++) //Lopen van lege hokjes tussen vorige eindtijd en volgende begintijd
                                             {
-                                                <td width="38" height="54" class="location-onzichtbaar"></td>
+                                                <td class="location-onzichtbaar"></td>
                                             }
                                         }
                                         else //Er is maar 1 voorstelling op de dag
                                         {
                                             for (int j = 0; j < beginHokjes; j++) //Maken lege hokjes voor de begintijd van de voorstelling
                                             {
-                                                <td width="38" height="54" class="location-onzichtbaar"></td>
+                                                <td class="location-onzichtbaar"></td>
                                             }
                                         }
 
@@ -162,14 +162,7 @@
 
                                             if (i == beginRooster) //Maken van hokje voor movie met titel erin
                                             {
-                                                if (ev.VoorstellingID != null) //Film or special
-                                                {
-                                                    <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
-                                                }
-                                                else //maaltijd
-                                                {
-                                                    <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
-                                                }
+                                                <td title="@ev.Titel" class="location-zichtbaar">Reservation: @ev.DatumTijd.ToString("HH:mm") - @ev.EventEindTijd.ToString("HH:mm")</td>
                                             }
                                             else
                                             {
@@ -181,7 +174,7 @@
 
                                 }
                             }
-                            
+
                         </tr>
                                 foreach (Zaal z in zalen.Where(z => z.LocatieID == l.LocatieID)) //Lopen door zalen
                                 {
@@ -201,7 +194,7 @@
                                                     int beginHokjes = (int)(beginRooster.Hour * 2) + (beginRooster.Minute / 30); //Aantal halve uren
                                                     DateTime EindRooster = ev.EventEindTijd; //Eindtijd
                                                     EindRooster = EindRooster - (new TimeSpan(11, 0, 0)); //Eindtijd aangepast aan grote van schedule
-                                                    if (vorige != null) //Er zijn meerdere vorstellingen op 1 dag (als true)
+                                                    if (vorigeVo != null) //Er zijn meerdere vorstellingen op 1 dag (als true)
                                                     {
                                                         //Meerder voorstellingen op 1 dag.
                                                         DateTime vorigeEindRooster = vorigeVo.EventEindTijd; //Vorige eindtijd
@@ -209,14 +202,18 @@
                                                         int aantalHokjesleeg = beginHokjes - ((vorigeEindRooster.Hour * 2) + (vorigeEindRooster.Minute / 30)); //Aantal halve uren
                                                         for (int k = 1; k < aantalHokjesleeg; k++) //Lopen van lege hokjes tussen vorige eindtijd en volgende begintijd
                                                         {
-                                                            <td width="38" height="54" class="location-onzichtbaar"></td>
+                                                            <td class="location-onzichtbaar"></td>
                                                         }
+                                                        @*for(DateTime i = vorigeEindRooster; i < beginRooster; i = i.AddMinutes(30))
+                                                        {
+                                                            <td class="location-onzichtbaar"></td>
+                                                        }*@
                                                     }
                                                     else //Er is maar 1 voorstelling op de dag
                                                     {
                                                         for (int j = 0; j < beginHokjes; j++) //Maken lege hokjes voor de begintijd van de voorstelling
                                                         {
-                                                            <td width="38" height="54" class="location-onzichtbaar"></td>
+                                                            <td class="location-onzichtbaar"></td>
                                                         }
                                                     }
 
@@ -226,14 +223,7 @@
 
                                                         if (i == beginRooster) //Maken van hokje voor movie met titel erin
                                                         {
-                                                            if (ev.VoorstellingID != null) //Film or special
-                                                            {
-                                                                <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
-                                                            }
-                                                            else //maaltijd
-                                                            {
-                                                                <td title="@ev.Titel" height="54" width="@(aantalHokjes * 38)" class="location-zichtbaar">@ev.Titel</td>
-                                                            }
+                                                            <td title="@ev.Titel" class="location-zichtbaar">@ev.Titel</td>
                                                         }
                                                         else
                                                         {
@@ -246,7 +236,7 @@
                                             }
 
                                         }
-                                        
+
                                     </tr>
 
                                                 }
