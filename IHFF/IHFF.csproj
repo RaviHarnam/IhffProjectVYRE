@@ -204,6 +204,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\FullScheduleController.cs" />
+    <Compile Include="Controllers\HighlightController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
@@ -223,6 +224,7 @@
     <Compile Include="Models\Afbeelding.cs" />
     <Compile Include="Models\Bestelling.cs" />
     <Compile Include="Models\ComboDeal.cs" />
+    <Compile Include="Models\Highlight.cs" />
     <Compile Include="Models\Input\AfbeeldingInputModel.cs" />
     <Compile Include="Models\Input\HotelInputModel.cs" />
     <Compile Include="Models\Input\ItemBestellingInputModel.cs" />
@@ -311,6 +313,7 @@
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.cycle.all.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -381,6 +384,7 @@
     <Content Include="Views\Payment\Payment.cshtml" />
     <Content Include="Views\Payment\Done.cshtml" />
     <Content Include="Views\ComboDeal\ComboDeal.cshtml" />
+    <Content Include="Views\Highlight\Highlights.cshtml" />
     <Content Include="Views\Employee\EditHotel.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Employee\AddNews.cshtml" />

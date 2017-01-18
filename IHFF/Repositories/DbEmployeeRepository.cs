@@ -74,13 +74,15 @@ namespace IHFF.Repositories
         {
             Movie mov = ctx.MOVIES.SingleOrDefault(m => m.ItemID == id);
             mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmbanner");
+            mov.OverviewAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(m => m.ItemID == mov.ItemID && m.Type == "filmoverview");
             mov.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemID == mov.ItemID select v.BeginTijd).ToList();
             return mov;
         }
         public Special GetSpecial(int id)
         {
             Special spc = ctx.SPECIALS.SingleOrDefault(s => s.ItemID == id);
-            spc.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == id && a.Type == "specialbanner");
+            spc.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == spc.ItemID && a.Type == "specialbanner");
+            spc.OverviewAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == spc.ItemID && a.Type == "specialoverview");
             return spc;
         }
 
@@ -119,6 +121,7 @@ namespace IHFF.Repositories
                 dbMovie.Rating = movie.Rating;
                 dbMovie.Omschrijving = movie.Omschrijving;
                 dbMovie.ItemAfbeelding.Link = movie.ItemAfbeelding.Link;
+                dbMovie.OverviewAfbeelding.Link = movie.OverviewAfbeelding.Link;
                 dbMovie.Director = movie.Director;
                 dbMovie.Highlight = movie.Highlight;
                 ctx.SaveChanges();
@@ -135,6 +138,7 @@ namespace IHFF.Repositories
                 dbSpecial.SpokenLanguage = special.SpokenLanguage;
                 dbSpecial.Omschrijving = special.Omschrijving;
                 dbSpecial.ItemAfbeelding.Link = special.ItemAfbeelding.Link;
+                dbSpecial.OverviewAfbeelding.Link = special.OverviewAfbeelding.Link;
                 ctx.SaveChanges();
             }
         }
@@ -342,18 +346,28 @@ namespace IHFF.Repositories
             //Add movie    
             ctx.MOVIES.Add(m);
             ctx.SaveChanges();
-            //Add picture
+            //Add picture(Banner)
             m.ItemAfbeelding.ItemID = m.ItemID;
             ctx.AFBEELDINGEN.Add(m.ItemAfbeelding);
+            //Add Overview Picture
+            m.OverviewAfbeelding.ItemID = m.ItemID;
+            ctx.AFBEELDINGEN.Add(m.OverviewAfbeelding);
+            //Save Changes
             ctx.SaveChanges();
         }
 
         public void AddSpecial(Special s)
         {
+            //Add special
             ctx.SPECIALS.Add(s);
             ctx.SaveChanges();
+            //Add picture(banner)
             s.ItemAfbeelding.ItemID = s.ItemID;
             ctx.AFBEELDINGEN.Add(s.ItemAfbeelding);
+            //Add picture(overview)
+            s.OverviewAfbeelding.ItemID = s.ItemID;
+            ctx.AFBEELDINGEN.Add(s.OverviewAfbeelding);
+            //Save Changes
             ctx.SaveChanges();
         }
 

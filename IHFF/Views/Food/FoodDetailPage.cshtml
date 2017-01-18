@@ -55,6 +55,8 @@
         <br /><br />
         @Html.Label("Date and Time");
         <br />
+        //@Html.Label("Select Day and course, hour and minute");
+        //<br />
         <select name="maaltijdid" id="dag" onchange="FillUren()">
             <option selected="selected"></option>
             @foreach (Maaltijd maaltijd in Model.RestaurantMaaltijd)

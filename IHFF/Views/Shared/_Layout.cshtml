@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 
 
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.cycle.all.js"></script>
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
 <html lang="en-gb">
 <head>
     <!-- <meta name="viewport" content="width=device-width" /> -->
@@ -46,12 +49,15 @@
                 <!-- <li class="right" id="wishlist"><h5>Html.ActionLink("WishList", "Index", "WishList", null, new { class = "link" }) <span class="wishlistcount"> wishListCount </span></h5></li>   -->
             </ul>
         </nav>
+
+    
     </section>
+
 
     <section class="contentENaside">
         <aside class="side-buttons">
             <button><p>@Html.ActionLink("Full schedule", "FullSchedule", "FullSchedule", null, new { @Class = "link" })</p></button>
-            <button><p>Highlights</p></button>
+            <button><p>@Html.ActionLink("Highlights", "Highlights", "Highlight", null, new {@Class = "link" })</p></button>
             <button><p>@Html.ActionLink("Combo Deals", "ComboDeal", "ComboDeal", null, new { @Class = "link" })</p></button>
         </aside>
         <section class="content">

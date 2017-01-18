@@ -1,8 +1,33 @@
-﻿@{
+﻿@using IHFF.Models;
+@{
     ViewBag.Title = "Home Page";
 }
-
+@model IEnumerable<Highlight>
 <h2>International Haarlems Film Festival</h2>
+
+<div class="cycle-slideshow">
+
+    @foreach (Highlight highlight in Model)
+    {
+        if (highlight.MovieHighlight != null)
+        {
+            <img class="HomeBannerIMG" src="@highlight.MovieHighlight.ItemAfbeelding.Link" title="@highlight.MovieHighlight.Titel" />
+                <h2 class="overlaytitel">@Html.ActionLink(@highlight.MovieHighlight.Titel, "MovieDetailPage", "Movies", new { movie_id = @highlight.MovieHighlight.ItemID }, null)</h2>
+        }
+        else
+        {
+            if (highlight.SpecialHighlight != null)
+            {
+                <img class="HomeBannerIMG" src="@highlight.SpecialHighlight.ItemAfbeelding.Link" title="@highlight.SpecialHighlight.Titel" />
+                <h2 class="overlaytitel">@Html.ActionLink(@highlight.SpecialHighlight.Titel, "SpecialDetailPage", "Special", new { special_id = @highlight.SpecialHighlight.ItemID }, null)</h2>
+            }
+        }
+    }
+    @*<img src="http://imgur.com/gkrNHAA.png" />
+        <img src="http://imgur.com/RK1RAOO.png" />
+        <img src="http://imgur.com/mQ8jAKP.png" />*@
+</div>
+
 
 <p>
     Welcome to Haarlem and welcome to the international Haarlem film festival (IHFF). This year’s theme is The Science of Fiction / Celluloid Realism. Ever since Georges Méliès, film is preeminently the medium where experiments and vision go hand in hand.

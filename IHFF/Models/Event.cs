@@ -35,7 +35,10 @@ namespace IHFF.Models
 
         public decimal BerekenTotaalPrijs()
         {
-            return Prijs * Aantal;
+            if (EventVoorstelling != null)
+                return Prijs * Aantal;
+            else
+                return Prijs;
         }
     }
 

@@ -24,14 +24,17 @@ namespace IHFF.Models
         [NotMapped]
         public virtual List<DateTime> Tijden { get; set; }
 
-        [NotMapped]
-        public virtual List<Voorstelling> Voorstellingen { get; set; }
+        //[NotMapped]
+        //public virtual List<Voorstelling> Voorstellingen { get; set; }
 
         [NotMapped]
         public virtual int Aantal { get; set; }
 
         [NotMapped]
         public virtual ItemBestellingInputModel Moviebestellinginputmodel { get; set; }
+
+        //[NotMapped]
+        //public virtual Afbeelding OverviewAfbeelding { get; set; }
 
         public Movie()
         {
@@ -59,6 +62,7 @@ namespace IHFF.Models
             Highlight = m.Highlight;
             ItemID = m.ItemID;
             ItemAfbeelding.Link = m.ItemAfbeelding.Link;
+            OverviewAfbeelding.Link = m.OverviewAfbeelding.Link;
         }
 
         public void ConvertFromAddInputModel(MovieInputModel m)
