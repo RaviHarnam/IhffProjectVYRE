@@ -54,7 +54,7 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult MovieDetailPage(int? voorstellingId, Movie mInput, string button)
+        public ActionResult MovieDetailPage(int? voorstellingId, Movie mInput, string button) 
         {
             if (voorstellingId != null)
             {
