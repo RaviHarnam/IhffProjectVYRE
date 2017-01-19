@@ -37,6 +37,7 @@ namespace IHFF.Models.Input
             Highlight = s.Highlight;
             ItemID = s.ItemID;
             ItemAfbeelding = s.ItemAfbeelding;
+            OverviewAfbeelding = s.OverviewAfbeelding;
         }
     }
 }

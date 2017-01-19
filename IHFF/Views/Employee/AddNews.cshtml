@@ -1,0 +1,25 @@
+﻿@Styles.Render("~/Content/NewsStyle.css")
+@{
+    ViewBag.Title = "AddNews";
+}
+
+@using IHFF.Models
+@model NewsMessage
+
+<h2>Add News</h2>
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <input type="submit" value="Add News Message" formmethod="post" />
+    <table>
+        <tr>
+            <td class="left">@Html.LabelFor(m => m.Title):</td>
+            <td class="right">@Html.TextBoxFor(m => m.Title)</td>
+        </tr>
+        <tr>
+            <td class="left">@Html.LabelFor(m => m.Message):</td>
+            <td class="right">@Html.TextAreaFor(m => m.Message, new { @cols = 40, @rows = 15 })</td>
+        </tr>
+    </table>
+}
+
+

@@ -11,5 +11,7 @@ namespace IHFF.Repositories
     {
         IEnumerable<Item> GetAllItems();
         Item GetItem(int itemid);
+        IEnumerable<Highlight> GetAllHighlights();
+        IEnumerable<Highlight> GetAllHighlightsBanner();
     }
 }

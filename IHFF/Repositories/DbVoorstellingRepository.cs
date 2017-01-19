@@ -15,7 +15,8 @@ namespace IHFF.Repositories
             Voorstelling voorstelling = (from v in ctx.VOORSTELLINGEN
                                          where v.VoorstellingID == voorstellingId
                                          select v).SingleOrDefault();
-
+            voorstelling.VoorstellingLocatie = ctx.LOCATIES.SingleOrDefault(m => m.LocatieID == voorstelling.LocatieId);
+            voorstelling.VoorstellingZaal = ctx.ZALEN.SingleOrDefault(m => m.ZaalID == voorstelling.ZaalID);
             return voorstelling;
         }
 
@@ -24,7 +25,7 @@ namespace IHFF.Repositories
             Voorstelling voorstelling = (from v in ctx.VOORSTELLINGEN
                                          where v.ItemID == itemId && v.BeginTijd == DatumTijd
                                          select v).SingleOrDefault();
-
+            
             //voorstelling.VoorstellingItem = ctx.ITEMS.SingleOrDefault(i => i.ItemID == voorstelling.ItemID);
             return voorstelling;
         }

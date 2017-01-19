@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "EditHotel";
+}
+
+@using IHFF.Models.Input
+@model HotelInputModel
+
+@Html.ValidationSummary()
+@using (Html.BeginForm())
+{
+    <h2>Edit Movie: @Model.Naam</h2>
+    <input type="Submit" value="Update movie" formmethod="Post" class="Edit-update" size="30" />
+
+    @Html.HiddenFor(m => m.HotelId)
+
+    <p>
+        @Html.LabelFor(m => m.Naam):
+        @Html.TextBoxFor(m => m.Naam, new { @Value = Model.Naam, @placeholder = Model.Naam })
+    </p>
+
+    <img class="bannerimg" src=@Model.BannerAfbeelding.Link />
+    <p>
+        @Html.LabelFor(m => m.BannerAfbeelding.Link):
+        @Html.TextBoxFor(m => m.BannerAfbeelding.Link, new { @Value = Model.BannerAfbeelding.Link, @Size = 30, @placeholder = Model.BannerAfbeelding.Link })
+    </p>
+    <p>
+        @Html.LabelFor(m => m.OverviewAfbeelding.Link):
+        @Html.TextBoxFor(m => m.OverviewAfbeelding.Link, new { @Value = Model.OverviewAfbeelding.Link, @Size = 30, @placeholder = Model.OverviewAfbeelding.Link })
+    </p>
+    <section class="Description">
+        <h3>Description</h3>
+        @Html.TextAreaFor(m => m.Omschrijving, new { @Value = Model.Omschrijving, @Rows = 8, @cols = 40, @placeholder = Model.Omschrijving })
+    </section>
+    <section class="info">
+        <h3>Info</h3>
+        <table>
+            <tr>
+                <td> @Html.LabelFor(m => m.Adres):</td>
+                <td> @Html.TextBoxFor(m => m.Adres, new { @Value = Model.Adres, @Size = 30, @placeholder = Model.Adres })</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.City):</td>
+                <td> @Html.TextBoxFor(m => m.City, new { @Value = Model.City, @Size = 30, @placeholder = @Model.City })</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.PostalCode):</td>
+                <td> @Html.TextBoxFor(m => m.PostalCode, new { @Value = Model.PostalCode, @Size = 30, @placeholder = Model.PostalCode })</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(m => m.TelefoonNummer):</td>
+                <td> @Html.TextBoxFor(m => m.TelefoonNummer, new { @Value = Model.TelefoonNummer, @Size = 30, @placeholder = Model.TelefoonNummer }) </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.Website):</td>
+                <td>@Html.TextBoxFor(m => m.Website, new { @Value = Model.Website, @Size = 30, @placeholder = Model.Website })</td>
+            </tr>
+
+
+
+        </table>
+
+    </section>
+}

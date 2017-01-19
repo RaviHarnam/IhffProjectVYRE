@@ -1,0 +1,16 @@
+﻿@Styles.Render("~/Content/NewsStyle.css")
+@{
+    ViewBag.Title = "News";
+}
+@using IHFF.Models
+@model List<NewsMessage>
+
+<h2>News</h2>
+@foreach (NewsMessage msg in Model)
+{
+    <section class="newsEntry">
+        <h3 class="title">@msg.Title</h3>
+        <p class="message">@msg.Message</p>
+        <p class="timeOfPost">@msg.TimeOfPost</p>
+    </section>
+}

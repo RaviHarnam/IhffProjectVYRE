@@ -151,3 +151,14 @@ width: 120px;
 .VoorstellingDatum{
     width: 110px;
 }
+
+#MaaltijdInputModel_minuten{
+    width: 50px !important;
+}
+
+#Moviebestellinginputmodel_Aantal{
+     width: 108px !important;
+}
+#Specialbestellinginputmodel_Aantal{
+     width: 108px !important;
+}

@@ -29,12 +29,20 @@ namespace IHFF.Models
         public int WishListId { get; set; }
 
 
+        [NotMapped]
+        public virtual Voorstelling EventVoorstelling { get; set; }
+        [NotMapped]
+        public virtual Maaltijd EventMaaltijd { get; set; }
+        [NotMapped]
+        public virtual DateTime EventEindTijd { get; set; }
 
         public decimal BerekenTotaalPrijs()
         {
-            if (VoorstellingID != null)
+            if (EventVoorstelling != null)
                 return Prijs * Aantal;
-            return Prijs;
+            else
+                return Prijs;
+
         }
     }
 

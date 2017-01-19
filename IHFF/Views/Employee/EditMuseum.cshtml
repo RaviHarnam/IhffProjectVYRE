@@ -24,8 +24,10 @@
     {
         <img class="bannerimg" src=@Model.MuseumAfbeelding.Link alt=@Model.Naam />
         <p>
-            @Html.LabelFor(m => m.MuseumAfbeelding.Link):
-            @Html.TextBoxFor(m => m.MuseumAfbeelding.Link, new { @Value = Model.MuseumAfbeelding.Link, @Size = 30, @placeholder = Model.MuseumAfbeelding.Link })
+            @Html.LabelFor(m => m.MuseumAfbeelding.Link, "Banner Picture Link"):
+            @Html.TextBoxFor(m => m.MuseumAfbeelding.Link, new { @Value = Model.MuseumAfbeelding.Link, @Size = 30, @placeholder = Model.MuseumAfbeelding.Link }) <br/>
+            @Html.LabelFor(m => m.OverviewAfbeelding.Link, "Overview Picture Link"):
+            @Html.TextBoxFor(m => m.OverviewAfbeelding.Link, new {@Size = 30, @placeholder = Model.OverviewAfbeelding.Link })
         </p>
     }
     <section class="summary">

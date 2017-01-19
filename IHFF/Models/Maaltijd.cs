@@ -18,6 +18,8 @@ namespace IHFF.Models
 
         [NotMapped]
        public virtual Restaurant MaaltijdRestaurant { get; set; }
+        [NotMapped]
+        public virtual Locatie MaaltijdLocatie { get; set; }
 
         public Maaltijd(int maaltijdID, decimal maaltijdPrijs, DateTime beginTijd, DateTime eindTijd, int maxPlaatsen, int gereseveerdePlaatsen, int restaurantID)
         {

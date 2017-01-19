@@ -29,6 +29,7 @@
     <tr><td>@Html.ActionLink("Add a restaurant", "AddRestaurant", "Employee", null, new { @Class = "management" })</td></tr>
     <tr><td>@Html.ActionLink("Add a museum", "AddMuseum", "Employee", null, new { @Class = "management" })</td></tr>
     <tr><td>@Html.ActionLink("Add a hotel", "AddHotel", "Employee", null, new { @Class = "management" })</td></tr>
+    <tr><td>@Html.ActionLink("Add a news message", "AddNews", "Employee", null, new { @Class = "management" })</td></tr>
 </table>
 <p></p>
 <table>
@@ -153,8 +154,60 @@
         </tr>
     }
 
+    <tr><td><h2>Hotels</h2></td></tr>
+    @foreach (EventListRepresentation hotel in Model.Where(m => m.hotel != null))
+    {
+        <tr>
+            <td>@hotel.hotel.Naam</td>
+            <td>@Html.ActionLink("Edit", "EditHotel", "Employee", new { id = hotel.hotel.HotelId }, new { @Class = "management" })</td>
+            <td>
+                <button class="deletebtn">Delete</button>
+                <div class="modal">
+                    <article class="modal-content">
+                        <article class="modal-header">
 
+                            <button onclick="$(this).parent('div').style.display = 'none'" class="close">&times;</button>
 
+                            <h2>Are you sure you want to delete the following item?</h2>
+                        </article>
+                        <div class="modal-body">
+                            @Html.Partial("_DeleteFestivalObject", hotel)
+                        </div>
+                        <div class="modal-footer">
+                            <h2></h2>
+                            <h2></h2>
+                        </div>
+                    </article>
+                </div>
+            </td>
+        </tr>
+    }
+    <tr><td><h2>News</h2></td></tr>
+    @foreach (EventListRepresentation msg in Model.Where(m => m.news != null))
+    {
+        <tr>
+            <td>@msg.news.Title</td>
+            <td>@Html.ActionLink("Edit", "EditNews", "Employee", new { id = msg.news.Id }, new { @Class = "management" })</td>
+            <td>
+                <button class="deletebtn">Delete</button>
+                <div class="modal">
+                    <article class="modal-content">
+                        <article class="modal-header">
+                            <button onclick="$(this).parent('div').style.display = 'none'" class="close">&times;</button>
+                            <h2>Are you sure you want to delete the following item?</h2>
+                        </article>
+                        <div class="modal-body">
+                            @Html.Partial("_DeleteFestivalObject", msg)
+                        </div>
+                        <div class="modal-footer">
+                            <h2></h2>
+                            <h2></h2>
+                        </div>
+                    </article>
+                </div>
+            </td>
+        </tr>
+    }
 </table>
 <script src="~/Scripts/jquery-1.8.2.min.js"></script>
 <script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>

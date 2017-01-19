@@ -24,7 +24,9 @@ namespace IHFF.Repositories
             List<EventListRepresentation> events = new List<EventListRepresentation>();
             IEnumerable<Item> items = (from i in ctx.ITEMS select i).ToList();
             IEnumerable<Restaurant> restaurants = (from r in ctx.RESTAURANTS select r).ToList();
-            IEnumerable<Museum> cultureEvents = (from c in ctx.MUSEA select c).ToList();
+            IEnumerable<Museum> musea = (from c in ctx.MUSEA select c).ToList();
+            IEnumerable<Hotel> hotels = (from h in ctx.HOTEL select h).ToList();
+            IEnumerable<NewsMessage> news = (from m in ctx.NEWSMESSAGE select m).ToList();
 
             foreach (Item item in items)
                 events.Add(new EventListRepresentation(item));
@@ -32,8 +34,14 @@ namespace IHFF.Repositories
             foreach (Restaurant restaurant in restaurants)
                 events.Add(new EventListRepresentation(restaurant));
 
-            foreach (Museum culture in cultureEvents)
+            foreach (Museum culture in musea)
                 events.Add(new EventListRepresentation(culture));
+
+            foreach (Hotel hotel in hotels)
+                events.Add(new EventListRepresentation(hotel));
+
+            foreach (NewsMessage msg in news)
+                events.Add(new EventListRepresentation(msg));
 
             return events;
         }
@@ -43,6 +51,7 @@ namespace IHFF.Repositories
             Museum cult = ctx.MUSEA.SingleOrDefault(c => c.MuseumID == id);
             cult.MuseumAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == cult.MuseumID && a.Type == "museumbanner");
             cult.MuseumLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == cult.LocatieID);
+            cult.OverviewAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == cult.MuseumID && a.Type == "museumoverview");
             return cult;
         }
 
@@ -59,6 +68,7 @@ namespace IHFF.Repositories
             Restaurant rst = ctx.RESTAURANTS.SingleOrDefault(r => r.RestaurantID == id);
             rst.RestaurantAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == rst.RestaurantID && a.Type == "restaurantbanner");
             rst.RestaurantLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == rst.LocatieID);
+            rst.OverviewAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == rst.RestaurantID && a.Type == "restaurantoverview");
             return rst;
         }
 
@@ -66,14 +76,39 @@ namespace IHFF.Repositories
         {
             Movie mov = ctx.MOVIES.SingleOrDefault(m => m.ItemID == id);
             mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmbanner");
+            mov.OverviewAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(m => m.ItemID == mov.ItemID && m.Type == "filmoverview");
             mov.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemID == mov.ItemID select v.BeginTijd).ToList();
             return mov;
         }
         public Special GetSpecial(int id)
         {
             Special spc = ctx.SPECIALS.SingleOrDefault(s => s.ItemID == id);
-            spc.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == id && a.Type == "specialbanner");
+            spc.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == spc.ItemID && a.Type == "specialbanner");
+            spc.OverviewAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == spc.ItemID && a.Type == "specialoverview");
             return spc;
+        }
+
+        public Hotel GetHotel(int id)
+        {
+            Hotel hotel = ctx.HOTEL.SingleOrDefault(hot => hot.HotelId == id);
+            List<Afbeelding> dbAfbeeldingen = (from afb in ctx.AFBEELDINGEN
+                                               where afb.HotelID == id
+                                               select afb).ToList();
+            foreach (Afbeelding afb in dbAfbeeldingen)
+            {
+                if (afb.Type == "HotelBanner")
+                    hotel.HotelAfbeelding = afb;
+                if (afb.Type == "HotelOverview")
+                    hotel.HotelOverviewAfbeelding = afb;
+            }
+
+            return hotel;
+        }
+
+        public NewsMessage GetNewsMessage(int id)
+        {
+            NewsMessage msg = ctx.NEWSMESSAGE.SingleOrDefault(m => m.Id == id);
+            return msg;
         }
 
         public void UpdateMovie(Movie movie)
@@ -88,6 +123,7 @@ namespace IHFF.Repositories
                 dbMovie.Rating = movie.Rating;
                 dbMovie.Omschrijving = movie.Omschrijving;
                 dbMovie.ItemAfbeelding.Link = movie.ItemAfbeelding.Link;
+                dbMovie.OverviewAfbeelding.Link = movie.OverviewAfbeelding.Link;
                 dbMovie.Director = movie.Director;
                 dbMovie.Highlight = movie.Highlight;
                 ctx.SaveChanges();
@@ -104,6 +140,7 @@ namespace IHFF.Repositories
                 dbSpecial.SpokenLanguage = special.SpokenLanguage;
                 dbSpecial.Omschrijving = special.Omschrijving;
                 dbSpecial.ItemAfbeelding.Link = special.ItemAfbeelding.Link;
+                dbSpecial.OverviewAfbeelding.Link = special.OverviewAfbeelding.Link;
                 ctx.SaveChanges();
             }
         }
@@ -118,10 +155,12 @@ namespace IHFF.Repositories
                 dbRestaurant.Website = restaurant.Website;
                 dbRestaurant.Naam = restaurant.Naam;
                 dbRestaurant.Omschrijving = restaurant.Omschrijving;
-                Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == restaurant.RestaurantAfbeelding.AfbeeldingID && a.Type == "banner");
+                Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == restaurant.RestaurantAfbeelding.AfbeeldingID && a.Type == "restaurantbanner");
                 if (dbRestaurant != null)
-                    dbRestaurant.RestaurantAfbeelding.Link = restaurant.RestaurantAfbeelding.Link;
-
+                    dbAfbeelding.Link = restaurant.RestaurantAfbeelding.Link;
+                Afbeelding dbOverview = ctx.AFBEELDINGEN.SingleOrDefault(a => a.RestaurantID == restaurant.OverviewAfbeelding.AfbeeldingID && a.Type == "restaurantoverview");
+                if (dbOverview != null)
+                    dbOverview.Link = restaurant.OverviewAfbeelding.Link;
                 Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == restaurant.LocatieID);
                 if (dbLocatie != null)
                 {
@@ -158,8 +197,39 @@ namespace IHFF.Repositories
                 Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == museum.MuseumID && a.Type == "museumbanner");
                 if (dbAfbeelding != null)
                     dbAfbeelding.Link = museum.MuseumAfbeelding.Link;
-
+                Afbeelding dbOverview = ctx.AFBEELDINGEN.SingleOrDefault(a => a.MuseumID == museum.MuseumID && a.Type == "museumoverview");
+                if (dbOverview != null)
+                    dbOverview.Link = museum.OverviewAfbeelding.Link;
                 Locatie dbLocatie = ctx.LOCATIES.SingleOrDefault(l => l.LocatieID == museum.LocatieID);
+                ctx.SaveChanges();
+            }
+        }
+
+        public void UpdateHotel(Hotel hotel)
+        {
+            Hotel dbHotel = ctx.HOTEL.SingleOrDefault(hot => hot.HotelId == hotel.HotelId);
+            if (dbHotel != null)
+            {
+                dbHotel = hotel;
+                Afbeelding dbAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(afb => afb.HotelID == hotel.HotelId && afb.Type == "HotelBanner");
+                if (dbAfbeelding != null)
+                    dbAfbeelding.Link = hotel.HotelAfbeelding.Link;
+
+                Afbeelding dbOverviewAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(afb => afb.HotelID == hotel.HotelId && afb.Type == "HotelOverview");
+                if (dbOverviewAfbeelding != null)
+                    dbOverviewAfbeelding.Link = hotel.HotelOverviewAfbeelding.Link;
+                ctx.SaveChanges();
+            }
+        }
+
+        public void UpdateNews(NewsMessage msg)
+        {
+            NewsMessage dbMsg = ctx.NEWSMESSAGE.SingleOrDefault(m => m.Id == msg.Id);
+            if(dbMsg != null)
+            {
+                dbMsg.Title = msg.Title;
+                dbMsg.Message = msg.Message;
+                dbMsg.TimeOfPost = DateTime.Now;
                 ctx.SaveChanges();
             }
         }
@@ -178,7 +248,7 @@ namespace IHFF.Repositories
                 foreach (Afbeelding dbAfbeelding in dbAfbeeldingen)
                     ctx.Entry(dbAfbeelding).State = EntityState.Deleted;
 
-          
+
             if (dbMuseum != null)
                 ctx.Entry(dbMuseum).State = EntityState.Deleted;
 
@@ -255,23 +325,57 @@ namespace IHFF.Repositories
             ctx.SaveChanges();
         }
 
+        public void DeleteHotel(int hotelId)
+        {
+            Hotel dbHotel = ctx.HOTEL.SingleOrDefault(h => h.HotelId == hotelId);
+            if (dbHotel != null)
+            {
+                ctx.HOTEL.Remove(dbHotel);
+                IEnumerable<Afbeelding> dbAfbeeldingen = (from afb in ctx.AFBEELDINGEN
+                                                          where afb.HotelID == dbHotel.HotelId
+                                                          select afb).ToList();
+                foreach (Afbeelding dbAfbeelding in dbAfbeeldingen)
+                    ctx.AFBEELDINGEN.Remove(dbAfbeelding);
+            }
+
+            ctx.SaveChanges();
+        }
+
+        public void DeleteNews(int newsId)
+        {
+            NewsMessage msg = ctx.NEWSMESSAGE.SingleOrDefault(n => n.Id == newsId);
+            if (msg != null)
+                ctx.NEWSMESSAGE.Remove(msg);
+            ctx.SaveChanges();
+        }
+
         public void AddMovie(Movie m)
-        {        
+        {
             //Add movie    
             ctx.MOVIES.Add(m);
             ctx.SaveChanges();
-            //Add picture
+            //Add picture(Banner)
             m.ItemAfbeelding.ItemID = m.ItemID;
             ctx.AFBEELDINGEN.Add(m.ItemAfbeelding);
+            //Add Overview Picture
+            m.OverviewAfbeelding.ItemID = m.ItemID;
+            ctx.AFBEELDINGEN.Add(m.OverviewAfbeelding);
+            //Save Changes
             ctx.SaveChanges();
         }
 
         public void AddSpecial(Special s)
         {
+            //Add special
             ctx.SPECIALS.Add(s);
             ctx.SaveChanges();
+            //Add picture(banner)
             s.ItemAfbeelding.ItemID = s.ItemID;
             ctx.AFBEELDINGEN.Add(s.ItemAfbeelding);
+            //Add picture(overview)
+            s.OverviewAfbeelding.ItemID = s.ItemID;
+            ctx.AFBEELDINGEN.Add(s.OverviewAfbeelding);
+            //Save Changes
             ctx.SaveChanges();
         }
 
@@ -284,9 +388,13 @@ namespace IHFF.Repositories
             //Add Museum
             ctx.MUSEA.Add(m);
             ctx.SaveChanges();
-            //Add Picture
+            //Add Picture(banner)
             m.MuseumAfbeelding.MuseumID = m.MuseumID;
             ctx.AFBEELDINGEN.Add(m.MuseumAfbeelding);
+            //Add Picture(overview)
+            m.OverviewAfbeelding.MuseumID = m.MuseumID;
+            ctx.AFBEELDINGEN.Add(m.OverviewAfbeelding);
+            //Save Changes
             ctx.SaveChanges();
         }
 
@@ -299,20 +407,23 @@ namespace IHFF.Repositories
             r.LocatieID = r.RestaurantLocatie.LocatieID;
             ctx.RESTAURANTS.Add(r);
             ctx.SaveChanges();
-            //Add picture
+            //Add picture(banner)
             r.RestaurantAfbeelding.RestaurantID = r.RestaurantID;
             ctx.AFBEELDINGEN.Add(r.RestaurantAfbeelding);
+            //Add picture(overview)
+            r.OverviewAfbeelding.RestaurantID = r.RestaurantID;
+            ctx.AFBEELDINGEN.Add(r.OverviewAfbeelding);
+            //Save Changes
             ctx.SaveChanges();
         }
 
         public void AddHotel(Hotel h)
         {
-
             ctx.HOTEL.Add(h);
             ctx.SaveChanges();
             int hotelId = (from hot in ctx.HOTEL
-                         where h.Naam == hot.Naam
-                         select hot.HotelId).ToList()[0];
+                           where h.Naam == hot.Naam
+                           select hot.HotelId).ToList()[0];
             h.HotelAfbeelding.HotelID = hotelId;
             h.HotelOverviewAfbeelding.HotelID = hotelId;
             ctx.AFBEELDINGEN.Add(h.HotelAfbeelding);
@@ -320,6 +431,12 @@ namespace IHFF.Repositories
             ctx.AFBEELDINGEN.Add(h.HotelOverviewAfbeelding);
             ctx.SaveChanges();
 
+        }
+
+        public void AddNews(NewsMessage msg)
+        {
+            ctx.NEWSMESSAGE.Add(msg);
+            ctx.SaveChanges();
         }
     }
 }

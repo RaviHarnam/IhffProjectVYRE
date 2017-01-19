@@ -12,8 +12,8 @@ namespace IHFF.Controllers
     public class SpecialController : Controller
     {
         private ISpecialRepository dbSpecial = new DbSpecialRepository();
-        IVoorstellingRepository dbVoorstelling = new DbVoorstellingRepository();
-     
+        private IVoorstellingRepository dbVoorstelling = new DbVoorstellingRepository();
+        private MakeEventHelper helper = new MakeEventHelper();
 
         // GET: Special
         public ActionResult Index()
@@ -32,7 +32,7 @@ namespace IHFF.Controllers
         {
             if (ModelState.IsValid)
             {
-                MakeEventHelper.MakeEvent(voorstellingId.Value, sInput.Specialbestellinginputmodel.Aantal, button);
+                helper.MakeEvent(voorstellingId.Value, sInput.Specialbestellinginputmodel.Aantal, button);
             }
             return RedirectToAction("SpecialOverview");
         }
@@ -59,7 +59,7 @@ namespace IHFF.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    MakeEventHelper.MakeEvent(voorstellingId.Value, sInput.Specialbestellinginputmodel.Aantal, button);
+                    helper.MakeEvent(voorstellingId.Value, sInput.Specialbestellinginputmodel.Aantal, button);
                 }
                 Special s = dbSpecial.GetSpecialByVoorstellingID(voorstellingId.Value);
                 return View(s);

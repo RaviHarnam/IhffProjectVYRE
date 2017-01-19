@@ -204,11 +204,13 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\FullScheduleController.cs" />
+    <Compile Include="Controllers\HighlightController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\SpecialController.cs" />
     <Compile Include="Controllers\WishListController.cs" />
@@ -222,6 +224,7 @@
     <Compile Include="Models\Afbeelding.cs" />
     <Compile Include="Models\Bestelling.cs" />
     <Compile Include="Models\ComboDeal.cs" />
+    <Compile Include="Models\Highlight.cs" />
     <Compile Include="Models\Input\AfbeeldingInputModel.cs" />
     <Compile Include="Models\Input\HotelInputModel.cs" />
     <Compile Include="Models\Input\ItemBestellingInputModel.cs" />
@@ -247,6 +250,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\NewsMessage.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Special.cs" />
     <Compile Include="Models\Voorstelling.cs" />
@@ -262,6 +266,7 @@
     <Compile Include="Repositories\DbMealRepository.cs" />
     <Compile Include="Repositories\DbMovieRepository.cs" />
     <Compile Include="Repositories\DbMuseumRepository.cs" />
+    <Compile Include="Repositories\DbNewsMessageRepository.cs" />
     <Compile Include="Repositories\DbScheduleRepository.cs" />
     <Compile Include="Repositories\DbSpecialRepository.cs" />
     <Compile Include="Repositories\DbVoorstellingRepository.cs" />
@@ -275,6 +280,7 @@
     <Compile Include="Repositories\IMealRepository.cs" />
     <Compile Include="Repositories\IMoviesRepository.cs" />
     <Compile Include="Repositories\IMuseumRepository.cs" />
+    <Compile Include="Repositories\INewsMessageRepository.cs" />
     <Compile Include="Repositories\IScheduleRepository.cs" />
     <Compile Include="Repositories\ISpecialRepository.cs" />
     <Compile Include="Repositories\IVoorstellingRepository.cs" />
@@ -294,6 +300,7 @@
     <Content Include="Content\Master.css" />
     <Content Include="Content\MovieDetailPageStyle.css" />
     <Content Include="Content\MuseumStyle.css" />
+    <Content Include="Content\NewsStyle.css" />
     <Content Include="Content\overview.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -307,6 +314,7 @@
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.cycle.all.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -377,6 +385,11 @@
     <Content Include="Views\Payment\Payment.cshtml" />
     <Content Include="Views\Payment\Done.cshtml" />
     <Content Include="Views\ComboDeal\ComboDeal.cshtml" />
+    <Content Include="Views\Highlight\Highlights.cshtml" />
+    <Content Include="Views\Employee\EditHotel.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Employee\AddNews.cshtml" />
+    <Content Include="Views\Employee\EditNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

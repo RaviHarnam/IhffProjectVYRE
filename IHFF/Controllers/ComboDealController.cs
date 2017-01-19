@@ -73,27 +73,33 @@ namespace IHFF.Controllers
                 Voorstelling v1 = dbVoorstelling.GetVoorstelling(Number1);
                 Item i1 = dbItem.GetItem(v1.ItemID);
                 event1.DatumTijd = v1.BeginTijd;
+                event1.EventEindTijd = v1.EindTijd;
                 event1.Prijs = decimal.Parse("8,75");
                 event1.Titel = i1.Titel;
+                event1.EventVoorstelling = v1;
 
                 Event event2 = new Event();
                 event2.Aantal = aantal;
                 Voorstelling v2 = dbVoorstelling.GetVoorstelling(Number2);
                 Item i2 = dbItem.GetItem(v2.ItemID);
                 event2.DatumTijd = v2.BeginTijd;
+                event2.EventEindTijd = v2.EindTijd;
                 event2.Prijs = decimal.Parse("8,75");
                 event2.Titel = i2.Titel;
+                event2.EventVoorstelling = v2;
 
                 Event event3 = new Event();
                 event3.Aantal = aantal;
                 Voorstelling v3 = dbVoorstelling.GetVoorstelling(Number3);
                 Item i3 = dbItem.GetItem(v3.ItemID);
                 event3.DatumTijd = v3.BeginTijd;
+                event3.EventEindTijd = v3.EindTijd;
                 event3.Prijs = 0;
                 event3.Titel = i3.Titel;
+                event3.EventVoorstelling = v3;
 
-               
-                    if (Session[button] == null)
+
+                if (Session[button] == null)
                         Session[button] = new List<Event>();
                     List<Event> events = (List<Event>)Session[button];
                     events.Add(event1);

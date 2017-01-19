@@ -14,7 +14,7 @@ namespace IHFF.Controllers
     {
         private IMoviesRepository dbMovie = new DbMovieRepository();
         private IVoorstellingRepository dbVoorstelling = new DbVoorstellingRepository();
-        
+        private MakeEventHelper helper = new MakeEventHelper();
 
         public ActionResult Index()
         {
@@ -32,7 +32,7 @@ namespace IHFF.Controllers
         {
             if (ModelState.IsValid)
             {
-                MakeEventHelper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, button);
+                helper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, button);
             }
             return RedirectToAction("MovieOverview");
         }
@@ -53,13 +53,13 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult MovieDetailPage(int? voorstellingId, Movie mInput, string button)
+        public ActionResult MovieDetailPage(int? voorstellingId, Movie mInput, string button) 
         {
             if (voorstellingId != null)
             {
                 if (ModelState.IsValid)
                 {
-                    MakeEventHelper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, button);
+                    helper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, button);
                 }
                 Movie movie = dbMovie.GetMovieByVoorstellingID(voorstellingId.Value);
                 return View(movie);

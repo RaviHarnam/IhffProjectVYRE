@@ -48,13 +48,40 @@ else if (Model.restaurant != null) //Restaurant
     <br />
 
 }
+else if (Model.hotel != null)
+{
+    <h2>@Model.hotel.Naam</h2>
+    using (Html.BeginForm("DeleteHotel", "Employee", FormMethod.Post))
+    {
+        @Html.Hidden("id", Model.hotel.HotelId)
+        <input class="btnfestival" type="submit" value="Delete Hotel" />
+    }
+    using (Html.BeginForm("ManagementWindow", "Employee", FormMethod.Get))
+    {
+        <input class="btnfestival" type="submit" value="Cancel" />
+    }
+    <br />
+}
+else if(Model.news != null)
+{
+    <h2>@Model.news.Title</h2>
+    using (Html.BeginForm("DeleteNews", "Employee", FormMethod.Post))
+    {
+        @Html.Hidden("id", Model.news.Id)
+        <input class="btnfestival" type="submit" value="Delete News message" />
+    }
+    using (Html.BeginForm("ManagementWindow", "Employee", FormMethod.Get))
+    {
+        <input class="btnfestival" type="submit" value="Cancel" />
+    }
+}
 else //Special
 {
     <h2>@Model.item.Titel</h2>
-    using (Html.BeginForm("DeleteSpecial", "Employee", FormMethod.Post))
-    {
-        @Html.Hidden("id", Model.item.ItemID)
-        <input class="btnfestival" type="submit" value="Delete Special" />
+                            using (Html.BeginForm("DeleteSpecial", "Employee", FormMethod.Post))
+                {
+                    @Html.Hidden("id", Model.item.ItemID)
+                    <input class="btnfestival" type="submit" value="Delete Special" />
     }
     using (Html.BeginForm("ManagementWindow", "Employee", FormMethod.Get))
     {

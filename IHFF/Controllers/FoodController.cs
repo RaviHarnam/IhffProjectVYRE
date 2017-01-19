@@ -52,10 +52,12 @@ namespace IHFF.Controllers
                     //Minuten
                     eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(0, eventx.DatumTijd.Minute, 0);
                     eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(0, r.MaaltijdInputModel.minuten, 0);
+                    eventx.EventEindTijd = eventx.DatumTijd + new TimeSpan(2, 30, 0);
                     //Rest
                     eventx.Titel = m.MaaltijdRestaurant.Naam;
+                    eventx.EventMaaltijd = m;
                     eventx.Prijs = m.MaaltijdPrijs;
-                    eventx.MaaltijdID = m.MaaltijdID;
+                    eventx.MaaltijdID = m.MaaltijdID;                    
                     if (Request.Form["buttoncart"] != null)
                     {
                         if (Session["cart"] == null)
@@ -100,14 +102,19 @@ namespace IHFF.Controllers
                     //Minuten
                     eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(0, eventx.DatumTijd.Minute, 0);
                     eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(0, r.MaaltijdInputModel.minuten, 0);
+
+                    
                     //Rest
                     eventx.Titel = m.MaaltijdRestaurant.Naam;
+                    eventx.EventMaaltijd = m;
+                    eventx.EventEindTijd = eventx.DatumTijd + new TimeSpan(2, 30, 0);//Voeg 2.5 uur toe
                     eventx.Prijs = m.MaaltijdPrijs;
                     eventx.MaaltijdID = m.MaaltijdID;
                     if (Request.Form["buttoncart"] != null)
                     {
                         if (Session["cart"] == null)
                             Session["cart"] = new List<Event>();
+
 
                         List<Event> cartlist = (List<Event>)Session["cart"];
                         cartlist.Add(eventx);
@@ -124,8 +131,11 @@ namespace IHFF.Controllers
                     }
                 }
             }
+
+
             return RedirectToAction("FoodOverview");
         }
+
 
         public ActionResult FillUren(int maaltijdId)
         {

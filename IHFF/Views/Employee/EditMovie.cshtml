@@ -23,9 +23,10 @@
 
 <img class="bannerimg" src=@Model.ItemAfbeelding.Link />
 <p>
-    @Html.LabelFor(m => m.ItemAfbeelding.Link):
-    @Html.TextBoxFor(m => m.ItemAfbeelding.Link, new { @Value = Model.ItemAfbeelding.Link, @Size = 30, @placeholder = Model.ItemAfbeelding.Link})
-
+    @Html.LabelFor(m => m.ItemAfbeelding.Link, "Banner Picture Link"):
+    @Html.TextBoxFor(m => m.ItemAfbeelding.Link, new { @Value = Model.ItemAfbeelding.Link, @Size = 30, @placeholder = Model.ItemAfbeelding.Link}) <br/>
+    @Html.LabelFor(m => m.OverviewAfbeelding.Link, "Overview Picture Link"):
+    @Html.TextBoxFor(m => m.OverviewAfbeelding.Link, new {@Size = 30, @placeholder = Model.OverviewAfbeelding.Link})
     @Html.DropDownListFor(h => h.Highlight, new SelectList(new[]
     {
     new SelectListItem { Value = "False", Text="False", Selected = true},
