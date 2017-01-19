@@ -262,6 +262,23 @@ background-color: #06AED5;
     background-color: #06AED5;
 }
 
+.completebutton{
+    text-decoration: none;
+    color: white !important;
+    background-color: #226493;
+    border-radius: 5px;
+    height: 44px;
+    display: block;
+    line-height: 20px;
+    width: 140px !important; 
+	opacity: 1.0; 
+	text-align:center;
+	position: relative;
+    top:5px;
+}
+.completebutton:hover{
+    background-color: #06AED5;
+}
 
 
 .moverview{
@@ -383,6 +400,7 @@ a.fullsched:hover{
 .overlay a{
     text-decoration: none;
     color:white;
+    line-height:44px;
 }
 
 .hovereffect img {
@@ -632,4 +650,9 @@ table{
 
 .MngmntWindowTableHeader{
     text-align: left;
+}
+
+.crosssellingDiner .crosssellingDiner:active {
+    text-decoration:none;
+    color:white;
 }

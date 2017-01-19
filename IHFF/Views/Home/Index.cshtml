@@ -26,88 +26,34 @@
 
     <div id="slider">
 
-        @*<section class="items">
-            <section class="img">*@
+       
         @foreach (Highlight highlight in Model)
             {
                 if (highlight.MovieHighlight != null)
                 {
-                @*<a class="cycle-slideshow" href='@Url.Action("MovieDetailPage", "Movies", new { movie_id = @highlight.MovieHighlight.ItemID })'>*@
+                
                 <a href="@Url.Action("MovieDetailPage", "Movies", new { movie_id = @highlight.MovieHighlight.ItemID })"><img style="width: 100%; object-fit: cover;" src="@highlight.MovieHighlight.ItemAfbeelding.Link" title="@highlight.MovieHighlight.Titel" /><h2 style="z-index: 105;">@highlight.MovieHighlight.Titel</h2></a>
-                @*</a>*@
+                
             }
             else
             {
                 //omdat in A zit pakt ie de selector niet goed
                 if (highlight.SpecialHighlight != null)
                 {
-                    @*<a class="cycle-slideshow" href='@Url.Action("SpecialDetailPage", "Special", new { special_id = @highlight.SpecialHighlight.ItemID })'>*@
+                    
                     <a href="@Url.Action("SpecialDetailPage", "Special", new { special_id = @highlight.SpecialHighlight.ItemID })"><img style="width: 100%; object-fit: cover;" src="@highlight.SpecialHighlight.ItemAfbeelding.Link" title="@highlight.SpecialHighlight.Titel" /><h2 style="z-index: 105;">@highlight.SpecialHighlight.Titel</h2></a>
-                    @*</a>*@
+                    
 
                 }
             }
         }
-        @*</section>*@
-
-        @*<section class="info">*@
-        @*<h2>
-                @foreach (Highlight highlight in Model)
-                {
-                    if (highlight.MovieHighlight != null)
-                    {
-
-                        @highlight.MovieHighlight.Titel
-
-                    }
-                    else
-                    {
-
-                        if (highlight.SpecialHighlight != null)
-                        {
-
-                            @highlight.SpecialHighlight.Titel
-
-
-                        }
-                    }
-                }
-            </h2>
-            <p>
-                Highlight:
-                @foreach (Highlight highlight in Model)
-                {
-                    if (highlight.MovieHighlight != null)
-                    {
-                        <a href='@Url.Action("MovieDetailPage", "Movies", new { movie_id = @highlight.MovieHighlight.ItemID })'>Check this Highlight</a>
-
-
-                    }
-                    else
-                    {
-                        //omdat in A zit pakt ie de selector niet goed
-                        if (highlight.SpecialHighlight != null)
-                        {
-                            <a href='@Url.Action("SpecialDetailPage", "Special", new { special_id = @highlight.SpecialHighlight.ItemID })'>Check this Hightlight</a>
-
-                        }
-                    }
-                }
-            </p>*@
-        @*</section>
-            </section>*@
+       
     </div>
 
 </div>
 
 <h2>International Haarlems Film Festival</h2>
-<div class="cycle-slideshow">
 
-
-    @*<img src="http://imgur.com/gkrNHAA.png" />
-        <img src="http://imgur.com/RK1RAOO.png" />
-        <img src="http://imgur.com/mQ8jAKP.png" />*@
-</div>
 
 <p>
     Welcome to Haarlem and welcome to the international Haarlem film festival (IHFF). This year’s theme is The Science of Fiction / Celluloid Realism. Ever since Georges Méliès, film is preeminently the medium where experiments and vision go hand in hand.
@@ -124,25 +70,25 @@
         <tr>
             <td>
                 <a href='@Url.Action("MovieOverview","Movies")'>
-                    <img class="home-img" src="http://imgur.com/XSFRr5r.png" />
-                </a>
+                    <img class="home-img" src="http://imgur.com/XSFRr5r.png" /><section class="PlaatjeTitelHomeSect"><h2 class="PlaatjeTitelHome">Movies</h2></section>
+</a>
             </td>
             <td>
                 <a href='@Url.Action("SpecialOverview","Special")'>
-                    <img class="home-img" src="http://imgur.com/R1CIgL9.png" />
-                </a>
+                    <img class="home-img" src="http://imgur.com/R1CIgL9.png" /><section class="PlaatjeTitelHomeSect"><h2 class="PlaatjeTitelHome">Specials</h2></section>
+</a>
             </td>
         </tr>
         <tr>
             <td>
                 <a href='@Url.Action("FoodOverview","Food")'>
-                    <img class="home-img" src="http://imgur.com/fIB7oKA.png" />
+                    <img class="home-img" src="http://imgur.com/fIB7oKA.png" /><section class="PlaatjeTitelHomeSect"><h2 class="PlaatjeTitelHome">Food</h2></section>
                 </a>
             </td>
             <td>
                 <a href='@Url.Action("MuseumOverview", "Culture")'>
-                    <img class="home-img" src="http://imgur.com/yFbBrhm.png" />
-                </a>
+                    <img class="home-img" src="http://imgur.com/yFbBrhm.png" /><section class="PlaatjeTitelHomeSect"><h2 class="PlaatjeTitelHome">Culture</h2></section>
+</a>
             </td>
         </tr>
     </tbody>
