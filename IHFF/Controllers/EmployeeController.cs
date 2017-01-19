@@ -49,13 +49,13 @@ namespace IHFF.Controllers
         [Authorize]
         public ActionResult ManagementWindow()
         {
-            if (Session["loggedin_employee"] != null) //Check of de Session nog bestaat, workaround voor Cookie bug
+            if (Session["loggedin_employee"] == null) //Check of de Session niet bestaat, workaround voor Cookie bug
             {
-                IEnumerable<EventListRepresentation> events = db.GetAllEvents();
-                return View(events);
+                FormsAuthentication.SignOut(); //Clear cookie omdat gebruiker niet ingelogd is.(MVC bug)
+                return RedirectToAction("LogIn");
             }
-            FormsAuthentication.SignOut(); //Clear cookie omdat gebruiker niet ingelogd is.(MVC bug)
-            return RedirectToAction("LogIn");
+            IEnumerable<EventListRepresentation> events = db.GetAllEvents(); //Session is niet leeg dus kunnen we doorgaan
+            return View(events);
         }
         [HttpPost]
         [Authorize]
@@ -63,7 +63,7 @@ namespace IHFF.Controllers
         {
             FormsAuthentication.SignOut(); //Uitloggen          
             Session["loggedin_employee"] = null; //Session leegmaken
-            return RedirectToAction("Index", "Home");         
+            return RedirectToAction("Index", "Home");
         }
         [Authorize]
         public ActionResult EditMovie(int? id)
@@ -72,10 +72,12 @@ namespace IHFF.Controllers
             if (id != null)
             {
                 Movie movie = db.GetMovie(id.Value);
-                MovieInputModel mov = new MovieInputModel();
-                mov.ConvertToMovieInputModel(movie);
-                if (mov != null)
+                if (movie != null)
+                {
+                    MovieInputModel mov = new MovieInputModel();
+                    mov.ConvertToMovieInputModel(movie);
                     return View(mov);
+                }
             }
             return RedirectToAction("ManagementWindow");
 
@@ -87,10 +89,12 @@ namespace IHFF.Controllers
             if (id != null)
             {
                 Special special = db.GetSpecial(id.Value);
-                SpecialInputModel spc = new SpecialInputModel();
-                spc.ConvertToSpecialInputModel(special);
-                if (spc != null)
+                if (special != null)
+                {
+                    SpecialInputModel spc = new SpecialInputModel();
+                    spc.ConvertToSpecialInputModel(special);
                     return View(spc);
+                }
             }
             return RedirectToAction("ManagementWindow");
         }
@@ -101,9 +105,12 @@ namespace IHFF.Controllers
             if (id != null)
             {
                 Museum museum = db.GetMuseum(id.Value);
-                MuseumInputModel mus = new MuseumInputModel();
-                mus.ConvertToMuseumInputModel(museum);
-                return View(mus);
+                if (museum != null)
+                {
+                    MuseumInputModel mus = new MuseumInputModel();
+                    mus.ConvertToMuseumInputModel(museum);
+                    return View(mus);
+                }
             }
             return RedirectToAction("ManagementWindow");
 
@@ -115,9 +122,12 @@ namespace IHFF.Controllers
             if (id != null)
             {
                 Restaurant restaurant = db.GetRestaurant(id.Value);
-                RestaurantInputModel rst = new RestaurantInputModel();
-                rst.ConvertToRestaurantInputModel(restaurant);
-                return View(rst);
+                if (restaurant != null)
+                {
+                    RestaurantInputModel rst = new RestaurantInputModel();
+                    rst.ConvertToRestaurantInputModel(restaurant);
+                    return View(rst);
+                }
             }
             return RedirectToAction("ManagementWindow");
         }
@@ -266,11 +276,11 @@ namespace IHFF.Controllers
             m.MuseumLocatie.Naam = m.Naam;
             if (ModelState.IsValid)
             {
-                Museum mus = new Museum();                            
+                Museum mus = new Museum();
                 mus.ConvertFromMuseumInputModel(m);
                 m.MuseumLocatie.Naam = m.Naam;
                 mus.MuseumAfbeelding = new Afbeelding(null, mus.MuseumID, null, afbLink, "museumbanner");
-                mus.MuseumLocatie = m.MuseumLocatie;             
+                mus.MuseumLocatie = m.MuseumLocatie;
                 db.AddMuseum(mus);
                 return RedirectToAction("ManagementWindow");
             }
@@ -286,7 +296,7 @@ namespace IHFF.Controllers
         [Authorize]
         [HttpPost]
         public ActionResult AddRestaurant(RestaurantInputModel r, string afbLink)
-        {            
+        {
             if (ModelState.IsValid)
             {
                 Restaurant rst = new Restaurant();

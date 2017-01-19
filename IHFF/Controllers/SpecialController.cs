@@ -18,7 +18,7 @@ namespace IHFF.Controllers
         // GET: Special
         public ActionResult Index()
         {
-            return View("SpecialOverview");
+            return RedirectToAction("SpecialOverview");
         }
 
         public ActionResult SpecialOverview()
@@ -61,7 +61,6 @@ namespace IHFF.Controllers
                 {
                     MakeEventHelper.MakeEvent(voorstellingId.Value, sInput.Specialbestellinginputmodel.Aantal, button);
                 }
-
                 Special s = dbSpecial.GetSpecialByVoorstellingID(voorstellingId.Value);
                 return View(s);
             }

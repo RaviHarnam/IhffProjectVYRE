@@ -21,14 +21,14 @@ namespace IHFF.Helpers
 
         public static void MakeEvent(int voorstellingId, int aantal, string button) // gebruik deze helper methode om niet steeds dezelfde code in mijn controller te gebruike.
         {
-            MakeEventHelper eventHelper = new MakeEventHelper();
+
             bool eventAlInCart = false;
-            Voorstelling v = eventHelper.dbVoorstelling.GetVoorstelling(voorstellingId);
+            Voorstelling v = dbVoorstelling.GetVoorstelling(voorstellingId);
             if (v.GereserveerdePlaatsen < v.MaxPlaatsen)
             {
-                
+
                 Event eventx = new Event();
-                Item i = eventHelper.dbItemRespository.GetItem(v.ItemID);
+                Item i = dbItemRespository.GetItem(v.ItemID);
                 eventx.Aantal = aantal;
                 eventx.DatumTijd = v.BeginTijd;
                 eventx.Prijs = v.Prijs;
@@ -39,18 +39,19 @@ namespace IHFF.Helpers
 
                 List<Event> cartlist = (List<Event>)HttpContext.Current.Session[button]; // als er al een lijst met events bestaat voeg alle events toe aan de lijst waarmee gewerkt kan worden 
 
-                foreach (Event ev in cartlist) {
+                foreach (Event ev in cartlist)
+                {
                     if (ev.VoorstellingID == v.VoorstellingID)
                     {
                         ev.Aantal += eventx.Aantal;
                         eventAlInCart = true;
                     }
                 }
-                if(!eventAlInCart)
+                if (!eventAlInCart)
                 {
                     cartlist.Add(eventx);
                 }
-                
+
                 HttpContext.Current.Session[button] = cartlist;
             }
         }

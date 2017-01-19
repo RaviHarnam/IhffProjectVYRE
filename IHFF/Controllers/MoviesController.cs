@@ -30,7 +30,6 @@ namespace IHFF.Controllers
         [HttpPost]
         public ActionResult MovieOverview(int? voorstellingId, Movie mInput, string button) // post een movie naar de cart vanuit movieoverview dmv input model en eventHelper
         {
-
             if (ModelState.IsValid)
             {
                 MakeEventHelper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, button);

@@ -11,8 +11,8 @@ namespace IHFF.Controllers
     public class FoodController : Controller
     {
         private IFoodRepository dbFood = new DbFoodRepository();
-        IMealRepository dbMeal = new DbMealRepository();
-
+        private IMealRepository dbMeal = new DbMealRepository();
+        
         // GET: Food
         public ActionResult Index()
         {
@@ -29,7 +29,6 @@ namespace IHFF.Controllers
             if (food_id != null)
             {
                 Restaurant restaurant = dbFood.GetRestaurant(food_id.Value);
-
                 return View(restaurant);
             }
             return RedirectToAction("FoodOverview");
@@ -79,60 +78,59 @@ namespace IHFF.Controllers
             }
             return View(rst);
         }
-           
 
-    [HttpPost]
-    public ActionResult FoodOverview(string restaurantid, string aantal, int? maaltijdid, int? maaltijdUur, string minuten, Restaurant r) //Cart
-    {
-        int rstid = 0;
-        if (int.TryParse(restaurantid, out rstid) && maaltijdid != null && maaltijdUur != null)
+
+        [HttpPost]
+        public ActionResult FoodOverview(string restaurantid, string aantal, int? maaltijdid, int? maaltijdUur, string minuten, Restaurant r) //Cart
         {
-            Restaurant rst = dbFood.GetRestaurant(rstid);
-            if (ModelState.IsValid)
+            int rstid = 0;
+            if (int.TryParse(restaurantid, out rstid) && maaltijdid != null && maaltijdUur != null)
             {
-                Event eventx = new Event();
-                eventx.Aantal = r.MaaltijdInputModel.Aantal;
-                Maaltijd m = dbMeal.GetMaaltijd(maaltijdid.Value);
-
-                //Uren
-                eventx.DatumTijd = m.BeginTijd;
-                eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(eventx.DatumTijd.Hour, 0, 0);
-                eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(maaltijdUur.Value, 0, 0);
-                //Minuten
-                eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(0, eventx.DatumTijd.Minute, 0);
-                eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(0, r.MaaltijdInputModel.minuten, 0);
-                //Rest
-                eventx.Titel = m.MaaltijdRestaurant.Naam;
-                eventx.Prijs = m.MaaltijdPrijs;
-                eventx.MaaltijdID = m.MaaltijdID;
-                if (Request.Form["buttoncart"] != null)
+                Restaurant rst = dbFood.GetRestaurant(rstid);
+                if (ModelState.IsValid)
                 {
-                    if (Session["cart"] == null)
-                        Session["cart"] = new List<Event>();
+                    Event eventx = new Event();
+                    eventx.Aantal = r.MaaltijdInputModel.Aantal;
+                    Maaltijd m = dbMeal.GetMaaltijd(maaltijdid.Value);
 
-                    List<Event> cartlist = (List<Event>)Session["cart"];
-                    cartlist.Add(eventx);
-                    Session["cart"] = cartlist;
-                }
-                else if (Request.Form["buttonwish"] != null)
-                {
-                    if (Session["wishlist"] == null)
-                        Session["wishlist"] = new List<Event>();
+                    //Uren
+                    eventx.DatumTijd = m.BeginTijd;
+                    eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(eventx.DatumTijd.Hour, 0, 0);
+                    eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(maaltijdUur.Value, 0, 0);
+                    //Minuten
+                    eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(0, eventx.DatumTijd.Minute, 0);
+                    eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(0, r.MaaltijdInputModel.minuten, 0);
+                    //Rest
+                    eventx.Titel = m.MaaltijdRestaurant.Naam;
+                    eventx.Prijs = m.MaaltijdPrijs;
+                    eventx.MaaltijdID = m.MaaltijdID;
+                    if (Request.Form["buttoncart"] != null)
+                    {
+                        if (Session["cart"] == null)
+                            Session["cart"] = new List<Event>();
 
-                    List<Event> wishlistList = (List<Event>)Session["wishlist"];
-                    wishlistList.Add(eventx);
-                    Session["wishlist"] = wishlistList;
+                        List<Event> cartlist = (List<Event>)Session["cart"];
+                        cartlist.Add(eventx);
+                        Session["cart"] = cartlist;
+                    }
+                    else if (Request.Form["buttonwish"] != null)
+                    {
+                        if (Session["wishlist"] == null)
+                            Session["wishlist"] = new List<Event>();
+
+                        List<Event> wishlistList = (List<Event>)Session["wishlist"];
+                        wishlistList.Add(eventx);
+                        Session["wishlist"] = wishlistList;
+                    }
                 }
             }
+            return RedirectToAction("FoodOverview");
         }
 
-        return RedirectToAction("FoodOverview");
+        public ActionResult FillUren(int maaltijdId)
+        {
+            var uren = dbFood.GetUren(maaltijdId);
+            return Json(uren, JsonRequestBehavior.AllowGet);
+        }
     }
-
-    public ActionResult FillUren(int maaltijdId)
-    {
-        var uren = dbFood.GetUren(maaltijdId);
-        return Json(uren, JsonRequestBehavior.AllowGet);
-    }
-}
 }

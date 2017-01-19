@@ -28,7 +28,7 @@
 @*DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)) //lopen door juiste dagen*@
 <div class="schedule">
     @foreach (int dagIndex in dagen) //Loop door dagen
-    {    
+    {
         DayOfWeek day = (DayOfWeek)dagIndex; //Dag van de week die nu aan de beurt is
         <h2>@day</h2>
         <table class="dagvandeweek">
@@ -115,17 +115,17 @@
                                 for (DateTime i = beginRooster; i <= EindRooster; i = i.AddMinutes(30)) //Maken van gevulde hokjes
                                 {
                                     int aantalHokjes = (int)((vo.EindTijd - vo.BeginTijd).TotalMinutes / 30); //Aantal halve uren
-                                    
+                                                                                                              //Berekenen wijdte van hokje = aantalHokjes * ...px of %;
                                     if (i == beginRooster) //Maken van hokje voor movie met titel erin
                                     {
                                         if (vo.VoorstellingItem is Movie)
                                         {
-                                            <td title="@vo.VoorstellingItem.Titel" class="location-zichtbaar">@Html.ActionLink(vo.VoorstellingItem.Titel, "MovieDetailPage", "Movies", new {movie_id = vo.ItemID}, new { @Class = "link" })</td>
+                                            <td title="@vo.VoorstellingItem.Titel" class="location-zichtbaar">@Html.ActionLink(vo.VoorstellingItem.Titel, "MovieDetailPage", "Movies", new { movie_id = vo.ItemID }, new { @Class = "link" })</td>
                                         }
                                         else //Special (met titel)
                                         {
-                                            <td title="@vo.VoorstellingItem.Titel" class="location-zichtbaar">@Html.ActionLink(vo.VoorstellingItem.Titel, "SpecialDetailPage", "Special", new {special_id = vo.ItemID}, new {@Class = "link"})</td>
-                                        }                                       
+                                            <td title="@vo.VoorstellingItem.Titel" class="location-zichtbaar">@Html.ActionLink(vo.VoorstellingItem.Titel, "SpecialDetailPage", "Special", new { special_id = vo.ItemID }, new { @Class = "link" })</td>
+                                        }
                                     }
                                     else //Hokjes zonder titel
                                     {

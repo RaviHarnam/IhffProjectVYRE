@@ -15,7 +15,6 @@ namespace IHFF.Controllers
         {
             return RedirectToAction("AboutUs");
         }
-
         public ActionResult AboutUs()
         {            
             return View();

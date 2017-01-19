@@ -76,13 +76,8 @@
 
                                 </div>
                                 <p class="movie_index_item_title">@Html.ActionLink(Model.ElementAt(movieNr).Titel, "MovieDetailPage", "Movies", new { movie_id = Model.ElementAt(movieNr).ItemID }, null) </p>
-
-
                             </td>
-
-
                             { movieNr++; }
-
 
                         }
                     }

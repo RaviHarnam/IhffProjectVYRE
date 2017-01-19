@@ -20,14 +20,12 @@ namespace IHFF.Controllers
         public ActionResult HotelsOverview()
         {
             List<Hotel> hotels = db.GetAll();
-
             return View(hotels);
         }
 
         public ActionResult HotelDetailPage(int hotelId)
         {
             Hotel hotel = db.GetHotel(hotelId);
-
             return View(hotel);
         }
     }
