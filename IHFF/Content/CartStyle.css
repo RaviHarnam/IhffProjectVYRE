@@ -149,6 +149,9 @@ tr #Delete {
     background-color: darkcyan;
     color: white;
     font-size: 10px;
+    max-width: 35px;
+    overflow: visible;
+    
 }
 .halfuur-header{
     color: transparent;
@@ -168,4 +171,8 @@ tr #Delete {
     font-size: 14px;
     color: darkslategrey;
     text-align: center;
+}
+
+.dagvandeweek th{
+	font-size: 11px;
 }
