@@ -51,13 +51,13 @@ namespace IHFF.Controllers
         [Authorize]
         public ActionResult ManagementWindow()
         {
-            if (Session["loggedin_employee"] != null) //Check of de Session nog bestaat, workaround voor Cookie bug
+            if (Session["loggedin_employee"] == null) //Check of de Session niet bestaat, workaround voor Cookie bug
             {
-                IEnumerable<EventListRepresentation> events = db.GetAllEvents();
-                return View(events);
+                FormsAuthentication.SignOut(); //Clear cookie omdat gebruiker niet ingelogd is.(MVC bug)
+                return RedirectToAction("LogIn");
             }
-            FormsAuthentication.SignOut(); //Clear cookie omdat gebruiker niet ingelogd is.(MVC bug)
-            return RedirectToAction("LogIn");
+            IEnumerable<EventListRepresentation> events = db.GetAllEvents(); //Session is niet leeg dus kunnen we doorgaan
+            return View(events);
         }
         [HttpPost]
         [Authorize]
@@ -74,10 +74,12 @@ namespace IHFF.Controllers
             if (id != null)
             {
                 Movie movie = db.GetMovie(id.Value);
-                MovieInputModel mov = new MovieInputModel();
-                mov.ConvertToMovieInputModel(movie);
-                if (mov != null)
+                if (movie != null)
+                {
+                    MovieInputModel mov = new MovieInputModel();
+                    mov.ConvertToMovieInputModel(movie);
                     return View(mov);
+                }
             }
             return RedirectToAction("ManagementWindow");
 
@@ -89,10 +91,12 @@ namespace IHFF.Controllers
             if (id != null)
             {
                 Special special = db.GetSpecial(id.Value);
-                SpecialInputModel spc = new SpecialInputModel();
-                spc.ConvertToSpecialInputModel(special);
-                if (spc != null)
+                if (special != null)
+                {
+                    SpecialInputModel spc = new SpecialInputModel();
+                    spc.ConvertToSpecialInputModel(special);
                     return View(spc);
+                }
             }
             return RedirectToAction("ManagementWindow");
         }
@@ -103,9 +107,12 @@ namespace IHFF.Controllers
             if (id != null)
             {
                 Museum museum = db.GetMuseum(id.Value);
-                MuseumInputModel mus = new MuseumInputModel();
-                mus.ConvertToMuseumInputModel(museum);
-                return View(mus);
+                if (museum != null)
+                {
+                    MuseumInputModel mus = new MuseumInputModel();
+                    mus.ConvertToMuseumInputModel(museum);
+                    return View(mus);
+                }
             }
             return RedirectToAction("ManagementWindow");
 
@@ -117,9 +124,12 @@ namespace IHFF.Controllers
             if (id != null)
             {
                 Restaurant restaurant = db.GetRestaurant(id.Value);
-                RestaurantInputModel rst = new RestaurantInputModel();
-                rst.ConvertToRestaurantInputModel(restaurant);
-                return View(rst);
+                if (restaurant != null)
+                {
+                    RestaurantInputModel rst = new RestaurantInputModel();
+                    rst.ConvertToRestaurantInputModel(restaurant);
+                    return View(rst);
+                }
             }
             return RedirectToAction("ManagementWindow");
         }
@@ -131,6 +141,16 @@ namespace IHFF.Controllers
                 Hotel hotel = db.GetHotel(id.Value);
                 HotelInputModel hotelInputModel = new HotelInputModel(hotel);
                 return View(hotelInputModel);
+            }
+            return RedirectToAction("ManagementWindow");
+        }
+
+        public ActionResult EditNews(int? id)
+        {
+            if(id != null)
+            {
+                NewsMessage msg = db.GetNewsMessage(id.Value);
+                return View(msg);
             }
             return RedirectToAction("ManagementWindow");
         }
@@ -211,20 +231,12 @@ namespace IHFF.Controllers
         }
 
         [Authorize]
-        public ActionResult EditNews()
-        {
-            List<NewsMessage> news = dbNews.GetAll();
-            return View(news);
-        }
-
-        [Authorize]
         [HttpPost]
         public ActionResult EditNews(NewsMessage msg)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && db.GetNewsMessage(msg.Id) != null)
             {
-                NewsMessage msgToEdit = db.GetNewsMessage(msg.Id);
-                db.UpdateNews(msgToEdit);
+                db.UpdateNews(msg);
             }
             else
                 ModelState.AddModelError("edit-error", "The News message you tried to edit had some incorrectly filled fields.");
@@ -341,10 +353,12 @@ namespace IHFF.Controllers
             if (ModelState.IsValid)
             {
                 Museum mus = new Museum();
+
                 mus.ConvertFromAddInputModel(m);
                 m.MuseumLocatie.Naam = m.Naam;
                 mus.MuseumAfbeelding = new Afbeelding(null, mus.MuseumID, null, afbLink, "museumbanner");
                 mus.OverviewAfbeelding = new Afbeelding(null, mus.MuseumID, null, afbLinkOverview, "museumoverview");
+
                 mus.MuseumLocatie = m.MuseumLocatie;
                 db.AddMuseum(mus);
                 return RedirectToAction("ManagementWindow");
@@ -361,6 +375,7 @@ namespace IHFF.Controllers
         [Authorize]
         [HttpPost]
         public ActionResult AddRestaurant(RestaurantInputModel r, string afbLink, string afbLinkOverview)
+
         {
             if (ModelState.IsValid)
             {

@@ -300,6 +300,7 @@
     <Content Include="Content\Master.css" />
     <Content Include="Content\MovieDetailPageStyle.css" />
     <Content Include="Content\MuseumStyle.css" />
+    <Content Include="Content\NewsStyle.css" />
     <Content Include="Content\overview.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

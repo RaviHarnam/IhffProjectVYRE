@@ -33,8 +33,12 @@ body {
     margin-top: 20px;
     margin-bottom: 5%;
 }
-
-.side-buttons button {
+.side-buttons-link{
+        position: absolute;
+        width: 180px;
+        height: 180px;
+}
+.side-buttons section {
     width: 11.25em;
     height: 11.25em;
     background-color:#06AED5;
@@ -43,14 +47,17 @@ body {
     border-style: none;
 }
 
-.side-buttons button:hover{
+.side-buttons section:hover{
     background-color: #086788; 
 }
 
-.side-buttons button p{
+.side-buttons section p{
+    position: relative;
     color: white;
     font-size: 150%;
     font-weight: bold;
+    top: 70px;
+    text-align: center;
 }
 
 .top-menu-bar {

@@ -10,22 +10,25 @@ namespace IHFF.Models
     public class Event
     {
         public int EventID { get; set; }
-
         public string Titel { get; set; }
         public int BestellingID { get; set; }
         public int? VoorstellingID { get; set; }
         public decimal Prijs { get; set; }
         public int Aantal { get; set; }
-        public DateTime DatumTijd { get; set; }
-        [NotMapped]
-        public string GeselecteerdeDatumTijd { get; set; }
+        public DateTime DatumTijd { get; set; }       
         public int? MaaltijdID { get; set; }
-        public Event() { }
+
+        public Event()
+        {
+        }
+
 
         [NotMapped]
         public int CartId { get; set; }
         [NotMapped]
         public int WishListId { get; set; }
+
+
         [NotMapped]
         public virtual Voorstelling EventVoorstelling { get; set; }
         [NotMapped]
@@ -39,6 +42,7 @@ namespace IHFF.Models
                 return Prijs * Aantal;
             else
                 return Prijs;
+
         }
     }
 
