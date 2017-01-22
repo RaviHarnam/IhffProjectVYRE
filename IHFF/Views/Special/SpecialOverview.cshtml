@@ -63,7 +63,7 @@
                                                         @Html.Partial("_SpecialOverview", @Model.ElementAt(specialNr))
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <h3>Do you have dinner plans yet? <!--Html.ActionLink("", "", "", null, new {Class = "" })--></h3>
+                                                        <h3>@Html.ActionLink("Do you have dinner plans yet?", "FoodOverview", "Food", null, new { Class = "crosssellingDiner" })</h3>
                                                     </div>
                                                 </article>
                                             </div>

@@ -37,7 +37,7 @@ namespace IHFF.Controllers
                     {
                         if (ev.Prijs != 0)
                         {
-                            korting = decimal.Parse("0.05");
+                            korting = (decimal)(5 / (double)100);
                         }
                     }
                 }

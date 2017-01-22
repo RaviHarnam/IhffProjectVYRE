@@ -11,8 +11,8 @@ namespace IHFF.Controllers
     public class FoodController : Controller
     {
         private IFoodRepository dbFood = new DbFoodRepository();
-        IMealRepository dbMeal = new DbMealRepository();
-
+        private IMealRepository dbMeal = new DbMealRepository();
+        
         // GET: Food
         public ActionResult Index()
         {
@@ -29,7 +29,6 @@ namespace IHFF.Controllers
             if (food_id != null)
             {
                 Restaurant restaurant = dbFood.GetRestaurant(food_id.Value);
-
                 return View(restaurant);
             }
             return RedirectToAction("FoodOverview");
@@ -103,16 +102,19 @@ namespace IHFF.Controllers
                     //Minuten
                     eventx.DatumTijd = eventx.DatumTijd - new TimeSpan(0, eventx.DatumTijd.Minute, 0);
                     eventx.DatumTijd = eventx.DatumTijd + new TimeSpan(0, r.MaaltijdInputModel.minuten, 0);
-                    eventx.EventEindTijd = eventx.DatumTijd + new TimeSpan(2, 30, 0); 
+
+                    
                     //Rest
                     eventx.Titel = m.MaaltijdRestaurant.Naam;
-                    eventx.EventMaaltijd = m;                    
+                    eventx.EventMaaltijd = m;
+                    eventx.EventEindTijd = eventx.DatumTijd + new TimeSpan(2, 30, 0);//Voeg 2.5 uur toe
                     eventx.Prijs = m.MaaltijdPrijs;
                     eventx.MaaltijdID = m.MaaltijdID;
                     if (Request.Form["buttoncart"] != null)
                     {
                         if (Session["cart"] == null)
                             Session["cart"] = new List<Event>();
+
 
                         List<Event> cartlist = (List<Event>)Session["cart"];
                         cartlist.Add(eventx);
@@ -130,8 +132,10 @@ namespace IHFF.Controllers
                 }
             }
 
+
             return RedirectToAction("FoodOverview");
         }
+
 
         public ActionResult FillUren(int maaltijdId)
         {

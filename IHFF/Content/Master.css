@@ -225,7 +225,104 @@ h6{
     font-size: 70%;
 }
 
-.HomeBannerIMG{
- height: 50%;
- width: 100%;
+.cycle-slideshow{
+    width:100%;
+    height:50%;
+}
+ 
+#hero
+{
+    padding-top: 3%;
+    width:100%;
+    height:375px;
+    position:relative;
+    display: block;
+    margin-bottom: 45px;
+}
+
+#slider{
+    width:100%;
+    height:100%;
+    position: absolute;
+    overflow: hidden;
+}
+#slider h2{
+    padding: 10px;
+    z-index:105;
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    top: 320px;
+    color: white;
+    text-align: center;
+    background: rgba(0,0,0,0.6);
+}
+.PlaatjeTitelHome{    
+    
+    position: relative;
+    color: white;
+    top: -20px;  
+    
+}
+.PlaatjeTitelHomeSect{
+    position: absolute;
+    z-index: 5;
+    width: 32.25%;
+    margin-top: 10px;
+    height: 30px;    
+    text-align: center;
+    background: rgba(0,0,0,0.6);
+
+}
+#next
+{
+    text-align:center;
+    line-height:50px;
+    color:#FFF;
+    width:50px;
+    height:50px;
+    background: rgba(0,0,0,0.6);
+    position: absolute;
+    z-index:99;
+    cursor:pointer;
+    right:0;
+    top:40%;
+    opacity:0;
+}
+
+#prev
+{
+    text-align:center;
+    line-height:50px;
+    color:#FFF;
+    width:50px;
+    height:50px;
+    background: rgba(0,0,0,0.6);
+    position: absolute;
+    z-index:99;
+    cursor:pointer;
+    left:0;
+    top:40%;
+    opacity:0;
+}
+
+#hero:hover #next{
+    opacity:1;
+    transition:all .5s ease-out;
+    -webkit-transition:all .5s ease-out;
+
+}
+
+#hero:hover #prev{
+    opacity:1;
+    transition:all .5s ease-out;
+    -webkit-transition:all .5s ease-out;
+
+}
+
+
+
+
+div.slider img {
+    width: 100%;
 }

@@ -9,8 +9,6 @@ namespace IHFF.Controllers
 {
     public class WishListController : Controller
     {
-
-
         public ActionResult Index()
         {
             return RedirectToAction("Wishlist");

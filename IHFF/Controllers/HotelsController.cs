@@ -20,12 +20,12 @@ namespace IHFF.Controllers
         public ActionResult HotelsOverview()
         {
             List<Hotel> hotels = db.GetAll();
-
             return View(hotels);
         }
 
         public ActionResult HotelDetailPage(int? hotelId)
         {
+
             if (hotelId != null)
             {
                 Hotel hotel = db.GetHotel(hotelId.Value);
@@ -33,6 +33,7 @@ namespace IHFF.Controllers
                 return View(hotel);
             }
             return RedirectToAction("HotelsOverview");
+
         }
     }
 }

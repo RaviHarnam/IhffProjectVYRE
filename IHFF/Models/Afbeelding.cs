@@ -8,7 +8,7 @@ namespace IHFF.Models
 {
     public class Afbeelding
     {
-        [Key]
+        [Key]   
         public int AfbeeldingID { get; set; }
         [StringLength(100, ErrorMessage = "The Link field has a maximum size of 100.")]
         public string Link { get; set; }
