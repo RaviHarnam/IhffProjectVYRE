@@ -11,9 +11,6 @@ namespace IHFF.Controllers
 {
     public class CartController : Controller
     {
-
-
-
         public ActionResult Index()
         {
             return RedirectToAction("Cart");
@@ -60,7 +57,7 @@ namespace IHFF.Controllers
             else if (!string.IsNullOrWhiteSpace(Email) && pickup == "2") //Send by Email
                 if (!string.IsNullOrWhiteSpace(payment))
                     return RedirectToAction("Payment", "Payment", new { pickup = "Email", payment = payment, email = Email });
-            return View();
+            return RedirectToAction("Cart");
         }
         public ActionResult DeleteCartItem(List<Event> cartList, int? cartId)
         {
