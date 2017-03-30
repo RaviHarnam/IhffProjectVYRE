@@ -28,11 +28,11 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult MovieOverview(int? voorstellingId, Movie mInput, string button) // post een movie naar de cart vanuit movieoverview dmv input model en eventHelper
+        public ActionResult MovieOverview(int? voorstellingId, Movie mInput, string listType) // post een movie naar de cart vanuit movieoverview dmv input model en eventHelper listType geeft aan om welke lijst het gaat (wishlist of cart)
         {
             if (ModelState.IsValid)
             {
-                helper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, button);
+                helper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, listType);
             }
             return RedirectToAction("MovieOverview");
         }
@@ -53,13 +53,13 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult MovieDetailPage(int? voorstellingId, Movie mInput, string button) 
+        public ActionResult MovieDetailPage(int? voorstellingId, Movie mInput, string listType) 
         {
             if (voorstellingId != null)
             {
                 if (ModelState.IsValid)
                 {
-                    helper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, button);
+                    helper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, listType);
                 }
                 Movie movie = dbMovie.GetMovieByVoorstellingID(voorstellingId.Value);
                 return View(movie);

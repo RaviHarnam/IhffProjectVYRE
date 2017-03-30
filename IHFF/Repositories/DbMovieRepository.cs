@@ -16,10 +16,10 @@ namespace IHFF.Repositories
             // Loop door de lijst heen en vul de afbeeldingen en voorstellingen erin.
             foreach (Movie mov in movies)
             {
-                mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmoverview");
+                mov.ItemAfbeelding = HaalItemAfbeeldingOp(mov, "filmoverview", mov.ItemID);
+                //mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmoverview");
                 mov.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == mov.ItemID select v).ToList();
             }
-                        
             return movies;
         }
 
@@ -27,11 +27,16 @@ namespace IHFF.Repositories
         public Movie GetMovie(int id)
         {    
             Movie movie = ctx.MOVIES.SingleOrDefault(i => i.ItemID == id);
-
-            movie.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == movie.ItemID && a.Type == "filmbanner");
+            movie.ItemAfbeelding = HaalItemAfbeeldingOp(movie,"filmbanner", id);
+            //movie.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == movie.ItemID && a.Type == "filmbanner");
             movie.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemID == movie.ItemID select v.BeginTijd).ToList();
 
             return movie;
+        }
+
+        private Afbeelding HaalItemAfbeeldingOp(Movie movie, string soort, int? movieId)
+        {
+                return movie.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == movie.ItemID && a.Type == soort);
         }
 
         //haal de tijden van de movie op
@@ -54,7 +59,8 @@ namespace IHFF.Repositories
                       where m.ItemID == v.ItemID
                       && v.VoorstellingID == voorstellingid
                       select m).SingleOrDefault();
-            movie.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == movie.ItemID && a.Type == "filmbanner");
+            movie.ItemAfbeelding = HaalItemAfbeeldingOp(movie, "filmbanner", movie.ItemID);
+            //movie.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == movie.ItemID && a.Type == "filmbanner");
             movie.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == movie.ItemID select v).ToList();
             return movie;
         }
