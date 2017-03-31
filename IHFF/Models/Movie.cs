@@ -20,7 +20,7 @@ namespace IHFF.Models
         public string Director { get; set; }
         public string Stars { get; set; }
         public string Writers { get; set; }
-
+      
         [NotMapped]
         public virtual List<DateTime> Tijden { get; set; }
 
