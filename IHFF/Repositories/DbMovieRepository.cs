@@ -1,6 +1,7 @@
 ﻿using IHFF.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -51,6 +52,24 @@ namespace IHFF.Repositories
             return tijden;
         }
 
+        public List <Movie> getMoviesByDay(int dag)
+        {
+            DateTime eersteZondag = new DateTime(2017, 4, 30);
+            List<Movie> moviePerDag = new List<Movie>();
+
+            moviePerDag = (from v in ctx.VOORSTELLINGEN
+                           from m in ctx.MOVIES
+                           where (DbFunctions.DiffDays(eersteZondag, v.BeginTijd) % 7 == dag) && v.ItemID == m.ItemID
+                           select m).ToList();
+            foreach(Movie movie in moviePerDag)
+            {
+                movie.ItemAfbeelding = HaalItemAfbeeldingOp(movie, "filmoverview", movie.ItemID);
+                //mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmoverview");
+                movie.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == movie.ItemID select v).ToList();
+            }
+
+            return moviePerDag;
+        }
         // hier haal je een movie op op basis van de voorstellingID die deze movie heeft.
         public Movie GetMovieByVoorstellingID (int voorstellingid)
         {
@@ -64,6 +83,8 @@ namespace IHFF.Repositories
             movie.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == movie.ItemID select v).ToList();
             return movie;
         }
+
+
     }
 }
 

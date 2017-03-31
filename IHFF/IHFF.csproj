@@ -391,6 +391,7 @@
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Employee\AddNews.cshtml" />
     <Content Include="Views\Employee\EditNews.cshtml" />
+    <Content Include="Views\Movies\MovieOverviewByDay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

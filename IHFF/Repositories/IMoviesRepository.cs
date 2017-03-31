@@ -14,5 +14,6 @@ namespace IHFF.Repositories
         Movie GetMovie(int id);
         List<DateTime> GetMovieTijden(Movie movie);
         Movie GetMovieByVoorstellingID(int voorstellingid);
+        List<Movie> getMoviesByDay(int dag);
     }
 }
