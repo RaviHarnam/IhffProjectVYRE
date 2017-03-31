@@ -37,11 +37,11 @@ namespace IHFF.Helpers
                 eventx.EventVoorstelling = v;
                 eventx.VoorstellingID = v.VoorstellingID;
                 if (HttpContext.Current.Session[button] == null)
-                    HttpContext.Current.Session[button] = new List<Event>();
+                    HttpContext.Current.Session[button] = new Cart();
 
-                List<Event> cartlist = (List<Event>)HttpContext.Current.Session[button]; // als er al een lijst met events bestaat voeg alle events toe aan de lijst waarmee gewerkt kan worden 
+                Cart cartlist = (Cart)HttpContext.Current.Session[button]; // als er al een lijst met events bestaat voeg alle events toe aan de lijst waarmee gewerkt kan worden 
 
-                foreach (Event ev in cartlist)
+                foreach (Event ev in cartlist.Events)
                 {
                     if (ev.VoorstellingID == v.VoorstellingID)
                     {
@@ -51,7 +51,7 @@ namespace IHFF.Helpers
                 }
                 if (!eventAlInCart)
                 {
-                    cartlist.Add(eventx);
+                    cartlist.Events.Add(eventx);
                 }
 
                 HttpContext.Current.Session[button] = cartlist;

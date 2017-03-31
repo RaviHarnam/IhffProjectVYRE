@@ -113,11 +113,11 @@ namespace IHFF.Controllers
                     if (Request.Form["buttoncart"] != null)
                     {
                         if (Session["cart"] == null)
-                            Session["cart"] = new List<Event>();
+                            Session["cart"] = new Cart();
 
 
-                        List<Event> cartlist = (List<Event>)Session["cart"];
-                        cartlist.Add(eventx);
+                        Cart cartlist = (Cart)Session["cart"];
+                        cartlist.Events.Add(eventx);
                         Session["cart"] = cartlist;
                     }
                     else if (Request.Form["buttonwish"] != null)

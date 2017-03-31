@@ -13,10 +13,10 @@ namespace IHFF.Models
         public string Titel { get; set; }
         public int BestellingID { get; set; }
         public int? VoorstellingID { get; set; }
+        public int? MaaltijdID { get; set; }
         public decimal Prijs { get; set; }
         public int Aantal { get; set; }
         public DateTime DatumTijd { get; set; }       
-        public int? MaaltijdID { get; set; }
 
         public Event()
         {

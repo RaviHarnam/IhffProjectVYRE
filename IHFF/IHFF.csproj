@@ -223,6 +223,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Afbeelding.cs" />
     <Compile Include="Models\Bestelling.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ComboDeal.cs" />
     <Compile Include="Models\Highlight.cs" />
     <Compile Include="Models\Input\AfbeeldingInputModel.cs" />

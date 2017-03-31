@@ -18,70 +18,52 @@ namespace IHFF.Controllers
 
         public ActionResult Cart()
         {
+            Cart cart = new Cart();
+
             if (Session["cart"] == null)
-                Session["cart"] = new List<Event>();
+                Session["cart"] = new Cart();
 
-            List<Event> cartList = (List<Event>)Session["cart"];
-            decimal totaal = 0;
+            cart = (Cart)Session["cart"];
 
-            decimal korting = 0;
-            foreach (Event ev in cartList)
-            {
-                ev.CartId = cartList.IndexOf(ev);          
-                if (ev.EventVoorstelling != null)
-                {
-                    if (cartList.Where(m => m.EventVoorstelling != null).Count() > 1)
-                    {
-                        if (ev.Prijs != 0)
-                        {
-                            korting = (decimal)(5 / (double)100);
-                        }
-                    }
-                }
-                totaal += ev.BerekenTotaalPrijs();                         
-            }
-            totaal = totaal - (totaal * korting);
-            totaal = Math.Round(totaal, 2, MidpointRounding.AwayFromZero);
-            Session["cart"] = cartList;
-            Session["totaalPrijs"] = totaal;
-            return View("Index", cartList);
+            cart.BerekenTotaal();
+
+            Session["cart"] = cart;
+            return View("Index", cart);
         }
+
         [HttpPost]
         public ActionResult Cart(string Email, string Name, string payment, string pickup)
         {
-            if (!string.IsNullOrWhiteSpace(Name) && pickup == "1") //Desk
+            if (ModelState.IsValid)
             {
-                if (!string.IsNullOrWhiteSpace(payment))
+                if (pickup == "1") //Desk
                     return RedirectToAction("Payment", "Payment", new { pickup = "Desk", payment = payment, name = Name });
-            }
-            else if (!string.IsNullOrWhiteSpace(Email) && pickup == "2") //Send by Email
-                if (!string.IsNullOrWhiteSpace(payment))
+
+                else if (pickup == "2") //Send by Email
                     return RedirectToAction("Payment", "Payment", new { pickup = "Email", payment = payment, email = Email });
+            }
+
             return RedirectToAction("Cart");
         }
-        public ActionResult DeleteCartItem(List<Event> cartList, int? cartId)
+
+        public ActionResult DeleteCartItem(int eventId)
         {
-            if (cartId != null)
-            {
-                if (Session["cart"] == null)
-                    Session["cart"] = new List<Event>();
+            Cart cart = (Cart)Session["cart"];
 
-                cartList = (List<Event>)Session["cart"];
+            Event toRemove = null;
 
-                Event toRemove = null;
+            foreach (Event eventx in cart.Events)
+                if (eventx.EventID == eventId)
+                {
+                    toRemove = eventx;
+                    break;
+                }
 
-                foreach (Event eventx in cartList)
-                    if (eventx.CartId == cartId)
-                        toRemove = eventx;
+            cart.Events.Remove(toRemove);
 
-                cartList.Remove(toRemove);
+            Session["cart"] = cart;
 
-                foreach (Event ev in cartList)
-                    ev.CartId = cartList.IndexOf(ev);
-
-                Session["cart"] = cartList;
-            }
-            return RedirectToAction("Index", cartList);
+            return RedirectToAction("Index", cart);
 
         }
     }
