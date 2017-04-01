@@ -24,13 +24,15 @@ namespace IHFF.Controllers
         public ActionResult MovieOverviewByDay(int dag)
         {
             IEnumerable<Movie> movies = dbMovie.getMoviesByDay(dag);
-            
-            if(movies == null)
+
+            if (!movies.Any())
             {
                 return View("Er zijn nog geen films voor deze dag beschikbaar");
             }
-          
-             return View(movies);
+            else
+            {
+                return View("~/Views/Movies/MovieOverview.cshtml",movies);
+            }
       
         }
         public ActionResult MovieOverview() // haal alle films op en zet ze in een overview

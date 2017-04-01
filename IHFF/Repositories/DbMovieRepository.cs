@@ -55,8 +55,9 @@ namespace IHFF.Repositories
         public List <Movie> getMoviesByDay(int dag)
         {
             DateTime eersteZondag = new DateTime(2017, 4, 30);
+            
             List<Movie> moviePerDag = new List<Movie>();
-
+                           
             moviePerDag = (from v in ctx.VOORSTELLINGEN
                            from m in ctx.MOVIES
                            where (DbFunctions.DiffDays(eersteZondag, v.BeginTijd) % 7 == dag) && v.ItemID == m.ItemID
