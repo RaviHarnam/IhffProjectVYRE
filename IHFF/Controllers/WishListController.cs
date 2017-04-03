@@ -17,12 +17,12 @@ namespace IHFF.Controllers
         public ActionResult Wishlist()
         {
             if (Session["wishlist"] == null)
-                Session["wishlist"] = new List<Event>();
+                Session["wishlist"] = new Cart();
 
-            List<Event> wishList = (List<Event>)Session["wishlist"];
+            Cart wishList = (Cart) Session["wishlist"];
 
-            foreach (Event eventx in wishList)
-                eventx.CartId = wishList.IndexOf(eventx); // assign cartid aan event
+            foreach (Event eventx in wishList.Events)
+                eventx.CartId = wishList.Events.IndexOf(eventx); // assign cartid aan event
 
             Session["wishlist"] = wishList; // sla hem weer op in de session
 
@@ -34,17 +34,17 @@ namespace IHFF.Controllers
         public ActionResult WishlistPost() // post de events uit wishlist naar cart.
         {
             if(Session["cart"] == null)            
-                Session["cart"] = new List<Event>();
+                Session["cart"] = new Cart();
 
-            List<Event> cartEvents = (List<Event>)Session["cart"];
+            Cart cartEvents = (Cart)Session["cart"];
             if (Session["wishlist"] != null)
             {
-                List<Event> events = (List<Event>)Session["wishlist"];
-                if(events.Count > 0)
+                Cart events = (Cart)Session["wishlist"];
+                if(events.Events.Count > 0)
                 {
-                    foreach(Event ev in events)
+                    foreach(Event ev in events.Events)
                     {
-                        cartEvents.Add(ev);
+                        cartEvents.Events.Add(ev);
                     }
                     Session["cart"] = cartEvents;
                 }
@@ -52,25 +52,22 @@ namespace IHFF.Controllers
             return RedirectToAction("Wishlist");
         }
 
-        public ActionResult DeleteWishItem(List<Event> wishList, int? wishlistId) // delete een specifieke wishlist item uit de lijst
+        public ActionResult DeleteWishItem(Cart wishList, int? wishlistId) // delete een specifieke wishlist item uit de lijst
         {
             if (wishlistId != null)
             {
-                if (Session["wishlist"] == null)
-                    Session["wishlist"] = new List<Event>();
-
-                wishList = (List<Event>)Session["wishlist"];
+                wishList = (Cart)Session["wishlist"];
 
                 Event toRemove = null;
 
-                foreach (Event eventx in wishList)
+                foreach (Event eventx in wishList.Events)
                     if (eventx.CartId == wishlistId)
                         toRemove = eventx;
 
-                wishList.Remove(toRemove);
+                wishList.Events.Remove(toRemove);
 
-                foreach (Event ev in wishList)
-                    ev.CartId = wishList.IndexOf(ev);
+                foreach (Event ev in wishList.Events)
+                    ev.CartId = wishList.Events.IndexOf(ev);
 
                 Session["wishlist"] = wishList;
             }

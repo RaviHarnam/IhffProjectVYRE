@@ -46,7 +46,13 @@ namespace IHFF.Controllers
         {
             if (ModelState.IsValid)
             {
-                helper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, listType);
+                Cart cart = new Cart();
+                if (Session[listType] != null)
+                {
+                    cart = (Cart)Session[listType];
+                }
+
+                Session[listType] = cart.AddItem(voorstellingId.Value, mInput.Aantal);
             }
             return RedirectToAction("MovieOverview");
         }

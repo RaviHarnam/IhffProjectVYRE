@@ -6,12 +6,12 @@
     ViewBag.Title = "WishList";
 
 }
-@model IEnumerable<Event>
+@model Cart
 
 @{List<Locatie> locaties = new List<Locatie>();}
 @{List<Zaal> zalen = new List<Zaal>(); }
 
-@foreach (Event ev in Model) //Lijst van locaties
+@foreach (Event ev in Model.Events) //Lijst van locaties
 {
     Locatie loc = null;
     if (ev.EventMaaltijd != null)
@@ -27,7 +27,7 @@
         locaties.Add(loc);
     }
 }
-@foreach (Event ev in Model) //Lijst van voorstellingzalen
+@foreach (Event ev in Model.Events) //Lijst van voorstellingzalen
 {
     if (ev.EventVoorstelling != null)
     {
@@ -57,7 +57,7 @@
                 <th class="Price"><h3>Price</h3></th>
                 <th class="Delete"><h3>Delete</h3></th>
             </tr>
-            @foreach (Event m in Model)
+            @foreach (Event m in Model.Events)
             {
 
                 <tr class="CartContent">
@@ -126,7 +126,7 @@
                             @*@{Event eve = Model.SingleOrDefault(m => m.DatumTijd.DayOfWeek == day && m.EventMaaltijd.MaaltijdLocatie == l) ?? new Event();}*@
 
                             @{Event vorige = null;}
-                            @foreach (Event ev in Model.Where(m => m.DatumTijd.DayOfWeek == day).OrderBy(m => m.DatumTijd))
+                            @foreach (Event ev in Model.Events.Where(m => m.DatumTijd.DayOfWeek == day).OrderBy(m => m.DatumTijd))
                             {
                                 if (ev.EventMaaltijd != null)
                                 {
@@ -183,7 +183,7 @@
 
                                         @{Event vorigeVo = null;}
 
-                                        @foreach (Event ev in Model.Where(m => m.DatumTijd.DayOfWeek == day).OrderBy(m => m.DatumTijd))
+                                        @foreach (Event ev in Model.Events.Where(m => m.DatumTijd.DayOfWeek == day).OrderBy(m => m.DatumTijd))
                                         {
                                             if (ev.EventVoorstelling != null)
                                             {

@@ -21,8 +21,8 @@
     @{int wishListCount = 0; }
     @if (Session["wishList"] != null)
     {
-        List<Event> events = (List<Event>)Session["wishList"];
-        wishListCount = events.Count;
+        Cart events = (Cart)Session["wishList"];
+        wishListCount = events.Events.Count;
     }
 </head>
 <body>

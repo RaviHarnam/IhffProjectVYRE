@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IHFF.Models;
+using IHFF.Helpers;
 using System.Web.Security;
 using IHFF.Repositories;
 
@@ -21,13 +22,18 @@ namespace IHFF.Controllers
             Cart cart = new Cart();
 
             if (Session["cart"] == null)
+            {
                 Session["cart"] = new Cart();
+            }
+            else
+            {
+                cart = (Cart)Session["cart"];
 
-            cart = (Cart)Session["cart"];
+                cart.BerekenTotaal();
 
-            cart.BerekenTotaal();
+                Session["cart"] = cart;
+            }
 
-            Session["cart"] = cart;
             return View("Index", cart);
         }
 
@@ -50,21 +56,9 @@ namespace IHFF.Controllers
         {
             Cart cart = (Cart)Session["cart"];
 
-            Event toRemove = null;
-
-            foreach (Event eventx in cart.Events)
-                if (eventx.EventID == eventId)
-                {
-                    toRemove = eventx;
-                    break;
-                }
-
-            cart.Events.Remove(toRemove);
-
-            Session["cart"] = cart;
+            Session["cart"] = cart.DeleteItem(eventId);
 
             return RedirectToAction("Index", cart);
-
         }
     }
 }
