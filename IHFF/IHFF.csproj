@@ -215,6 +215,8 @@
     <Compile Include="Controllers\SpecialController.cs" />
     <Compile Include="Controllers\WishListController.cs" />
     <Compile Include="Controllers\CultureController.cs" />
+    <Compile Include="Enum\Payment.cs" />
+    <Compile Include="Enum\PickUp.cs" />
     <Compile Include="Enum\Weekday.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -227,6 +229,7 @@
     <Compile Include="Models\ComboDeal.cs" />
     <Compile Include="Models\Highlight.cs" />
     <Compile Include="Models\Input\AfbeeldingInputModel.cs" />
+    <Compile Include="Models\Input\CartInfoInputModel.cs" />
     <Compile Include="Models\Input\HotelInputModel.cs" />
     <Compile Include="Models\Input\ItemBestellingInputModel.cs" />
     <Compile Include="Models\Input\ItemInputModel.cs" />

@@ -17,13 +17,10 @@ namespace IHFF.Controllers
             return RedirectToAction("Cart", "Cart");
         }
         
-        public ActionResult Payment(string payment, string name, string email, string pickup)
+        public ActionResult Payment(Cart cartInfo)
         {
-            Session["bestellingInfo"] = new List<string>() //Vullen met bestellingopties
-            {
-                payment, name, email, pickup
-            };
-            return View("Payment", model: payment);
+            Session["bestellingInfo"] = cartInfo;
+            return View("Payment", model: cartInfo.InputModel.PaymentMethod.ToString());
         }
 
         [HttpPost]

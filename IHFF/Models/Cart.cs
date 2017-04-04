@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using IHFF.Models.Input;
 using System.Web;
 using IHFF.Repositories;
 
@@ -12,21 +13,11 @@ namespace IHFF.Models
         IVoorstellingRepository dbVoorstelling = new DbVoorstellingRepository();
         IItemRepository dbItemRespository = new DbItemRepository();
 
+        public CartInfoInputModel InputModel { get; set; }
+
         public List<Event> Events { get; set; }
         public decimal Korting { get; set; }
         public decimal Totaal { get; set; }
-
-        [Required]
-        public string Email { get; set; }
-
-        [Required]
-        public string Name { get; set; }
-
-        [Required]
-        public string Payment { get; set; }
-
-        [Required]
-        public string Pickup { get; set; }
 
         public Cart()
         {
@@ -35,23 +26,20 @@ namespace IHFF.Models
 
         public void BerekenTotaal()
         {
-            if (Events != null)
+            foreach (Event ev in Events)
             {
-                foreach (Event ev in Events)
+                ev.CartId = Events.IndexOf(ev);
+                if (ev.EventVoorstelling != null)
                 {
-                    ev.CartId = Events.IndexOf(ev);
-                    if (ev.EventVoorstelling != null)
+                    if (Events.Where(m => m.EventVoorstelling != null).Count() > 1)
                     {
-                        if (Events.Where(m => m.EventVoorstelling != null).Count() > 1)
+                        if (ev.Prijs > 0)
                         {
-                            if (ev.Prijs > 0)
-                            {
-                                Korting = (decimal)(5 / (double)100);
-                            }
+                            Korting = (decimal)(5 / (double)100);
                         }
                     }
-                    Totaal += ev.BerekenTotaalPrijs();
                 }
+                Totaal += ev.BerekenTotaalPrijs();
             }
 
             Totaal = Totaal - (Totaal * Korting);

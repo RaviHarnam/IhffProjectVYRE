@@ -24,17 +24,11 @@ namespace IHFF.Models
         [NotMapped]
         public virtual List<DateTime> Tijden { get; set; }
 
-        //[NotMapped]
-        //public virtual List<Voorstelling> Voorstellingen { get; set; }
-
         [NotMapped]
         public virtual int Aantal { get; set; }
 
         [NotMapped]
         public virtual ItemBestellingInputModel Moviebestellinginputmodel { get; set; }
-
-        //[NotMapped]
-        //public virtual Afbeelding OverviewAfbeelding { get; set; }
 
         public Movie()
         {
@@ -47,8 +41,6 @@ namespace IHFF.Models
             Director = director;
             Writers = writers;
         }
-
-       
 
         public void ConvertFromMovieInputModel(MovieInputModel m)
         {
@@ -76,10 +68,5 @@ namespace IHFF.Models
             Omschrijving = m.Omschrijving;
             Highlight = m.Highlight;
         }
-
-        //public double Prijs { get; set; }
-        //public DateTime DatumTijd { get; set; }    
-
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿@Styles.Render("~/Content/CartStyle.css")
 @using IHFF.Models;
+@using IHFF.Enum;
 
 @{
     ViewBag.Title = "Cart";
@@ -48,27 +49,27 @@
                 <tr class="PickupOptions">
                     <td><p>Ticket Recieval Method:</p></td>
                     <td class="right">
-                        @Html.RadioButtonFor(m => m.Pickup, "2" ):Pick up at desk
+                        @Html.RadioButtonFor(m => m.InputModel.PickupMethod, PickUp.Desk )Pick up at desk <br/>
+                        @Html.RadioButtonFor(m => m.InputModel.PickupMethod, PickUp.Email )Send via E-mail
 
-                        <input type="radio" onclick="HandleClick(this)" name="pickup" value="1" checked="checked" />Pick up at desk.<br />
-                        <input type="radio" onclick="HandleClick(this)" name="pickup" value="2" />Send via E-mail.
                     </td>
                 </tr>
                 <tr class="PaymentOptions">
                     <td><p>Payment Method:</p></td>
                     <td class="right">
-                        <input type="radio" name="payment" value="Credit card" checked="checked" />Credit Card<br />
-                        <input type="radio" name="payment" value="iDeal" />iDeal<br />
-                        <input type="radio" name="payment" value="Bank transfer" />Bank Transfer<br />
-                        <input type="radio" name="payment" value="PayPal" />Pay Pal
+                        @Html.RadioButtonFor(m => m.InputModel.PaymentMethod, Payment.CreditCard )Credit Card <br/>
+                        @Html.RadioButtonFor(m => m.InputModel.PaymentMethod, Payment.IDeal )iDeal <br/>
+                        @Html.RadioButtonFor(m => m.InputModel.PaymentMethod, Payment.BankTransfer )Bank Transfer<br/>
+                        @Html.RadioButtonFor(m => m.InputModel.PaymentMethod, Payment.PayPal )PayPal <br/>
                     </td>
                 </tr>
                 <tr>
                     <td id="textboxcell">
-                        <label for="Name" id="lbl_name">Name:</label>
-                        <input type="text" id="removeBoxName" name="Name" />
-                        <label for="Email" id="lbl_email" style="display: none;">E-mail:</label>
-                        <input type="text" id="removeBoxEmail" name="Email" style="display: none;" />
+                        @Html.LabelFor(m => m.InputModel.Name )
+                        @Html.TextBoxFor(m => m.InputModel.Name )
+
+                        @Html.LabelFor(m => m.InputModel.Email )
+                        @Html.TextBoxFor(m => m.InputModel.Email )
                     </td>
                 </tr>
                 <tr>
