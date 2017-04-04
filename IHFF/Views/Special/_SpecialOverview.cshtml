@@ -22,12 +22,12 @@
     @using (Html.BeginForm("SpecialOverview", "Special", FormMethod.Post))
     {
 
-        @Html.LabelFor(m =>m.Specialbestellinginputmodel.Aantal)
+        @Html.LabelFor(m =>m.Aantal)
         @Html.HiddenFor(m => m.ItemID)
         
         <br />
-        @Html.TextBoxFor(m => m.Specialbestellinginputmodel.Aantal)
-        @Html.ValidationMessageFor(m => m.Specialbestellinginputmodel.Aantal)
+        @Html.TextBoxFor(m => m.Aantal)
+        @Html.ValidationMessageFor(m => m.Aantal)
         <br /><br />
         @Html.Label("Date (dd/mm/yy)");
         <br />

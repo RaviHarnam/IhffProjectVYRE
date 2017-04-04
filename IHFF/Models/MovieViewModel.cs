@@ -28,7 +28,7 @@ namespace IHFF.Models
             MakeListItems();
         }
 
-        void MakeListItems()
+        private void MakeListItems()
         {
 
             foreach(Voorstelling v in voorstellingen)

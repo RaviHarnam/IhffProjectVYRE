@@ -10,7 +10,7 @@ namespace IHFF.Repositories
     public interface IVoorstellingRepository
     {
         List<Voorstelling> GetVoorstellingen(int itemId);
-        Voorstelling GetVoorstelling(int voorstellingId);
+        Voorstelling GetVoorstelling(int? voorstellingId);
 
         Voorstelling GetVoorstelling(int itemId, DateTime Tijd);
     }

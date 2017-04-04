@@ -11,9 +11,8 @@ namespace IHFF.Controllers
 {
     public class SpecialController : Controller
     {
-        private ISpecialRepository dbSpecial = new DbSpecialRepository();
+        private IItemRepository dbSpecial = new DbItemRepository();
         private IVoorstellingRepository dbVoorstelling = new DbVoorstellingRepository();
-        private MakeEventHelper helper = new MakeEventHelper();
 
         // GET: Special
         public ActionResult Index()
@@ -21,6 +20,20 @@ namespace IHFF.Controllers
             return RedirectToAction("SpecialOverview");
         }
 
+        public ActionResult SpecialOverviewByDay(int dag)
+        {
+            IEnumerable<Special> specials = dbSpecial.getSpecialByDay(dag);
+
+            if (!specials.Any())
+            {
+                return View(); // moet nog een view krijgen
+            }
+            else
+            {
+                return View("SpecialOverview", specials); // hier kun je gewoon naar MovieOverview verwijzen
+            }
+
+        }
         public ActionResult SpecialOverview()
         {
             IEnumerable<Special> specials = dbSpecial.GetAllSpecials();
@@ -28,43 +41,41 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult SpecialOverview(int? voorstellingId, Special sInput, string button)
+        public ActionResult SpecialOverview(int? voorstellingId, int Aantal)
         {
             if (ModelState.IsValid)
             {
-                helper.MakeEvent(voorstellingId.Value, sInput.Specialbestellinginputmodel.Aantal, button);
+                Cart cart = new Cart();
+                Session["cart"] = cart.AddItem(voorstellingId, Aantal);
             }
             return RedirectToAction("SpecialOverview");
         }
 
-        public ActionResult SpecialDetailPage(int? special_id)
+        public ActionResult SpecialDetailPage(int special_id)
         {
-            if (special_id != null)
-            {
-                Special special = dbSpecial.GetSpecial(special_id.Value); // checkt of de special met het gegeven id wel bestaat
+            
+            
+                Special special = dbSpecial.GetSpecial(special_id); 
                 if (special != null)
                 {
                     special.Voorstellingen = (dbVoorstelling.GetVoorstellingen(special.ItemID));
                     return View(special);
                 }
-            }
+            
             return RedirectToAction("SpecialOverview");
         }
 
 
         [HttpPost]
-        public ActionResult SpecialDetailPage(int? voorstellingId, Special sInput, string button)
+        public ActionResult SpecialDetailPage(int voorstellingId, int Aantal)
         {
-            if (voorstellingId != null)
-            {
                 if (ModelState.IsValid)
                 {
-                    helper.MakeEvent(voorstellingId.Value, sInput.Specialbestellinginputmodel.Aantal, button);
-                }
-                Special s = dbSpecial.GetSpecialByVoorstellingID(voorstellingId.Value);
-                return View(s);
+                    Cart cart = new Cart();
+                    Session["cart"] = cart.AddItem(voorstellingId, Aantal);
             }
-            return RedirectToAction("SpecialOverview");
+                Special special = dbSpecial.GetSpecialByVoorstellingID(voorstellingId);
+                return View(special);
         }
     }
 }

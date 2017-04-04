@@ -11,9 +11,10 @@ namespace IHFF.Repositories
     {
 
         IEnumerable<Movie> GetAllMovies();
-        Movie GetMovie(int id);
+        Movie GetMovie(int? id);
         List<DateTime> GetMovieTijden(Movie movie);
         Movie GetMovieByVoorstellingID(int voorstellingid);
         List<Movie> getMoviesByDay(int dag);
+        void UpdateMovie(Movie movie);
     }
 }

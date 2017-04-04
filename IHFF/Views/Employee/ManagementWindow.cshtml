@@ -44,7 +44,7 @@
 
         <tr>
             <td>@movie.item.Titel</td>
-            <td>@Html.ActionLink("Edit", "EditMovie", "Employee", new { id = movie.item.ItemID }, new { @Class = "management" })</td>
+            <td>@Html.ActionLink("Edit", "EditMovie", "Movie", new { id = movie.item.ItemID }, new { @Class = "management" })</td>
             @*<td>@Html.ActionLink("Delete", "DeleteMovie", "Employee", new { id = movie.item.ItemID }, new { @Class = "management" })</td>*@
             <td>
                 <button class="deletebtn">Delete</button>

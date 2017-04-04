@@ -10,7 +10,7 @@ namespace IHFF.Repositories
     {
         IhffContext ctx = new IhffContext();
 
-        public Voorstelling GetVoorstelling(int voorstellingId)
+        public Voorstelling GetVoorstelling(int? voorstellingId)
         {
             Voorstelling voorstelling = (from v in ctx.VOORSTELLINGEN
                                          where v.VoorstellingID == voorstellingId

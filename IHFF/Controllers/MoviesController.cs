@@ -12,10 +12,9 @@ namespace IHFF.Controllers
 {
     public class MoviesController : Controller
     {
-        private IMoviesRepository dbMovie = new DbMovieRepository();
+        private IItemRepository dbMovie = new DbItemRepository();
         private IVoorstellingRepository dbVoorstelling = new DbVoorstellingRepository();
-        private MakeEventHelper helper = new MakeEventHelper();
-
+      
         public ActionResult Index()
         {
             return View("MovieOverview");
@@ -27,13 +26,13 @@ namespace IHFF.Controllers
 
             if (!movies.Any())
             {
-                return View("Er zijn nog geen films voor deze dag beschikbaar");
+                return View(); // view dat zegt dat er geen films op die dag draaien
             }
             else
             {
-                return View("~/Views/Movies/MovieOverview.cshtml",movies);
-            }
-      
+                return View("MovieOverview", movies); // hier kun je gewoon naar MovieOverview verwijzen
+            }   
+
         }
         public ActionResult MovieOverview() // haal alle films op en zet ze in een overview
         {
@@ -42,49 +41,59 @@ namespace IHFF.Controllers
         }
 
         [HttpPost]
-        public ActionResult MovieOverview(int? voorstellingId, Movie mInput, string listType) // post een movie naar de cart vanuit movieoverview dmv input model en eventHelper listType geeft aan om welke lijst het gaat (wishlist of cart)
+        public ActionResult MovieOverview(int? voorstellingId, int Aantal) // post een movie naar de cart vanuit movieoverview dmv input model en eventHelper listType geeft aan om welke lijst het gaat (wishlist of cart)
         {
             if (ModelState.IsValid)
             {
+                
                 Cart cart = new Cart();
-                if (Session[listType] != null)
-                {
-                    cart = (Cart)Session[listType];
-                }
-
-                Session[listType] = cart.AddItem(voorstellingId.Value, mInput.Aantal);
+                Session["cart"] = cart.AddItem(voorstellingId, Aantal); // returned een cart object en geeft dit mee aan de sessie
+                
             }
             return RedirectToAction("MovieOverview");
         }
 
 
-        public ActionResult MovieDetailPage(int? movie_id) // haal een specifieke film op zet hem op detailpage
+        public ActionResult MovieDetailPage(int movie_id) // haal een specifieke film op zet hem op detailpage
         {
-            if (movie_id != null)
-            {
-                Movie movie = dbMovie.GetMovie(movie_id.Value); // checkt of de movie met het gegeven id wel bestaat
+            
+
+                Movie movie = dbMovie.GetMovie(movie_id); // haalt movie op met movie_id (movie waarop geklikt is) en zet deze in movieobject
                 if (movie != null)
                 {
                     movie.Voorstellingen = (dbVoorstelling.GetVoorstellingen(movie.ItemID));
-                    return View(movie);
+                    return View(movie); // als een film is ophehaald geef die dan aan de view terug.
                 }
-            }
-            return RedirectToAction("MovieOverview");
+            
+            return RedirectToAction("MovieOverview"); //mocht deze niet opgehaald zijn ga dan terug naar action MovieOverview en haal dan alle films weer op.
         }
 
         [HttpPost]
-        public ActionResult MovieDetailPage(int? voorstellingId, Movie mInput, string listType) 
+        public ActionResult MovieDetailPage(int voorstellingId, int Aantal) // Deze actionresult zorgt ervoor dat er vanaf de detailpage een film in de cart gedaan kan worden
         {
-            if (voorstellingId != null)
-            {
+
                 if (ModelState.IsValid)
                 {
-                    helper.MakeEvent(voorstellingId.Value, mInput.Moviebestellinginputmodel.Aantal, listType);
+                    Cart cart = new Cart();
+                    Session["cart"] = cart.AddItem(voorstellingId, Aantal);
                 }
-                Movie movie = dbMovie.GetMovieByVoorstellingID(voorstellingId.Value);
-                return View(movie);
+                Movie movie = dbMovie.GetMovieByVoorstellingID(voorstellingId); // als de movie niet geadd is aan de cart haal dan weer dezelfde movie op om deze weer te tonen in de view
+                return View(movie); // als de film dus correct is opgehaald, dan wordt hij aan de view MovieDetailPage gegeven en in die view geladen
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EditMovie(MovieInputModel movie)
+        {
+            if (ModelState.IsValid) //Alles goed ingevuld
+            {
+                Movie movToEdit = dbMovie.GetMovie(movie.ItemID);
+                movToEdit.ConvertFromMovieInputModel(movie); //Maken van Movie van input model
+                dbMovie.UpdateMovie(movToEdit);
             }
-            return RedirectToAction("MovieOverview");
+            else
+                ModelState.AddModelError("Edit-error", "The Movie you tried to edit had some incorrectly filled fields.");
+            return View(movie);
         }
 
     }
