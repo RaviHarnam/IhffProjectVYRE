@@ -10,6 +10,7 @@ namespace IHFF.Repositories
     public class DbMovieRepository : IMoviesRepository
     {
         private IhffContext ctx = new IhffContext();
+        private DateTime IJKDATUM = new DateTime(2017, 4, 30);
 
         public IEnumerable<Movie> GetAllMovies()
         {
@@ -17,27 +18,25 @@ namespace IHFF.Repositories
             // Loop door de lijst heen en vul de afbeeldingen en voorstellingen erin.
             foreach (Movie mov in movies)
             {
-                mov.ItemAfbeelding = HaalItemAfbeeldingOp(mov, "filmoverview", mov.ItemID);
-                //mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmoverview");
+                HaalItemAfbeeldingOp(mov, "filmoverview", mov.ItemID);
                 mov.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == mov.ItemID select v).ToList();
             }
             return movies;
         }
 
         //haal 1 movie op met een specifieke id.
-        public Movie GetMovie(int id)
+        public Movie GetMovie(int? id)
         {    
             Movie movie = ctx.MOVIES.SingleOrDefault(i => i.ItemID == id);
-            movie.ItemAfbeelding = HaalItemAfbeeldingOp(movie,"filmbanner", id);
-            //movie.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == movie.ItemID && a.Type == "filmbanner");
+            HaalItemAfbeeldingOp(movie,"filmbanner", id);
             movie.Tijden = (from v in ctx.VOORSTELLINGEN where v.ItemID == movie.ItemID select v.BeginTijd).ToList();
 
             return movie;
         }
 
-        private Afbeelding HaalItemAfbeeldingOp(Movie movie, string soort, int? movieId)
+        private void HaalItemAfbeeldingOp(Movie movie, string soort, int? movieId)
         {
-                return movie.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == movie.ItemID && a.Type == soort);
+                movie.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == movie.ItemID && a.Type == soort);
         }
 
         //haal de tijden van de movie op
@@ -54,18 +53,17 @@ namespace IHFF.Repositories
 
         public List <Movie> getMoviesByDay(int dag)
         {
-            DateTime eersteZondag = new DateTime(2017, 4, 30);
+            
             
             List<Movie> moviePerDag = new List<Movie>();
                            
             moviePerDag = (from v in ctx.VOORSTELLINGEN
                            from m in ctx.MOVIES
-                           where (DbFunctions.DiffDays(eersteZondag, v.BeginTijd) % 7 == dag) && v.ItemID == m.ItemID
+                           where (DbFunctions.DiffDays(IJKDATUM, v.BeginTijd) % 7 == dag) && v.ItemID == m.ItemID
                            select m).ToList();
             foreach(Movie movie in moviePerDag)
             {
-                movie.ItemAfbeelding = HaalItemAfbeeldingOp(movie, "filmoverview", movie.ItemID);
-                //mov.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == mov.ItemID && a.Type == "filmoverview");
+                HaalItemAfbeeldingOp(movie, "filmoverview", movie.ItemID);
                 movie.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == movie.ItemID select v).ToList();
             }
 
@@ -79,10 +77,28 @@ namespace IHFF.Repositories
                       where m.ItemID == v.ItemID
                       && v.VoorstellingID == voorstellingid
                       select m).SingleOrDefault();
-            movie.ItemAfbeelding = HaalItemAfbeeldingOp(movie, "filmbanner", movie.ItemID);
-            //movie.ItemAfbeelding = ctx.AFBEELDINGEN.SingleOrDefault(a => a.ItemID == movie.ItemID && a.Type == "filmbanner");
+            HaalItemAfbeeldingOp(movie, "filmbanner", movie.ItemID);
             movie.Voorstellingen = (from v in ctx.VOORSTELLINGEN where v.ItemID == movie.ItemID select v).ToList();
             return movie;
+        }
+
+        public void UpdateMovie(Movie movie)
+        {
+            Movie dbMovie = ctx.MOVIES.SingleOrDefault(m => m.ItemID == movie.ItemID);
+            if (dbMovie != null)
+            {
+                dbMovie.Titel = movie.Titel;
+                dbMovie.Writers = movie.Writers;
+
+                dbMovie.Stars = movie.Stars;
+                dbMovie.Rating = movie.Rating;
+                dbMovie.Omschrijving = movie.Omschrijving;
+                dbMovie.ItemAfbeelding.Link = movie.ItemAfbeelding.Link;
+                dbMovie.OverviewAfbeelding.Link = movie.OverviewAfbeelding.Link;
+                dbMovie.Director = movie.Director;
+                dbMovie.Highlight = movie.Highlight;
+                ctx.SaveChanges();
+            }
         }
 
 

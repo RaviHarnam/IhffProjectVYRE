@@ -58,7 +58,7 @@ namespace IHFF.Models
             Totaal = Math.Round(Totaal, 2, MidpointRounding.AwayFromZero);
         }
 
-        public Cart AddItem(int voorstellingId, int aantal)
+        public Cart AddItem(int? voorstellingId, int aantal)
         {
             bool eventAlInCart = false;
             Voorstelling v = dbVoorstelling.GetVoorstelling(voorstellingId);

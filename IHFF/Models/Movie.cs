@@ -20,21 +20,18 @@ namespace IHFF.Models
         public string Director { get; set; }
         public string Stars { get; set; }
         public string Writers { get; set; }
-      
         [NotMapped]
-        public virtual List<DateTime> Tijden { get; set; }
+        public int Aantal { get; set; }
+
+        public List<DateTime> Tijden { get; set; }
+        //[NotMapped]
+        //public virtual List<DateTime> Tijden { get; set; }
 
         //[NotMapped]
-        //public virtual List<Voorstelling> Voorstellingen { get; set; }
-
-        [NotMapped]
-        public virtual int Aantal { get; set; }
-
-        [NotMapped]
-        public virtual ItemBestellingInputModel Moviebestellinginputmodel { get; set; }
+        //public virtual int Aantal { get; set; }
 
         //[NotMapped]
-        //public virtual Afbeelding OverviewAfbeelding { get; set; }
+        //public virtual ItemBestellingInputModel Moviebestellinginputmodel { get; set; }
 
         public Movie()
         {
@@ -46,6 +43,7 @@ namespace IHFF.Models
             Rating = rating;
             Director = director;
             Writers = writers;
+            
         }
 
        

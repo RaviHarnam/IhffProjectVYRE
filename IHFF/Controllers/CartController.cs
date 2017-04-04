@@ -19,11 +19,12 @@ namespace IHFF.Controllers
 
         public ActionResult Cart()
         {
-            Cart cart = new Cart();
+            Cart cart = null; // = new Cart();
 
             if (Session["cart"] == null)
             {
-                Session["cart"] = new Cart();
+                cart = new Cart();
+                Session["cart"] = cart;
             }
             else
             {

@@ -18,14 +18,14 @@ namespace IHFF.Models
         public string Speaker { get; set; }
         [Display(Name = "Spoken Language")]
         public string SpokenLanguage { get; set; }
-        //[NotMapped]
-        //public virtual List<Voorstelling> Voorstellingen { get; set; }
+        [NotMapped]
+        public int Aantal { get; set; }
         [NotMapped]
         public virtual List<DateTime> Tijden { get; set; }
-        [NotMapped]
-        public virtual int Aantal { get; set; }
-        [NotMapped]
-        public virtual ItemBestellingInputModel Specialbestellinginputmodel { get; set; }
+        //[NotMapped]
+        //public virtual int Aantal { get; set; }
+        //[NotMapped]
+        //public virtual ItemBestellingInputModel Specialbestellinginputmodel { get; set; }
 
         
 

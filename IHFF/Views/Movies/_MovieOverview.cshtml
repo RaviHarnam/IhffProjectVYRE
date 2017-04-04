@@ -28,12 +28,12 @@
 @using (Html.BeginForm("MovieOverview", "Movies", FormMethod.Post))
 {
     
-    @Html.LabelFor(m => m.Moviebestellinginputmodel.Aantal )
+    @Html.LabelFor(m => m.Aantal )
     @Html.HiddenFor(m => m.ItemID)
     
     <br />
-        @Html.TextBoxFor(m => m.Moviebestellinginputmodel.Aantal)
-        @Html.ValidationMessageFor(m => m.Moviebestellinginputmodel.Aantal)
+        @Html.TextBoxFor(m => m.Aantal)
+        @Html.ValidationMessageFor(m => m.Aantal)
         <br /><br />
         @Html.Label("Date (dd/mm/yy)")
     <br />
