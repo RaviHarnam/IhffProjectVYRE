@@ -24,9 +24,6 @@ namespace IHFF.Models
         public int Aantal { get; set; }
 
         [NotMapped]
-        public virtual int Aantal { get; set; }
-
-        [NotMapped]
         public virtual ItemBestellingInputModel Moviebestellinginputmodel { get; set; }
 
         public List<DateTime> Tijden { get; set; }
