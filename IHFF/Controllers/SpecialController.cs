@@ -46,7 +46,7 @@ namespace IHFF.Controllers
             if (ModelState.IsValid)
             {
                 Cart cart = new Cart();
-                Session["cart"] = cart.AddItem(voorstellingId, Aantal);
+                cart.AddItem(voorstellingId, Aantal);
             }
             return RedirectToAction("SpecialOverview");
         }
@@ -72,7 +72,7 @@ namespace IHFF.Controllers
                 if (ModelState.IsValid)
                 {
                     Cart cart = new Cart();
-                    Session["cart"] = cart.AddItem(voorstellingId, Aantal);
+                    cart.AddItem(voorstellingId, Aantal);
             }
                 Special special = dbSpecial.GetSpecialByVoorstellingID(voorstellingId);
                 return View(special);

@@ -47,7 +47,7 @@ namespace IHFF.Controllers
             {
                 
                 Cart cart = new Cart();
-                Session["cart"] = cart.AddItem(voorstellingId, Aantal); // returned een cart object en geeft dit mee aan de sessie
+                cart.AddItem(voorstellingId, Aantal); // returned een cart object en geeft dit mee aan de sessie
                 
             }
             return RedirectToAction("MovieOverview");
@@ -75,7 +75,7 @@ namespace IHFF.Controllers
                 if (ModelState.IsValid)
                 {
                     Cart cart = new Cart();
-                    Session["cart"] = cart.AddItem(voorstellingId, Aantal);
+                    cart.AddItem(voorstellingId, Aantal);
                 }
                 Movie movie = dbMovie.GetMovieByVoorstellingID(voorstellingId); // als de movie niet geadd is aan de cart haal dan weer dezelfde movie op om deze weer te tonen in de view
                 return View(movie); // als de film dus correct is opgehaald, dan wordt hij aan de view MovieDetailPage gegeven en in die view geladen

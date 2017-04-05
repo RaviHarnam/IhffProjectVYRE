@@ -31,7 +31,6 @@ namespace IHFF.Controllers
             else
             {
                 cart = (Cart)Session["cart"];
-
                 cart.BerekenTotaal();
             }
 
@@ -54,7 +53,7 @@ namespace IHFF.Controllers
         {
             Cart cart = (Cart)Session["cart"];
 
-            Session["cart"] = cart.DeleteItem(eventId);
+            cart.DeleteItem(eventId);
 
             return RedirectToAction("Index", cart);
         }

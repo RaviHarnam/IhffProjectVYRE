@@ -46,7 +46,7 @@ namespace IHFF.Models
             Totaal = Math.Round(Totaal, 2, MidpointRounding.AwayFromZero);
         }
 
-        public Cart AddItem(int? voorstellingId, int aantal)
+        public void AddItem(int? voorstellingId, int aantal)
         {
             bool eventAlInCart = false;
             Voorstelling v = dbVoorstelling.GetVoorstelling(voorstellingId);
@@ -69,8 +69,6 @@ namespace IHFF.Models
                     Events.Add(eventx);
                 }
             }
-
-            return this;
         }
 
         private Event ConvertVoorstelling(int aantal, Voorstelling v)
@@ -89,7 +87,7 @@ namespace IHFF.Models
             return eventx;
         }
 
-        public Cart DeleteItem(int eventId)
+        public void DeleteItem(int eventId)
         {
 
             Event toRemove = null;
@@ -102,8 +100,6 @@ namespace IHFF.Models
                 }
 
             Events.Remove(toRemove);
-
-            return this;
         }
     }
 }
